@@ -1,0 +1,1 @@
+{ screenshots = "~/Pictures/Screenshots"; }
