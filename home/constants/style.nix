@@ -3,12 +3,22 @@ in {
   background = "~/.background";
   avatar = "~/.face";
 
-  fontGui = "OpenDyslexic Nerd Font";
-  # fontGui = "Ubuntu Nerd Font";
-  fontMonospace = "MesloLGS Nerd Font";
-  # fontMonospace = "UbuntuMono Nerd Font";
-  fontReading = "OpenDyslexic Nerd Font";
+  fontGui = "Ubuntu Nerd Font";
+  fontMonospace = "UbuntuMono Nerd Font";
   fontSize = 12;
+  fontSizeLarger = 14;
+  fontSizeLargest = 16;
+
+  opacity = {
+    background = {
+      decimal = 0.97;
+      hex = "F7";
+    };
+    screen = {
+      decimal = 0.9;
+      hex = "F0";
+    };
+  };
 
   border = {
     outer = {
@@ -24,6 +34,12 @@ in {
   gaps = {
     inner = 5;
     outer = 10;
+  };
+
+  padding = {
+    window = 10;
+    notifications = 15;
+    button = 5;
   };
 
   floatingDialogue = { };
@@ -59,6 +75,7 @@ in {
     textDark = catppuccinMocha.subtext0;
 
     activeSurface = catppuccinMocha.surface0;
+    activeOutline = catppuccinMocha.surface1;
     tableLine = catppuccinMocha.surface2;
 
     background = catppuccinMocha.base;
@@ -72,6 +89,7 @@ in {
     bluetooth = catppuccinMocha.blue;
     network = catppuccinMocha.lavender;
     clock = catppuccinMocha.sapphire;
+    weather = catppuccinMocha.maroon;
 
     terminalBlack = catppuccinMocha.surface1;
     terminalRed = catppuccinMocha.red;
@@ -89,5 +107,37 @@ in {
     terminalMagenta2 = catppuccinMocha.flamingo;
     terminalCyan2 = catppuccinMocha.sky;
     terminalGray2 = catppuccinMocha.text;
+
+    modeCommand = catppuccinMocha.peach;
+    modeInsert = catppuccinMocha.sapphire;
+    modeVisual = catppuccinMocha.rosewater;
+    modeReplace = catppuccinMocha.maroon;
+    modeInactive = catppuccinMocha.surface0;
+
+    gitAdded = catppuccinMocha.green;
+    gitRemoved = catppuccinMocha.red;
+    gitMoved = catppuccinMocha.pink;
+    gitModified = catppuccinMocha.yellow;
+    gitCommit = catppuccinMocha.maroon;
+    gitTime = catppuccinMocha.sapphire;
+    gitAuthor = catppuccinMocha.teal;
+    gitTag = catppuccinMocha.lavender;
+    gitBranch = catppuccinMocha.sky;
+
+    actionCopy = catppuccinMocha.green;
+    actionMove = catppuccinMocha.maroon;
+
+    permissionType = catppuccinMocha.blue;
+    permissionRead = catppuccinMocha.peach;
+    permissionWrite = catppuccinMocha.maroon;
+    permissionExec = catppuccinMocha.green;
+    permissionEmpty = catppuccinMocha.overlay1;
+
+    filetypeAny = catppuccinMocha.text;
+    filetypeImage = catppuccinMocha.teal;
+    filetypeVideo = catppuccinMocha.yellow;
+    filetypeArchive = catppuccinMocha.pink;
+    filetypeDocument = catppuccinMocha.green;
+    filetypeFolder = catppuccinMocha.blue;
   };
 }

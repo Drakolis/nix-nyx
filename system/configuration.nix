@@ -52,66 +52,180 @@
     isNormalUser = true;
     description = "Mika Drakolis";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [
+      protonmail-bridge-gui
+      protonmail-desktop
+      protonvpn-gui
+      protonvpn-cli
+      proton-pass
+    ];
     shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # Shell
     zsh
-    wget
+
+    # Terminal utilities
+    clamav
+    ctags
+    curl
+    duf # Disk usage
+    entr # Reload when files change
+    eza
+    fd # File search
+    ffmpeg
     fzf
     git
+    gnupg
+    jq # JSON parsing
+    lynis # Security audit
+    ripgrep
+    rsync
+    smartmontools
+    tokei
+    wget
+
+    # TUI Utilities
     bat
     bottom
-    eza
+    lynx # Terminal Browser
+    ncdu
+    neovim
     yazi
 
-    polkit
+    # Libraries
+    libinput
+    librsvg
+    libvirt
+
+    # Linux services
+    bluez
     dconf
-    libnotify
+    geoclue2
+    gvfs
+    xfce.tumbler # Thumbnails for Thunar
+
+    # Linux services control
+    bluez-tools
     brightnessctl
+    libnotify
     playerctl
 
+    # Security: Polkit
+    polkit
+    hyprpolkitagent
+
+    # Security: Keyring
+    gnome-keyring
+    seahorse
+
+    # Nix Specific
     home-manager
     nixd
     nixfmt-classic
+    nix-tree
+    nixos-generators
+    nixos-option
 
-    xwayland
+    # Other package managers
+    flatpak
+
+    # Wayland
+    wayland
+    wev
+    wl-clipboard
+    wl-mirror
+    wayvnc
+
+    # SDDM
     sddm
+    nerd-fonts.ubuntu
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Ubuntu Nerd Font";
+      fontSize = "14";
+      background = "${/home/drakolis/.background}";
+      loginBackground = false;
+    })
 
+    # Hyprland
     hyprland
-    hypridle
-    hyprpaper
-    hyprlock
     hyprcursor
-    hyprshot
+    hypridle
+    hyprlock
+    hyprpaper
     hyprpicker
+    hyprshade
+    hyprshot
     hyprsunset
+
+    # XDG
+    xdg-terminal-exec
+    xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
 
-    waybar
-    swaynotificationcenter
-    wlogout
-
-    kitty
-    imv
-
+    # Critical GUI Utilities
+    clamtk
+    dconf-editor
     firefox
+    gparted
+    imv
+    kitty
+    mate.engrampa
+    timeshift
+    xfce.thunar
+    xfce.thunar-volman
   ];
+
+  environment.sessionVariables = { TERMINAL = "kitty"; };
 
   programs.zsh.enable = true;
 
   services.displayManager.sddm = {
     enable = true;
-    wayland = { enable = true; };
+    theme = "catppuccin-mocha";
+    wayland.enable = true;
   };
 
-  programs.hyprland = {
+  programs.hyprland = { enable = true; };
+
+  security.polkit.enable = true;
+  security.polkit.debug = true;
+
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot =
+    true; # powers up the default Bluetooth controller on boot
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true; # Thumbnail support for images
+  services.gnome.gnome-keyring.enable = true;
+  services.geoclue2.enable = true;
+
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
+
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
+  programs.xfconf.enable = true;
+  programs.thunar = {
     enable = true;
-    xwayland.enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-dropbox-plugin
+      thunar-media-tags-plugin
+    ];
+  };
+
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -140,5 +254,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }

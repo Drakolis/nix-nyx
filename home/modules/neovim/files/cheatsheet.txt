@@ -1,0 +1,4 @@
+## my-binds @regex
+Show Cheatsheet                    | F1
+Neotree: Filesystem                | <leader>b
+Neotree: Buffers                   | <leader>nb

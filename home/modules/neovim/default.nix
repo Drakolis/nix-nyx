@@ -1,0 +1,34 @@
+{ config, pkgs, ... }:
+let style = import ../../constants/style.nix;
+in {
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+
+  home.file = {
+    ".config/nvim/" = {
+      source = ./files;
+      recursive = true;
+    };
+    ".config/nvim/lua/colors.lua".text = ''
+      local colors =
+      {
+        modeNormal = "#${style.colors.primary}",
+        modeCommand = "#${style.colors.modeCommand}",
+        modeInsert = "#${style.colors.modeInsert}",
+        modeVisual = "#${style.colors.selection}",
+        modeReplace = "#${style.colors.modeReplace}",
+        modeInactive = "#${style.colors.modeInactive}",
+        text = "#${style.colors.text}",
+        textInverted = "#${style.colors.textInverted}",
+        background = "#${style.colors.background}",
+      }
+
+      return colors
+    '';
+  };
+}

@@ -1,26 +1,28 @@
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 let
-  style = import ../variables/style.nix;
-  commands = import ../variables/commands.nix;
-  paths = import ../variables/paths.nix;
+  style = import ../../constants/style.nix;
+  commands = import ../../constants/commands.nix;
+  paths = import ../../constants/paths.nix;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
+    # plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
     settings = {
+      env = [
+        "EDITOR, ${commands.tui.editor}"
+        "TERMINAL, ${commands.terminal}"
+        "QT_QPA_PLATFORMTHEME, qt5ct"
+        "QT_STYLE_OVERRIDE, kvantum"
+      ];
       monitor = [ "eDP-1,1920x1080,0x0,1" "DP-1,2560x1440,1920x0,1" ];
+      layerrule = [ "blur, rofi" "blur, wofi" ];
       xwayland = { force_zero_scaling = true; };
       "$mainMod" = "SUPER";
       exec-once = [
-        "waybar"
-        "hypridle"
         "brightnessctl -sd tpacpi::kbd_backlight set 2"
-        # "killall hyprsunset; hyprsunset -t 5400 | at 18:00"
-        # "killall hyprsunset; hyprsunset -i | at 6:00"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
-      ];
+      ] ++ commands.autostart;
       general = {
         border_size = style.border.outer.width;
         gaps_in = style.gaps.inner;
@@ -93,7 +95,7 @@ in {
       input = {
         kb_layout = "us, ru";
         kb_options =
-          "grp:ctrl_space_toggle, compose:sclk, compose:102, apple:alupckeys";
+          "grp:ctrl_space_toggle, compose:sclk, compose:ralt, apple:alupckeys";
         numlock_by_default = true;
         sensitivity = 0;
         follow_mouse = 1;
@@ -145,7 +147,7 @@ in {
 
         # Kill actions
         "$mainMod, Q, killactive, "
-        "$mainMod SHIFT, Q, exec, ${commands.dialogue.shutdown}"
+        "$mainMod SHIFT, Q, exec, ${commands.dialogues.shutdown}"
         "CTRL ALT, DELETE, exit, "
 
         # Window Controls
@@ -162,16 +164,16 @@ in {
         "$mainMod, TAB, changegroupactive, f"
         "$mainMod SHIFT, TAB, changegroupactive, b"
 
-        "$mainMod SHIFT, F5, exec, killall waybar; waybar"
+        "$mainMod SHIFT, F5, exec, systemctl --user restart waybar"
         "$mainMod, L, exec, loginctl lock-session"
         "$mainMod, K, exec, ${commands.notifyHyprpicker} & hyprpicker -a"
         "$mainMod, N, exec, swaync-client -t"
         "$mainMod SHIFT, N, exec, swaync-client -d"
-        ", Print, exec, hyprshot -m region -o ${paths.screenshots} previewScreenshot"
-        "CTRL, Print, exec, hyprshot -m output -o ${paths.screenshots} previewScreenshot"
-        "$mainMod, Print, exec, hyprshot -m window -o ${paths.screenshots} previewScreenshot"
+        ", Print, exec, hyprshot -z -m region -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "CTRL, Print, exec, hyprshot -z -m output -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "$mainMod, Print, exec, hyprshot -m window -o ${paths.screenshots} ${commands.previewScreenshot}"
 
-        "$mainMod, grave, hyprexpo:expo, toggle"
+        # "$mainMod, grave, hyprexpo:expo, toggle"
 
         # Window Navigation
         "$mainMod, left, movefocus, l"
@@ -210,16 +212,17 @@ in {
         "$mainMod, E, exec, ${commands.terminal} ${commands.tui.editor}"
         "$mainMod SHIFT, E, exec, ${commands.gui.editor}"
         "$mainMod, M, exec, ${commands.terminal} (wl-paste | xargs ${commands.previewText})"
+        "$mainMod, Y, exec, ${commands.gui.passwords}"
 
         # Runner
-        "$mainMod, SPACE, exec, yofi apps"
-        "$mainMod, R, exec, yofi apps"
-        "$mainMod SHIFT, R, exec, yofi binapps"
+        "$mainMod, SPACE, exec, ${commands.dialogues.runner}"
+        "$mainMod, V, exec, ${commands.dialogues.runnerClipboard}"
+        "$mainMod SHIFT, SPACE, exec, ${commands.dialogues.runnerShift}"
 
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ", XF86AudioPrev, exec, playerctl position -5"
-        ", XF86AudioNext, exec, playerctl position +5"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -251,8 +254,8 @@ in {
       ];
       bindlo = [
         # Locked and long press
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioPrev, exec, playerctl position -5"
+        ", XF86AudioNext, exec, playerctl position +5"
       ];
       bindo = [
         # Long press
@@ -260,23 +263,40 @@ in {
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        # "float,class:^(clipse)$"
-        # "size 750 510,class:^(clipse)$"
-        # "pin,class:^(clipse)$"
-        # "stayfocused,class:^(clipse)$"
-        "stayfocused,class:^(wofi)$"
+
+        # Floating windows
         "float,class:^(qalculate).*$"
-        "float,class:^(pinentry-gtk)$"
+        "size 600 600,class:^(qalculate)$"
+
         # Password Dialogues
+        "float,class:^(pinentry-gtk)$"
+        "center,class:^(pinentry-gtk)$"
         "size 750 150,class:^(pinentry-gtk)$"
+
         # Save/Open Dialogues
-        "size 800 600,title:^((Save|Open).*)$"
-        "center,title:^((Save|Open).*)$"
-        "size 600 600,title:^(Screenshot)$"
+        "float,title:^((Open|Save).*)$"
+        "center,title:^((Open|Save).*)$"
+        "size 800 600,title:^((Open|Save).*)$"
+
+        # File operations in Thunar
+        "float,class:^(thunar)$,title:^(File Operation Progress)$"
+
+        # Screenshot dialogues
+        "float,class:^(Screenshot)$"
         "center,title:^(Screenshot)$"
+        "size 800 600,title:^(Screenshot)$"
+
         # "workspace special:writing silent,class:^(writing)$"
+
+        # Password manager rules
+        "float,class:^(org.keepassxc.KeePassXC)$"
+        "center,class:^(org.keepassxc.KeePassXC)$"
+        "float,class:^(Proton Pass)$"
+        "center,class:^(Proton Pass)$"
+
+        # Fix for shadow blurs being broken
+        "noblur,class:^()$,title:^()$"
       ];
     };
   };
-
 }

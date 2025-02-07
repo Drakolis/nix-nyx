@@ -1,12 +1,19 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
-  style = import ./variables/style.nix;
-  commands = import ./variables/commands.nix;
-  previewTextInFzf = "bat --style=numbers --color=always --line-range :500 {}";
-
+  style = import ./constants/style.nix;
+  commands = import ./constants/commands.nix;
+  paths = import ./constants/paths.nix;
 in {
-  imports = [ ./modules/hyprland.nix ];
+  imports = [
+    ./modules/neovim
+    ./modules/yazi
+    ./modules/office.nix
+    # Linux specific
+    ./modules/hypr
+    ./modules/desktop
+    ./modules/dashboards/glance.nix
+  ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "drakolis";
@@ -23,165 +30,178 @@ in {
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-    pkgs.starship
-    pkgs.asdf
-    pkgs.hyfetch
+  home.packages = with pkgs; [
+    # Shell
+    starship
+    zoxide
+    zellij
 
-    pkgs.dconf2nix
+    # Terminal utilities
+    asdf-vm
+    exiftool
+    navi
+    pet
+    sunwait
+    taskwarrior3
+    tealdeer
+    tgpt
+    topgrade
+    translate-shell
 
-    pkgs.cava
-    pkgs.navi
+    # Docker
+    docker
+    docker-compose
+    colima
 
-    pkgs.iamb
-    pkgs.dooit
-    pkgs.khal
-    pkgs.khard
+    # Terminal fanciness
+    lolcat
+    hyfetch
 
-    pkgs.himalaya
-    pkgs.aerc
-    pkgs.mutt
-    pkgs.alpine
+    # TUI Utilities
+    bluetui
+    gitui
+    himalaya
+    iamb # Matrix TUI
+    khal
+    khard
+    ledger
+    neomutt
+    taskwarrior-tui
 
-    # pkgs.feh
-    pkgs.element-desktop
-    pkgs.keepassxc
-    pkgs.krita
-    pkgs.ghostty
+    # TUI fanciness
+    cava
+
+    # Libraries
+
+    # Linux services
+    batsignal
+    # cliphist
+    # comodoro
+    vdirsyncer
+    rclone
+
+    # GUI Services
+    activitywatch
+    caffeine-ng
+    glance
+
+    # NixOS Specific
+    dconf2nix
+
+    # Desktop Helpers
+    avizo
+    swaynotificationcenter
+    walker
+    waybar
+    wlogout
+
+    # GUI Apps: Office
+    libreoffice-qt6
+    logseq
+    thunderbird
+    zathura # pdf view
+    qalculate-gtk
+
+    # GUI Apps: Dev
+    beekeeper-studio
+    bruno
+    ghostty
+    hoppscotch
+    jetbrains.idea-community-bin
+    krita
+    vscodium
+    wireshark-qt
+
+    # GUI Apps: Internet
+    element-desktop
+    networkmanagerapplet
+    transmission_4-qt6
+
+    # GUI Apps: Media
+    lollypop
+    mpv
+    rhythmbox
+    xfce.parole
+
+    # GUI Apps: Creativity
+    blender
+    inkscape-with-extensions
+    obs-studio
+    swappy
+
+    # GUI Apps: Games
+    dosbox
+    mangohud
+
+    # GUI Apps: Security
+    cryptomator
+    keepassxc
+
+    # GUI Apps: System
+    qt6Packages.qt6ct
+    qt6Packages.qtstyleplugin-kvantum
+    easyeffects
+    helvum
+    pavucontrol
 
     # Theming
-    (pkgs.catppuccin-kvantum.override {
+    (catppuccin-kde.override {
+      accents = [ "mauve" ];
+      flavour = [ "mocha" ];
+    })
+    (catppuccin-kvantum.override {
       accent = "mauve";
       variant = "mocha";
     })
-    (pkgs.catppuccin-gtk.override {
+    (catppuccin-gtk.override {
       accents = [ "mauve" ];
       variant = "mocha";
     })
-    pkgs.catppuccin-papirus-folders
-    pkgs.catppuccinifier-cli
-    pkgs.catppuccin-whiskers
-    pkgs.catppuccin-cursors.mochaDark
+    catppuccin-papirus-folders
+    catppuccinifier-cli
+    catppuccin-whiskers
+    catppuccin-cursors.mochaDark
 
-    pkgs.nerd-fonts.ubuntu
-    pkgs.nerd-fonts.ubuntu-mono
-    pkgs.nerd-fonts.meslo-lg
-    pkgs.nerd-fonts.open-dyslexic
+    # Fonts
+    nerd-fonts.ubuntu
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.open-dyslexic
 
-    pkgs.vscodium
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "MesloLG" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command1 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-    (pkgs.writeShellScriptBin "wttr" ''
+    # Scripts: wttr
+    (writeShellScriptBin "wttr" ''
       curl wttr.in/$1
-    '')
-    (pkgs.writeShellScriptBin "previewScreenshot" ''
-      ${commands.previewImage} -w Screenshot $1
     '')
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-    ".config/dooit/config.py".text = ''
-      from dooit.api.theme import DooitThemeBase
-      from dooit.ui.api import DooitAPI, subscribe
-      from dooit.ui.api.events import Startup
-
-      class Drakolis(DooitThemeBase):
-        _name = "dooit-drakolis"
-
-        background1: str = "#${style.colors.background}"  # Darkest
-        background2: str = "#${style.colors.error}"  # Lighter
-        background3: str = "#${style.colors.warning}"  # Lightest
-
-        # foreground colors
-        foreground1: str = "#${style.colors.selection}"  # Darkest
-        foreground2: str = "#${style.colors.locked}"  # Lighter
-        foreground3: str = "#${style.colors.text}"  # Lightest
-
-        # other colors
-        red: str = "#BF616A"
-        orange: str = "#D08770"
-        yellow: str = "#EBCB8B"
-        green: str = "#A3BE8C"
-        blue: str = "#81a1c1"
-        purple: str = "#B48EAD"
-        magenta: str = "#B48EAD"
-        cyan: str = "#8fbcbb"
-
-        # accent colors
-        primary: str = "#${style.colors.primary}"
-        secondary: str = "#${style.colors.highlight}"
-
-      @subscribe(Startup)
-      def layout_setup(api: DooitAPI, _):
-        api.css.set_theme(Drakolis)
-    '';
-
-    ".config/yofi/yofi.config".text = ''
-      width = 500
-      height = 512
-
-      font = "${style.fontGui}"
-      font_size = ${toString (style.fontSize * 2)}
-
-      bg_color = 0x${style.colors.background}ff
-      font_color = 0x${style.colors.text}ff
-      bg_border_color = 0x${style.colors.primary}ff
-      bg_border_width = ${toString style.border.outer.width}
-      corner_radius = "${toString style.border.outer.radius}"
-      # scale = 3
-
-      term = "${commands.terminal}"
-
-      [input_text]
-      font_color = 0x${style.colors.text}ff
-      bg_color = 0x${style.colors.activeSurface}ff
-      corner_radius = "${toString style.border.inner.radius}"
-      margin = "5"
-      padding = "1.7 -4"
-
-      [list_items]
-      font_color = 0x${style.colors.text}ff
-      selected_font_color = 0x${style.colors.primary}ff
-      match_color = 0x${style.colors.highlight}ff
-      margin = "5 10"
-      hide_actions = false
-      action_left_margin = 60
-      item_spacing = 2
-      icon_spacing = 5
-
-      [icon]
-      size = ${toString style.iconTheme.size}
-      theme = "${style.iconTheme.name}"
-      fallback_icon_path = "/usr/share/icons/Adwaita/symbolic/categories/applications-engineering-symbolic.svg"
-    '';
-  };
+  nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
 
   home.keyboard = null;
+
+  home.file = {
+    # This should be fixed in https://github.com/NixOS/nixpkgs/issues/355277
+    ".config/Kvantum/catppuccin-mocha-mauve".source = "${
+        (pkgs.catppuccin-kvantum.override {
+          accent = "mauve";
+          variant = "mocha";
+        })
+      }/share/Kvantum/catppuccin-mocha-mauve";
+
+    ".config/keepassxc/keepassxc.ini" = {
+      enable =
+        false; # TODO: Find a way to only create this when there is no file
+      text = ''
+        [General]
+        ConfigVersion=2
+
+        [GUI]
+        ApplicationTheme=darkv
+        MinimizeOnClose=true
+        MinimizeOnStartup=true
+        ShowTrayIcon=true
+        TrayIconAppearance=monochrome-dark
+      '';
+    };
+  };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -199,13 +219,15 @@ in {
   #
   #  /etc/profiles/per-user/drakolis/etc/profile.d/hm-session-vars.sh
   #
+
   home.sessionVariables = {
     # XCURSOR_SIZE = 24;
     # HYPRCURSOR_SIZE = 32;
     EDITOR = commands.tui.editor;
-    TERM = commands.terminal;
+    TERMINAL = commands.terminal;
+    # GTK_USE_PORTAL = 1;
     QT_QPA_PLATFORMTHEME = "qt5ct";
-    # QT_STYLE_OVERRIDE = "kvantum";
+    QT_STYLE_OVERRIDE = "kvantum";
   };
 
   # Let Home Manager install and manage itself.
@@ -215,7 +237,7 @@ in {
     enable = true;
     cursorTheme = {
       name = style.cursorTheme.name;
-      #   size = style.cursorTheme.size;
+      size = style.cursorTheme.size;
     };
     font = {
       name = style.fontGui;
@@ -223,24 +245,42 @@ in {
     };
     iconTheme = { name = style.iconTheme.name; };
     theme = { name = "catppuccin-mocha-mauve-standard"; };
+    gtk3.extraConfig = {
+      gtk-menu-images = 1;
+      gtk-button-images = 0;
+    };
   };
 
-  # qt = {
-  #   enable = true;
-  #   platformTheme = {
-  #     name = "qtct";
-  #   };
-  #   style = {
-  #     name = "kvantum";
-  #   };
-  # };
+  qt = {
+    enable = true;
+    platformTheme = { name = "qtct"; };
+    style = { name = "kvantum"; };
+  };
 
-  home.pointerCursor = {
-    package =
-      pkgs.catppuccin-cursors.mochaDark; # For some reason this is mandatory to repeat here
-    name = style.cursorTheme.name;
-    # size = style.cursorTheme.size + 8;
-    hyprcursor = { enable = true; };
+  xdg = {
+    enable = true;
+    autostart.enable = false;
+    portal = {
+      enable = true;
+      config = {
+        common = {
+          default = "hyprland";
+          "org.freedesktop.impl.portal.Settings" = "gtk";
+        };
+      };
+    };
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      desktop = paths.desktop;
+      documents = paths.documents;
+      download = paths.download;
+      music = paths.music;
+      pictures = paths.pictures;
+      publicShare = paths.publicShare;
+      templates = paths.templates;
+      videos = paths.videos;
+    };
   };
 
   # SHELL
@@ -252,32 +292,59 @@ in {
 
     autosuggestion = { enable = true; };
 
+    dirHashes = {
+      docs = paths.documents;
+      vids = paths.videos;
+      code = paths.projects;
+      dl = paths.download;
+      pics = paths.pictures;
+      mus = paths.music;
+
+      conf = paths.configuration;
+      nyx = paths.nyxRepository;
+    };
+
     shellAliases = {
       lsl = "eza -1la --icons=always --group-directories-first";
       lsg = "eza -Gla --icons=always --group-directories-first";
-      switch-nix = "sudo nixos-rebuild switch";
       pkgfnd-nix =
         "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
-      switch-home = "home-manager switch";
       fzyp = ''
-        fzf --preview '${previewTextInFzf}' --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
+        fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
       fzon = ''
-        fzf --preview '${previewTextInFzf}' --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
+        fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
       btmp = "btm -e";
     };
 
-    history = { save = 10000; };
+    history = {
+      save = 10000;
+      append = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+    };
 
     syntaxHighlighting = { enable = true; };
 
     "oh-my-zsh" = {
       enable = true;
-      plugins = [ "git" "asdf" "colored-man-pages" ];
+      plugins = [ "git" "fzf" "asdf" "colored-man-pages" "aliases" ];
       extraConfig = ''
         zstyle ':omz:update' mode auto      # update automatically without asking
         zstyle ':omz:update' frequency 13
       '';
     };
+
+    initExtra = ''
+      function pet-select() {
+        BUFFER=$(pet search --query "$LBUFFER")
+        CURSOR=$#BUFFER
+        zle redisplay
+      }
+      zle -N pet-select
+      stty -ixon
+      bindkey '^s' pet-select
+      hyfetch
+    '';
   };
 
   programs.starship = {
@@ -293,6 +360,12 @@ in {
 
       # package.disabled = true;
     };
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.hyfetch = {
@@ -338,7 +411,9 @@ in {
       "fg+" = "#${style.colors.text}";
       "hl+" = "#${style.colors.highlight}";
     };
-    fileWidgetOptions = [ "--preview '${previewTextInFzf}'" ];
+    fileWidgetOptions = [
+      "--preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions}"
+    ];
     defaultOptions = [ "--multi" ];
   };
 
@@ -346,6 +421,36 @@ in {
     enable = true;
     userEmail = "mika.drakolis@gmail.com";
     userName = "Mika Drakolis";
+    extraConfig = { init = { defaultBranch = "main"; }; };
+  };
+
+  programs.gitui = {
+    enable = true;
+    theme = ''
+      (
+        selected_tab: Some("Reset"),
+        command_fg: Some("#${style.colors.textInverted}"),
+        selection_bg: Some("#${style.colors.selection}"),
+        selection_fg: Some("#${style.colors.textInverted}"),
+        cmdbar_bg: Some("#${style.colors.primary}"),
+        cmdbar_extra_lines_bg: Some("#${style.colors.primary}"),
+        disabled_fg: Some("#${style.colors.textGray}"),
+        diff_line_add: Some("#${style.colors.gitAdded}"),
+        diff_line_delete: Some("#${style.colors.gitRemoved}"),
+        diff_file_added: Some("#${style.colors.gitAdded}"),
+        diff_file_removed: Some("#${style.colors.gitRemoved}"),
+        diff_file_moved: Some("#${style.colors.gitMoved}"),
+        diff_file_modified: Some("#${style.colors.gitModified}"),
+        commit_hash: Some("#${style.colors.gitCommit}"),
+        commit_time: Some("#${style.colors.gitTime}"),
+        commit_author: Some("#${style.colors.gitAuthor}"),
+        danger_fg: Some("#${style.colors.error}"),
+        push_gauge_bg: Some("#${style.colors.primary}"),
+        push_gauge_fg: Some("#${style.colors.textInverted}"),
+        tag_fg: Some("#${style.colors.gitTag}"),
+        branch_fg: Some("#${style.colors.gitBranch}"),
+      )
+    '';
   };
 
   programs.bat = {
@@ -361,6 +466,48 @@ in {
         };
         file = "themes/Catppuccin Mocha.tmTheme";
       };
+    };
+  };
+
+  programs.pet = {
+    enable = true;
+    settings = {
+      General = {
+        editor = commands.tui.editor;
+        column = 40;
+        selectcmd = "fzf"; # TODO: Move this out
+        backend = "gitlab";
+        sortby = "recency";
+        cmd = [ "sh" "-c" ];
+        color = true;
+        format = "[$description: $command]";
+      };
+      GitLab = {
+        url = "https://gitlab.com";
+        file_name = "snippet.toml";
+        access_token = ""; # TODO: Replace this before comitting
+        id = "4800544";
+        visability = "private";
+        auto_sync = true;
+      };
+    };
+  };
+
+  programs.tealdeer = {
+    enable = true;
+    settings = {
+      display = { use_pager = true; };
+      style = {
+        description = { };
+        example_text = { foreground = "blue"; };
+        command_name = { foreground = "green"; };
+        example_code = { };
+        example_variable = {
+          foreground = "cyan";
+          underline = true;
+        };
+      };
+      updates = { auto_update = true; };
     };
   };
 
@@ -439,7 +586,7 @@ in {
     settings = {
       style = {
         tag = {
-          color = "white";
+          color = "yellow";
           width_percentage = 16;
           min_width = 20;
         };
@@ -456,22 +603,35 @@ in {
     };
   };
 
-  programs.yazi = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    keymap = { };
-    plugins = { };
-    settings = {
-      manager = {
-        sort_by = "name";
-        sort_dir_first = true;
-        title_format = "yazi: {cwd}";
-      };
-    };
-    theme = {
-      manager = {
+  programs.ledger = { enable = true; };
 
+  programs.translate-shell = {
+    enable = true;
+    settings = {
+      hl = "en";
+      tl = "de";
+      verbose = false;
+    };
+  };
+
+  # programs.zellij = {
+  #   enable = true;
+  #   enableBashIntegration = true;
+  #   enableZshIntegration = true;
+  #   settings = { };
+  # };
+
+  programs.topgrade = {
+    enable = true;
+    settings = {
+      misc = {
+        assume_yes = true;
+        disable = [ "docker" "clamav" ];
+        set_title = false;
+        cleanup = true;
+      };
+      commands = {
+        "Run garbage collection on Nix store" = "nix-collect-garbage";
       };
     };
   };
@@ -488,10 +648,12 @@ in {
       shell-integration-features = "no-cursor";
       cursor-style = "block";
 
+      gtk-titlebar = true;
+      gtk-adwaita = false;
       window-theme = "ghostty";
       confirm-close-surface = false;
 
-      window-decoration = true;
+      window-decoration = "auto";
       macos-titlebar-style = "tabs";
       macos-option-as-alt = true;
       macos-icon = "custom-style";
@@ -518,7 +680,7 @@ in {
         background = style.colors.background;
         background-opacity = 0.97;
         cursor-color = style.colors.primary;
-        foreground = style.colors.primary;
+        foreground = style.colors.text;
         palette = [
           "0=#${style.colors.terminalBlack}"
           "1=#${style.colors.terminalRed}"
@@ -556,7 +718,11 @@ in {
       mode = "no-cursor";
     };
     themeFile = "Catppuccin-Mocha";
-    keybindings = { };
+    keybindings = {
+      "ctrl+shift+a>1" = "set_background_opacity 1";
+      "ctrl+shift+a>0" = "set_background_opacity 0";
+      "ctrl+shift+a>d" = "set_background_opacity default";
+    };
     settings = {
       cursor_shape = "block";
       cursor_shape_unfocused = "hollow";
@@ -570,6 +736,7 @@ in {
       enable_audio_bell = "no";
       visual_bell_duration = 0.5;
       visual_bell_color = "#${style.colors.panel}";
+      bell_on_tab = "󰂚";
 
       window_border_width = 0;
       window_padding_width = "5 5 0";
@@ -578,9 +745,9 @@ in {
       tab_bar_margin_height = "2 2";
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
-      tab_activity_symbol = "*";
+      tab_activity_symbol = "󰞌";
       tab_title_template =
-        "{fmt.fg.tab}{index}: {title}{fmt.fg.red}{bell_symbol}{activity_symbol}";
+        "{fmt.fg.tab}{index}: {title} {fmt.fg.red}{bell_symbol}{activity_symbol}";
 
       notify_on_cmd_finish = "invisible";
 
@@ -599,7 +766,7 @@ in {
       active_tab_foreground = "#${style.colors.textInverted}";
       active_tab_background = "#${style.colors.primary}";
       active_tab_font_style = "bold";
-      inactive_tab_foreground = "#${style.colors.textInverted}";
+      inactive_tab_foreground = "#${style.colors.textGray}";
       inactive_tab_background = "#${style.colors.activeSurface}";
       inactive_tab_font_style = "bold";
       tab_bar_background = "#${style.colors.panel}";
@@ -610,6 +777,7 @@ in {
       selection_foreground = "#${style.colors.textInverted}";
       selection_background = "#${style.colors.secondary}";
       background_opacity = 0.97;
+      dynamic_background_opacity = true;
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
       color2 = "#${style.colors.terminalGreen}";
@@ -640,477 +808,146 @@ in {
     };
   };
 
-  services.hypridle = {
+  programs.firefox = {
     enable = true;
-    settings = {
-      general = {
-        lock_cmd =
-          "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
-        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
-        after_sleep_cmd =
-          "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+    languagePacks = [ "en-GB" ];
+    policies = {
+      DisableAppUpdate = true; # Managed by Nix
+      DisableSetDesktopBackground = true; # Managed by Nix
+      PasswordManagerEnabled = false;
+      AutofillCreditCardEnabled = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
       };
-
-      listener = [
+      EncryptedMediaExtensions = {
+        Enabled = false;
+        Locked = false;
+      };
+      FirefoxHome = {
+        Search = true;
+        TopSites = true;
+        SponsoredTopSites = true;
+        Snippets = true;
+        Highlights = true;
+      };
+      SanitizeOnShutdown = { Cache = true; };
+      HttpsOnlyMode = "force_enabled";
+      Bookmarks = [
         {
-          timeout = 150; # 2.5min.
-          on-timeout =
-            "brightnessctl -s set 10"; # set monitor backlight to minimum, avoid 0 on OLED monitor.
-          on-resume = "brightnessctl -r"; # monitor backlight restore.
+          Title = "Nix";
+          URL = "https://nixos.org/";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
         }
-
-        # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
         {
-          timeout = 150; # 2.5min.
-          on-timeout = ''
-            brightnessctl -sd "tpacpi::kbd_backlight" set 0''; # turn off keyboard backlight.
-          on-resume = ''
-            brightnessctl -rd "tpacpi::kbd_backlight"''; # turn on keyboard backlight.
+          Title = "NixOS Manual";
+          URL = "https://nix.dev/manual/nix/2.24/introduction";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
         }
-
         {
-          timeout = 300; # 5min
-          on-timeout =
-            "loginctl lock-session"; # lock screen when timeout has passed
+          Title = "NixOS Wiki";
+          URL = "https://example.com";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
         }
-
         {
-          timeout = 330; # 5.5min
-          on-timeout =
-            "hyprctl dispatch dpms off"; # screen off when timeout has passed
-          on-resume =
-            "hyprctl dispatch dpms on"; # screen on when activity is detected after timeout has fired.
+          Title = "NixOS Search - Packages";
+          URL = "https://search.nixos.org/packages";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
         }
-
         {
-          timeout = 1800; # 30min
-          on-timeout = "systemctl suspend"; # suspend pc
+          Title = "NixOS Search - Options";
+          URL = "https://search.nixos.org/options";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
+        }
+        {
+          Title = "MyNixOS - Flakes";
+          URL = "https://mynixos.com/flakes";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
+        }
+        {
+          Title = "MyNixOS - Packages";
+          URL = "https://mynixos.com/packages";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
+        }
+        {
+          Title = "MyNixOS - Options";
+          URL = "https://mynixos.com/options";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
+        }
+        {
+          Title = "Home Manager - Options";
+          URL = "https://nix-community.github.io/home-manager/options.xhtml";
+          Favicon = "https://nixos.org/favicon.ico";
+          Placement = "menu";
+          Folder = "NixOS";
         }
       ];
     };
   };
 
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        disable_loading_bar = false;
-        hide_cursor = true;
-      };
-      auth = { fingerprint.enable = true; };
-      background = {
-        path = style.background;
-        blur_passes = 1;
-        color = "rgb(${style.colors.background})";
-      };
-      label = [
-        {
-          text = "Layout: $LAYOUT";
-          color = "rgb(${style.colors.text})";
-          font_size = 15;
-          font_family = style.fontGui;
-          position = "30, -20";
-          halign = "left";
-          valign = "top";
+  # programs.thunderbird = { enable = true; };
 
-          shadow_passes = 1;
-          shadow_size = 3;
-          shadow_color = "rgb(${style.colors.shadow})";
-          shadow_boost = 0.8;
-        }
-        {
-          text = "$TIME";
-          color = "rgb(${style.colors.text})";
-          font_size = 90;
-          font_family = style.fontGui;
-          position = "-30, 0";
-          halign = "right";
-          valign = "top";
+  # services.cliphist = {
+  #   enable = true;
+  #   allowImages = true;
+  #   extraOptions =
+  #     [ "-max-dedupe-search" "10" "-max-items" "500" "-preview-width" "100" ];
+  # };
 
-          shadow_passes = 1;
-          shadow_size = 3;
-          shadow_color = "rgb(${style.colors.shadow})";
-          shadow_boost = 0.8;
-        }
-        {
-          text = ''cmd[update:43200000] date +"%A, %d %B %Y"'';
-          color = "rgb(${style.colors.text})";
-          font_size = 25;
-          font_family = style.fontGui;
-          position = "-30, -130";
-          halign = "right";
-          valign = "top";
+  services.swaync.enable = true;
 
-          shadow_passes = 1;
-          shadow_size = 3;
-          shadow_color = "rgb(${style.colors.shadow})";
-          shadow_boost = 0.8;
-        }
-      ];
-      image = {
-        path = "$HOME/.face";
-        size = 100;
-        border_color = "rgb(${style.colors.primary})";
-        position = "0, 75";
-        halign = "center";
-        valign = "center";
+  services.caffeine.enable = true;
 
-        shadow_passes = 1;
-        shadow_size = 3;
-        shadow_color = "rgb(${style.colors.shadow})";
-        shadow_boost = 0.8;
-      };
-      input-field = {
-        size = "350, 60";
-        outline_thickness = 3;
-        dots_size = 0.2;
-        dots_spacing = 0.4;
-        dots_center = true;
-        outer_color = "rgb(${style.colors.primary})";
-        inner_color = "rgb(${style.colors.activeSurface})";
-        font_family = style.fontGui;
-        font_color = "rgb(${style.colors.text})";
-        fade_on_empty = false;
-        placeholder_text = ''
-          <span foreground="##${style.colors.text}"><i>󰌾 Logged in as </i><span foreground="##${style.colors.primary}">$USER</span></span>'';
-        hide_input = false;
-        check_color = "rgb(${style.colors.primary})";
-        fail_color = "rgb(${style.colors.error})";
-        fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
-        capslock_color = "rgb(${style.colors.warning})";
-        position = "0, -47";
-        halign = "center";
-        valign = "center";
+  services.activitywatch.enable = true;
 
-        shadow_passes = 1;
-        shadow_size = 3;
-        shadow_color = "rgb(${style.colors.shadow})";
-        shadow_boost = 0.8;
-      };
+  services.avizo.enable = true;
+
+  services.batsignal.enable = true;
+
+  systemd.user.services.schedule = {
+    Unit = { Description = "Schedule Script"; };
+    Service = {
+      ExecStart = "/home/drakolis/.config/home-manager/scripts/schedule.sh";
+      Type = "simple";
     };
+    Install = { WantedBy = [ "default.target" ]; };
   };
 
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = style.background;
-      wallpaper = ", ${style.background}";
+  systemd.user.services.walker = {
+    Unit = { Description = "Walker GApplication"; };
+    Service = {
+      ExecStart =
+        "/home/drakolis/.nix-profile/bin/walker --gapplication-service";
+      Type = "simple";
+      Restart = "on-failure";
     };
+    Install = { WantedBy = [ "default.target" ]; };
   };
 
-  programs.waybar = {
-    enable = true;
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
-        modules-center = [ "custom/notification" ];
-        modules-right = [
-          "hyprland/language"
-          "pulseaudio"
-          # "wireplumber"
-          "backlight"
-          "battery"
-          "bluetooth"
-          "network"
-          "clock"
-          "tray"
-          "custom/lock"
-          "custom/power"
-        ];
-        "hyprland/workspaces" = {
-          active-only = false;
-          all-outputs = true;
-          format = " {icon} ";
-          format-icons = {
-            default = "";
-            empty = "";
-            special = "";
-          };
-          show-special = true;
-          sort-by = "number";
-        };
-        "hyprland/window" = {
-          separate-outputs = true;
-          rewrite = {
-            "(.*) — Mozilla Firefox" = "󰈹 $1";
-            "Mozilla Firefox" = "󰈹";
-            "(.*) - Visual Studio Code" = "󰨞 $1";
-            "Visual Studio Code" = "󰨞";
-            "(.*) - VSCodium" = " $1";
-            "VSCodium" = "";
-            "Telegram .*" = "";
-          };
-        };
-        "custom/notification" = {
-          tooltip = false;
-          format = "{icon}";
-          format-icons = {
-            notification = "<span foreground='#${style.colors.error}'></span>";
-            none = "";
-            dnd-notification =
-              "<span foreground='#${style.colors.error}'></span>";
-            dnd-none = "";
-            inhibited-notification =
-              "<span foreground='#${style.colors.error}'></span>";
-            inhibited-none = "";
-            dnd-inhibited-notification =
-              "<span foreground='#${style.colors.error}'></span>";
-            dnd-inhibited-none = "";
-          };
-          return-type = "json";
-          exec-if = "which swaync-client";
-          exec = "swaync-client -swb";
-          on-click = "swaync-client -t -sw";
-          on-click-right = "swaync-client -d -sw";
-          escape = true;
-        };
-        "hyprland/language" = {
-          format-en = "󰘵 EN";
-          format-ru = "󰘵 RU";
-        };
-        pulseaudio = {
-          scroll-step = 5;
-          format = "{icon} {volume}% {format_source}";
-          format-source = "  {volume}%";
-          format-source-muted = "   Mute";
-          format-muted = "  Mute {format_source}";
-          format-icons = { default = [ " " " " " " ]; };
-          on-click = "pavucontrol";
-          on-click-right = "helvum";
-        };
-        wireplumber = {
-          scroll-step = 5;
-          format = "{icon} {volume}%";
-          # // "format-source": "  {volume}%",
-          # // "format-source-muted": " Mute",
-          format-muted = "  Mute";
-          format-icons = [ "" "" " " ];
-          on-click = "helvum";
-          on-right-click = "pavucontrol";
-        };
-        backlight = {
-          scroll-step = 5;
-          device = "intel_backlight";
-          format = "{icon} {percent}%";
-          format-icons = [ "" "" "" "" "" "" "" "" "" ];
-        };
-        battery = {
-          states = {
-            warning = 30;
-            critical = 15;
-          };
-          format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
-        };
-        bluetooth = {
-          format = "󰂯";
-          format-off = "󰂲";
-          format-disabled = "󰂲";
-          format-connected = "󰂯";
-          tooltip-format = "{status} - {num_connections}";
-          tooltip-format-disabled = "Disconnected";
-          tooltip-format-off = "Disconnected";
-          on-click = "blueman-manager";
-        };
-        network = {
-          format = "󱘖";
-          format-wifi = "{icon} {essid}";
-          format-ethernet = "󰌘";
-          format-disconnected = "󰤭";
-          tooltip-format-wifi = "{ifname} - {signalStrength}% - {ipaddr}";
-          tooltip-format-ethernet = "{ifname} - {ipaddr}";
-          tooltip-format-disconnected = "Disconnected";
-          tooltip-format = "Disconnected";
-          format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
-          on-click = "nm-connection-editor";
-        };
-        clock = {
-          interval = 1;
-          timezone = "Europe/Berlin";
-          tooltip-format = ''
-            <big>{:%Y %B}</big>
-            <tt><small>{calendar}</small></tt>'';
-          format-alt = "󰃮 {:%d.%m.%Y}";
-          format = "󰅐 {:%H:%M:%S}";
-          on-right-click = "gsimplecal";
-        };
-        tray = {
-          icon-size = 16;
-          spacing = 10;
-        };
-      };
+  systemd.user.timers.schedule = {
+    Unit = { Description = "Run the schedule every 10 minutes"; };
+    Timer = {
+      OnCalendar = "*:0/10"; # Every 10 minutes
+      Persistent = true;
     };
-    style = ''
-      * {
-        all: unset;
-        font-family: "${style.fontGui}";
-        font-weight: 500;
-        font-size: ${toString (style.fontSize + 4)}px;
-        min-height: 0;
-      }
-
-      #waybar {
-        background: none;
-        color: #${style.colors.text};
-        margin: 5px;
-      }
-
-      /* Section - Any */
-      #workspaces, #window, #tray, #custom-notification,
-      #pulseaudio, #wireplumber, #backlight, #battery,
-      #bluetooth, #network, #language, #custom-lock,
-      #clock, #custom-power {
-        background-color: #${style.colors.panel};
-        padding: 0.6rem 1rem 0.5rem;
-        margin-top: 5px;
-      }
-
-      /* Section - Single */
-      #workspaces, #window, #tray, #custom-notification {
-        border-radius: 2rem;
-      }
-
-      /* Section - Left */
-      #language, #custom-loc {
-        border-radius: 2rem 0 0 2rem;
-        padding-right: 0.5rem;
-      }
-
-      /* Section - Middle */
-      #pulseaudio, #wireplumber, #backlight, #battery,
-      #bluetooth, #network {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }
-
-      /* Section - Right */
-      #clock, #custom-power {
-        border-radius: 0 2rem 2rem 0;
-        padding-left: 0.5rem;
-      }
-
-      /* Section - Accent Color */
-      #workspaces, #window, #tray {
-        color: #${style.colors.primary};
-      }
-
-      /* Section - Workspaces */
-      #workspaces {
-        margin-left: 10px;
-        padding: 0 0 0 0;
-      }
-
-      #workspaces button {
-        border-radius: 2rem;
-        padding: 0.6rem 0.45rem 0.5rem 0.1rem;
-      }
-
-      #workspaces button.active {
-        background-color: #${style.colors.activeSurface};
-      }
-
-      #workspaces button.urgent {
-        color: #${style.colors.error};
-      }
-
-      /* Section - Window */
-      window#waybar.empty #window {
-        margin-left: 5px;
-        background-color: transparent;
-      }
-
-      /* Section - Notifications */
-      #custom-notification {
-        padding-left: 0.8rem;
-      }
-
-      /* Section - Shutdown */
-      #custom-power {
-        color: #${style.colors.error};
-        margin-right: 10px;
-      }
-
-      /* Section - Keyboard */
-      #language {
-        color: #${style.colors.keyboard};
-      }
-
-      /* Section - Sound */
-      #pulseaudio, #wireplumber {
-        color: #${style.colors.sound};
-      }
-
-      /* Section - Brightness */
-      #backlight {
-        color: #${style.colors.brightness};
-      }
-
-      /* Section - Battery */
-      #battery {
-        color: #${style.colors.success};
-      }
-
-      /* Section - Battery Charging */
-      #battery.charging {
-        color: #${style.colors.info};
-      }
-
-      /* Section - Battery Low */
-      #battery.warning:not(.charging) {
-        color: #${style.colors.warning};
-      }
-
-      /* Section - Battery Critical */
-      #battery.critical:not(.charging) {
-        color: #${style.colors.error};
-      }
-
-      /* Section - Bluetooth */
-      #bluetooth {
-        color: #${style.colors.bluetooth};
-      }
-
-      /* Section - Network */
-      #network {
-        color: #${style.colors.network};
-      }
-
-      /* Section - Clock */
-      #clock {
-        color: #${style.colors.clock};
-      }
-
-      /* Section - Hovering */
-      #workspaces button:hover, #pulseaudio:hover, #backlight:hover,
-      #battery:hover, #bluetooth:hover, #network:hover, #clock:hover,
-      #custom-power:hover, #custom-notification:hover, #language:hover,
-      #custom-lock:hover, #wireplumber:hover {
-        background-color: #${style.colors.activeSurface};
-      }
-
-      /* Popups */
-      tooltip, #tray menu {
-        background-color: #${style.colors.background};
-        border-radius: 10px;
-      }
-
-      #tray menu *, tooltip label  {
-        padding: 0.2rem;
-        border-radius: 10px;
-      }
-
-      #tray menu *:hover {
-        background: #${style.colors.activeSurface};
-      }
-
-      #tray {
-        padding-top: 0.35rem;
-      }
-    '';
+    Install = { WantedBy = [ "timers.target" ]; };
   };
-
 }
