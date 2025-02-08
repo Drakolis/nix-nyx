@@ -6,6 +6,7 @@ let
   paths = import ./constants/paths.nix;
 in {
   imports = [
+    ./modules/shell
     ./modules/neovim
     ./modules/yazi
     ./modules/office.nix
@@ -32,6 +33,7 @@ in {
   # environment.
   home.packages = with pkgs; [
     # Shell
+    navi
     starship
     zoxide
     zellij
@@ -39,7 +41,6 @@ in {
     # Terminal utilities
     asdf-vm
     exiftool
-    navi
     pet
     sunwait
     taskwarrior3
@@ -283,91 +284,6 @@ in {
     };
   };
 
-  # SHELL
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    enableVteIntegration = true;
-    autocd = true;
-
-    autosuggestion = { enable = true; };
-
-    dirHashes = {
-      docs = paths.documents;
-      vids = paths.videos;
-      code = paths.projects;
-      dl = paths.download;
-      pics = paths.pictures;
-      mus = paths.music;
-
-      conf = paths.configuration;
-      nyx = paths.nyxRepository;
-    };
-
-    shellAliases = {
-      lsl = "eza -1la --icons=always --group-directories-first";
-      lsg = "eza -Gla --icons=always --group-directories-first";
-      pkgfnd-nix =
-        "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
-      fzyp = ''
-        fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
-      fzon = ''
-        fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
-      btmp = "btm -e";
-    };
-
-    history = {
-      save = 10000;
-      append = true;
-      ignoreAllDups = true;
-      ignoreSpace = true;
-    };
-
-    syntaxHighlighting = { enable = true; };
-
-    "oh-my-zsh" = {
-      enable = true;
-      plugins = [ "git" "fzf" "asdf" "colored-man-pages" "aliases" ];
-      extraConfig = ''
-        zstyle ':omz:update' mode auto      # update automatically without asking
-        zstyle ':omz:update' frequency 13
-      '';
-    };
-
-    initExtra = ''
-      function pet-select() {
-        BUFFER=$(pet search --query "$LBUFFER")
-        CURSOR=$#BUFFER
-        zle redisplay
-      }
-      zle -N pet-select
-      stty -ixon
-      bindkey '^s' pet-select
-      hyfetch
-    '';
-  };
-
-  programs.starship = {
-    enable = true;
-    # Configuration written to ~/.config/starship.toml
-    settings = {
-      add_newline = false;
-
-      # character = {
-      #   success_symbol = "[➜](bold green)";
-      #   error_symbol = "[➜](bold red)";
-      # };
-
-      # package.disabled = true;
-    };
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
-
   programs.hyfetch = {
     enable = true;
     settings = {
@@ -386,35 +302,6 @@ in {
       pride_month_shown = [ ];
       pride_month_disable = false;
     };
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    colors = {
-      bg = "#${style.colors.background}";
-      fg = "#${style.colors.text}";
-      hl = "#${style.colors.highlight}";
-
-      header = "#${style.colors.primary}";
-
-      spinner = "#${style.colors.secondary}";
-      info = "#${style.colors.info}";
-
-      prompt = "#${style.colors.success}";
-      marker = "#${style.colors.selection}";
-
-      # Selected line
-      pointer = "#${style.colors.primary}";
-      "bg+" = "#${style.colors.activeSurface}";
-      "fg+" = "#${style.colors.text}";
-      "hl+" = "#${style.colors.highlight}";
-    };
-    fileWidgetOptions = [
-      "--preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions}"
-    ];
-    defaultOptions = [ "--multi" ];
   };
 
   programs.git = {
@@ -573,36 +460,6 @@ in {
     settings = { };
   };
 
-  programs.eza = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-  };
-
-  programs.navi = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    settings = {
-      style = {
-        tag = {
-          color = "yellow";
-          width_percentage = 16;
-          min_width = 20;
-        };
-        snippet = {
-          color = "cyan";
-          width_percentage = 32;
-          min_width = 45;
-        };
-        comment = { color = "grey"; };
-      };
-      cheats = { paths = [ "~/Documents/cheatsheets" ]; };
-      finder = { command = "fzf"; };
-      shell = { command = "zsh"; };
-    };
-  };
-
   programs.ledger = { enable = true; };
 
   programs.translate-shell = {
@@ -613,13 +470,6 @@ in {
       verbose = false;
     };
   };
-
-  # programs.zellij = {
-  #   enable = true;
-  #   enableBashIntegration = true;
-  #   enableZshIntegration = true;
-  #   settings = { };
-  # };
 
   programs.topgrade = {
     enable = true;

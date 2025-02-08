@@ -71,29 +71,24 @@
 - Activity watch
 - Avizo
 - Borgmatic
-- Glance
 - Taskwarrior
 - Taskwarrior Sync
 - Nextcloud Client
 - MangoHUD
 - mpv
-- starship
 
 ## Learn more about these tools
-- Oh my zsh plugins
 - ledger
 - Taskwarrior
 - Himalaya
 - khal
 - khard
 - mpv
-- clamav
 
 ## Maybe remember for the future
 - Comodoro
 - gromit mpx
 - ollama - laptop prob doesnt have enough power
-- Lutris - laptop is not really for gaming
 - podman - if I need containers
 
 ## Manual Cleanup
