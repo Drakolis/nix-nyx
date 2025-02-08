@@ -1,11 +1,6 @@
 { pkgs, ... }:
 let style = import ../../constants/style.nix;
 in {
-  home.file = {
-    ".background".source = ../../images/nix-wallpaper.png;
-    ".face".source = ../../images/mika-avatar.png;
-  };
-
   imports = [ ./hyprland.nix ./hypridle.nix ./hyprlock.nix ];
 
   home.pointerCursor = {
