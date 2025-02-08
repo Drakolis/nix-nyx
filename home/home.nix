@@ -55,6 +55,7 @@ in {
     colima
 
     # Terminal fanciness
+    cava
     lolcat
     hyfetch
 
@@ -116,6 +117,7 @@ in {
     # GUI Apps: Internet
     element-desktop
     networkmanagerapplet
+    signal-desktop
     transmission_4-qt6
 
     # GUI Apps: Media
@@ -233,6 +235,14 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.pointerCursor = {
+    package =
+      pkgs.catppuccin-cursors.mochaDark; # For some reason this is mandatory to repeat here
+    name = style.cursorTheme.name + 10;
+    size = style.cursorTheme.size;
+    hyprcursor = { enable = true; }; # Here because of hyprcursor
+  };
 
   gtk = {
     enable = true;
