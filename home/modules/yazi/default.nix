@@ -522,7 +522,7 @@ in {
         border_symbol = "│";
         border_style = { fg = "#${style.colors.tableLine}"; };
 
-        syntect_theme = "~/.config/bat/themes/Catppuccin-mocha.tmTheme";
+        syntect_theme = "$HOME/.config/bat/themes/Catppuccin-mocha.tmTheme";
       };
       mode = {
         normal_main = {

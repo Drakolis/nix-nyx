@@ -1,7 +1,7 @@
 let catppuccinMocha = import ./catppuccinMocha.nix;
 in {
-  background = "~/.background";
-  avatar = "~/.face";
+  background = "$HOME/.background";
+  avatar = "$HOME/.face";
 
   fontGui = "Ubuntu Nerd Font";
   fontMonospace = "UbuntuMono Nerd Font";
