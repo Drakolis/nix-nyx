@@ -9,7 +9,7 @@ in {
         name = "Mika: Local Calendar";
         primary = true;
         khal = {
-          enable = true;
+          enable = false;
           addresses = [ "drakolis@WinterDragon" ];
           color = "#${style.colors.primary}";
         };
@@ -42,7 +42,7 @@ in {
   };
 
   programs.khal = {
-    enable = true;
+    enable = false;
     locale = {
       firstweekday = 0;
       weeknumbers = "left";

@@ -14,11 +14,11 @@
   };
 
   previewText = "bat --paging=always --color=always";
-  previewTextInFzf = "bat --style=numbers --color=always --line-range :500 {}";
+  previewTextInFzf = "bat --style=numbers --color=always --line-range 500 {}";
   previewImage = "imv";
   previewScreenshot = "imv -w Screenshot";
 
-  fzfPreviewOptions = ''--preview-window="right,50%,<50(down,50%)"'';
+  fzfPreviewOptions = "--preview-window='right,50%,<50(down,50%)'";
 
   notifyHyprpicker = ''
     notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';

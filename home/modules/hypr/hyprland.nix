@@ -4,6 +4,20 @@ let
   commands = import ../../constants/commands.nix;
   paths = import ../../constants/paths.nix;
 in {
+  home.packages = with pkgs;
+    [
+      (writeShellScriptBin "toggle-hyprland-animations" ''
+        on=$(hyprctl -j getoption animations:enabled | jq --raw-output '.int')
+
+        if [[ $on -eq 1 ]]; then
+            hyprctl keyword animations:enabled 0
+            notify-send -a "hyprland" -i "user-green-desktop" "hyprland" "Animations off"
+        else
+            hyprctl keyword animations:enabled 1
+            notify-send -a "hyprland" -i "user-cyan-desktop" "hyprland" "Animations on"
+        fi
+      '')
+    ];
   wayland.windowManager.hyprland = {
     enable = true;
     # plugins = [ pkgs.hyprlandPlugins.hyprexpo ];
@@ -13,6 +27,9 @@ in {
         "TERMINAL, ${commands.terminal}"
         "QT_QPA_PLATFORMTHEME, qt5ct"
         "QT_STYLE_OVERRIDE, kvantum"
+        "GDK_BACKEND, wayland"
+        "GDK_SCALE, 1"
+        "GSK_RENDERER, cairo"
       ];
       monitor = [ "eDP-1,1920x1080,0x0,1" "DP-1,2560x1440,1920x0,1" ];
       layerrule = [ "blur, rofi" "blur, wofi" ];
@@ -109,6 +126,8 @@ in {
         font_family = style.fontGui;
         disable_hyprland_logo = true;
         background_color = "rgb(${style.colors.background})";
+        focus_on_activate = true; # Ensure new popups get focus
+        animate_manual_resizes = false; # Prevent weird behavior on popups
       };
       group = {
         "col.border_active" = "rgb(${style.colors.primary})";
@@ -126,7 +145,10 @@ in {
           "col.locked_inactive" = "rgba(${style.colors.locked}a0)";
         };
       };
-      cursor = { sync_gsettings_theme = true; };
+      cursor = {
+        sync_gsettings_theme = false;
+        no_hardware_cursors = true;
+      };
       plugin = {
         hyprexpo = {
           columns = 3;
@@ -223,6 +245,8 @@ in {
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
+
+        "$mainMod, F4, exec, toggle-hyprland-animations"
       ] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}

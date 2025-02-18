@@ -1,8 +1,0 @@
-{
-  "command-runner.commands": {
-    "HomeManager config: Switch": "home-manager switch",
-    "NixOS config: Copy FROM Machine": "cp /etc/nixos/configuration.nix ${workspaceFolder}/system",
-    "NixOS config: Copy TO Machine": "sudo cp ${workspaceFolder}/system/configuration.nix /etc/nixos/",
-    "NixOS config: Switch": "sudo nixos-rebuild switch",
-  }
-}

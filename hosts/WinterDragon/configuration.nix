@@ -5,10 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -20,32 +16,8 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_IE.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_IE.UTF-8";
-    LC_IDENTIFICATION = "en_IE.UTF-8";
-    LC_MEASUREMENT = "en_IE.UTF-8";
-    LC_MONETARY = "en_IE.UTF-8";
-    LC_NAME = "en_IE.UTF-8";
-    LC_NUMERIC = "en_IE.UTF-8";
-    LC_PAPER = "en_IE.UTF-8";
-    LC_TELEPHONE = "en_IE.UTF-8";
-    LC_TIME = "en_IE.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  security.polkit.enable = true;
+  security.polkit.debug = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.drakolis = {
@@ -72,7 +44,6 @@
 
     # Terminal utilities
     clamav
-    ctags
     curl
     duf # Disk usage
     entr # Reload when files change
@@ -85,7 +56,7 @@
     ripgrep
     rsync
     smartmontools
-    tokei
+    sops
     wget
 
     # TUI Utilities
@@ -97,15 +68,14 @@
     yazi
 
     # Libraries
-    libinput
-    librsvg
-    libvirt
-
-    # Linux services
-    bluez
+    exfatprogs
+    fcron
     dconf
     geoclue2
     gvfs
+    libinput
+    librsvg
+    libvirt
     xfce.tumbler # Thumbnails for Thunar
 
     # Linux services control
@@ -114,13 +84,22 @@
     libnotify
     playerctl
 
+    # Spell Checking
+    aspell
+    aspellDicts.de
+    aspellDicts.ru
+    aspellDicts.pt_BR
+    aspellDicts.en
+    aspellDicts.en-computers
+
     # Security: Polkit
     polkit
     hyprpolkitagent
 
     # Security: Keyring
     gnome-keyring
-    seahorse
+    pinentry
+    pinentry-qt
 
     # Nix Specific
     home-manager
@@ -130,8 +109,9 @@
     nixos-generators
     nixos-option
 
-    # Other package managers
+    # Other packages
     flatpak
+    appimage-run
 
     # Wayland
     wayland
@@ -141,14 +121,14 @@
     wayvnc
 
     # SDDM
-    sddm
+    kdePackages.sddm
     nerd-fonts.ubuntu
     (catppuccin-sddm.override {
       flavor = "mocha";
       font = "Ubuntu Nerd Font";
       fontSize = "14";
       background = "${/home/drakolis/.background}";
-      loginBackground = false;
+      loginBackground = true;
     })
 
     # Hyprland
@@ -164,84 +144,61 @@
 
     # XDG
     xdg-terminal-exec
-    xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal-kde
 
     # Critical GUI Utilities
-    clamtk
+    backintime-qt
     dconf-editor
     firefox
-    gparted
     imv
     kitty
-    mate.engrampa
-    timeshift
-    xfce.thunar
-    xfce.thunar-volman
+    lxqt.lxqt-archiver
+    pcmanfm-qt
   ];
 
   environment.sessionVariables = { TERMINAL = "kitty"; };
 
-  programs.zsh.enable = true;
+  # hardware.graphics.enable = true;
+  # hardware.graphics.enable32Bit = true;
 
-  services.displayManager.sddm = {
+  services.displayManager = {
+    sddm = {
+      enable = true;
+      theme = "catppuccin-mocha";
+      wayland.enable = true;
+    };
+  };
+
+  programs.hyprland = {
     enable = true;
-    theme = "catppuccin-mocha";
-    wayland.enable = true;
+    xwayland.enable = true;
   };
 
-  programs.hyprland = { enable = true; };
+  # Important to make KDE Partition Manager work
+  programs.partition-manager.enable = true;
 
-  security.polkit.enable = true;
-  security.polkit.debug = true;
-
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot =
-    true; # powers up the default Bluetooth controller on boot
-
-  services.gvfs.enable = true;
-  services.tumbler.enable = true; # Thumbnail support for images
-  services.gnome.gnome-keyring.enable = true;
-  services.geoclue2.enable = true;
-
-  services.clamav.daemon.enable = true;
-  services.clamav.updater.enable = true;
-
-  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-
-  programs.xfconf.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-dropbox-plugin
-      thunar-media-tags-plugin
-    ];
-  };
-
-  services.flatpak.enable = true;
-  systemd.services.flatpak-repo = {
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
-  };
-
-  programs.ssh.startAgent = true;
+  # List services that you want to enable:
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
-  # List services that you want to enable:
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true; # Thumbnail support for images
+  services.geoclue2.enable = true;
+
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

@@ -28,12 +28,13 @@ in {
     shellAliases = {
       lsl = "eza -1la --icons=always --group-directories-first";
       lsg = "eza -Gla --icons=always --group-directories-first";
-      pkgfnd-nix =
+      nix-channel-find =
         "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
       fzyp = ''
         fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
       fzon = ''
         fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
+      nix-store-find = "ls /nix/store | fzf";
       btmp = "btm -e";
     };
 
@@ -128,11 +129,10 @@ in {
     settings = {
       add_newline = false;
       time = { disabled = false; };
-      os = { disabled = false; };
       sudo = { disabled = false; };
       username = {
         show_always = true;
-        style_user = "bold cyan";
+        style_user = "bold purple";
         format = "[$user]($style)@"; # Followed by hostname
       };
       hostname = { ssh_only = false; };
@@ -140,7 +140,7 @@ in {
   };
 
   programs.zellij = {
-    enable = true;
+    # enable = true;
     # enableBashIntegration = true;
     # enableZshIntegration = true;
     settings = { };
