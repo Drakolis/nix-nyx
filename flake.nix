@@ -19,6 +19,7 @@
       YDdraigGoch = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./hosts/nixos.nix
           ./hosts/YDdraigGoch/configuration.nix
           ./hosts/YDdraigGoch/hardware-configuration.nix
           ./hosts/common.nix
