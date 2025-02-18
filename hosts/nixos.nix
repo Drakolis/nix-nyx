@@ -1,5 +1,5 @@
-{
-  modules = [ ./common/shell.nix ./common/nix.nix ./common/flatpak.nix ];
+{ pkgs, ... }: {
+  imports = [ ./common/shell.nix ./common/nix.nix ./common/flatpak.nix ];
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "en_IE.UTF-8";

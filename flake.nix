@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs, ... }: {
     nixosConfigurations = {
       # This should correspond to the hostname of the machine
       YDdraigGoch = nixpkgs.lib.nixosSystem {
@@ -22,8 +22,6 @@
           ./hosts/nixos.nix
           ./hosts/YDdraigGoch/configuration.nix
           ./hosts/YDdraigGoch/hardware-configuration.nix
-          ./hosts/common.nix
-          ./hosts/flatpak.nix
         ];
       };
     };

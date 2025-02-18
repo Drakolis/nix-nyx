@@ -138,7 +138,6 @@
     aspellDicts.pt_BR
     aspellDicts.en
     aspellDicts.en-computers
-    aspellDicts.en-science
 
     # Nix Specific
     home-manager
