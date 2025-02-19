@@ -5,6 +5,21 @@ let
   commands = import ../../constants/commands.nix;
   paths = import ../../constants/paths.nix;
 in {
+  home.packages = with pkgs; [
+    # navi
+    # starship
+    # zoxide
+    # zellij
+    exiftool
+    pet
+    # sunwait
+    # taskwarrior3
+    tealdeer
+    # tgpt
+    # topgrade
+    translate-shell
+  ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -167,6 +182,57 @@ in {
       cheats = { paths = [ "${paths.documents}/cheatsheets" ]; };
       finder = { command = "fzf"; };
       shell = { command = "zsh"; };
+    };
+  };
+
+  programs.translate-shell = {
+    enable = true;
+    settings = {
+      hl = "en";
+      tl = "de";
+      verbose = false;
+    };
+  };
+
+  programs.pet = {
+    enable = true;
+    settings = {
+      General = {
+        editor = commands.tui.editor;
+        column = 40;
+        selectcmd = "fzf"; # TODO: Move this out
+        backend = "gitlab";
+        sortby = "recency";
+        cmd = [ "sh" "-c" ];
+        color = true;
+        format = "[$description: $command]";
+      };
+      GitLab = {
+        url = "https://gitlab.com";
+        file_name = "snippet.toml";
+        access_token = ""; # TODO: Replace this before comitting
+        id = "4800544";
+        visability = "private";
+        auto_sync = true;
+      };
+    };
+  };
+
+  programs.tealdeer = {
+    enable = true;
+    settings = {
+      display = { use_pager = true; };
+      style = {
+        description = { };
+        example_text = { foreground = "blue"; };
+        command_name = { foreground = "green"; };
+        example_code = { };
+        example_variable = {
+          foreground = "cyan";
+          underline = true;
+        };
+      };
+      updates = { auto_update = true; };
     };
   };
 }
