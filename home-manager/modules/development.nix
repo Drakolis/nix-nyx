@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
-{
+let
+  style = import ../../constants/style.nix;
+  commands = import ../../constants/commands.nix;
+  paths = import ../../constants/paths.nix;
+in {
   home.packages = with pkgs; [
     # Git
     # gitui
