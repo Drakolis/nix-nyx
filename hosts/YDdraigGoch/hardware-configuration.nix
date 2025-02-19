@@ -4,35 +4,33 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/61897088-3413-4141-885b-58c88cb69df5";
-      fsType = "btrfs";
-      options = [ "subvol=@" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/61897088-3413-4141-885b-58c88cb69df5";
+    fsType = "btrfs";
+    options = [ "subvol=@" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2259-57F8";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/2259-57F8";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/90c4d84b-7794-4c9a-88c6-62c6381374e2";
-      fsType = "btrfs";
-    };
+  fileSystems."/home" = {
+    device = "/dev/disk/by-uuid/90c4d84b-7794-4c9a-88c6-62c6381374e2";
+    fsType = "btrfs";
+  };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/0b0ea37f-cba6-4af9-82b2-5c656f26467e"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/0b0ea37f-cba6-4af9-82b2-5c656f26467e"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -43,5 +41,6 @@
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

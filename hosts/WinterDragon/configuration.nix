@@ -191,12 +191,15 @@
 
   services.gnome.gnome-keyring.enable = true;
 
+  services.clamav.scanner.enable = true;
   services.clamav.daemon.enable = true;
   services.clamav.updater.enable = true;
 
   services.gvfs.enable = true;
   services.tumbler.enable = true; # Thumbnail support for images
+
   services.geoclue2.enable = true;
+  location.provider = "geoclue2";
 
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 

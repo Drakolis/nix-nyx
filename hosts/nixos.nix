@@ -1,5 +1,11 @@
 { pkgs, ... }: {
-  imports = [ ./common/shell.nix ./common/nix.nix ./common/flatpak.nix ];
+  imports = [
+    ./common/shell.nix
+    ./common/nix.nix
+    ./common/flatpak.nix
+    ./common/vial-qmk.nix
+  ];
+
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "en_IE.UTF-8";
@@ -27,7 +33,4 @@
     enable = true;
     powerOnBoot = true;
   };
-
-  # Vial/Via support
-  services.udev.packages = with pkgs; [ vial via ];
 }

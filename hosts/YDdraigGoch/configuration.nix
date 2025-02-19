@@ -46,23 +46,18 @@
     packages = with pkgs; [
       # kdePackages.kamoso
       kdePackages.kweather
-      kdePackages.kclock
       kdePackages.neochat
       kdePackages.koko
-      kdePackages.kdeconnect-kde
       kdePackages.kasts
       kdePackages.zanshin
-      kdePackages.kmail
-      kdePackages.kmail-account-wizard
-      kdePackages.merkuro
       kdePackages.calligra
       kdePackages.ktorrent
       kdePackages.kompare
       kdePackages.filelight
-
       kdePackages.dragon
 
       crow-translate
+      qalculate-qt
 
       # kdePackages.marknote
       # kdePackages.klevernotes
@@ -90,46 +85,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Shell
-    eza
-    fzf
-    zsh
-
-    # Terminal utilities
-    clamav
-    curl
-    duf # Disk usage
-    entr # Reload when files change
-    fd # File search
-    ffmpeg
-    git
-    gnupg
-    jq # JSON parsing
-    lynis # Security audit
-    ripgrep
-    rsync
-    smartmontools
-    sops
-    wget
-
-    # TUI Utilities
-    bat
-    bottom
-    lynx # Terminal Browser
-    neovim
-    ncdu
-    neovim
-    yazi
-
-    # Libraries
+    # File system support
     exfatprogs
-    fcron
-    geoclue2
-    gvfs
+    apfsprogs
     ntfs3g
-
-    # Servers
-    ntfy-sh
 
     # Spell Checking
     aspell
@@ -141,36 +100,42 @@
 
     # Nix Specific
     home-manager
-    nixd
-    nixfmt-classic
-    nix-tree
-    nixos-generators
-    nixos-option
 
-    # Other packages
-    flatpak
+    # XDG extras
+    xdg-terminal-exec
+
+    # Appimage support
     appimage-run
 
-    # Wayland
+    # Backups
+    fcron
+    backintime-qt
+
+    # Wayland utils
     wev
     wl-clipboard
     wayvnc
 
-    # XDG
-    xdg-terminal-exec
-
-    # Critical GUI Utilities
-    backintime-qt
-    firefox
+    # KDE Extras
     kdePackages.kate
     kdePackages.kcharselect
     kdePackages.kcolorchooser
     kdePackages.kgpg
+    kdePackages.kalk
+    qpwgraph
   ];
+
+  programs.ladybird.enable = true;
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts.packages =
+      [ pkgs.kdePackages.plasma-browser-integration ];
+    preferences = { "widget.use-xdg-desktop-portal.file-picker" = 1; };
+  };
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -188,15 +153,21 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    # jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # media-session.enable = true;
   };
+
+  programs.ryzen-monitor-ng.enable = true;
 
   # Important to make KDE Partition Manager work
   programs.partition-manager.enable = true;
+  programs.kclock.enable = true;
+  programs.kde-pim.kmail = true;
+  programs.kde-pim.merkuro = true;
+  programs.kdeconnect.enable = true;
 
   services.ntfy-sh = {
     enable = true;
@@ -217,11 +188,19 @@
     enableSSHSupport = true;
   };
 
+  services.clamav.scanner.enable = true; # Antivirus
   services.clamav.daemon.enable = true;
   services.clamav.updater.enable = true;
 
-  services.gvfs.enable = true;
+  services.gvfs.enable = true; # Virtual filesystem support
   services.fcron.enable = true;
+
+  services.avahi.enable = true; # Connects to other devices on the network
+
+  # Geolocation, needs avahi to ask phones to share location
+  services.geoclue2.enable = true;
+  # services.geoclue2.enableNmea = false;
+  location.provider = "geoclue2";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
