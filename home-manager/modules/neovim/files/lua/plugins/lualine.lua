@@ -8,37 +8,37 @@ return {{
             normal = {
               a = { fg = colors.textInverted, bg = colors.modeNormal, gui = "bold" },
               b = { fg = colors.mauve, bg = colors.modeInactive },
-              c = { fg = colors.text },
+              c = { fg = colors.text, bg = colors.panel },
             },
 
             command = {
                 a = { fg = colors.textInverted, bg = colors.modeCommand, gui = "bold" },
                 b = { fg = colors.modeCommand, bg = colors.modeInactive },
-                c = { fg = colors.text },
+                c = { fg = colors.text, bg = colors.panel },
             },
 
             insert = {
                 a = { fg = colors.textInverted, bg = colors.modeInsert, gui = "bold" },
                 b = { fg = colors.modeInsert, bg = colors.modeInactive },
-                c = { fg = colors.text },
+                c = { fg = colors.text, bg = colors.panel },
             },
 
             visual = {
                 a = { fg = colors.textInverted, bg = colors.modeVisual, gui = "bold" },
                 b = { fg = colors.modeVisual, bg = colors.modeInactive },
-                c = { fg = colors.text },
+                c = { fg = colors.text, bg = colors.panel },
             },
 
             replace = {
                 a = { fg = colors.textInverted, bg = colors.modeReplace, gui = "bold" },
                 b = { fg = colors.modeReplace, bg = colors.modeInactive },
-                c = { fg = colors.text },
+                c = { fg = colors.text , bg = colors.panel },
             },
 
             inactive = {
               a = { fg = colors.text, bg = colors.modeInactive, gui = "bold" },
               b = { fg = colors.text, bg = colors.modeInactive },
-              c = { fg = colors.text },
+              c = { fg = colors.text, bg = colors.panel },
             },
         }
 
