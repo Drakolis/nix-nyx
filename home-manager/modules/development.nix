@@ -11,7 +11,6 @@ in {
     docker-compose
     colima
 
-    asdf-vm
     tokei
 
     wireshark-qt
