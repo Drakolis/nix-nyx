@@ -1,4 +1,5 @@
 ## my-binds @regex
 Show Cheatsheet                    | F1
-Neotree: Filesystem                | <leader>b
-Neotree: Buffers                   | <leader>nb
+Neotree: GitStatus                 | <leader>bg
+Neotree: Filesystem                | <leader>bf
+Neotree: Buffers                   | <leader>bb

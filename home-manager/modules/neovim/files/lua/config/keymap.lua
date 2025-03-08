@@ -36,4 +36,10 @@ vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
 vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
 
 -- Select all text in current buffer
-vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>')
+vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<CR>')
+
+-- Navigate splits
+vim.keymap.set('n', '<c-up>', ':wincmd k<CR>')
+vim.keymap.set('n', '<c-down>', ':wincmd j<CR>')
+vim.keymap.set('n', '<c-left>', ':wincmd h<CR>')
+vim.keymap.set('n', '<c-right>', ':wincmd l<CR>')

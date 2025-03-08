@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/nvim-cmp",
   },
   {
     'neovim/nvim-lspconfig',
@@ -17,7 +18,7 @@ return {
         lspconfig.html.setup({capabilities = lsp_capabilities,})
         lspconfig.cssls.setup({capabilities = lsp_capabilities,})
         lspconfig.eslint.setup({capabilities = lsp_capabilities,})
-        lspconfig.tsserver.setup({
+        lspconfig.ts_ls.setup({
           capabilities = lsp_capabilities,
           settings = {
             completions = {
