@@ -7,5 +7,6 @@
     obs-studio
     # blender
     # inkscape-with-extensions
+    rawtherapee
   ];
 }

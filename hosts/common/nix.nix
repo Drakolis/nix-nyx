@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    nil
     nixd
     nixfmt-classic
     nix-tree

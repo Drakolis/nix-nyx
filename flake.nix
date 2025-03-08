@@ -13,16 +13,25 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }: {
+  outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
       # This should correspond to the hostname of the machine
       YDdraigGoch = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./hosts/nixos.nix
+          ./hosts/gaming.nix
           ./hosts/YDdraigGoch/configuration.nix
           ./hosts/YDdraigGoch/hardware-configuration.nix
         ];
+      };
+    };
+
+    homeConfigurations = {
+      "drakolis@YDdraigGoch" = home-manager.lib.homeManagerConfiguration {
+        pkgs =
+          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        modules = [ ./home-manager/drakolis.nix ];
       };
     };
   };

@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
-let style = import ../../constants/style.nix;
+let style = import ../../../constants/style.nix;
 in {
+  # A bit of an overkill. But treesitter doesn't work without gcc
+  home.packages = with pkgs; [ gcc ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -26,6 +29,8 @@ in {
         text = "#${style.colors.text}",
         textInverted = "#${style.colors.textInverted}",
         background = "#${style.colors.background}",
+        panel = "#${style.colors.panel}",
+        primary = "#${style.colors.primary}",
       }
 
       return colors

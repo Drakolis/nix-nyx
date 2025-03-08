@@ -5,20 +5,7 @@ let
   commands = import ../../constants/commands.nix;
   paths = import ../../constants/paths.nix;
 in {
-  home.packages = with pkgs; [
-    # navi
-    # starship
-    # zoxide
-    # zellij
-    exiftool
-    pet
-    # sunwait
-    # taskwarrior3
-    tealdeer
-    # tgpt
-    # topgrade
-    translate-shell
-  ];
+  home.packages = with pkgs; [ exiftool ];
 
   programs.zsh = {
     enable = true;
@@ -43,14 +30,13 @@ in {
     shellAliases = {
       lsl = "eza -1la --icons=always --group-directories-first";
       lsg = "eza -Gla --icons=always --group-directories-first";
-      nix-channel-find =
+      nix-package-find =
         "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
       fzyp = ''
         fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
       fzon = ''
         fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
       nix-store-find = "ls /nix/store | fzf";
-      btmp = "btm -e";
     };
 
     history = {
@@ -66,8 +52,6 @@ in {
       enable = true;
       plugins = [
         "aliases"
-        "asdf"
-        "colored-man-pages"
         "copyfile"
         "dotenv"
         "fzf"

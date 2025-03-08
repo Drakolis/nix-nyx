@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
-let
-  style = import ../../constants/style.nix;
-  commands = import ../../constants/commands.nix;
-  paths = import ../../constants/paths.nix;
+let style = import ../../constants/style.nix;
 in {
   programs.bat = {
     enable = true;
@@ -18,7 +15,13 @@ in {
         file = "themes/Catppuccin Mocha.tmTheme";
       };
     };
-    extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batgrep
+      batman
+      batpipe
+      batwatch
+    ];
   };
 
   programs.bottom = {
@@ -75,6 +78,15 @@ in {
           arc_color = "#${style.colors.highlight}";
         };
       };
+    };
+  };
+
+  programs.zsh = {
+    shellAliases = {
+      fifs = "batgrep";
+      man = "batman";
+      gdf = "batdiff";
+      btmp = "btm -e";
     };
   };
 }

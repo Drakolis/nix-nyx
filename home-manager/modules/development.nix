@@ -1,9 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
-let
-  style = import ../../constants/style.nix;
-  commands = import ../../constants/commands.nix;
-  paths = import ../../constants/paths.nix;
+let style = import ../../constants/style.nix;
 in {
   home.packages = with pkgs; [
     # Git
@@ -17,14 +14,27 @@ in {
     asdf-vm
     tokei
 
+    wireshark-qt
+
     beekeeper-studio
     bruno
     hoppscotch
+
+    # IDEs
     jetbrains.idea-community-bin
-    # jetbrains.rust-rover
-    # jetbrains.webstorm
+    # kdePackages.kate
     vscodium
-    wireshark-qt
+
+    # Language servers
+    typescript-language-server
+    yaml-language-server
+    vue-language-server
+    lua-language-server
+    java-language-server
+    docker-compose-language-service
+    dockerfile-language-server-nodejs
+    rust-analyzer
+    terraform-ls
   ];
 
   programs.gitui = {

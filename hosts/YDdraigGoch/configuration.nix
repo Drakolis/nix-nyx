@@ -47,20 +47,21 @@
       # kdePackages.kamoso
       kdePackages.kweather
       kdePackages.neochat
-      kdePackages.koko
       kdePackages.kasts
-      kdePackages.zanshin
-      kdePackages.calligra
+      # kdePackages.karbon
       kdePackages.ktorrent
       kdePackages.kompare
-      kdePackages.filelight
       kdePackages.dragon
+      # kdePackages.kdevelop
+      # kdePackages.qttools
+
+      libreoffice
+      haruna
+      yt-dlp
 
       crow-translate
-      qalculate-qt
 
-      # kdePackages.marknote
-      # kdePackages.klevernotes
+      kdePackages.marknote
 
       # kdePackages.alpaka
 
@@ -72,10 +73,12 @@
       # kdePackages.kpat
 
       protonmail-bridge-gui
-      protonmail-desktop
+      # protonmail-desktop
       protonvpn-gui
       protonvpn-cli
-      proton-pass
+      # proton-pass
+
+      kdePackages.parley
     ];
     shell = pkgs.zsh;
   };
@@ -117,15 +120,66 @@
     wayvnc
 
     # KDE Extras
+    kdePackages.falkon
+    kdePackages.filelight
+    kdePackages.konqueror
     kdePackages.kate
     kdePackages.kcharselect
     kdePackages.kcolorchooser
-    kdePackages.kgpg
-    kdePackages.kalk
+    kdePackages.kget
+    kdePackages.kcalc
+    kdePackages.yakuake
+    kdePackages.sweeper
+
+    kdePackages.kleopatra
+    kdePackages.zanshin
+    kdePackages.akregator
+    kdePackages.kdepim-addons
+
+    # kdePackages.ksystemlog
+    krusader
+    krename
     qpwgraph
   ];
 
-  programs.ladybird.enable = true;
+  fonts.packages = with pkgs; [
+    noto-fonts
+    noto-fonts-extra
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    ubuntu-sans
+    hack-font
+    nerd-fonts.hack
+  ];
+
+  fonts.fontconfig = {
+    localConf = ''
+      <?xml version="1.0"?>
+      <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+      <fontconfig>
+        <alias binding="weak">
+          <family>monospace</family>
+          <prefer>
+            <family>emoji</family>
+          </prefer>
+        </alias>
+        <alias binding="weak">
+          <family>sans-serif</family>
+          <prefer>
+            <family>emoji</family>
+          </prefer>
+        </alias>
+        <alias binding="weak">
+          <family>serif</family>
+          <prefer>
+            <family>emoji</family>
+          </prefer>
+        </alias>
+      </fontconfig>
+    '';
+    defaultFonts = { emoji = [ "Noto Color Emoji" ]; };
+  };
+
   programs.firefox = {
     enable = true;
     nativeMessagingHosts.packages =
@@ -160,13 +214,12 @@
     # media-session.enable = true;
   };
 
-  programs.ryzen-monitor-ng.enable = true;
-
   # Important to make KDE Partition Manager work
   programs.partition-manager.enable = true;
   programs.kclock.enable = true;
+  programs.kde-pim.enable = true;
   programs.kde-pim.kmail = true;
-  programs.kde-pim.merkuro = true;
+  programs.kde-pim.kontact = true;
   programs.kdeconnect.enable = true;
 
   services.ntfy-sh = {

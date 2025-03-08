@@ -1,6 +1,8 @@
 { lib, pkgs, ... }: {
 
-  # dosbox
+  environment.systemPackages = with pkgs; [ dosbox mangohud piper ];
+
+  services.ratbagd.enable = true;
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (lib.getName pkg) [ "steam" "steam-unwrapped" ];
