@@ -44,41 +44,29 @@
     description = "Mika Drakolis";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      # kdePackages.kamoso
-      kdePackages.kweather
-      kdePackages.neochat
-      kdePackages.kasts
-      # kdePackages.karbon
-      kdePackages.ktorrent
-      kdePackages.kompare
-      kdePackages.dragon
-      # kdePackages.kdevelop
-      # kdePackages.qttools
-
-      libreoffice
-      haruna
       yt-dlp
 
-      crow-translate
-
-      kdePackages.marknote
-
-      # kdePackages.alpaka
-
-      kdePackages.krfb
+      # kdePackages.kamoso
+      kdePackages.dragon
+      kdePackages.kasts
+      kdePackages.kompare
       kdePackages.krdc
+      kdePackages.krfb
+      kdePackages.ktorrent
+      kdePackages.kweather
+      kdePackages.marknote
+      kdePackages.neochat
+      kdePackages.parley
+      crow-translate
+      haruna
 
-      # Games
-      # kdePackages.kmahjongg
-      # kdePackages.kpat
+      libreoffice
 
       protonmail-bridge-gui
-      # protonmail-desktop
+      protonmail-desktop
       protonvpn-gui
       protonvpn-cli
-      # proton-pass
-
-      kdePackages.parley
+      proton-pass
     ];
     shell = pkgs.zsh;
   };
@@ -107,9 +95,6 @@
     # XDG extras
     xdg-terminal-exec
 
-    # Appimage support
-    appimage-run
-
     # Backups
     fcron
     backintime-qt
@@ -136,49 +121,11 @@
     kdePackages.akregator
     kdePackages.kdepim-addons
 
-    # kdePackages.ksystemlog
+    kdePackages.ksystemlog
     krusader
     krename
     qpwgraph
   ];
-
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-extra
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    ubuntu-sans
-    hack-font
-    nerd-fonts.hack
-  ];
-
-  fonts.fontconfig = {
-    localConf = ''
-      <?xml version="1.0"?>
-      <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-      <fontconfig>
-        <alias binding="weak">
-          <family>monospace</family>
-          <prefer>
-            <family>emoji</family>
-          </prefer>
-        </alias>
-        <alias binding="weak">
-          <family>sans-serif</family>
-          <prefer>
-            <family>emoji</family>
-          </prefer>
-        </alias>
-        <alias binding="weak">
-          <family>serif</family>
-          <prefer>
-            <family>emoji</family>
-          </prefer>
-        </alias>
-      </fontconfig>
-    '';
-    defaultFonts = { emoji = [ "Noto Color Emoji" ]; };
-  };
 
   programs.firefox = {
     enable = true;
@@ -222,14 +169,6 @@
   programs.kde-pim.kontact = true;
   programs.kdeconnect.enable = true;
 
-  services.ntfy-sh = {
-    enable = true;
-    settings = {
-      listen-http = ":1702";
-      base-url = "http://ntfy.drakolis.com";
-    };
-  };
-
   # List services that you want to enable:
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -241,18 +180,18 @@
     enableSSHSupport = true;
   };
 
-  services.clamav.scanner.enable = true; # Antivirus
-  services.clamav.daemon.enable = true;
-  services.clamav.updater.enable = true;
+  services.clamav = {
+    scanner.enable = true; # Antivirus
+    daemon.enable = true;
+    updater.enable = true;
+  };
 
   services.gvfs.enable = true; # Virtual filesystem support
   services.fcron.enable = true;
 
   services.avahi.enable = true; # Connects to other devices on the network
-
-  # Geolocation, needs avahi to ask phones to share location
   services.geoclue2.enable = true;
-  # services.geoclue2.enableNmea = false;
+  services.geoclue2.enableNmea = true; # Needs avahi to ask phones for location
   location.provider = "geoclue2";
 
   # Open ports in the firewall.

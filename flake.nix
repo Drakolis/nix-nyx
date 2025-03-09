@@ -29,12 +29,11 @@
   outputs =
     { self, nixpkgs, home-manager, plasma-manager, nix-yazi-plugins, ... }: {
       nixosConfigurations = {
-        # This should correspond to the hostname of the machine
         YDdraigGoch = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./hosts/nixos.nix
-            ./hosts/gaming.nix
+            ./system/nixos.nix
+            ./system/gaming.nix
             ./hosts/YDdraigGoch/configuration.nix
             ./hosts/YDdraigGoch/hardware-configuration.nix
           ];

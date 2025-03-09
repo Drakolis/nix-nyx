@@ -90,6 +90,7 @@
 
 ## Learn more about these tools
 
+- ntfy
 - ledger
 - Taskwarrior
 - Himalaya

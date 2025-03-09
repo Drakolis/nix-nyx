@@ -1,9 +1,10 @@
 { pkgs, ... }: {
   imports = [
-    ./common/shell.nix
-    ./common/nix.nix
     ./common/flatpak.nix
-    ./common/vial-qmk.nix
+    ./common/fonts.nix
+    ./common/input.nix
+    ./common/nix.nix
+    ./common/shell.nix
   ];
 
   time.timeZone = "Europe/Berlin";
