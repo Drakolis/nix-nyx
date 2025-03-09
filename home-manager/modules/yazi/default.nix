@@ -1,31 +1,18 @@
 let
-  style = import ../../constants/style.nix;
-  commands = import ../../constants/commands.nix;
+  style = import ../../../constants/style.nix;
+  commands = import ../../../constants/commands.nix;
 in {
   imports = [ ./icons.nix ];
-
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
     keymap = {
-      manager.prepend_keymap = [
-        {
-          on = "M";
-          run = "plugin mount";
-          desc = "Mount plugin";
-        }
-        {
-          on = "<Enter>";
-          run = "plugin smart-enter";
-          desc = "Enter the child directory, or open the file";
-        }
-        {
-          on = "F";
-          run = "plugin smart-filter";
-          desc = "Smart filter";
-        }
-      ];
+      manager.prepend_keymap = [{
+        on = "M";
+        run = "plugin mount";
+        desc = "Mount plugin";
+      }];
     };
     initLua = ''
       require("full-border"):setup {
@@ -36,10 +23,22 @@ in {
       }
       require("smart-filter")
     '';
-    plugins = {
-      full-border = ./plugins/full-border.yazi;
-      smart-enter = ./plugins/smart-enter.yazi;
-      smart-filter = ./plugins/smart-filter.yazi;
+    yaziPlugins = {
+      enable = true;
+      plugins = {
+        starship.enable = true;
+        full-border.enable = true;
+        smart-filter.enable = true;
+        relative-motions = {
+          enable = true;
+          show_numbers = "relative_absolute";
+          show_motion = true;
+        };
+        jump-to-char = {
+          enable = true;
+          keys.toggle.on = [ "F" ];
+        };
+      };
     };
     settings = {
       manager = {
