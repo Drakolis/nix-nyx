@@ -5,6 +5,7 @@
     ./cloud-storage.nix
     ./development.nix
     ./development.nix
+    ./flatpak.nix
     ./internet.nix
     ./media.nix
     ./office.nix
