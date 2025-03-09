@@ -2,9 +2,13 @@
 
 {
   home.packages = with pkgs; [
-    logseq
+    obsidian
     (writeShellScriptBin "wttr" ''
       curl wttr.in/$1
     '')
   ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [ "obsidian" ];
+
 }
