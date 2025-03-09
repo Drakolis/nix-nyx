@@ -6,15 +6,10 @@ let
   paths = import ./constants/paths.nix;
 in {
   imports = [
-    ./modules/shell
-    ./modules/neovim
-    ./modules/yazi
-
     #     ./modules/office.nix
     # If using Hyprland
     #     ./modules/hypr
     #     ./modules/desktop
-
     #     ./modules/dashboards/glance.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -33,151 +28,82 @@ in {
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    # Shell
-    navi
-    starship
-    zoxide
-    zellij
+  home.packages = with pkgs;
+    [
 
-    # Terminal utilities
-    asdf-vm
-    exiftool
-    pet
-    sunwait
-    taskwarrior3
-    tealdeer
-    tgpt
-    topgrade
-    tokei # Move me to home
-    translate-shell
+      # Terminal fanciness
 
-    # Docker
-    docker
-    docker-compose
-    colima
+      # TUI Utilities
+      #     bluetui
+      #     himalaya
+      #     iamb # Matrix TUI
+      #     khal
+      #     khard
+      #     ledger
+      #     neomutt
+      #     taskwarrior-tui
 
-    # Terminal fanciness
-    #     cava
-    lolcat
-    hyfetch
+      # Libraries
 
-    # TUI Utilities
-    #     bluetui
-    gitui
-    #     himalaya
-    #     iamb # Matrix TUI
-    #     khal
-    #     khard
-    #     ledger
-    #     neomutt
-    #     taskwarrior-tui
+      # Linux services
+      #     batsignal
+      #     cliphist
+      #     comodoro
 
-    # Libraries
+      # GUI Services
+      #     activitywatch
+      #     caffeine-ng
+      #     glance
 
-    # Linux services
-    #     batsignal
-    #     cliphist
-    #     comodoro
-    vdirsyncer
-    rclone
+      # NixOS Specific
+      dconf2nix
 
-    # GUI Services
-    #     activitywatch
-    #     caffeine-ng
-    #     glance
+      # Desktop Helpers
+      #     swaynotificationcenter
+      #     walker
+      #     waybar
+      #     wlogout
 
-    # NixOS Specific
-    dconf2nix
+      # GUI Apps: Office
+      #     libreoffice-qt6
 
-    # Desktop Helpers
-    #     swaynotificationcenter
-    #     walker
-    #     waybar
-    #     wlogout
+      #     thunderbird
+      #     zathura # pdf view
 
-    # GUI Apps: Office
-    #     libreoffice-qt6
-    logseq
-    #     thunderbird
-    #     zathura # pdf view
-    qalculate-qt
+      # GUI Apps: Dev
 
-    # GUI Apps: Dev
-    beekeeper-studio
-    bruno
-    hoppscotch
-    jetbrains.idea-community-bin
-    #     jetbrains.rust-rover
-    #     jetbrains.webstorm
-    vscodium
-    wireshark-qt
+      # GUI Apps: Internet
+      #     element-desktop
+      #     networkmanagerapplet
 
-    # GUI Apps: Internet
-    #     element-desktop
-    #     networkmanagerapplet
-    signal-desktop
-    #     transmission_4-qt6
-    #     brave
+      #     transmission_4-qt6
+      #     brave
 
-    # GUI Apps: Media
-    #     mpv
-#     vlc
+      # GUI Apps: Media
+      #     mpv
+      #     vlc
 
-    # GUI Apps: Creativity
-    # blender
-    digikam
-    #     inkscape-with-extensions
-    krita
-    obs-studio
+      # GUI Apps: Creativity
+      #
 
-    # GUI Apps: Games
-    dosbox
-    #     gamescope
+      #
 
-    # GUI Apps: Security
-    cryptomator
-    keepassxc
+      # GUI Apps: Games
+      #     gamescope
 
-    # GUI Apps: System
-    #     qt6Packages.qt6ct
-    #     qt6Packages.qtstyleplugin-kvantum
-    #     easyeffects
-    #     lxqt.pavucontrol-qt
-    qpwgraph
+      # GUI Apps: Security
 
-    # Theming
-    (catppuccin-kde.override {
-      accents = [ "mauve" ];
-      flavour = [ "mocha" ];
-    })
-    #     (catppuccin-kvantum.override {
-    #       accent = "mauve";
-    #       variant = "mocha";
-    #     })
-    #     (catppuccin-gtk.override {
-    #       accents = [ "mauve" ];
-    #       variant = "mocha";
-    #     })
-    #     catppuccin-qt5ct
-    #     catppuccin-papirus-folders
-    catppuccinifier-cli
-    catppuccin-whiskers
-    #     kdePackages.breeze
-    # catppuccin-cursors.mochaDark
-    #     vanilla-dmz
+      # GUI Apps: System
+      #     easyeffects
+      #     lxqt.pavucontrol-qt
 
-    # Fonts
-    nerd-fonts.ubuntu
-    nerd-fonts.hack
-    nerd-fonts.meslo-lg
-    nerd-fonts.open-dyslexic
+      # Theming
 
-    # Scripts: wttr
-    (writeShellScriptBin "wttr" ''
-      curl wttr.in/$1
-    '')
-  ];
+      # Fonts
+
+      # Scripts: wttr
+
+    ];
 
   nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
 
@@ -236,42 +162,6 @@ in {
     #     GDK_BACKEND = "wayland";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-  #   home.pointerCursor = {
-  #     package =
-  #       pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
-  #     name = "DMZ-Black";
-  #     size = style.cursorTheme.size;
-  #     hyprcursor.enable = true;
-  #     gtk.enable = true;
-  #     x11.enable = true;
-  #   };
-  #
-  #   gtk = {
-  #     enable = true;
-  #     cursorTheme = {
-  #       name = "DMZ-Black";
-  #       size = style.cursorTheme.size;
-  #     };
-  #     font = {
-  #       name = style.fontGui;
-  #       size = style.fontSize;
-  #     };
-  #     iconTheme = { name = style.iconTheme.name; };
-  #     theme = { name = "drakolis-Catppuccin"; };
-  #     gtk3.extraConfig = {
-  #       gtk-menu-images = 1;
-  #       gtk-button-images = 0;
-  #     };
-  #   };
-  #
-  #   qt = {
-  #     enable = true;
-  #     platformTheme = { name = "qtct"; };
-  #     # style = { name = "kvantum"; };
-  #   };
   #
   #   xdg = {
   #     enable = true;
@@ -299,192 +189,7 @@ in {
   #     };
   #   };
 
-  programs.hyfetch = {
-    enable = true;
-    settings = {
-      preset = "transgender";
-      mode = "rgb";
-      light_dark = "dark";
-      lightness = 0.65;
-      color_align = {
-        mode = "horizontal";
-        custom_colors = [ ];
-        fore_back = null;
-      };
-      backend = "neofetch";
-      args = null;
-      distro = null;
-      pride_month_shown = [ ];
-      pride_month_disable = false;
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    userEmail = "mika.drakolis@gmail.com";
-    userName = "Mika Drakolis";
-    extraConfig = { init = { defaultBranch = "main"; }; };
-  };
-
-  programs.gitui = {
-    enable = true;
-    theme = ''
-      (
-        selected_tab: Some("Reset"),
-        command_fg: Some("#${style.colors.textInverted}"),
-        selection_bg: Some("#${style.colors.selection}"),
-        selection_fg: Some("#${style.colors.textInverted}"),
-        cmdbar_bg: Some("#${style.colors.primary}"),
-        cmdbar_extra_lines_bg: Some("#${style.colors.primary}"),
-        disabled_fg: Some("#${style.colors.textGray}"),
-        diff_line_add: Some("#${style.colors.gitAdded}"),
-        diff_line_delete: Some("#${style.colors.gitRemoved}"),
-        diff_file_added: Some("#${style.colors.gitAdded}"),
-        diff_file_removed: Some("#${style.colors.gitRemoved}"),
-        diff_file_moved: Some("#${style.colors.gitMoved}"),
-        diff_file_modified: Some("#${style.colors.gitModified}"),
-        commit_hash: Some("#${style.colors.gitCommit}"),
-        commit_time: Some("#${style.colors.gitTime}"),
-        commit_author: Some("#${style.colors.gitAuthor}"),
-        danger_fg: Some("#${style.colors.error}"),
-        push_gauge_bg: Some("#${style.colors.primary}"),
-        push_gauge_fg: Some("#${style.colors.textInverted}"),
-        tag_fg: Some("#${style.colors.gitTag}"),
-        branch_fg: Some("#${style.colors.gitBranch}"),
-      )
-    '';
-  };
-
-  programs.bat = {
-    enable = true;
-    config = { theme = "Catppuccin Mocha"; };
-    themes = {
-      "Catppuccin Mocha" = {
-        src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "bat";
-          rev = "699f60fc8ec434574ca7451b444b880430319941";
-          sha256 = "6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI=";
-        };
-        file = "themes/Catppuccin Mocha.tmTheme";
-      };
-    };
-  };
-
-  programs.pet = {
-    enable = true;
-    settings = {
-      General = {
-        editor = commands.tui.editor;
-        column = 40;
-        selectcmd = "fzf"; # TODO: Move this out
-        backend = "gitlab";
-        sortby = "recency";
-        cmd = [ "sh" "-c" ];
-        color = true;
-        format = "[$description: $command]";
-      };
-      GitLab = {
-        url = "https://gitlab.com";
-        file_name = "snippet.toml";
-        access_token = ""; # TODO: Replace this before comitting
-        id = "4800544";
-        visability = "private";
-        auto_sync = true;
-      };
-    };
-  };
-
-  programs.tealdeer = {
-    enable = true;
-    settings = {
-      display = { use_pager = true; };
-      style = {
-        description = { };
-        example_text = { foreground = "blue"; };
-        command_name = { foreground = "green"; };
-        example_code = { };
-        example_variable = {
-          foreground = "cyan";
-          underline = true;
-        };
-      };
-      updates = { auto_update = true; };
-    };
-  };
-
-  programs.bottom = {
-    enable = true;
-    settings = {
-      flags = { battery = true; };
-      styles = {
-        widgets = {
-          widget_title = {
-            color = "#${style.colors.secondary}";
-            bold = true;
-          };
-          border_color = "#${style.colors.tableLine}";
-          selected_border_color = "#${style.colors.primary}";
-          text = { color = "#${style.colors.text}"; };
-          selected_text = {
-            color = "#${style.colors.textInverted}";
-            bg_color = "#${style.colors.selection}";
-          };
-        };
-        tables = { headers = { color = "#${style.colors.highlight}"; }; };
-        battery = {
-          high_battery_color = "#${style.colors.success}";
-          medium_battery_color = "#${style.colors.warning}";
-          low_battery_color = "#${style.colors.error}";
-        };
-        graphs = {
-          graph_color = "#${style.colors.textDark}";
-          legend_text = { color = "#${style.colors.textDark}"; };
-        };
-        network = {
-          rx_color = "#${style.colors.success}";
-          tx_color = "#${style.colors.error}";
-        };
-        cpu = {
-          all_entry_color = "#${style.colors.success}";
-          avg_entry_color = "#${style.colors.error}";
-          cpu_core_colors = [
-            "light magenta"
-            "light yellow"
-            "light cyan"
-            "light green"
-            "light blue"
-            "cyan"
-            "green"
-            "blue"
-          ];
-        };
-        memory = {
-          ram_color =
-            "#${style.colors.path}"; # This may be illogical, just uses shades of blue really
-          swap_color = "#${style.colors.info}";
-          gpu_colors = [ "magenta" ]; # ?????
-          arc_color = "#${style.colors.highlight}";
-        };
-      };
-    };
-  };
-
-  programs.cava = {
-    enable = true;
-    settings = { };
-  };
-
   #   programs.ledger = { enable = true; };
-
-  programs.translate-shell = {
-    enable = true;
-    settings = {
-      hl = "en";
-      tl = "de";
-      verbose = false;
-    };
-  };
 
   #   programs.topgrade = {
   #     enable = true;
