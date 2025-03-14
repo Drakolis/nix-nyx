@@ -45,4 +45,6 @@
       FastConnectable = true;
     };
   };
+
+  virtualisation.docker.enable = true;
 }
