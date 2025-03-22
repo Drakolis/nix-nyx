@@ -19,7 +19,6 @@ in {
 
     # IDEs
     jetbrains.idea-community-bin
-    jetbrains.webstorm
     jetbrains.pycharm-community
     # kdePackages.kate
     vscodium
@@ -35,9 +34,6 @@ in {
     rust-analyzer
     terraform-ls
   ];
-
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [ "webstorm" ];
 
   programs = {
 
