@@ -1,10 +1,5 @@
 { config, lib, pkgs, ... }: {
-  home.packages = with pkgs;
-    [
-      # cava
-      lolcat
-      # hyfetch
-    ];
+  home.packages = with pkgs; [ lolcat ];
 
   programs.hyfetch = {
     enable = true;

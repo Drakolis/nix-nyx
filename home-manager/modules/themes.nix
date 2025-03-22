@@ -28,10 +28,6 @@
     #   accents = [ "mauve" ];
     #   variant = "mocha";
     # })
-
-    nerd-fonts.ubuntu
-    nerd-fonts.hack
-    nerd-fonts.meslo-lg
   ];
 
   # home.pointerCursor = {
