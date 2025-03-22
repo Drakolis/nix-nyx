@@ -36,6 +36,9 @@ in {
     terraform-ls
   ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [ "webstorm" ];
+
   programs = {
 
     direnv = {
