@@ -2,12 +2,13 @@
 let
   grep = pkgs.gnugrep;
   desiredFlatpaks = [
-    "app.organicmaps.desktop"
     "com.slack.Slack"
     "it.fabiodistasio.AntaresSQL"
     "org.js.nuclear.Nuclear"
     "org.telegram.desktop"
     "us.zoom.Zoom"
+    "com.valvesoftware.Steam"
+    "com.heroicgameslauncher.hgl"
   ];
 in {
   home.activation = {
