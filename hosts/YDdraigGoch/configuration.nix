@@ -52,7 +52,17 @@
       protonvpn-gui
       protonvpn-cli
       proton-pass
+
+      mullvad-browser
+      mullvad-vpn
     ];
+    shell = pkgs.zsh;
+  };
+
+  users.users.lilyo = {
+    isNormalUser = true;
+    description = "Lily Oliveira";
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
 
@@ -116,8 +126,13 @@
     enable = true;
     nativeMessagingHosts.packages =
       [ pkgs.kdePackages.plasma-browser-integration ];
-    preferences = { "widget.use-xdg-desktop-portal.file-picker" = 1; };
+    preferences = {
+      "widget.use-xdg-desktop-portal.file-picker" = 1;
+      "extensions.pocket.enabled" = false;
+    };
   };
+
+  programs.wireshark.enable = true;
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.

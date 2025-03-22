@@ -13,14 +13,14 @@ in {
 
     tokei
 
-    wireshark-qt
-
     beekeeper-studio
     bruno
     hoppscotch
 
     # IDEs
     jetbrains.idea-community-bin
+    jetbrains.webstorm
+    jetbrains.pycharm-community
     # kdePackages.kate
     vscodium
 
