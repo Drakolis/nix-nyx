@@ -15,7 +15,7 @@
   security.polkit.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   users.users.drakolis = {
     isNormalUser = true;
@@ -66,7 +66,7 @@
     # XDG extras
     xdg-terminal-exec
     xdg-desktop-portal-hyprland
-    xdg-desktop-portal-kde
+    lxqt.xdg-desktop-portal-lxqt
 
     # SDDM
     kdePackages.sddm
@@ -75,7 +75,7 @@
       flavor = "mocha";
       font = "Ubuntu Nerd Font";
       fontSize = "14";
-      background = "${/home/drakolis/.background}";
+      # background = "${~/.background}";
       loginBackground = true;
     })
 
@@ -122,9 +122,13 @@
     dconf-editor
     imv
     kitty
+    ghostty
     lxqt.lxqt-archiver
     pcmanfm-qt
     qpwgraph
+    nemo-with-extensions
+    nemo-fileroller
+    file-roller
   ];
 
   environment.sessionVariables = { TERMINAL = "kitty"; };
