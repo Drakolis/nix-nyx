@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
@@ -17,72 +13,44 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   security.polkit.enable = true;
-  security.polkit.debug = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.xserver.libinput.enable = true;
+
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      yt-dlp
+
+      libreoffice
+
       protonmail-bridge-gui
       protonmail-desktop
       protonvpn-gui
       protonvpn-cli
       proton-pass
+
+      mullvad-browser
     ];
+    shell = pkgs.zsh;
+  };
+
+  users.users.lilyo = {
+    isNormalUser = true;
+    description = "Lily Oliveira";
+    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # Shell
-    eza
-    fzf
-    zsh
-
-    # Terminal utilities
-    clamav
-    curl
-    duf # Disk usage
-    entr # Reload when files change
-    fd # File search
-    ffmpeg
-    git
-    gnupg
-    jq # JSON parsing
-    lynis # Security audit
-    ripgrep
-    rsync
-    smartmontools
-    sops
-    wget
-
-    # TUI Utilities
-    bat
-    bottom
-    lynx # Terminal Browser
-    ncdu
-    neovim
-    yazi
-
-    # Libraries
+    # File system support
     exfatprogs
-    fcron
-    dconf
-    geoclue2
-    gvfs
-    libinput
-    librsvg
-    libvirt
-    xfce.tumbler # Thumbnails for Thunar
-
-    # Linux services control
-    bluez-tools
-    brightnessctl
-    libnotify
-    playerctl
+    apfsprogs
+    ntfs3g
 
     # Spell Checking
     aspell
@@ -92,33 +60,13 @@
     aspellDicts.en
     aspellDicts.en-computers
 
-    # Security: Polkit
-    polkit
-    hyprpolkitagent
-
-    # Security: Keyring
-    gnome-keyring
-    pinentry
-    pinentry-qt
-
     # Nix Specific
     home-manager
-    nixd
-    nixfmt-classic
-    nix-tree
-    nixos-generators
-    nixos-option
 
-    # Other packages
-    flatpak
-    appimage-run
-
-    # Wayland
-    wayland
-    wev
-    wl-clipboard
-    wl-mirror
-    wayvnc
+    # XDG extras
+    xdg-terminal-exec
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-kde
 
     # SDDM
     kdePackages.sddm
@@ -131,6 +79,13 @@
       loginBackground = true;
     })
 
+    # Wayland
+    wayland
+    wev
+    wl-clipboard
+    wl-mirror
+    wayvnc
+
     # Hyprland
     hyprland
     hyprcursor
@@ -142,25 +97,49 @@
     hyprshot
     hyprsunset
 
-    # XDG
-    xdg-terminal-exec
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-kde
+    # Libraries
+    dconf
+    # libinput
+    librsvg
+    # libvirt
+    xfce.tumbler # Thumbnails for Thunar
+
+    # Linux services control
+    bluez-tools
+    brightnessctl
+    libnotify
+    playerctl
+
+    # Security
+    polkit
+    hyprpolkitagent
+    keepassxc
+    pinentry
+    pinentry-qt
 
     # Critical GUI Utilities
     backintime-qt
     dconf-editor
-    firefox
     imv
     kitty
     lxqt.lxqt-archiver
     pcmanfm-qt
+    qpwgraph
   ];
 
   environment.sessionVariables = { TERMINAL = "kitty"; };
 
-  # hardware.graphics.enable = true;
-  # hardware.graphics.enable32Bit = true;
+  programs.firefox = {
+    enable = true;
+    nativeMessagingHosts.packages =
+      [ pkgs.kdePackages.plasma-browser-integration ];
+    preferences = {
+      "widget.use-xdg-desktop-portal.file-picker" = 1;
+      "extensions.pocket.enabled" = false;
+    };
+  };
+
+  programs.wireshark.enable = true;
 
   services.displayManager = {
     sddm = {
@@ -175,8 +154,25 @@
     xwayland.enable = true;
   };
 
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    # jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    # media-session.enable = true;
+  };
+
   # Important to make KDE Partition Manager work
   programs.partition-manager.enable = true;
+  programs.kdeconnect.enable = true;
 
   # List services that you want to enable:
 
@@ -189,16 +185,21 @@
     enableSSHSupport = true;
   };
 
-  services.gnome.gnome-keyring.enable = true;
-
-  services.clamav.scanner.enable = true;
-  services.clamav.daemon.enable = true;
-  services.clamav.updater.enable = true;
+  services.clamav = {
+    scanner.enable = true; # Antivirus
+    daemon.enable = true;
+    updater.enable = true;
+  };
 
   services.gvfs.enable = true;
   services.tumbler.enable = true; # Thumbnail support for images
+  services.fcron.enable = true;
 
-  services.geoclue2.enable = true;
+  services.avahi.enable = true; # Connects to other devices on the network
+  services.geoclue2 = {
+    enable = true;
+    enableNmea = true; # Needs avahi to ask phones for location
+  };
   location.provider = "geoclue2";
 
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];

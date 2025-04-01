@@ -38,6 +38,14 @@
             ./hosts/YDdraigGoch/hardware-configuration.nix
           ];
         };
+        WinterDragon = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./system/nixos.nix
+            ./hosts/WinterDragon/configuration.nix
+            ./hosts/WinterDragon/hardware-configuration.nix
+          ];
+        };
       };
 
       homeConfigurations = {
