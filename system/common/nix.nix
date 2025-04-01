@@ -10,10 +10,12 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.command-not-found.enable = false;
-  programs.nix-index = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
+  programs = {
+    command-not-found.enable = false;
+    nix-index = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+    };
   };
 }

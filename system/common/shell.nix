@@ -21,14 +21,16 @@
     wget
   ];
 
-  programs.bat.enable = true;
-  programs.git.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
+  programs = {
+    bat.enable = true;
+    git.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
+    };
+    yazi.enable = true;
+    zsh.enable = true;
   };
-  programs.yazi.enable = true;
-  programs.zsh.enable = true;
 }
