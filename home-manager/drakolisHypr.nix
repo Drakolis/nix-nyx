@@ -1,5 +1,6 @@
 { inputs, outputs, lib, config, pkgs, ... }: {
-  imports = [ ./modules ./modules/hypr ./modules/tiling ];
+  imports =
+    [ ./modules ./modules/hypr ./modules/tiling ./modules/terminals.nix ];
 
   home.username = "drakolis";
   home.homeDirectory = "/home/drakolis";
