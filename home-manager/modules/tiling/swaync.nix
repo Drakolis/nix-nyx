@@ -1,5 +1,5 @@
 let
-  style = import ../../constants/style.nix;
+  style = import ../../../constants/style.nix;
   notificaionWidth = 500;
 in {
 

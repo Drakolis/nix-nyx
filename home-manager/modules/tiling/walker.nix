@@ -1,8 +1,4 @@
-{ config, lib, pkgs, ... }:
-let
-  style = import ../../constants/style.nix;
-  commands = import ../../constants/commands.nix;
-in {
+{ config, lib, pkgs, ... }: {
   xdg.configFile = {
     "walker/config.toml".text = ''
       app_launch_prefix = ""

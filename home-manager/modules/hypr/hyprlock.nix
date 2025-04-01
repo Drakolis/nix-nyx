@@ -1,4 +1,4 @@
-let style = import ../../constants/style.nix;
+let style = import ../../../constants/style.nix;
 in {
   programs.hyprlock = {
     enable = true;

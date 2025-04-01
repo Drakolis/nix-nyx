@@ -1,6 +1,6 @@
 let
-  style = import ../../constants/style.nix;
-  commands = import ../../constants/commands.nix;
+  style = import ../../../constants/style.nix;
+  commands = import ../../../constants/commands.nix;
 in {
   imports = [ ./swaync.nix ./walker.nix ./waybar.nix ./wlogout.nix ];
 
