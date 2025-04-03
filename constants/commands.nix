@@ -9,8 +9,8 @@
   gui = {
     browser = "firefox";
     editor = "codium";
-    fileManager = "thunar";
-    passwords = "keepassxc";
+    fileManager = "pcmanfm-qt";
+    passwords = "proton-passc";
   };
 
   previewText = "bat --paging=always --color=always";
@@ -24,8 +24,8 @@
     notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
   dialogues = {
-    runner = "walker";
-    runnerShift = "walker -m switcher";
+    runner = "wofi";
+    runnerShift = "wofi --show run";
     runnerClipboard = "walker -m clipboard";
     shutdown = "wlogout -s";
   };
@@ -33,9 +33,9 @@
   autostart = [
     "element-desktop --hidden"
     "keepassxc"
-    # "proton-pass"
+    "proton-pass"
     "protonvpn-app"
-    "colima start &"
+    # "colima start &"
     "systemctl --user start hyprpolkitagent.service"
   ];
 }

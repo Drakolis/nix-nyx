@@ -2,7 +2,7 @@ let
   style = import ../../../constants/style.nix;
   commands = import ../../../constants/commands.nix;
 in {
-  imports = [ ./swaync.nix ./walker.nix ./waybar.nix ./wlogout.nix ];
+  imports = [ ./swaync.nix ./wofi.nix ./waybar.nix ./wlogout.nix ];
 
   home.file = {
     ".config/yofi/yofi.config".text = ''

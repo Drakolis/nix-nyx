@@ -10,6 +10,7 @@ let
     "com.valvesoftware.Steam"
     "com.heroicgameslauncher.hgl"
     "com.discordapp.Discord"
+    "com.github.tchx84.Flatseal"
   ];
 in {
   home.activation = {

@@ -4,9 +4,12 @@
     noto-fonts-extra
     noto-fonts-cjk-sans
     noto-fonts-emoji
+    ubuntu-sans-mono
     ubuntu-sans
     hack-font
     nerd-fonts.hack
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.ubuntu
   ];
 
   fonts.fontconfig = {
