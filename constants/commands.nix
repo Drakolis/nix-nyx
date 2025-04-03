@@ -24,7 +24,7 @@
     notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
   dialogues = {
-    runner = "wofi";
+    runner = "wofi -I";
     runnerShift = "wofi --show run";
     runnerClipboard = "walker -m clipboard";
     shutdown = "wlogout -s";

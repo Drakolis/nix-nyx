@@ -18,6 +18,8 @@ in {
       opacity = 0.97;
       theme = "./style.css";
       pre_display_exec = true;
+
+      key_expand = "Tab";
     };
     style = ''
       * {
@@ -112,6 +114,7 @@ in {
 
       #entry:selected {
         border-left: solid 3px #${style.colors.primary};
+        color: #${style.colors.text};
         background: alpha(#${style.colors.primary}, 0.1);
         box-shadow: none;
       }
@@ -119,7 +122,14 @@ in {
       #entry:selected #text {
         border: none;
         box-shadow: none;
+        background: none;
         color: #${style.colors.primary};
+      }
+
+      #entry:selected image {
+        border: none;
+        box-shadow: none;
+        background: none;
       }
 
       #entry #text:focus {
