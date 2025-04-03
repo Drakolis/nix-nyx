@@ -1,4 +1,6 @@
 { config, lib, pkgs, ... }: {
+  home.packages = with pkgs; [ walker ];
+
   xdg.configFile = {
     "walker/config.toml".text = ''
       app_launch_prefix = ""
@@ -261,5 +263,16 @@
       switcher_only = true
       provider = "googlefree"
     '';
+  };
+
+  systemd.user.services.walker = {
+    Unit = { Description = "Walker GApplication"; };
+    Service = {
+      ExecStart =
+        "/home/drakolis/.nix-profile/bin/walker --gapplication-service";
+      Type = "simple";
+      Restart = "on-failure";
+    };
+    Install = { WantedBy = [ "default.target" ]; };
   };
 }

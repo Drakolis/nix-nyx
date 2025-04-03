@@ -58,6 +58,15 @@
             ./home-manager/drakolis.nix
           ];
         };
+        "drakolis@WinterDragon" = home-manager.lib.homeManagerConfiguration {
+          pkgs =
+            nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          modules = [
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            plasma-manager.homeManagerModules.plasma-manager
+            ./home-manager/drakolisHypr.nix
+          ];
+        };
       };
     };
 }

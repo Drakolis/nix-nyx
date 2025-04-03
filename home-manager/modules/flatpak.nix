@@ -9,6 +9,7 @@ let
     "us.zoom.Zoom"
     "com.valvesoftware.Steam"
     "com.heroicgameslauncher.hgl"
+    "com.discordapp.Discord"
   ];
 in {
   home.activation = {

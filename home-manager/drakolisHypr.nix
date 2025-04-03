@@ -14,6 +14,8 @@
     extraConfig = { init = { defaultBranch = "main"; }; };
   };
 
+  home.packages = with pkgs; [ caffeine-ng ];
+
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 
