@@ -11,10 +11,10 @@ in {
 
         if [[ $on -eq 1 ]]; then
             hyprctl keyword animations:enabled 0
-            notify-send -a "hyprland" -i "user-green-desktop" "hyprland" "Animations off"
+            notify-send -a "hyprland" -i "user-cat-mocha-green-desktop" "hyprland" "Animations off"
         else
             hyprctl keyword animations:enabled 1
-            notify-send -a "hyprland" -i "user-cyan-desktop" "hyprland" "Animations on"
+            notify-send -a "hyprland" -i "user-cat-mocha-mauve-desktop" "hyprland" "Animations on"
         fi
       '')
     ];

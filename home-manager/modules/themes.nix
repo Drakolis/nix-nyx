@@ -52,7 +52,7 @@ in {
       size = style.fontSize;
     };
     iconTheme = { name = style.iconTheme.name; };
-    theme = { name = "drakolis-Catppuccin"; };
+    theme = { name = "catppuccin-mocha-mauve-standard"; };
     gtk3.extraConfig = {
       gtk-menu-images = 1;
       gtk-button-images = 0;
@@ -62,6 +62,16 @@ in {
   qt = {
     enable = true;
     platformTheme = { name = "qtct"; };
-    # style = { name = "kvantum"; };
+    style = { name = "kvantum"; };
+  };
+
+  home.file = {
+    # This should be fixed in https://github.com/NixOS/nixpkgs/issues/355277
+    ".config/Kvantum/catppuccin-mocha-mauve".source = "${
+        (pkgs.catppuccin-kvantum.override {
+          accent = "mauve";
+          variant = "mocha";
+        })
+      }/share/Kvantum/catppuccin-mocha-mauve";
   };
 }

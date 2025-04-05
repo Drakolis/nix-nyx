@@ -10,7 +10,7 @@
     browser = "firefox";
     editor = "codium";
     fileManager = "pcmanfm-qt";
-    passwords = "proton-passc";
+    passwords = "proton-pass";
   };
 
   previewText = "bat --paging=always --color=always";

@@ -24,6 +24,8 @@
     packages = with pkgs; [
       yt-dlp
 
+      element-desktop
+
       libreoffice
 
       protonmail-bridge-gui
@@ -34,13 +36,6 @@
 
       mullvad-browser
     ];
-    shell = pkgs.zsh;
-  };
-
-  users.users.lilyo = {
-    isNormalUser = true;
-    description = "Lily Oliveira";
-    extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
 
@@ -122,19 +117,19 @@
     dconf-editor
     imv
     kitty
-    ghostty
     lxqt.lxqt-archiver
     pcmanfm-qt
     qpwgraph
-    nemo-with-extensions
-    nemo-fileroller
-    file-roller
   ];
 
-  environment.sessionVariables = { TERMINAL = "kitty"; };
+  environment.sessionVariables = {
+    TERMINAL = "kitty";
+    NIXOS_OZONE_WL = 1;
+  };
 
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox;
     nativeMessagingHosts.packages =
       [ pkgs.kdePackages.plasma-browser-integration ];
     preferences = {
