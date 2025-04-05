@@ -24,10 +24,15 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+    };
   };
 
-  outputs =
-    { self, nixpkgs, home-manager, plasma-manager, nix-yazi-plugins, ... }: {
+  outputs = { self, nixpkgs, home-manager, plasma-manager, nix-yazi-plugins
+    , nix-vscode-extensions, ... }: {
+
       nixosConfigurations = {
         YDdraigGoch = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -50,8 +55,10 @@
 
       homeConfigurations = {
         "drakolis@YDdraigGoch" = home-manager.lib.homeManagerConfiguration {
-          pkgs =
-            nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
           modules = [
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager
@@ -59,8 +66,10 @@
           ];
         };
         "drakolis@WinterDragon" = home-manager.lib.homeManagerConfiguration {
-          pkgs =
-            nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
           modules = [
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager

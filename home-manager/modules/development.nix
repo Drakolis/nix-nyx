@@ -21,7 +21,6 @@ in {
     jetbrains.idea-community-bin
     jetbrains.pycharm-community
     # kdePackages.kate
-    vscodium
 
     # Language servers
     typescript-language-server
@@ -71,6 +70,129 @@ in {
           branch_fg: Some("#${style.colors.gitBranch}"),
         )
       '';
+    };
+
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      mutableExtensionsDir = false;
+      profiles.default = {
+        enableExtensionUpdateCheck = false;
+        enableUpdateCheck = false;
+        extensions = [
+          # Nix
+          pkgs.vscode-extensions.bbenoist.nix
+          pkgs.vscode-extensions.jnoortheen.nix-ide
+          pkgs.vscode-extensions.mkhl.direnv
+
+          # Theming
+          pkgs.vscode-extensions.catppuccin.catppuccin-vsc
+          pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
+
+          # Everything
+          pkgs.vscode-extensions.esbenp.prettier-vscode
+
+          # NodeJS
+          pkgs.vscode-extensions.firsttris.vscode-jest-runner
+          pkgs.vscode-extensions.dbaeumer.vscode-eslint
+          pkgs.vscode-marketplace.samverschueren.linter-xo
+
+          # Lua
+          pkgs.vscode-marketplace.koihik.vscode-lua-format
+          pkgs.vscode-extensions.sumneko.lua
+
+          # Markdown
+          pkgs.vscode-extensions.yzhang.markdown-all-in-one
+          pkgs.vscode-extensions.davidanson.vscode-markdownlint
+
+          # Terraform
+          pkgs.vscode-extensions.hashicorp.terraform
+
+          # Databases
+          pkgs.vscode-extensions.mongodb.mongodb-vscode
+          pkgs.vscode-marketplace.mtxr.sqltools
+
+          # Docker
+          pkgs.vscode-extensions.ms-azuretools.vscode-docker
+
+          # Cloud
+
+          # Git
+          pkgs.vscode-extensions.eamodio.gitlens
+
+          # Editor
+          pkgs.vscode-extensions.alefragnani.project-manager
+          pkgs.vscode-extensions.gruntfuggly.todo-tree
+          pkgs.vscode-extensions.streetsidesoftware.code-spell-checker
+          pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker-british-english
+          pkgs.vscode-extensions.streetsidesoftware.code-spell-checker-german
+          pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker-portuguese-brazilian
+          pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker-russian
+          pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker-scientific-terms
+          pkgs.vscode-marketplace.zokugun.cron-tasks
+          pkgs.vscode-extensions.vscodevim.vim
+          pkgs.vscode-extensions.editorconfig.editorconfig
+        ];
+        globalSnippets = { };
+        languageSnippets = { };
+        userSettings = {
+          "workbench.sideBar.location" = "right";
+          "workbench.colorTheme" = "Catppuccin Mocha";
+          "workbench.iconTheme" = "catppuccin-mocha";
+          "files.simpleDialog.enable" = true;
+          "chat.commandCenter.enabled" = false;
+          "nix.formatterPath" = "nixfmt";
+          "editor.formatOnSave" = true;
+          "nix.serverPath" = "nixd";
+          "cSpell.language" = "en,de,ru,pt";
+          "window.dialogStyle" = "custom";
+          "spellright.notificationClass" = "hint";
+          "editor.fontFamily" =
+            "'UbuntuMono Nerd Font', 'Hack Nerd Font', 'monospace', monospace";
+          "editor.minimap.autohide" = true;
+          "editor.tabSize" = 2;
+          "editor.tabCompletion" = "on";
+          "diffEditor.ignoreTrimWhitespace" = false;
+          "files.eol" = "\n";
+          "files.insertFinalNewline" = true;
+          "notebook.insertFinalNewline" = true;
+          "files.trimFinalNewlines" = true;
+          "files.trimTrailingWhitespace" = true;
+          "workbench.startupEditor" = "none";
+          "workbench.preferredLightColorTheme" = "Catppuccin Frappé";
+          "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
+          "window.autoDetectColorScheme" = true;
+          "workbench.editor.closeOnFileDelete" = true;
+          "workbench.editor.highlightModifiedTabs" = true;
+          "zenMode.hideLineNumbers" = false;
+          "zenMode.hideStatusBar" = false;
+          "accessibility.dimUnfocused.enabled" = true;
+          "catppuccin.italicKeywords" = false;
+          "syncSettings.confirmSync" = true;
+          "syncSettings.gitInitMessage" =
+            "{{profile}}@{{hostname}}: init -- {{now|date:iso}}";
+          "syncSettings.gitUpdateMessage" =
+            "{{profile}}@{{hostname}}: update -- {{now|date:iso}}";
+          "syncSettings.hostname" = "{{hostname}}";
+          "syncSettings.ignoredSettings" = [ "window.zoomLevel" ];
+          "git.confirmSync" = false;
+          "nix.enableLanguageServer" = true;
+          "git.autofetch" = true;
+          "Lua.codeLens.enable" = true;
+          "Lua.format.defaultConfig" = {
+            "indent_style" = "space";
+            "indent_size" = "2";
+          };
+          "[jsonc]" = {
+            "editor.defaultFormatter" = "vscode.json-language-features";
+          };
+          "gitlens.advanced.messages" = {
+            "suppressGitDisabledWarning" = true;
+          };
+          "window.titleBarStyle" = "custom";
+          "xo.format.enable" = true;
+        };
+      };
     };
   };
 }
