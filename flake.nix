@@ -38,7 +38,6 @@
           system = "x86_64-linux";
           modules = [
             ./system/nixos.nix
-            ./system/gaming.nix
             ./hosts/YDdraigGoch/configuration.nix
             ./hosts/YDdraigGoch/hardware-configuration.nix
           ];

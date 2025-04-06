@@ -94,9 +94,7 @@
 
     # Libraries
     dconf
-    # libinput
     librsvg
-    # libvirt
     xfce.tumbler # Thumbnails for Thunar
 
     # Linux services control
@@ -122,6 +120,9 @@
     qpwgraph
   ];
 
+  drakolis.fonts.fontSet = "ubuntu";
+  drakolis.geolocation.enable = true;
+
   environment.sessionVariables = {
     TERMINAL = "kitty";
     NIXOS_OZONE_WL = 1;
@@ -137,8 +138,6 @@
       "extensions.pocket.enabled" = false;
     };
   };
-
-  programs.wireshark.enable = true;
 
   services.displayManager = {
     sddm = {
@@ -169,38 +168,13 @@
     # media-session.enable = true;
   };
 
-  # Important to make KDE Partition Manager work
+  programs.wireshark.enable = true;
   programs.partition-manager.enable = true;
-  programs.kdeconnect.enable = true;
-
-  # List services that you want to enable:
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  services.clamav = {
-    scanner.enable = true; # Antivirus
-    daemon.enable = true;
-    updater.enable = true;
-  };
 
   services.gvfs.enable = true;
-  services.tumbler.enable = true; # Thumbnail support for images
   services.fcron.enable = true;
 
-  services.avahi.enable = true; # Connects to other devices on the network
-  services.geoclue2 = {
-    enable = true;
-    enableNmea = true; # Needs avahi to ask phones for location
-  };
-  location.provider = "geoclue2";
-
+  services.tumbler.enable = true; # Thumbnail support for images
   programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
 
   # Open ports in the firewall.

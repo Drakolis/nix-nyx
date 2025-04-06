@@ -12,8 +12,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  hardware.xpadneo.enable = true;
-
   security.polkit.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -116,8 +114,14 @@
     qpwgraph
   ];
 
+  drakolis.gaming.enable = true;
+  drakolis.geolocation.enable = true;
+
+  environment.sessionVariables = { NIXOS_OZONE_WL = 1; };
+
   programs.firefox = {
     enable = true;
+    package = pkgs.librewolf;
     nativeMessagingHosts.packages =
       [ pkgs.kdePackages.plasma-browser-integration ];
     preferences = {
@@ -126,13 +130,6 @@
     };
   };
 
-  programs.wireshark.enable = true;
-
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  # services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
@@ -155,7 +152,7 @@
     # media-session.enable = true;
   };
 
-  # Important to make KDE Partition Manager work
+  programs.wireshark.enable = true;
   programs.partition-manager.enable = true;
   programs.kclock.enable = true;
   programs.kde-pim.enable = true;
@@ -163,32 +160,8 @@
   programs.kde-pim.kontact = true;
   programs.kdeconnect.enable = true;
 
-  # List services that you want to enable:
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  services.clamav = {
-    scanner.enable = true; # Antivirus
-    daemon.enable = true;
-    updater.enable = true;
-  };
-
   services.gvfs.enable = true; # Virtual filesystem support
   services.fcron.enable = true;
-
-  services.avahi.enable = true; # Connects to other devices on the network
-  services.geoclue2 = {
-    enable = true;
-    enableNmea = true; # Needs avahi to ask phones for location
-  };
-  location.provider = "geoclue2";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

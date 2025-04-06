@@ -1,10 +1,12 @@
 { pkgs, ... }: {
   imports = [
-    ./common/flatpak.nix
-    ./common/fonts.nix
-    ./common/input.nix
-    ./common/nix.nix
-    ./common/shell.nix
+    ./modules/flatpak.nix
+    ./modules/fonts.nix
+    ./modules/gaming.nix
+    ./modules/geolocation.nix
+    ./modules/input.nix
+    ./modules/nix.nix
+    ./modules/shell.nix
   ];
 
   time.timeZone = "Europe/Berlin";
@@ -46,5 +48,21 @@
     };
   };
 
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+
   virtualisation.docker.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  # Antivirus
+  services.clamav = {
+    scanner.enable = true;
+    daemon.enable = true;
+    updater.enable = true;
+  };
 }
