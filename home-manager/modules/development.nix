@@ -6,6 +6,9 @@ in {
     # Git
     # gitui
 
+    python3
+    nodejs
+
     # Docker
     docker
     docker-compose
@@ -130,7 +133,7 @@ in {
           pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker-russian
           pkgs.vscode-marketplace.streetsidesoftware.code-spell-checker-scientific-terms
           pkgs.vscode-marketplace.zokugun.cron-tasks
-          pkgs.vscode-extensions.vscodevim.vim
+          # pkgs.vscode-extensions.vscodevim.vim
           pkgs.vscode-extensions.editorconfig.editorconfig
         ];
         globalSnippets = { };

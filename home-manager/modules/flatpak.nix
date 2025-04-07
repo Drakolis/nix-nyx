@@ -11,6 +11,7 @@ let
     "com.heroicgameslauncher.hgl"
     "com.discordapp.Discord"
     "com.github.tchx84.Flatseal"
+    "org.kde.kamoso"
   ];
 in {
   home.activation = {
