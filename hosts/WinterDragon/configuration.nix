@@ -115,8 +115,10 @@
     dconf-editor
     imv
     kitty
-    lxqt.lxqt-archiver
     pcmanfm-qt
+    lxqt.lxqt-archiver
+    lxqt.qps
+    lxqt.pavucontrol-qt
     qpwgraph
   ];
 
