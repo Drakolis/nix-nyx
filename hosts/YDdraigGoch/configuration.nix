@@ -17,6 +17,26 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # HARDENING
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "weekly";
+    allowReboot = true;
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
+    flake = "gitlab:Drakolis/nix-nyx";
+  };s
+
+  environment.etc."issue".text = ''
+    WARNING: Unauthorized access prohibited!
+    All activities are logged.
+  '';
+
+  # HARDENING
+
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
@@ -24,7 +44,6 @@
     packages = with pkgs; [
       yt-dlp
 
-      # kdePackages.kamoso
       kdePackages.dragon
       kdePackages.kasts
       kdePackages.kompare
@@ -91,10 +110,13 @@
     wl-clipboard
     wayvnc
 
+    # Connectivity
+    tailscale
+
     # KDE Extras
     kdePackages.falkon
     kdePackages.filelight
-    kdePackages.konqueror
+    # kdePackages.konqueror
     kdePackages.kate
     kdePackages.kcharselect
     kdePackages.kcolorchooser
@@ -112,12 +134,19 @@
     krusader
     krename
     qpwgraph
+    kdePackages.isoimagewriter
+    kdePackages.konversation
+
+    vulnix
   ];
 
   drakolis.gaming.enable = true;
   drakolis.geolocation.enable = true;
 
   environment.sessionVariables = { NIXOS_OZONE_WL = 1; };
+
+  services.tailscale.enable = true;
+  services.tailscale.authKeyFile = "/run/secrets/tailscale_key";
 
   programs.firefox = {
     enable = true;
@@ -127,6 +156,90 @@
     preferences = {
       "widget.use-xdg-desktop-portal.file-picker" = 1;
       "extensions.pocket.enabled" = false;
+      "extensions.experiments.enabled" = true;
+      "privacy.trackingprotection.enabled" = true;
+    };
+
+    policies = {
+      ExtensionSettings = {
+        # Proton Pass
+        "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Proton VPN
+        "vpn@proton.ch" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/proton-vpn-firefox-extension/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # uBlock Origin
+        "uBlock0@raymondhill.net" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # React Dev Tools
+        "@react-devtools" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/react-devtools/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Redux Dev Tools
+        "extension@redux.devtools" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/reduxdevtools/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Vue.js Dev Tools
+        "{5caff8cc-3d2e-4110-a88a-003cc85b3858}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/vue-js-devtools/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Gesturefy
+        "{506e023c-7f2b-40a3-8066-bc5deb40aebe}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/gesturefy/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Plasma Integration (for KDE)
+        "plasma-browser-integration@kde.org" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/plasma-integration/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Firefox Multi-Account Containers
+        "@testpilot-containers" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Floccus (Bookmark Sync)
+        "floccus@handmadeideas.org" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/floccus/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Dark Reader
+        "addon@darkreader.org" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
+
+      # Other recommended LibreWolf policies
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DisableTelemetry = true;
+      FirefoxHome = {
+        Search = true;
+        TopSites = false;
+        SponsoredTopSites = false;
+        Highlights = false;
+      };
     };
   };
 
@@ -134,7 +247,15 @@
   services.desktopManager.plasma6.enable = true;
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    extraConf = ''
+      <Location /admin>
+        AuthType Default
+        Require user @OWNER
+      </Location>
+    '';
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
