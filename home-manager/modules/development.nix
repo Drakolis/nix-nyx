@@ -37,6 +37,8 @@ in {
     terraform-ls
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.1.5" ];
+
   programs = {
 
     direnv = {
@@ -99,6 +101,8 @@ in {
           pkgs.vscode-extensions.firsttris.vscode-jest-runner
           pkgs.vscode-extensions.dbaeumer.vscode-eslint
           pkgs.vscode-marketplace.samverschueren.linter-xo
+          pkgs.vscode-extensions.vue.volar
+          pkgs.vscode-extensions.octref.vetur
 
           # Lua
           pkgs.vscode-marketplace.koihik.vscode-lua-format
