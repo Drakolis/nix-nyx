@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   imports = [
+    ./modules/firefox.nix
     ./modules/flatpak.nix
     ./modules/fonts.nix
     ./modules/gaming.nix
@@ -7,6 +8,7 @@
     ./modules/input.nix
     ./modules/nix.nix
     ./modules/shell.nix
+    ./modules/tailscale.nix
   ];
 
   time.timeZone = "Europe/Berlin";
