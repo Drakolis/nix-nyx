@@ -17,7 +17,6 @@ in with lib; {
   config = {
     fonts.packages = with pkgs;
       if (cfg.fontSet == "ubuntu") then [
-        ubuntu-font-family
         ubuntu-sans
         ubuntu-sans-mono
         noto-fonts-emoji
