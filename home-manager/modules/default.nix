@@ -2,6 +2,7 @@
   imports = [
     ./neovim
     ./yazi
+    ./browser.nix
     ./cloud-storage.nix
     ./development.nix
     ./flatpak.nix

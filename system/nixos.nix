@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    ./modules/firefox.nix
+    ./modules/browser.nix
     ./modules/flatpak.nix
     ./modules/fonts.nix
     ./modules/gaming.nix
