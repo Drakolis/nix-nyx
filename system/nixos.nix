@@ -6,6 +6,7 @@
     ./modules/gaming.nix
     ./modules/geolocation.nix
     ./modules/input.nix
+    ./modules/ki.nix
     ./modules/nix.nix
     ./modules/shell.nix
     ./modules/tailscale.nix
@@ -49,6 +50,8 @@
       FastConnectable = true;
     };
   };
+
+  # write a docker image runner
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

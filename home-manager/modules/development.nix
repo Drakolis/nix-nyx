@@ -139,6 +139,8 @@ in {
           pkgs.vscode-marketplace.zokugun.cron-tasks
           # pkgs.vscode-extensions.vscodevim.vim
           pkgs.vscode-extensions.editorconfig.editorconfig
+
+          pkgs.vscode-marketplace.tabbyml.vscode-tabby
         ];
         globalSnippets = { };
         languageSnippets = { };
@@ -198,6 +200,7 @@ in {
           };
           "window.titleBarStyle" = "custom";
           "xo.format.enable" = true;
+          "tabby.endpoint" = "http://localhost:50000";
         };
       };
     };
