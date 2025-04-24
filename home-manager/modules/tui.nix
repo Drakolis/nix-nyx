@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let style = import ../../constants/style.nix;
 in {
   programs.bat = {

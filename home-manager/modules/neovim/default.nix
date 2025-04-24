@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let style = import ../../../constants/style.nix;
 in {
   # A bit of an overkill. But treesitter doesn't work without gcc

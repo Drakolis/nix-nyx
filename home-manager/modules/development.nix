@@ -1,5 +1,4 @@
-{ lib, pkgs, ... }:
-
+{ pkgs, ... }:
 let style = import ../../constants/style.nix;
 in {
   home.packages = with pkgs; [

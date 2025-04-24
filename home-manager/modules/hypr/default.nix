@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 let style = import ../../../constants/style.nix;
 in {
   imports = [ ./hyprland.nix ./hypridle.nix ./hyprlock.nix ];

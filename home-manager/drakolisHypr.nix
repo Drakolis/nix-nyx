@@ -1,6 +1,11 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
-  imports =
-    [ ./modules ./modules/hypr ./modules/tiling ./modules/terminals.nix ];
+{ pkgs, ... }: {
+  imports = [
+    ./modules
+    ./modules/hypr
+    ./modules/tiling
+    ./modules/terminals.nix
+    ./modules/themesHypr.nix
+  ];
 
   home.username = "drakolis";
   home.homeDirectory = "/home/drakolis";

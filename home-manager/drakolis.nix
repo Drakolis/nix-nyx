@@ -1,4 +1,4 @@
-{ inputs, outputs, lib, config, pkgs, ... }: {
+{
   imports = [ ./modules ];
 
   home.username = "drakolis";

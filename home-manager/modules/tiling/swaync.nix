@@ -2,7 +2,6 @@ let
   style = import ../../../constants/style.nix;
   notificaionWidth = 500;
 in {
-
   services.swaync = {
     enable = true;
     settings = {

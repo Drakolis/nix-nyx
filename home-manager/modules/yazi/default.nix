@@ -1,6 +1,4 @@
-let
-  style = import ../../../constants/style.nix;
-  commands = import ../../../constants/commands.nix;
+let style = import ../../../constants/style.nix;
 in {
   imports = [ ./icons.nix ];
   programs.yazi = {

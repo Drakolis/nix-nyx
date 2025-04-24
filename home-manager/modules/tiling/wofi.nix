@@ -1,4 +1,3 @@
-{ config, lib, pkgs, ... }:
 let style = import ../../../constants/style.nix;
 in {
   programs.wofi = {
