@@ -175,7 +175,6 @@ in {
           "workbench.editor.highlightModifiedTabs" = true;
           "zenMode.hideLineNumbers" = false;
           "zenMode.hideStatusBar" = false;
-          "accessibility.dimUnfocused.enabled" = true;
           "catppuccin.italicKeywords" = false;
           "syncSettings.confirmSync" = true;
           "syncSettings.gitInitMessage" =
