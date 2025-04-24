@@ -52,6 +52,7 @@
       kdePackages.marknote
       kdePackages.neochat
       kdePackages.parley
+      kdePackages.alpaka
       crow-translate
       haruna
 
@@ -136,6 +137,7 @@
   ];
 
   drakolis.gaming.enable = true;
+  drakolis.ki.enable = true;
   drakolis.geolocation.enable = true;
 
   environment.sessionVariables = { NIXOS_OZONE_WL = 1; };
