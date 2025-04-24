@@ -12,7 +12,8 @@
     ./security.nix
     ./shell.nix
     ./showoff.nix
-    ./themes.nix
     ./tui.nix
+
+    ./eww.nix
   ];
 }

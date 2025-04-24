@@ -1,5 +1,5 @@
 {
-  imports = [ ./modules ];
+  imports = [ ./modules ./modules/themes.nix ];
 
   home.username = "drakolis";
   home.homeDirectory = "/home/drakolis";
