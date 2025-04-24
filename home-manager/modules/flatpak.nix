@@ -3,14 +3,14 @@ let
   grep = pkgs.gnugrep;
   desiredFlatpaks = [
     "com.slack.Slack"
-    "it.fabiodistasio.AntaresSQL"
+    # "it.fabiodistasio.AntaresSQL"
     "org.js.nuclear.Nuclear"
     "org.telegram.desktop"
     "us.zoom.Zoom"
     "com.valvesoftware.Steam"
-    "com.heroicgameslauncher.hgl"
+    # "com.heroicgameslauncher.hgl"
     "com.discordapp.Discord"
-    "com.github.tchx84.Flatseal"
+    # "com.github.tchx84.Flatseal"
     "org.kde.kamoso"
   ];
 in {
