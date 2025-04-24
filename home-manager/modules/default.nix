@@ -13,6 +13,7 @@
     ./shell.nix
     ./showoff.nix
     ./tui.nix
+    ./unfree.nix
 
     ./eww.nix
   ];

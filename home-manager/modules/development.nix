@@ -16,12 +16,13 @@ in {
     tokei
 
     beekeeper-studio
-    bruno
+    # bruno
     hoppscotch
 
     # IDEs
     jetbrains.idea-community-bin
     jetbrains.pycharm-community
+    windsurf
     # kdePackages.kate
 
     # Language servers
