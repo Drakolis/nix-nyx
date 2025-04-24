@@ -31,12 +31,13 @@
   };
 
   outputs = { self, nixpkgs, home-manager, plasma-manager, nix-yazi-plugins
-    , nix-vscode-extensions, ... }: {
+    , nix-vscode-extensions, sops-nix, ... }: {
 
       nixosConfigurations = {
         YDdraigGoch = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            sops-nix.nixosModules.sops
             ./system/nixos.nix
             ./hosts/YDdraigGoch/configuration.nix
             ./hosts/YDdraigGoch/hardware-configuration.nix
@@ -45,6 +46,7 @@
         WinterDragon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            sops-nix.nixosModules.sops
             ./system/nixos.nix
             ./hosts/WinterDragon/configuration.nix
             ./hosts/WinterDragon/hardware-configuration.nix
@@ -59,6 +61,7 @@
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
           modules = [
+            sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/drakolis.nix
@@ -70,6 +73,7 @@
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
           modules = [
+            sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/drakolisHypr.nix
