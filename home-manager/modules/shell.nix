@@ -58,6 +58,7 @@ in {
         "git"
         "qrcode"
         "npm"
+        "scw"
         "sudo"
         "taskwarrior"
       ];

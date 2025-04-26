@@ -2,18 +2,20 @@
 let style = import ../../constants/style.nix;
 in {
   home.packages = with pkgs; [
-    # Git
-    # gitui
+    # Support
+    tokei
 
+    # Runtime
     python3
     nodejs
+
+    # CLI
+    scaleway-cli
 
     # Docker
     docker
     docker-compose
     colima
-
-    tokei
 
     beekeeper-studio
     # bruno
@@ -108,6 +110,9 @@ in {
           pkgs.vscode-marketplace.koihik.vscode-lua-format
           pkgs.vscode-extensions.sumneko.lua
 
+          # Yuck
+          pkgs.vscode-marketplace.eww-yuck.yuck
+
           # Markdown
           pkgs.vscode-extensions.yzhang.markdown-all-in-one
           pkgs.vscode-extensions.davidanson.vscode-markdownlint
@@ -156,8 +161,7 @@ in {
           "cSpell.language" = "en,de,ru,pt";
           "window.dialogStyle" = "custom";
           "spellright.notificationClass" = "hint";
-          "editor.fontFamily" =
-            "'UbuntuMono Nerd Font', 'Hack Nerd Font', 'monospace', monospace";
+          "editor.fontFamily" = "'Hack Nerd Font', 'monospace', monospace";
           "editor.minimap.autohide" = true;
           "editor.tabSize" = 2;
           "editor.tabCompletion" = "on";
