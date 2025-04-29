@@ -15,6 +15,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  boot.loader.systemd-boot.configurationLimit = 5;
+
   # HARDENING
 
   system.autoUpgrade = {
@@ -25,13 +27,42 @@
       lower = "01:00";
       upper = "05:00";
     };
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+    ]; # Update flake inputs too
     flake = "gitlab:Drakolis/nix-nyx";
   };
 
+  security = {
+    protectKernelImage = true; # Prevent kernel image tampering
+  };
+
   environment.etc."issue".text = ''
-    WARNING: Unauthorized access prohibited!
-    All activities are logged.
+    \n (\l), \S Linux Kernel \r \m
+    Unauthorized access to this system is prohibited.
+    All activity on this system is logged and monitored.
+    Unauthorized activities will be reported to the appropriate authorities.
   '';
+
+  hardware.bluetooth.settings.General.Enable =
+    "Source,Sink,Media,Socket"; # Restrict profiles
+
+  security.sudo = {
+    execWheelOnly = true; # Only allow wheel group to run sudo
+    extraConfig = ''
+      Defaults timestamp_timeout=30
+    '';
+  };
+
+  services.journald.extraConfig = ''
+    Storage=persistent
+    SystemMaxUse=1G  # Limit log size
+  '';
+
+  security.auditd.enable = true;
+  security.audit.enable = true;
 
   # HARDENING
 
@@ -67,6 +98,7 @@
       mullvad-browser
     ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [ ];
   };
 
   users.users.lilyo = {
@@ -74,6 +106,7 @@
     description = "Lily Oliveira";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [ ];
   };
 
   nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
@@ -134,6 +167,7 @@
     kdePackages.konversation
 
     vulnix
+    podman-compose
   ];
 
   drakolis.gaming.enable = true;
@@ -148,10 +182,12 @@
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
+    defaultShared = false;
     extraConf = ''
-      <Location /admin>
-        AuthType Default
-        Require user @OWNER
+      <Location />
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
       </Location>
     '';
   };
@@ -183,11 +219,12 @@
   services.gvfs.enable = true; # Virtual filesystem support
   services.fcron.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ ]; # Explicitly allow only needed ports
+    allowedUDPPorts = [ ];
+    logRefusedConnections = false; # Reduce log noise (set to true if debugging)
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -196,5 +233,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
