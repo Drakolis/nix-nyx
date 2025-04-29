@@ -25,7 +25,7 @@ in with lib; {
       enable = true;
       port = 50000;
       usageCollection = false;
-
+      model = "TabbyML/DeepSeekCoder-1.3B";
     };
 
     systemd.services.ollama = {
@@ -38,7 +38,6 @@ in with lib; {
         # Group = "ollama";
       };
     };
-
   };
 
 }
