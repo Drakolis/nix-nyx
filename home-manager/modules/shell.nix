@@ -64,7 +64,7 @@ in {
       ];
     };
 
-    initExtra = ''
+    initContent = ''
       function pet-select() {
         BUFFER=$(pet search --query "$LBUFFER")
         CURSOR=$#BUFFER
