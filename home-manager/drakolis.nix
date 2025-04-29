@@ -1,5 +1,5 @@
 {
-  imports = [ ./modules ./modules/themes.nix ];
+  imports = [ ./modules ./modules/themes.nix ./modules/plasma-manager.nix ];
 
   home.username = "drakolis";
   home.homeDirectory = "/home/drakolis";
