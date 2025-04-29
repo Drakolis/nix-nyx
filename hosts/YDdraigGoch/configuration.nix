@@ -17,8 +17,6 @@
 
   boot.loader.systemd-boot.configurationLimit = 5;
 
-  # HARDENING
-
   system.autoUpgrade = {
     enable = true;
     dates = "weekly";
@@ -64,8 +62,6 @@
   security.auditd.enable = true;
   security.audit.enable = true;
 
-  # HARDENING
-
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
@@ -83,14 +79,12 @@
       kdePackages.marknote
       kdePackages.neochat
       kdePackages.parley
-      kdePackages.alpaka
       crow-translate
       haruna
 
       libreoffice
 
       protonmail-bridge-gui
-      protonmail-desktop
       protonvpn-gui
       protonvpn-cli
       proton-pass

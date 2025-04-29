@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -17,6 +15,49 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
+  boot.loader.systemd-boot.configurationLimit = 5;
+
+  system.autoUpgrade = {
+    enable = true;
+    dates = "weekly";
+    allowReboot = true;
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+    ]; # Update flake inputs too
+    flake = "gitlab:Drakolis/nix-nyx";
+  };
+
+  environment.etc."issue".text = ''
+    \n (\l), \S Linux Kernel \r \m
+    Unauthorized access to this system is prohibited.
+    All activity on this system is logged and monitored.
+    Unauthorized activities will be reported to the appropriate authorities.
+  '';
+
+  hardware.bluetooth.settings.General.Enable =
+    "Source,Sink,Media,Socket"; # Restrict profiles
+
+  security.sudo = {
+    execWheelOnly = true; # Only allow wheel group to run sudo
+    extraConfig = ''
+      Defaults timestamp_timeout=30
+    '';
+  };
+
+  services.journald.extraConfig = ''
+    Storage=persistent
+    SystemMaxUse=1G  # Limit log size
+  '';
+
+  security.auditd.enable = true;
+  security.audit.enable = true;
+
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
@@ -28,8 +69,18 @@
 
       libreoffice
 
+      kdePackages.dragon
+      kdePackages.kasts
+      kdePackages.kompare
+      kdePackages.ktorrent
+      kdePackages.kweather
+      kdePackages.neochat
+      crow-translate
+      haruna
+
+      libreoffice
+
       protonmail-bridge-gui
-      protonmail-desktop
       protonvpn-gui
       protonvpn-cli
       proton-pass
@@ -37,7 +88,10 @@
       mullvad-browser
     ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [ ];
   };
+
+  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -60,87 +114,56 @@
 
     # XDG extras
     xdg-terminal-exec
-    xdg-desktop-portal-hyprland
-    lxqt.xdg-desktop-portal-lxqt
 
-    # SDDM
-    kdePackages.sddm
-    nerd-fonts.ubuntu
-    (catppuccin-sddm.override {
-      flavor = "mocha";
-      font = "Ubuntu Nerd Font";
-      fontSize = "14";
-      # background = "${~/.background}";
-      loginBackground = true;
-    })
+    # Backups
+    fcron
+    backintime-qt
 
-    # Wayland
-    wayland
+    # Wayland utils
     wev
     wl-clipboard
-    wl-mirror
     wayvnc
 
-    # Hyprland
-    hyprland
-    hyprcursor
-    hypridle
-    hyprlock
-    hyprpaper
-    hyprpicker
-    hyprshade
-    hyprshot
-    hyprsunset
+    # KDE Extras
+    kdePackages.falkon
+    kdePackages.filelight
+    kdePackages.kate
+    kdePackages.kcharselect
+    kdePackages.kcolorchooser
+    kdePackages.kget
+    kdePackages.kcalc
+    kdePackages.yakuake
+    kdePackages.sweeper
 
-    # Libraries
-    dconf
-    librsvg
-    xfce.tumbler # Thumbnails for Thunar
+    kdePackages.kleopatra
+    kdePackages.zanshin
+    kdePackages.akregator
 
-    # Linux services control
-    bluez-tools
-    brightnessctl
-    libnotify
-    playerctl
-
-    # Security
-    polkit
-    hyprpolkitagent
-    keepassxc
-    pinentry
-    pinentry-qt
-
-    # Critical GUI Utilities
-    backintime-qt
-    dconf-editor
-    imv
-    kitty
-    pcmanfm-qt
-    lxqt.lxqt-archiver
-    lxqt.qps
-    lxqt.pavucontrol-qt
+    kdePackages.ksystemlog
+    krename
     qpwgraph
+    kdePackages.isoimagewriter
+    kdePackages.konversation
   ];
 
-  drakolis.fonts.fontSet = "ubuntu";
   drakolis.geolocation.enable = true;
 
-  environment.sessionVariables = {
-    TERMINAL = "kitty";
-    NIXOS_OZONE_WL = 1;
-  };
+  environment.sessionVariables = { NIXOS_OZONE_WL = 1; };
 
-  services.displayManager = {
-    sddm = {
-      enable = true;
-      theme = "catppuccin-mocha";
-      wayland.enable = true;
-    };
-  };
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
-  programs.hyprland = {
+  # Enable CUPS to print documents.
+  services.printing = {
     enable = true;
-    xwayland.enable = true;
+    defaultShared = false;
+    extraConf = ''
+      <Location />
+        Order deny,allow
+        Deny from all
+        Allow from 127.0.0.1
+      </Location>
+    '';
   };
 
   # Enable sound with pipewire.
@@ -161,18 +184,22 @@
 
   programs.wireshark.enable = true;
   programs.partition-manager.enable = true;
+  programs.kclock.enable = true;
+  programs.kde-pim.enable = true;
+  programs.kde-pim.kmail = true;
+  programs.kde-pim.kontact = false;
+  programs.kde-pim.merkuro = true;
+  programs.kdeconnect.enable = true;
 
   services.gvfs.enable = true;
   services.fcron.enable = true;
 
-  services.tumbler.enable = true; # Thumbnail support for images
-  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ ]; # Explicitly allow only needed ports
+    allowedUDPPorts = [ ];
+    logRefusedConnections = false; # Reduce log noise (set to true if debugging)
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

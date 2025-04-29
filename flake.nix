@@ -103,7 +103,7 @@
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager
-            ./home-manager/drakolisHypr.nix
+            ./home-manager/drakolis.nix
           ];
         };
       };

@@ -1,8 +1,21 @@
 { pkgs, ... }: {
+  programs.elisa = {
+    enable = true;
+    appearance = {
+      defaultView = "allAlbums";
+      showNowPlayingBackground = true;
+    };
+    player.minimiseToSystemTray = true;
+  };
+  programs.kate = {
+    enable = true;
+
+  };
   programs.plasma = {
     enable = true;
     # https://github.com/nix-community/plasma-manager/blob/trunk/examples/home.nix
     # https://nix-community.github.io/plasma-manager/options.xhtml
+
     shortcuts = {
       "ActivityManager"."switch-to-activity-62a560c1-414c-48e4-b51c-0b5b77c69eef" =
         [ ];

@@ -68,7 +68,7 @@
   # Antivirus
   services.clamav = {
     scanner.enable = true;
-    daemon.enable = true;
+    daemon.enable = false;
     updater.enable = true;
   };
 }
