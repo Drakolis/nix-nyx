@@ -139,7 +139,6 @@
     # KDE Extras
     kdePackages.falkon
     kdePackages.filelight
-    # kdePackages.konqueror
     kdePackages.kate
     kdePackages.kcharselect
     kdePackages.kcolorchooser
