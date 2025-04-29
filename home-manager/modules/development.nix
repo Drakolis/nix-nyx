@@ -14,11 +14,6 @@ in
     # CLI
     scaleway-cli
 
-    # Docker
-    docker
-    docker-compose
-    colima
-
     beekeeper-studio
     # bruno
     hoppscotch

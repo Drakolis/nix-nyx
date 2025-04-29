@@ -9,7 +9,6 @@
     ./modules/ki.nix
     ./modules/nix.nix
     ./modules/shell.nix
-    ./modules/tailscale.nix
   ];
 
   time.timeZone = "Europe/Berlin";
@@ -51,13 +50,15 @@
     };
   };
 
-  # write a docker image runner
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
 
-  virtualisation.docker = { enable = true; };
+  # write a docker image runner
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true; # Creates a `docker` alias for podman
+  };
 
   programs.gnupg.agent = {
     enable = true;
