@@ -173,7 +173,7 @@ in
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.iconTheme" = "catppuccin-mocha";
           "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
-          "workbench.preferredLightColorTheme" = "Catppuccin Frappé";
+          "workbench.preferredLightColorTheme" = "Catppuccin Latte";
           "workbench.sideBar.location" = "right";
           "workbench.startupEditor" = "none";
           "zenMode.hideLineNumbers" = false;
