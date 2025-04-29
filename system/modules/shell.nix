@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     bat
     bottom
@@ -23,6 +24,12 @@
 
   programs = {
     bat.enable = true;
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
     git.enable = true;
     neovim = {
       enable = true;

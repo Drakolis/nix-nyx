@@ -1,14 +1,17 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     nil
-    nixd
-    nixfmt-classic
+    nixfmt-rfc-style
     nix-tree
     nixos-generators
     nixos-option
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   programs = {
     command-not-found.enable = false;
