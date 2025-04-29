@@ -28,10 +28,26 @@
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
     };
+
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, plasma-manager, nix-yazi-plugins
-    , nix-vscode-extensions, sops-nix, ... }: {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      plasma-manager,
+      nix-yazi-plugins,
+      nix-vscode-extensions,
+      sops-nix,
+      nix-darwin,
+      ...
+    }:
+    {
 
       nixosConfigurations = {
         YDdraigGoch = nixpkgs.lib.nixosSystem {
@@ -43,6 +59,7 @@
             ./hosts/YDdraigGoch/hardware-configuration.nix
           ];
         };
+
         WinterDragon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -50,6 +67,15 @@
             ./system/nixos.nix
             ./hosts/WinterDragon/configuration.nix
             ./hosts/WinterDragon/hardware-configuration.nix
+          ];
+        };
+      };
+
+      darwinConfigurations = {
+        "mb-H02L4YFQ6P" = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./system/darwin.nix
+            ./hosts/WorkerBee/configuration.nix
           ];
         };
       };
@@ -67,6 +93,7 @@
             ./home-manager/drakolis.nix
           ];
         };
+
         "drakolis@WinterDragon" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
