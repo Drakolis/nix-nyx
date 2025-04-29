@@ -11,6 +11,12 @@
       "extensions.pocket.enabled" = false;
       "extensions.experiments.enabled" = true;
       "privacy.trackingprotection.enabled" = true;
+      "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
+      "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" =
+        true;
+      "privacy.resistFingerprinting.letterboxing" = true;
+      "dom.security.https_only_mode" = true;
+      "webgl.disabled" = true;
     };
 
     policies = {
@@ -81,17 +87,34 @@
             "https://addons.mozilla.org/firefox/downloads/latest/darkreader/latest.xpi";
           installation_mode = "force_installed";
         };
+        # StylUS
+        "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/styl-us/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        # Privacy Badger
+        "jid1-MnnxcxisBPnSXQ@jetpack" = {
+          install_url =
+            "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+          installation_mode = "force_installed";
+        };
       };
 
       # Other recommended LibreWolf policies
       DisableFirefoxStudies = true;
       DisablePocket = true;
       DisableTelemetry = true;
+      PasswordManagerEnabled = false;
       FirefoxHome = {
         Search = true;
         TopSites = false;
         SponsoredTopSites = false;
         Highlights = false;
+      };
+      TrackingProtection = {
+        Enabled = true;
+        Locked = true;
       };
     };
   };
