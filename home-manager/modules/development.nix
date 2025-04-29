@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let style = import ../../constants/style.nix;
-in {
+let
+  style = import ../../constants/style.nix;
+in
+{
   home.packages = with pkgs; [
     # Support
     tokei
@@ -150,60 +152,63 @@ in {
         globalSnippets = { };
         languageSnippets = { };
         userSettings = {
-          "workbench.sideBar.location" = "right";
-          "workbench.colorTheme" = "Catppuccin Mocha";
-          "workbench.iconTheme" = "catppuccin-mocha";
-          "files.simpleDialog.enable" = true;
+          "[jsonc]" = {
+            "editor.defaultFormatter" = "vscode.json-language-features";
+          };
           "chat.commandCenter.enabled" = false;
-          "nix.formatterPath" = "nixfmt";
-          "editor.formatOnSave" = true;
-          "nix.serverPath" = "nixd";
-          "cSpell.language" = "en,de,ru,pt";
-          "window.dialogStyle" = "custom";
-          "spellright.notificationClass" = "hint";
-          "editor.fontFamily" = "'Hack Nerd Font', 'monospace', monospace";
-          "editor.minimap.autohide" = true;
-          "editor.tabSize" = 2;
-          "editor.tabCompletion" = "on";
           "diffEditor.ignoreTrimWhitespace" = false;
+          "editor.fontFamily" = "'Hack Nerd Font', 'monospace', monospace";
+          "editor.formatOnSave" = true;
+          "editor.minimap.autohide" = true;
+          "editor.tabCompletion" = "on";
+          "editor.tabSize" = 2;
           "files.eol" = "\n";
           "files.insertFinalNewline" = true;
-          "notebook.insertFinalNewline" = true;
+          "files.simpleDialog.enable" = true;
           "files.trimFinalNewlines" = true;
           "files.trimTrailingWhitespace" = true;
-          "workbench.startupEditor" = "none";
-          "workbench.preferredLightColorTheme" = "Catppuccin Frappé";
-          "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
+          "git.autofetch" = true;
+          "git.confirmSync" = false;
+          "notebook.insertFinalNewline" = true;
           "window.autoDetectColorScheme" = true;
+          "window.dialogStyle" = "custom";
+          "window.titleBarStyle" = "custom";
+          "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.editor.closeOnFileDelete" = true;
           "workbench.editor.highlightModifiedTabs" = true;
+          "workbench.iconTheme" = "catppuccin-mocha";
+          "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
+          "workbench.preferredLightColorTheme" = "Catppuccin Frappé";
+          "workbench.sideBar.location" = "right";
+          "workbench.startupEditor" = "none";
           "zenMode.hideLineNumbers" = false;
           "zenMode.hideStatusBar" = false;
+
+          # EXTENSIONS
+
+          # Catppuccin Theme
           "catppuccin.italicKeywords" = false;
-          "syncSettings.confirmSync" = true;
-          "syncSettings.gitInitMessage" =
-            "{{profile}}@{{hostname}}: init -- {{now|date:iso}}";
-          "syncSettings.gitUpdateMessage" =
-            "{{profile}}@{{hostname}}: update -- {{now|date:iso}}";
-          "syncSettings.hostname" = "{{hostname}}";
-          "syncSettings.ignoredSettings" = [ "window.zoomLevel" ];
-          "git.confirmSync" = false;
-          "nix.enableLanguageServer" = true;
-          "git.autofetch" = true;
+
+          # Nix Language
+          "nix.enableLanguageServer" = false;
+          "nix.formatterPath" = "nixfmt";
+          "nix.serverPath" = "nil";
+
+          # Lua Language
           "Lua.codeLens.enable" = true;
           "Lua.format.defaultConfig" = {
             "indent_style" = "space";
             "indent_size" = "2";
           };
-          "[jsonc]" = {
-            "editor.defaultFormatter" = "vscode.json-language-features";
-          };
+
+          # GitLens
           "gitlens.advanced.messages" = {
             "suppressGitDisabledWarning" = true;
           };
-          "window.titleBarStyle" = "custom";
-          "xo.format.enable" = true;
+
+          "cSpell.language" = "en,de,ru,pt";
           "tabby.endpoint" = "http://localhost:50000";
+          "xo.format.enable" = true;
         };
       };
     };
