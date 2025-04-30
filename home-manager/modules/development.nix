@@ -150,6 +150,9 @@ in
           "[jsonc]" = {
             "editor.defaultFormatter" = "vscode.json-language-features";
           };
+          "[json]" = {
+            "editor.defaultFormatter" = "vscode.json-language-features";
+          };
           "chat.commandCenter.enabled" = false;
           "diffEditor.ignoreTrimWhitespace" = false;
           "editor.fontFamily" = "'Hack Nerd Font', 'monospace', monospace";
