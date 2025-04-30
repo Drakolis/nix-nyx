@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -40,8 +41,7 @@
     Unauthorized activities will be reported to the appropriate authorities.
   '';
 
-  hardware.bluetooth.settings.General.Enable =
-    "Source,Sink,Media,Socket"; # Restrict profiles
+  hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
 
   security.sudo = {
     execWheelOnly = true; # Only allow wheel group to run sudo
@@ -61,7 +61,10 @@
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       yt-dlp
 
@@ -128,6 +131,9 @@
     kdePackages.falkon
     kdePackages.filelight
     kdePackages.kate
+    kdePackages.kompare
+    kdePackages.krdc
+    kdePackages.krfb
     kdePackages.kcharselect
     kdePackages.kcolorchooser
     kdePackages.kget
@@ -148,7 +154,9 @@
 
   drakolis.geolocation.enable = true;
 
-  environment.sessionVariables = { NIXOS_OZONE_WL = 1; };
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = 1;
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -187,7 +195,6 @@
   programs.kclock.enable = true;
   programs.kde-pim.enable = true;
   programs.kde-pim.kmail = true;
-  programs.kde-pim.kontact = false;
   programs.kde-pim.merkuro = true;
   programs.kdeconnect.enable = true;
 

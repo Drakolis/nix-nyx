@@ -9,18 +9,33 @@
     };
     player.minimiseToSystemTray = true;
   };
+
+  home.file = {
+    ".local/share/ghostwriter/themes/HM_Catppuccin.json" = {
+      source = ./files/catppuccin-mocha-mauve.json;
+
+      onChange = ''
+        rm -f ~/.local/share/ghostwriter/themes/Catppuccin.json
+        cp ~/.local/share/ghostwriter/themes/HM_Catppuccin.json ~/.local/share/ghostwriter/themes/Catppuccin.json
+        chmod u+w ~/.local/share/ghostwriter/themes/Catppuccin.json
+      '';
+    };
+  };
+
   programs.ghostwriter = {
     enable = true;
     theme.customThemes = {
-      catppuccin-mocha-mauve = ./files/catppuccin-mocha-mauve.json;
+      catppuccin-mocha-mauve = ./files/catppuccin-mocha-mauve.json; # Somehow this doesn't work right
     };
-    theme.name = "catppuccin-mocha-mauve.json";
+    theme.name = "Catppuccin";
   };
+
   programs.kate = {
     enable = true;
     package = null;
-
+    # Unfinished
   };
+
   programs.konsole = {
     enable = true;
     customColorSchemes = {
@@ -30,15 +45,91 @@
     profiles = {
       "Drakolis" = {
         colorScheme = "catppuccin-mocha";
-        font.size = 12;
       };
     };
-    ui.colorScheme = "CatppuccinMochaMauve"; # To keep it always dark
+    ui.colorScheme = "Catppuccin Mocha Mauve"; # To keep it always dark
   };
+
+  programs.okular = {
+    enable = true;
+    package = null;
+    # Unfinished
+  };
+
   programs.plasma = {
     enable = true;
     # https://github.com/nix-community/plasma-manager/blob/trunk/examples/home.nix
     # https://nix-community.github.io/plasma-manager/options.xhtml
+
+    desktop.widgets = [ ];
+
+    fonts.fixedWidth = {
+      family = "Hack Nerd Font";
+      pointSize = 11;
+    };
+
+    input.keyboard = {
+      layouts = [
+        {
+          layout = "nz";
+        }
+        {
+          layout = "ru";
+        }
+      ];
+
+      numlockOnStartup = "on";
+
+      options = [
+        "grp:ctrl_space_toggle"
+        "compose:sclk"
+        "compose:ralt"
+        "apple:alupckeys"
+      ];
+
+      switchingPolicy = "window";
+    };
+
+    input.touchpads = [
+      {
+        name = "SynPS/2 Synaptics TouchPad";
+        productId = "0007";
+        vendorId = "0002";
+        disableWhileTyping = true;
+        enable = true;
+        naturalScroll = true;
+      }
+    ];
+
+    krunner = {
+      activateWhenTypingOnDesktop = true;
+      historyBehavior = "enableAutoComplete";
+      position = "center";
+      shortcuts.launch = "Meta+Space";
+      shortcuts.runCommandOnClipboard = "Meta+Shift+Space";
+    };
+
+    configFile."krunnerrc" = {
+      "Plugins" = {
+        "krunner_appstreamEnabled" = false;
+        "krunner_konsoleprofilesEnabled" = false;
+        "plasma-runner-neochatEnabled" = true;
+      };
+
+      "Plugins/Favorites"."plugins" = "krunner_services,krunner_bookmarksrunner,krunner_systemsettings";
+
+      "Runners/krunner_charrunner" = {
+        "aliases" = "";
+        "codes" = "";
+        "triggerWord" = "char";
+      };
+
+      "Runners/krunner_kill" = {
+        "sorting" = 1;
+        "triggerWord" = "kill";
+        "useTriggerWord" = true;
+      };
+    };
 
     # shortcuts = {
     #   "ActivityManager"."switch-to-activity-62a560c1-414c-48e4-b51c-0b5b77c69eef" =
@@ -375,8 +466,6 @@
     #     "Meta+C";
     #   "services/org.kde.dolphin.desktop"."_launch" = "Meta+Z";
     #   "services/org.kde.konsole.desktop"."_launch" = "Meta+Return";
-    #   "services/org.kde.krunner.desktop"."RunClipboard" = "Meta+Shift+Space";
-    #   "services/org.kde.krunner.desktop"."_launch" = "Meta+Space";
     #   "services/org.kde.spectacle.desktop"."RecordRegion" = "Ctrl+Print";
     #   "services/org.kde.spectacle.desktop"."RecordScreen" = "Ctrl+Shift+Print";
     #   "services/org.kde.spectacle.desktop"."RecordWindow" = "Meta+Ctrl+Print";
