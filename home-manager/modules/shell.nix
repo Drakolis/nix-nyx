@@ -3,7 +3,8 @@ let
   style = import ../../constants/style.nix;
   commands = import ../../constants/commands.nix;
   paths = import ../../constants/paths.nix;
-in {
+in
+{
   home.packages = with pkgs; [ exiftool ];
 
   programs.zsh = {
@@ -12,7 +13,9 @@ in {
     enableVteIntegration = true;
     autocd = true;
 
-    autosuggestion = { enable = true; };
+    autosuggestion = {
+      enable = true;
+    };
 
     dirHashes = {
       docs = paths.documents;
@@ -29,12 +32,9 @@ in {
     shellAliases = {
       lsl = "eza -1la --icons=always --group-directories-first";
       lsg = "eza -Gla --icons=always --group-directories-first";
-      nix-package-find =
-        "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
-      fzyp = ''
-        fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
-      fzon = ''
-        fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
+      nix-package-find = "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
+      fzyp = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
+      fzon = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
       nix-store-find = "ls /nix/store | fzf";
     };
 
@@ -45,7 +45,9 @@ in {
       ignoreSpace = true;
     };
 
-    syntaxHighlighting = { enable = true; };
+    syntaxHighlighting = {
+      enable = true;
+    };
 
     "oh-my-zsh" = {
       enable = true;
@@ -73,7 +75,6 @@ in {
       zle -N pet-select
       stty -ixon
       bindkey '^s' pet-select
-      hyfetch
     '';
   };
 
@@ -123,14 +124,20 @@ in {
     # Configuration written to ~/.config/starship.toml
     settings = {
       add_newline = false;
-      time = { disabled = false; };
-      sudo = { disabled = false; };
+      time = {
+        disabled = false;
+      };
+      sudo = {
+        disabled = false;
+      };
       username = {
         show_always = true;
         style_user = "bold purple";
         format = "[$user]($style)@"; # Followed by hostname
       };
-      hostname = { ssh_only = false; };
+      hostname = {
+        ssh_only = false;
+      };
     };
   };
 
@@ -157,11 +164,19 @@ in {
           width_percentage = 32;
           min_width = 45;
         };
-        comment = { color = "grey"; };
+        comment = {
+          color = "grey";
+        };
       };
-      cheats = { paths = [ "${paths.documents}/cheatsheets" ]; };
-      finder = { command = "fzf"; };
-      shell = { command = "zsh"; };
+      cheats = {
+        paths = [ "${paths.documents}/cheatsheets" ];
+      };
+      finder = {
+        command = "fzf";
+      };
+      shell = {
+        command = "zsh";
+      };
     };
   };
 
@@ -183,7 +198,10 @@ in {
         selectcmd = "fzf"; # TODO: Move this out
         backend = "gitlab";
         sortby = "recency";
-        cmd = [ "sh" "-c" ];
+        cmd = [
+          "sh"
+          "-c"
+        ];
         color = true;
         format = "[$description: $command]";
       };
@@ -201,18 +219,26 @@ in {
   programs.tealdeer = {
     enable = true;
     settings = {
-      display = { use_pager = true; };
+      display = {
+        use_pager = true;
+      };
       style = {
         description = { };
-        example_text = { foreground = "blue"; };
-        command_name = { foreground = "green"; };
+        example_text = {
+          foreground = "blue";
+        };
+        command_name = {
+          foreground = "green";
+        };
         example_code = { };
         example_variable = {
           foreground = "cyan";
           underline = true;
         };
       };
-      updates = { auto_update = true; };
+      updates = {
+        auto_update = true;
+      };
     };
   };
 }
