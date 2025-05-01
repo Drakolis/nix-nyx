@@ -45,6 +45,7 @@
     profiles = {
       "Drakolis" = {
         colorScheme = "catppuccin-mocha";
+        font.size = 11;
       };
     };
     ui.colorScheme = "Catppuccin Mocha Mauve"; # To keep it always dark
