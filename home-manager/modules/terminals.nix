@@ -1,5 +1,7 @@
-let style = import ../../constants/style.nix;
-in {
+let
+  style = import ../../constants/style.nix;
+in
+{
   programs.ghostty = {
     enable = false;
     enableBashIntegration = true;
@@ -92,8 +94,7 @@ in {
       cursor_shape_unfocused = "hollow";
       cursor_trail = 0;
       show_hyperlink_targets = "yes";
-      paste_actions =
-        "quote-urls-at-prompt,replace-newline,confirm,confirm-if-large";
+      paste_actions = "quote-urls-at-prompt,replace-newline,confirm,confirm-if-large";
       strip_trailing_spaces = "smart";
       focus_follows_mouse = "yes"; # TODO: Test this out
 
@@ -110,8 +111,7 @@ in {
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
       tab_activity_symbol = "󰞌";
-      tab_title_template =
-        "{fmt.fg.tab}{index}: {title} {fmt.fg.red}{bell_symbol}{activity_symbol}";
+      tab_title_template = "{fmt.fg.tab}{index}: {title} {fmt.fg.red}{bell_symbol}{activity_symbol}";
 
       notify_on_cmd_finish = "invisible";
 

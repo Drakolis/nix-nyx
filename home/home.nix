@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   style = import ./constants/style.nix;
   commands = import ./constants/commands.nix;
   paths = import ./constants/paths.nix;
-in {
+in
+{
   imports = [
     #     ./modules/office.nix
     # If using Hyprland
@@ -28,82 +34,81 @@ in {
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs;
-    [
+  home.packages = with pkgs; [
 
-      # Terminal fanciness
+    # Terminal fanciness
 
-      # TUI Utilities
-      #     bluetui
-      #     himalaya
-      #     iamb # Matrix TUI
-      #     khal
-      #     khard
-      #     ledger
-      #     neomutt
-      #     taskwarrior-tui
+    # TUI Utilities
+    #     bluetui
+    #     himalaya
+    #     iamb # Matrix TUI
+    #     khal
+    #     khard
+    #     ledger
+    #     neomutt
+    #     taskwarrior-tui
 
-      # Libraries
+    # Libraries
 
-      # Linux services
-      #     batsignal
-      #     cliphist
-      #     comodoro
+    # Linux services
+    #     batsignal
+    #     cliphist
+    #     comodoro
 
-      # GUI Services
-      #     activitywatch
-      #
-      #     glance
+    # GUI Services
+    #     activitywatch
+    #
+    #     glance
 
-      # NixOS Specific
-      dconf2nix
+    # NixOS Specific
+    dconf2nix
 
-      # Desktop Helpers
-      #     swaynotificationcenter
-      #     walker
-      #     waybar
-      #     wlogout
+    # Desktop Helpers
+    #     swaynotificationcenter
+    #     walker
+    #     waybar
+    #     wlogout
 
-      # GUI Apps: Office
-      #     libreoffice-qt6
+    # GUI Apps: Office
+    #     libreoffice-qt6
 
-      #     thunderbird
-      #     zathura # pdf view
+    #     thunderbird
+    #     zathura # pdf view
 
-      # GUI Apps: Dev
+    # GUI Apps: Dev
 
-      # GUI Apps: Internet
-      #     element-desktop
-      #     networkmanagerapplet
+    # GUI Apps: Internet
+    #     element-desktop
+    #     networkmanagerapplet
 
-      #     transmission_4-qt6
-      #     brave
+    #     transmission_4-qt6
+    #     brave
 
-      # GUI Apps: Media
-      #     mpv
-      #     vlc
+    # GUI Apps: Media
+    #     mpv
+    #     vlc
 
-      # GUI Apps: Creativity
-      #
+    # GUI Apps: Creativity
+    #
 
-      #
+    #
 
-      # GUI Apps: Games
-      #     gamescope
+    # GUI Apps: Games
+    #     gamescope
 
-      # GUI Apps: Security
+    # GUI Apps: Security
 
-      # GUI Apps: System
-      #     easyeffects
-      #     lxqt.pavucontrol-qt
+    # GUI Apps: System
+    #     easyeffects
+    #     lxqt.pavucontrol-qt
 
-      # Theming
+    # Theming
 
-      # Fonts
+    # Fonts
 
-      # Scripts: wttr
+    # Scripts: wttr
 
-    ];
+  ];
 
   nixpkgs.config.permittedInsecurePackages = [ "electron-27.3.11" ];
 

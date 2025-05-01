@@ -1,5 +1,7 @@
-let style = import ../../../constants/style.nix;
-in {
+let
+  style = import ../../../constants/style.nix;
+in
+{
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -7,7 +9,9 @@ in {
         disable_loading_bar = false;
         hide_cursor = true;
       };
-      auth = { fingerprint.enable = true; };
+      auth = {
+        fingerprint.enable = true;
+      };
       background = {
         path = style.background;
         blur_passes = 1;
@@ -81,8 +85,7 @@ in {
         font_family = style.fontGui;
         font_color = "rgb(${style.colors.text})";
         fade_on_empty = false;
-        placeholder_text = ''
-          <span foreground="##${style.colors.text}"><i>󰌾 Logged in as </i><span foreground="##${style.colors.primary}">$USER</span></span>'';
+        placeholder_text = ''<span foreground="##${style.colors.text}"><i>󰌾 Logged in as </i><span foreground="##${style.colors.primary}">$USER</span></span>'';
         hide_input = false;
         check_color = "rgb(${style.colors.primary})";
         fail_color = "rgb(${style.colors.error})";

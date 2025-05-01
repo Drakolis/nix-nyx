@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = with pkgs; [ walker ];
 
   xdg.configFile = {
@@ -266,13 +267,16 @@
   };
 
   systemd.user.services.walker = {
-    Unit = { Description = "Walker GApplication"; };
+    Unit = {
+      Description = "Walker GApplication";
+    };
     Service = {
-      ExecStart =
-        "/home/drakolis/.nix-profile/bin/walker --gapplication-service";
+      ExecStart = "/home/drakolis/.nix-profile/bin/walker --gapplication-service";
       Type = "simple";
       Restart = "on-failure";
     };
-    Install = { WantedBy = [ "default.target" ]; };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
   };
 }

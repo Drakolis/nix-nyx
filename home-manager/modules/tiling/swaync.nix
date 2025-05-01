@@ -1,7 +1,8 @@
 let
   style = import ../../../constants/style.nix;
   notificaionWidth = 500;
-in {
+in
+{
   services.swaync = {
     enable = true;
     settings = {
@@ -35,15 +36,23 @@ in {
       relative-timestamps = true;
       # Must be notification width + paddings
       control-center-width = notificaionWidth + style.gaps.outer * 2;
-      widgets =
-        [ "title" "dnd" "inhibitors" "buttons-grid" "mpris" "notifications" ];
+      widgets = [
+        "title"
+        "dnd"
+        "inhibitors"
+        "buttons-grid"
+        "mpris"
+        "notifications"
+      ];
       widget-config = {
         title = {
           text = "Notifications";
           clear-all-button = true;
           button-text = "Clear All";
         };
-        dnd = { text = "Do Not Disturb"; };
+        dnd = {
+          text = "Do Not Disturb";
+        };
         inhibitors = {
           text = "Inhibitors";
           clear-all-button = true;
@@ -61,19 +70,15 @@ in {
               label = "󰤨";
               type = "toggle";
               active = true;
-              command =
-                "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'";
-              update_command =
-                "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'";
+              command = "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'";
+              update_command = "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'";
             }
             {
               label = "󰂯";
               type = "toggle";
               active = true;
-              command =
-                "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'";
-              update_command =
-                "sh -c '[[ bluetoothctl show | grep -q 'Powered: yes' ]] && echo true || echo false'";
+              command = "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && bluetoothctl power on || bluetoothctl power off'";
+              update_command = "sh -c '[[ bluetoothctl show | grep -q 'Powered: yes' ]] && echo true || echo false'";
             }
           ];
         };
@@ -94,13 +99,9 @@ in {
       .floating-notifications.background .notification-row .notification-background {
         margin: ${toString style.gaps.inner}px 0;
         border-radius: ${toString style.border.inner.radius}px;
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         background-color: #${style.colors.panel};
-        background-color: alpha(#${style.colors.panel}, ${
-          toString style.opacity.background.decimal
-        });
+        background-color: alpha(#${style.colors.panel}, ${toString style.opacity.background.decimal});
         padding: 0;
       }
 
@@ -110,9 +111,7 @@ in {
       }
 
       .floating-notifications.background .notification-row .notification-background .notification.critical {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.error};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.error};
       }
 
       .floating-notifications.background .notification-row .notification-background .notification.critical .summary {
@@ -145,9 +144,7 @@ in {
       .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action {
         border-radius: ${toString style.border.inner.radius}px;
         background-color: #${style.colors.activeSurface};
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.activeSurface};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.activeSurface};
         margin-top: ${toString style.gaps.inner}px;
         transition: box-shadow 500ms;
         transition: color 500ms;
@@ -157,16 +154,12 @@ in {
       }
 
       .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         background-color: #${style.colors.activeSurface};
       }
 
       .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         background-color: #${style.colors.primary};
         color: #${style.colors.textInverted};
       }
@@ -196,9 +189,7 @@ in {
 
       .control-center {
         border-radius: ${toString style.border.outer.radius}px;
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
-          toString style.border.outer.width
-        }px #${style.colors.primary};
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.outer.width}px #${style.colors.primary};
         background-color: #${style.colors.background};
         padding: ${toString style.padding.notifications}px;
       }
@@ -225,9 +216,7 @@ in {
       .widget-buttons-grid > flowbox > flowboxchild > button {
         border-radius: ${toString style.border.inner.radius}px;
         background-color: #${style.colors.activeSurface};
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.activeSurface};
+        border: ${toString style.border.inner.width}px solid #${style.colors.activeSurface};
         transition: color 500ms;
         transition: background-color 500ms;
         transition: border-color 500ms;
@@ -236,31 +225,23 @@ in {
 
       .widget-title button:hover,
       .widget-inhibitors button:hover {
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.primary};
+        border: ${toString style.border.inner.width}px solid #${style.colors.primary};
       }
 
       .widget-title button:active,
       .widget-inhibitors button:active {
         background-color: #${style.colors.primary};
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.primary};
+        border: ${toString style.border.inner.width}px solid #${style.colors.primary};
         color: #${style.colors.textInverted};
       }
 
       .widget-buttons-grid > flowbox > flowboxchild > button:hover {
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.secondary};
+        border: ${toString style.border.inner.width}px solid #${style.colors.secondary};
       }
 
       .widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
         background-color: #${style.colors.secondary};
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.activeSurface};
+        border: ${toString style.border.inner.width}px solid #${style.colors.activeSurface};
         color: #${style.colors.textInverted};
       }
 
@@ -268,9 +249,7 @@ in {
         font-size: initial;
         border-radius: ${toString style.border.inner.radius}px;
         background: #313244;
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.activeSurface};
+        border: ${toString style.border.inner.width}px solid #${style.colors.activeSurface};
         box-shadow: none;
       }
 
@@ -281,18 +260,14 @@ in {
       .widget-dnd > switch slider {
         background-color: #${style.colors.activeSurface};
         border-radius: ${toString style.border.inner.radius}px;
-        border: ${
-          toString style.border.inner.width
-        }px solid #${style.colors.activeOutline};
+        border: ${toString style.border.inner.width}px solid #${style.colors.activeOutline};
       }
 
       .widget-mpris {
         margin-top: ${toString style.gaps.inner}px;
         background-color: #${style.colors.panel};
         opacity: ${toString style.opacity.background.decimal};
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.tableLine};
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.tableLine};
         border-radius: ${toString style.border.inner.radius}px;
       }
 
@@ -332,12 +307,8 @@ in {
       .control-center .notification-row .notification-background {
         margin: ${toString style.gaps.inner}px 0;
         border-radius: ${toString style.border.inner.radius}px;
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.tableLine};
-        background-color: alpha(#${style.colors.panel}, ${
-          toString style.opacity.background.decimal
-        });
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.tableLine};
+        background-color: alpha(#${style.colors.panel}, ${toString style.opacity.background.decimal});
         padding: 0;
       }
 
@@ -347,9 +318,7 @@ in {
       }
 
       .control-center .notification-row .notification-background .notification.critical {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.error};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.error};
       }
 
       .control-center .notification-row .notification-background .notification.critical .summary {
@@ -382,9 +351,7 @@ in {
       .control-center .notification-row .notification-background .notification > *:last-child > * .notification-action {
         border-radius: ${toString style.border.inner.radius}px;
         background-color: #${style.colors.activeSurface};
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.activeSurface};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.activeSurface};
         margin-top: ${toString style.gaps.inner}px;
         transition: box-shadow 500ms;
         transition: color 500ms;
@@ -393,16 +360,12 @@ in {
       }
 
       .control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         background-color: #${style.colors.activeSurface};
       }
 
       .control-center .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         background-color: #${style.colors.primary};
         color: #${style.colors.textInverted};
         margin-left: ${toString style.gaps.inner}px;

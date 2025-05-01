@@ -1,5 +1,7 @@
-let style = import ../../../constants/style.nix;
-in {
+let
+  style = import ../../../constants/style.nix;
+in
+{
   programs.wlogout = {
     enable = true;
     layout = [
@@ -47,9 +49,7 @@ in {
       }
 
       window {
-      	background-color: alpha(#${style.colors.shadow}, ${
-         toString style.opacity.screen.decimal
-       });
+      	background-color: alpha(#${style.colors.shadow}, ${toString style.opacity.screen.decimal});
       }
 
       button {

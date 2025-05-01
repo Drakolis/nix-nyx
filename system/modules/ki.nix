@@ -1,6 +1,14 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.drakolis.ki;
-in with lib; {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  cfg = config.drakolis.ki;
+in
+with lib;
+{
 
   options = {
     drakolis.ki = {

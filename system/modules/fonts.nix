@@ -1,8 +1,18 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   cfg = config.drakolis.fonts;
-  fontSets = lib.types.enum [ "default" "ubuntu" ];
-in with lib; {
+  fontSets = lib.types.enum [
+    "default"
+    "ubuntu"
+  ];
+in
+with lib;
+{
   options = {
     drakolis.fonts = {
       fontSet = mkOption {
@@ -15,21 +25,25 @@ in with lib; {
     };
   };
   config = {
-    fonts.packages = with pkgs;
-      if (cfg.fontSet == "ubuntu") then [
-        ubuntu-sans
-        ubuntu-sans-mono
-        noto-fonts-emoji
-        nerd-fonts.ubuntu
-        nerd-fonts.ubuntu-mono
-      ] else [
-        noto-fonts
-        noto-fonts-extra
-        noto-fonts-cjk-sans
-        noto-fonts-emoji
-        hack-font
-        nerd-fonts.hack
-      ];
+    fonts.packages =
+      with pkgs;
+      if (cfg.fontSet == "ubuntu") then
+        [
+          ubuntu-sans
+          ubuntu-sans-mono
+          noto-fonts-emoji
+          nerd-fonts.ubuntu
+          nerd-fonts.ubuntu-mono
+        ]
+      else
+        [
+          noto-fonts
+          noto-fonts-extra
+          noto-fonts-cjk-sans
+          noto-fonts-emoji
+          hack-font
+          nerd-fonts.hack
+        ];
 
     fonts.fontconfig = {
       localConf = ''
@@ -57,7 +71,9 @@ in with lib; {
         </fontconfig>
       '';
 
-      defaultFonts = { emoji = [ "Noto Color Emoji" ]; };
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+      };
     };
   };
 }

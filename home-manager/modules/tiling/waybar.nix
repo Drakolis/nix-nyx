@@ -1,75 +1,76 @@
 { pkgs, ... }:
-let style = import ../../../constants/style.nix;
-in {
-  home.packages = with pkgs;
-    [
-      (writeShellScriptBin "wttr-waybar" ''
-        DATA=$(curl -s "wttr.in/?format=j1")
+let
+  style = import ../../../constants/style.nix;
+in
+{
+  home.packages = with pkgs; [
+    (writeShellScriptBin "wttr-waybar" ''
+      DATA=$(curl -s "wttr.in/?format=j1")
 
-        # Extract values
-        TEMP=$(echo "$DATA" | jq -r '.current_condition[0].temp_C')
-        WEATHER_CODE=$(echo "$DATA" | jq -r '.current_condition[0].weatherCode')
-        WEATHER_DESCRIPTION=$(echo "$DATA" | jq -r '.current_condition[0].weatherDesc[0].value')
+      # Extract values
+      TEMP=$(echo "$DATA" | jq -r '.current_condition[0].temp_C')
+      WEATHER_CODE=$(echo "$DATA" | jq -r '.current_condition[0].weatherCode')
+      WEATHER_DESCRIPTION=$(echo "$DATA" | jq -r '.current_condition[0].weatherDesc[0].value')
 
-        # Map Weather Codes to NerdFonts Icons
-        declare -A WEATHER_ICONS
-        WEATHER_ICONS=(
-            ["113"]=""  # Clear/Sunny
-            ["116"]=""  # Partly Cloudy
-            ["119"]=""  # Cloudy
-            ["122"]=""  # Overcast
-            ["143"]=""  # Mist
-            ["176"]=""  # Patchy Rain Showers
-            ["179"]=""  # Patchy Snow Showers
-            ["182"]=""  # Patchy Sleet
-            ["185"]=""  # Patchy Freezing Drizzle
-            ["200"]=""  # Thundery Showers
-            ["227"]=""  # Blowing Snow
-            ["230"]="❄️"  # Blizzard
-            ["248"]=""  # Fog
-            ["260"]=""  # Freezing Fog
-            ["263"]=""  # Light Drizzle
-            ["266"]=""  # Drizzle
-            ["281"]=""  # Freezing Drizzle
-            ["284"]=""  # Heavy Freezing Drizzle
-            ["293"]=""  # Light Rain
-            ["296"]=""  # Rain
-            ["299"]=""  # Moderate Rain
-            ["302"]=""  # Heavy Rain
-            ["305"]=""  # Torrential Rain
-            ["308"]=""  # Extreme Rain
-            ["311"]=""  # Light Freezing Rain
-            ["314"]=""  # Freezing Rain
-            ["317"]=""  # Light Sleet
-            ["320"]=""  # Sleet
-            ["323"]=""  # Light Snow
-            ["326"]=""  # Patchy Light Snow
-            ["329"]=""  # Moderate Snow
-            ["332"]=""  # Heavy Snow
-            ["335"]="❄️"  # Blizzard
-            ["338"]="❄️"  # Heavy Blizzard
-            ["350"]=""  # Ice Pellets
-            ["353"]=""  # Light Rain Showers
-            ["356"]=""  # Rain Showers
-            ["359"]=""  # Heavy Rain Showers
-            ["362"]=""  # Light Sleet Showers
-            ["365"]=""  # Sleet Showers
-            ["368"]=""  # Light Snow Showers
-            ["371"]="❄️"  # Heavy Snow Showers
-            ["374"]=""  # Light Ice Pellet Showers
-            ["377"]=""  # Ice Pellet Showers
-            ["386"]=""  # Thundery Showers
-            ["389"]=""  # Thunderstorms
-            ["392"]=""  # Thundery Snow Showers
-            ["395"]="❄️"  # Snowstorm
-        )
+      # Map Weather Codes to NerdFonts Icons
+      declare -A WEATHER_ICONS
+      WEATHER_ICONS=(
+          ["113"]=""  # Clear/Sunny
+          ["116"]=""  # Partly Cloudy
+          ["119"]=""  # Cloudy
+          ["122"]=""  # Overcast
+          ["143"]=""  # Mist
+          ["176"]=""  # Patchy Rain Showers
+          ["179"]=""  # Patchy Snow Showers
+          ["182"]=""  # Patchy Sleet
+          ["185"]=""  # Patchy Freezing Drizzle
+          ["200"]=""  # Thundery Showers
+          ["227"]=""  # Blowing Snow
+          ["230"]="❄️"  # Blizzard
+          ["248"]=""  # Fog
+          ["260"]=""  # Freezing Fog
+          ["263"]=""  # Light Drizzle
+          ["266"]=""  # Drizzle
+          ["281"]=""  # Freezing Drizzle
+          ["284"]=""  # Heavy Freezing Drizzle
+          ["293"]=""  # Light Rain
+          ["296"]=""  # Rain
+          ["299"]=""  # Moderate Rain
+          ["302"]=""  # Heavy Rain
+          ["305"]=""  # Torrential Rain
+          ["308"]=""  # Extreme Rain
+          ["311"]=""  # Light Freezing Rain
+          ["314"]=""  # Freezing Rain
+          ["317"]=""  # Light Sleet
+          ["320"]=""  # Sleet
+          ["323"]=""  # Light Snow
+          ["326"]=""  # Patchy Light Snow
+          ["329"]=""  # Moderate Snow
+          ["332"]=""  # Heavy Snow
+          ["335"]="❄️"  # Blizzard
+          ["338"]="❄️"  # Heavy Blizzard
+          ["350"]=""  # Ice Pellets
+          ["353"]=""  # Light Rain Showers
+          ["356"]=""  # Rain Showers
+          ["359"]=""  # Heavy Rain Showers
+          ["362"]=""  # Light Sleet Showers
+          ["365"]=""  # Sleet Showers
+          ["368"]=""  # Light Snow Showers
+          ["371"]="❄️"  # Heavy Snow Showers
+          ["374"]=""  # Light Ice Pellet Showers
+          ["377"]=""  # Ice Pellet Showers
+          ["386"]=""  # Thundery Showers
+          ["389"]=""  # Thunderstorms
+          ["392"]=""  # Thundery Snow Showers
+          ["395"]="❄️"  # Snowstorm
+      )
 
-        ICON=''${WEATHER_ICONS[$WEATHER_CODE]:-""}
+      ICON=''${WEATHER_ICONS[$WEATHER_CODE]:-""}
 
-        # Output JSON for Waybar
-        echo "{\"text\": \"$ICON $TEMP°C\", \"tooltip\": \"$WEATHER_DESCRIPTION\"}"
-      '')
-    ];
+      # Output JSON for Waybar
+      echo "{\"text\": \"$ICON $TEMP°C\", \"tooltip\": \"$WEATHER_DESCRIPTION\"}"
+    '')
+  ];
 
   programs.waybar = {
     enable = true;
@@ -78,7 +79,10 @@ in {
       mainBar = {
         layer = "top";
         position = "top";
-        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
         modules-center = [ "custom/notification" ];
         modules-right = [
           "hyprland/language"
@@ -123,14 +127,11 @@ in {
           format-icons = {
             notification = "<span foreground='#${style.colors.error}'>󰂚</span>";
             none = "󰂚";
-            dnd-notification =
-              "<span foreground='#${style.colors.error}'>󰂛/span>";
+            dnd-notification = "<span foreground='#${style.colors.error}'>󰂛/span>";
             dnd-none = "󰂛";
-            inhibited-notification =
-              "<span foreground='#${style.colors.error}'>󰂚</span>";
+            inhibited-notification = "<span foreground='#${style.colors.error}'>󰂚</span>";
             inhibited-none = "󰂚";
-            dnd-inhibited-notification =
-              "<span foreground='#${style.colors.error}'>󰂛</span>";
+            dnd-inhibited-notification = "<span foreground='#${style.colors.error}'>󰂛</span>";
             dnd-inhibited-none = "󰂛";
           };
           return-type = "json";
@@ -150,7 +151,13 @@ in {
           format-source = "󰍬 {volume}%";
           format-source-muted = "󰍭  Mute";
           format-muted = "󰝟 Mute   {format_source}";
-          format-icons = { default = [ "󰕿 " "󰖀 " "󰕾" ]; };
+          format-icons = {
+            default = [
+              "󰕿 "
+              "󰖀 "
+              "󰕾"
+            ];
+          };
           on-click = "pavucontrol";
           on-click-right = "helvum";
         };
@@ -158,7 +165,11 @@ in {
           scroll-step = 5;
           format = "{icon} {volume}%";
           format-muted = "  Mute";
-          format-icons = [ "" "" " " ];
+          format-icons = [
+            ""
+            ""
+            " "
+          ];
           on-click = "helvum";
           on-right-click = "pavucontrol";
         };
@@ -166,7 +177,17 @@ in {
           scroll-step = 5;
           device = "intel_backlight";
           format = "{icon} {percent}%";
-          format-icons = [ "" "" "" "" "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
         battery = {
           states = {
@@ -176,7 +197,13 @@ in {
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
         bluetooth = {
           format = "󰂯";
@@ -197,7 +224,13 @@ in {
           tooltip-format-ethernet = "{ifname} - {ipaddr}";
           tooltip-format-disconnected = "Disconnected";
           tooltip-format = "Disconnected";
-          format-icons = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
+          format-icons = [
+            "󰤯"
+            "󰤟"
+            "󰤢"
+            "󰤥"
+            "󰤨"
+          ];
           on-click = "nm-connection-editor";
         };
         clock = {

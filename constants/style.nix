@@ -1,5 +1,7 @@
-let catppuccinMocha = import ./catppuccinMocha.nix;
-in {
+let
+  catppuccinMocha = import ./catppuccinMocha.nix;
+in
+{
   background = "$HOME/.background";
   avatar = "$HOME/.face";
 

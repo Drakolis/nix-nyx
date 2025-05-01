@@ -1,16 +1,20 @@
-let style = import ../../../constants/style.nix;
-in {
+let
+  style = import ../../../constants/style.nix;
+in
+{
   imports = [ ./icons.nix ];
   programs.yazi = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
     keymap = {
-      manager.prepend_keymap = [{
-        on = "M";
-        run = "plugin mount";
-        desc = "Mount plugin";
-      }];
+      manager.prepend_keymap = [
+        {
+          on = "M";
+          run = "plugin mount";
+          desc = "Mount plugin";
+        }
+      ];
     };
     initLua = ''
       require("full-border"):setup {
@@ -36,7 +40,11 @@ in {
     };
     settings = {
       manager = {
-        ratio = [ 1 4 3 ];
+        ratio = [
+          1
+          4
+          3
+        ];
         sort_by = "alphabetical";
         sort_sensitive = false;
         sort_reverse = false;
@@ -46,7 +54,10 @@ in {
         show_hidden = false;
         show_symlink = true;
         scrolloff = 5;
-        mouse_events = [ "click" "scroll" ];
+        mouse_events = [
+          "click"
+          "scroll"
+        ];
         title_format = "󰇥 yazi: {cwd}";
       };
       preview = {
@@ -60,7 +71,12 @@ in {
         image_quality = 75;
         sixel_fraction = 15;
         ueberzug_scale = 1;
-        ueberzug_offset = [ 0 0 0 0 ];
+        ueberzug_offset = [
+          0
+          0
+          0
+          0
+        ];
       };
       opener = {
         edit = [
@@ -83,12 +99,14 @@ in {
             for = "windows";
           }
         ];
-        print = [{
-          run = ''''${bat:-cat} "$@"'';
-          desc = "bat/cat";
-          block = true;
-          for = "unix";
-        }];
+        print = [
+          {
+            run = ''''${bat:-cat} "$@"'';
+            desc = "bat/cat";
+            block = true;
+            for = "unix";
+          }
+        ];
         open = [
           {
             run = ''xdg-open "$1"'';
@@ -167,47 +185,75 @@ in {
           # Folder
           {
             name = "*/";
-            use = [ "edit" "open" "reveal" ];
+            use = [
+              "edit"
+              "open"
+              "reveal"
+            ];
           }
           # Text
           {
             mime = "text/*";
-            use = [ "edit" "print" "reveal" ];
+            use = [
+              "edit"
+              "print"
+              "reveal"
+            ];
           }
           # Image
           {
             mime = "image/*";
-            use = [ "open" "reveal" ];
+            use = [
+              "open"
+              "reveal"
+            ];
           }
           # Media
           {
             mime = "{audio,video}/*";
-            use = [ "play" "reveal" ];
+            use = [
+              "play"
+              "reveal"
+            ];
           }
           # Archive
           {
-            mime =
-              "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
-            use = [ "extract" "reveal" ];
+            mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
+            use = [
+              "extract"
+              "reveal"
+            ];
           }
           # JSON
           {
             mime = "application/{json,ndjson}";
-            use = [ "edit" "reveal" ];
+            use = [
+              "edit"
+              "reveal"
+            ];
           }
           {
             mime = "*/javascript";
-            use = [ "edit" "reveal" ];
+            use = [
+              "edit"
+              "reveal"
+            ];
           }
           # Empty file
           {
             mime = "inode/empty";
-            use = [ "edit" "reveal" ];
+            use = [
+              "edit"
+              "reveal"
+            ];
           }
           # Fallback
           {
             name = "*";
-            use = [ "open" "reveal" ];
+            use = [
+              "open"
+              "reveal"
+            ];
           }
         ];
       };
@@ -216,7 +262,10 @@ in {
         macro_workers = 10;
         bizarre_retry = 3;
         image_alloc = 536870912; # 512MB
-        image_bound = [ 0 0 ];
+        image_bound = [
+          0
+          0
+        ];
         suppress_preload = false;
       };
       plugin = {
@@ -335,13 +384,11 @@ in {
           }
           # Archive
           {
-            mime =
-              "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
+            mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}";
             run = "archive";
           }
           {
-            mime =
-              "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}";
+            mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}";
             run = "archive";
           }
           {
@@ -350,8 +397,7 @@ in {
           }
           # Virtual Disk / Disk Image
           {
-            mime =
-              "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}";
+            mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}";
             run = "archive";
           }
           {
@@ -387,66 +433,134 @@ in {
         # cd
         cd_title = "Change directory:";
         cd_origin = "top-center";
-        cd_offset = [ 0 2 50 3 ];
+        cd_offset = [
+          0
+          2
+          50
+          3
+        ];
 
         # create
-        create_title = [ "Create:" "Create (dir):" ];
+        create_title = [
+          "Create:"
+          "Create (dir):"
+        ];
         create_origin = "top-center";
-        create_offset = [ 0 2 50 3 ];
+        create_offset = [
+          0
+          2
+          50
+          3
+        ];
 
         # rename
         rename_title = "Rename:";
         rename_origin = "hovered";
-        rename_offset = [ 0 1 50 3 ];
+        rename_offset = [
+          0
+          1
+          50
+          3
+        ];
 
         # filter
         filter_title = "Filter:";
         filter_origin = "top-center";
-        filter_offset = [ 0 2 50 3 ];
+        filter_offset = [
+          0
+          2
+          50
+          3
+        ];
 
         # find
-        find_title = [ "Find next:" "Find previous:" ];
+        find_title = [
+          "Find next:"
+          "Find previous:"
+        ];
         find_origin = "top-center";
-        find_offset = [ 0 2 50 3 ];
+        find_offset = [
+          0
+          2
+          50
+          3
+        ];
 
         # search
         search_title = "Search via {n}:";
         search_origin = "top-center";
-        search_offset = [ 0 2 50 3 ];
+        search_offset = [
+          0
+          2
+          50
+          3
+        ];
 
         # shell
-        shell_title = [ "Shell:" "Shell (block):" ];
+        shell_title = [
+          "Shell:"
+          "Shell (block):"
+        ];
         shell_origin = "top-center";
-        shell_offset = [ 0 2 50 3 ];
+        shell_offset = [
+          0
+          2
+          50
+          3
+        ];
       };
       confirm = {
         # trash
         trash_title = "Trash {n} selected file{s}?";
         trash_origin = "center";
-        trash_offset = [ 0 0 70 20 ];
+        trash_offset = [
+          0
+          0
+          70
+          20
+        ];
 
         # delete
         delete_title = "Permanently delete {n} selected file{s}?";
         delete_origin = "center";
-        delete_offset = [ 0 0 70 20 ];
+        delete_offset = [
+          0
+          0
+          70
+          20
+        ];
 
         # overwrite
         overwrite_title = "Overwrite file?";
         overwrite_content = "Will overwrite the following file:";
         overwrite_origin = "center";
-        overwrite_offset = [ 0 0 50 15 ];
+        overwrite_offset = [
+          0
+          0
+          50
+          15
+        ];
 
         # quit
         quit_title = "Quit?";
-        quit_content =
-          "The following task is still running, are you sure you want to quit?";
+        quit_content = "The following task is still running, are you sure you want to quit?";
         quit_origin = "center";
-        quit_offset = [ 0 0 50 15 ];
+        quit_offset = [
+          0
+          0
+          50
+          15
+        ];
       };
       pick = {
         open_title = "Open with:";
         open_origin = "hovered";
-        open_offset = [ 0 1 50 7 ];
+        open_offset = [
+          0
+          1
+          50
+          7
+        ];
       };
       which = {
         sort_by = "none";
@@ -457,7 +571,9 @@ in {
     };
     theme = {
       manager = {
-        cwd = { fg = "#${style.colors.path}"; };
+        cwd = {
+          fg = "#${style.colors.path}";
+        };
         hovered = {
           fg = "#${style.colors.textInverted}";
           bg = "#${style.colors.primary}";
@@ -513,7 +629,9 @@ in {
           bg = "#${style.colors.selection}";
         };
         border_symbol = "│";
-        border_style = { fg = "#${style.colors.tableLine}"; };
+        border_style = {
+          fg = "#${style.colors.tableLine}";
+        };
 
         syntect_theme = "$HOME/.config/bat/themes/Catppuccin-mocha.tmTheme";
       };
@@ -563,49 +681,101 @@ in {
           bg = "#${style.colors.activeOutline}";
         };
 
-        perm_type = { fg = "#${style.colors.permissionType}"; };
-        perm_read = { fg = "#${style.colors.permissionRead}"; };
-        perm_write = { fg = "#${style.colors.permissionWrite}"; };
-        perm_exec = { fg = "#${style.colors.permissionExec}"; };
-        perm_sep = { fg = "#${style.colors.permissionEmpty}"; };
+        perm_type = {
+          fg = "#${style.colors.permissionType}";
+        };
+        perm_read = {
+          fg = "#${style.colors.permissionRead}";
+        };
+        perm_write = {
+          fg = "#${style.colors.permissionWrite}";
+        };
+        perm_exec = {
+          fg = "#${style.colors.permissionExec}";
+        };
+        perm_sep = {
+          fg = "#${style.colors.permissionEmpty}";
+        };
       };
       input = {
-        border = { fg = "#${style.colors.primary}"; };
-        title = { fg = "#${style.colors.text}"; };
+        border = {
+          fg = "#${style.colors.primary}";
+        };
+        title = {
+          fg = "#${style.colors.text}";
+        };
         value = { };
-        selected = { reversed = true; };
+        selected = {
+          reversed = true;
+        };
       };
       pick = {
-        border = { fg = "#${style.colors.primary}"; };
-        active = { fg = "#${style.colors.selection}"; };
+        border = {
+          fg = "#${style.colors.primary}";
+        };
+        active = {
+          fg = "#${style.colors.selection}";
+        };
         inactive = { };
       };
       confirm = {
-        border = { fg = "#${style.colors.primary}"; };
-        title = { fg = "#${style.colors.text}"; };
+        border = {
+          fg = "#${style.colors.primary}";
+        };
+        title = {
+          fg = "#${style.colors.text}";
+        };
         content = { };
         list = { };
-        btn_yes = { reversed = true; };
+        btn_yes = {
+          reversed = true;
+        };
         btn_no = { };
       };
-      completion = { border = { fg = "#${style.colors.primary}"; }; };
+      completion = {
+        border = {
+          fg = "#${style.colors.primary}";
+        };
+      };
       tasks = {
-        border = { fg = "#${style.colors.primary}"; };
-        title = { fg = "#${style.colors.text}"; };
-        hovered = { underline = true; };
+        border = {
+          fg = "#${style.colors.primary}";
+        };
+        title = {
+          fg = "#${style.colors.text}";
+        };
+        hovered = {
+          underline = true;
+        };
       };
       which = {
-        mask = { bg = "#${style.colors.panel}"; };
-        cand = { fg = "#${style.colors.primary}"; };
-        rest = { fg = "#${style.colors.tableLine}"; };
-        desc = { fg = "#${style.colors.text}"; };
+        mask = {
+          bg = "#${style.colors.panel}";
+        };
+        cand = {
+          fg = "#${style.colors.primary}";
+        };
+        rest = {
+          fg = "#${style.colors.tableLine}";
+        };
+        desc = {
+          fg = "#${style.colors.text}";
+        };
         separator = "  ";
-        separator_style = { fg = "#${style.colors.textGray}"; };
+        separator_style = {
+          fg = "#${style.colors.textGray}";
+        };
       };
       help = {
-        on = { fg = "#${style.colors.primary}"; };
-        run = { fg = "#${style.colors.info}"; };
-        desc = { fg = "#${style.colors.text}"; };
+        on = {
+          fg = "#${style.colors.primary}";
+        };
+        run = {
+          fg = "#${style.colors.info}";
+        };
+        desc = {
+          fg = "#${style.colors.text}";
+        };
         hovered = {
           bg = "#${style.colors.activeSurface}";
           bold = true;
@@ -617,9 +787,15 @@ in {
         };
       };
       notify = {
-        title_info = { fg = "#${style.colors.info}"; };
-        title_warn = { fg = "#${style.colors.warning}"; };
-        title_error = { fg = "#${style.colors.error}"; };
+        title_info = {
+          fg = "#${style.colors.info}";
+        };
+        title_warn = {
+          fg = "#${style.colors.warning}";
+        };
+        title_error = {
+          fg = "#${style.colors.error}";
+        };
       };
 
       filetype = {

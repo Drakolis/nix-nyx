@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
-let style = import ../constants/style.nix;
-in {
+let
+  style = import ../constants/style.nix;
+in
+{
   accounts.calendar = {
     # accounts.calendar.basePath
     basePath = "Documents/Calendars/";

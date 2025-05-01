@@ -20,8 +20,7 @@
 
   fzfPreviewOptions = "--preview-window='right,50%,<50(down,50%)'";
 
-  notifyHyprpicker = ''
-    notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
+  notifyHyprpicker = ''notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
   dialogues = {
     runner = "wofi -I";

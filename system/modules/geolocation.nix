@@ -1,6 +1,9 @@
 { config, lib, ... }:
-let cfg = config.drakolis.geolocation;
-in with lib; {
+let
+  cfg = config.drakolis.geolocation;
+in
+with lib;
+{
   options = {
     drakolis.geolocation = {
       enable = mkOption {

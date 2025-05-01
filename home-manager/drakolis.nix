@@ -14,7 +14,11 @@
     enable = true;
     userEmail = "mika.drakolis@pm.me";
     userName = "Mika Drakolis";
-    extraConfig = { init = { defaultBranch = "main"; }; };
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
 
   # Nicely reload system units when changing configs

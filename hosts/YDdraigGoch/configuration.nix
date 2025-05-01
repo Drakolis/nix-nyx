@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -44,8 +50,7 @@
     Unauthorized activities will be reported to the appropriate authorities.
   '';
 
-  hardware.bluetooth.settings.General.Enable =
-    "Source,Sink,Media,Socket"; # Restrict profiles
+  hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
 
   security.sudo = {
     execWheelOnly = true; # Only allow wheel group to run sudo
@@ -67,7 +72,10 @@
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       yt-dlp
 
@@ -100,7 +108,10 @@
   users.users.lilyo = {
     isNormalUser = true;
     description = "Lily Oliveira";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ ];
   };
@@ -169,7 +180,9 @@
   drakolis.ki.enable = true;
   drakolis.geolocation.enable = true;
 
-  environment.sessionVariables = { NIXOS_OZONE_WL = 1; };
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = 1;
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;

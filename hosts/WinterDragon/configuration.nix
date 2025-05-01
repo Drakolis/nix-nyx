@@ -58,6 +58,8 @@
   security.auditd.enable = true;
   security.audit.enable = true;
 
+  services.fwupd.enable = true;
+
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
@@ -67,10 +69,6 @@
     ];
     packages = with pkgs; [
       yt-dlp
-
-      element-desktop
-
-      libreoffice
 
       kdePackages.dragon
       kdePackages.kasts
@@ -145,6 +143,8 @@
     kdePackages.zanshin
     kdePackages.akregator
 
+    kdePackages.kdepim-addons
+
     kdePackages.ksystemlog
     krename
     qpwgraph
@@ -195,7 +195,7 @@
   programs.kclock.enable = true;
   programs.kde-pim.enable = true;
   programs.kde-pim.kmail = true;
-  programs.kde-pim.merkuro = true;
+  programs.kde-pim.kontact = true;
   programs.kdeconnect.enable = true;
 
   services.gvfs.enable = true;

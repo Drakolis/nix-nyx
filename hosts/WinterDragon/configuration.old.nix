@@ -20,7 +20,10 @@
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       yt-dlp
 

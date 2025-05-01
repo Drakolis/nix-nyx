@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./modules
     ./modules/hypr
@@ -16,7 +17,11 @@
     enable = true;
     userEmail = "mika.drakolis@pm.me";
     userName = "Mika Drakolis";
-    extraConfig = { init = { defaultBranch = "main"; }; };
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
 
   home.packages = with pkgs; [ caffeine-ng ];

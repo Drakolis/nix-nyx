@@ -13,7 +13,8 @@ let
     # "com.github.tchx84.Flatseal"
     "org.kde.kamoso"
   ];
-in {
+in
+{
   home.activation = {
     myActivationAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       # 2. Ensure the Flathub repo is added
@@ -25,9 +26,7 @@ in {
 
       # 4. Remove any Flatpaks that are NOT in the desired list
       for installed in $installedFlatpaks; do
-        if ! echo ${
-          toString desiredFlatpaks
-        } | ${grep}/bin/grep -q $installed; then
+        if ! echo ${toString desiredFlatpaks} | ${grep}/bin/grep -q $installed; then
           echo "Removing $installed because it's not in the desiredFlatpaks list."
           ${pkgs.flatpak}/bin/flatpak uninstall --user -y --noninteractive $installed
         fi

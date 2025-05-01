@@ -1,6 +1,12 @@
-let style = import ../../../constants/style.nix;
-in {
-  imports = [ ./hyprland.nix ./hypridle.nix ./hyprlock.nix ];
+let
+  style = import ../../../constants/style.nix;
+in
+{
+  imports = [
+    ./hyprland.nix
+    ./hypridle.nix
+    ./hyprlock.nix
+  ];
 
   services.hyprpaper = {
     enable = true;

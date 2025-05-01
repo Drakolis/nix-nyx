@@ -1,5 +1,7 @@
-let style = import ../../../constants/style.nix;
-in {
+let
+  style = import ../../../constants/style.nix;
+in
+{
   programs.wofi = {
     enable = true;
     settings = {
@@ -40,12 +42,8 @@ in {
       window {
         margin: 0px;
         padding: 0px;
-        background-color: alpha(#${style.colors.panel}, ${
-          toString style.opacity.background.decimal
-        });
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        background-color: alpha(#${style.colors.panel}, ${toString style.opacity.background.decimal});
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         border-radius: ${toString style.border.inner.radius}px;
         animation: fadeIn 0.25s ease-in-out both;
       }
@@ -70,9 +68,7 @@ in {
         margin: 5px 20px;
         padding: 10px;
         color: #${style.colors.text};
-        background-color: alpha(#${style.colors.activeSurface}, ${
-          toString style.opacity.background.decimal
-        });
+        background-color: alpha(#${style.colors.activeSurface}, ${toString style.opacity.background.decimal});
       }
 
       #input image {
@@ -82,9 +78,7 @@ in {
       }
 
       #input:focus {
-        box-shadow: inset 0 0 0 ${
-          toString style.border.inner.width
-        }px #${style.colors.primary};
+        box-shadow: inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
       }
 
       #entry #text {

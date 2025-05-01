@@ -1,6 +1,8 @@
 { pkgs, ... }:
-let style = import ../../constants/style.nix;
-in {
+let
+  style = import ../../constants/style.nix;
+in
+{
   home.packages = with pkgs; [
     (catppuccin-kde.override {
       accents = [ "mauve" ];
@@ -31,8 +33,7 @@ in {
   ];
 
   home.pointerCursor = {
-    package =
-      pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
+    package = pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
     name = "DMZ-Black";
     size = style.cursorTheme.size;
     hyprcursor.enable = true;
@@ -50,8 +51,12 @@ in {
       name = style.fontGui;
       size = style.fontSize;
     };
-    iconTheme = { name = style.iconTheme.name; };
-    theme = { name = "catppuccin-mocha-mauve-standard"; };
+    iconTheme = {
+      name = style.iconTheme.name;
+    };
+    theme = {
+      name = "catppuccin-mocha-mauve-standard";
+    };
     gtk3.extraConfig = {
       gtk-menu-images = 1;
       gtk-button-images = 0;
@@ -60,17 +65,21 @@ in {
 
   qt = {
     enable = true;
-    platformTheme = { name = "qtct"; };
-    style = { name = "kvantum"; };
+    platformTheme = {
+      name = "qtct";
+    };
+    style = {
+      name = "kvantum";
+    };
   };
 
   home.file = {
     # This should be fixed in https://github.com/NixOS/nixpkgs/issues/355277
     ".config/Kvantum/catppuccin-mocha-mauve".source = "${
-        (pkgs.catppuccin-kvantum.override {
-          accent = "mauve";
-          variant = "mocha";
-        })
-      }/share/Kvantum/catppuccin-mocha-mauve";
+      (pkgs.catppuccin-kvantum.override {
+        accent = "mauve";
+        variant = "mocha";
+      })
+    }/share/Kvantum/catppuccin-mocha-mauve";
   };
 }

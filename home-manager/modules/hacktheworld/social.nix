@@ -1,1 +1,4 @@
-{ lib, pkgs, ... }: { home.packages = with pkgs; [ sherlock ]; }
+{ lib, pkgs, ... }:
+{
+  home.packages = with pkgs; [ sherlock ];
+}

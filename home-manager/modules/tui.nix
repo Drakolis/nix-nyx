@@ -1,9 +1,13 @@
 { pkgs, ... }:
-let style = import ../../constants/style.nix;
-in {
+let
+  style = import ../../constants/style.nix;
+in
+{
   programs.bat = {
     enable = true;
-    config = { theme = "Catppuccin Mocha"; };
+    config = {
+      theme = "Catppuccin Mocha";
+    };
     themes = {
       "Catppuccin Mocha" = {
         src = pkgs.fetchFromGitHub {
@@ -27,7 +31,9 @@ in {
   programs.bottom = {
     enable = true;
     settings = {
-      flags = { battery = true; };
+      flags = {
+        battery = true;
+      };
       styles = {
         widgets = {
           widget_title = {
@@ -36,13 +42,19 @@ in {
           };
           border_color = "#${style.colors.tableLine}";
           selected_border_color = "#${style.colors.primary}";
-          text = { color = "#${style.colors.text}"; };
+          text = {
+            color = "#${style.colors.text}";
+          };
           selected_text = {
             color = "#${style.colors.textInverted}";
             bg_color = "#${style.colors.selection}";
           };
         };
-        tables = { headers = { color = "#${style.colors.highlight}"; }; };
+        tables = {
+          headers = {
+            color = "#${style.colors.highlight}";
+          };
+        };
         battery = {
           high_battery_color = "#${style.colors.success}";
           medium_battery_color = "#${style.colors.warning}";
@@ -50,7 +62,9 @@ in {
         };
         graphs = {
           graph_color = "#${style.colors.textDark}";
-          legend_text = { color = "#${style.colors.textDark}"; };
+          legend_text = {
+            color = "#${style.colors.textDark}";
+          };
         };
         network = {
           rx_color = "#${style.colors.success}";
@@ -71,8 +85,7 @@ in {
           ];
         };
         memory = {
-          ram_color =
-            "#${style.colors.path}"; # This may be illogical, just uses shades of blue really
+          ram_color = "#${style.colors.path}"; # This may be illogical, just uses shades of blue really
           swap_color = "#${style.colors.info}";
           gpu_colors = [ "magenta" ]; # ?????
           arc_color = "#${style.colors.highlight}";

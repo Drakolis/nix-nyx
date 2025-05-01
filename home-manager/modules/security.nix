@@ -1,1 +1,7 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ cryptomator keepassxc ]; }
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    cryptomator
+    keepassxc
+  ];
+}
