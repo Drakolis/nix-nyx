@@ -62,6 +62,8 @@
   security.auditd.enable = true;
   security.audit.enable = true;
 
+  services.fwupd.enable = true;
+
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
