@@ -92,6 +92,7 @@ in
           # Theming
           pkgs.vscode-extensions.catppuccin.catppuccin-vsc
           pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
+          pkgs.vscode-marketplace.miguelsolorio.symbols
 
           # Everything
           pkgs.vscode-extensions.esbenp.prettier-vscode
@@ -174,7 +175,7 @@ in
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.editor.closeOnFileDelete" = true;
           "workbench.editor.highlightModifiedTabs" = true;
-          "workbench.iconTheme" = "catppuccin-mocha";
+          "workbench.iconTheme" = "symbols";
           "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
           "workbench.preferredLightColorTheme" = "Catppuccin Latte";
           "workbench.sideBar.location" = "right";
@@ -183,6 +184,17 @@ in
           "zenMode.hideStatusBar" = false;
 
           # EXTENSIONS
+
+          "symbols.folders.associations" = {
+            "entities" = "folder-assets";
+            "infra" = "folder-app";
+            "schemas" = "folder-purple";
+          };
+
+          "symbols.files.associations" = {
+            "app.module.ts" = "nest";
+            "*.service.ts" = "nest";
+          };
 
           # Catppuccin Theme
           "catppuccin.italicKeywords" = false;
@@ -204,9 +216,16 @@ in
             "suppressGitDisabledWarning" = true;
           };
 
-          "cSpell.language" = "en,de,ru,pt";
+          # Tabby
           "tabby.endpoint" = "http://localhost:50000";
+          "tabby.settings.advanced" = {
+            "inlineCompletion.triggerMode" = "manual";
+          };
+
+          # Linters
           "xo.format.enable" = true;
+
+          "cSpell.language" = "en,de,ru,pt";
         };
       };
     };
