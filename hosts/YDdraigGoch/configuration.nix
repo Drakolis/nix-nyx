@@ -88,7 +88,6 @@
       kdePackages.kweather
       kdePackages.marknote
       kdePackages.neochat
-      kdePackages.parley
       crow-translate
       haruna
 
@@ -98,8 +97,6 @@
       protonvpn-gui
       protonvpn-cli
       proton-pass
-
-      mullvad-browser
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ ];
@@ -144,6 +141,8 @@
     fcron
     backintime-qt
 
+    podman-compose
+
     # Wayland utils
     wev
     wl-clipboard
@@ -171,9 +170,6 @@
     qpwgraph
     kdePackages.isoimagewriter
     kdePackages.konversation
-
-    vulnix
-    podman-compose
   ];
 
   drakolis.gaming.enable = true;
