@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+ <head>
+  <text/>
+ </head>
+ <body>
+  <outline id="425324295" isOpen="false" text="News">
+   <outline activities="" archiveMode="globalDefault" comment="" copyright="" description="Мы выбираем для вас самые важные новости и готовим лучшие тексты о том, что происходит в России и мире." faviconUrl="file:///home/drakolis/.cache/favicons/meduza.io.png" fetchInterval="30" htmlUrl="https://meduza.io" id="1126557111" logoHeight="31" logoUrl="https://meduza.io/image/attachments/images/005/208/897/original/V9OZX27dSUO80e_VZcTS6Q.png" logoWidth="88" maxArticleAge="60" maxArticleNumber="1000" text="Meduza.io" title="Meduza.io" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://meduza.io/rss2/all"/>
+   <outline activities="" archiveMode="globalDefault" comment="" copyright="" description="Deutsche Welle" faviconUrl="file:///home/drakolis/.cache/favicons/rss.dw.com.png" fetchInterval="30" htmlUrl="https://www.dw.com/english/?maca=en-rss-en-all-1573-rdf" id="889263274" logoHeight="0" logoUrl="https://rss.dw.com/images/DW-L-RGB_whitebg.png" logoWidth="0" maxArticleAge="60" maxArticleNumber="1000" text="Deutsche Welle" title="Deutsche Welle" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://rss.dw.com/rdf/rss-en-all"/>
+   <outline activities="" archiveMode="globalDefault" comment="" copyright="" description="Every day we bring you the most important news and feature stories from hundreds of sources in Russia and across the former Soviet Union." faviconUrl="file:///home/drakolis/.cache/favicons/meduza.io.png" fetchInterval="30" htmlUrl="https://meduza.io" id="3822954561" logoHeight="31" logoUrl="https://meduza.io/image/attachments/images/005/208/897/original/V9OZX27dSUO80e_VZcTS6Q.png" logoWidth="88" maxArticleAge="60" maxArticleNumber="1000" text="Meduza.io" title="Meduza.io" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://meduza.io/rss/en/all"/>
+  </outline>
+  <outline id="1112817657" isOpen="false" text="KDE">
+   <outline activities="" archiveMode="globalDefault" comment="" copyright="" description="News For Open Source Professionals" faviconUrl="file:///home/drakolis/.cache/favicons/www.linux.com_wp-includes_images_w-logo-blue-white-bg.png" fetchInterval="0" htmlUrl="https://www.linux.com" id="2689230968" maxArticleAge="0" maxArticleNumber="0" text="Linux.com" title="Linux.com" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://www.linux.com/feed/"/>
+   <outline activities="" archiveMode="globalDefault" comment="" copyright="" description="" faviconHeight="0" faviconUrl="file:///home/drakolis/.cache/favicons/planet.kde.org.png" faviconWidth="0" fetchInterval="0" htmlUrl="https://planet.kde.org/" id="2921980553" logoHeight="0" logoUrl="https://planet.kde.org/img/planet.png" logoWidth="0" maxArticleAge="0" maxArticleNumber="0" text="Planet KDE" title="Planet KDE" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://planet.kde.org/global/atom.xml"/>
+   <outline activities="" archiveMode="globalDefault" comment="" copyright="All rights reserved. All trademarks are copyright by their respective owners. All contributors are responsible for their uploads." description="" faviconUrl="file:///home/drakolis/.cache/favicons/store.kde.org.png" fetchInterval="0" htmlUrl="" id="4157188164" logoHeight="0" logoUrl="https://store.kde.org/stores/media/store_kde/logo.png" logoWidth="0" maxArticleAge="0" maxArticleNumber="0" text="KDE Apps" title="KDE Apps" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://store.kde.org/content.rdf"/>
+   <outline id="3846786627" isOpen="false" text="Spanish feeds">
+    <outline activities="" archiveMode="globalDefault" comment="" copyright="" description="" fetchInterval="0" htmlUrl="https://planet.kde.org/es/" id="3107044940" logoHeight="0" logoUrl="https://planet.kde.org/img/planet.png" logoWidth="0" maxArticleAge="0" maxArticleNumber="0" text="Planet KDE España" title="Planet KDE España" type="rss" useCustomFetchInterval="false" version="RSS" xmlUrl="https://planet.kde-espana.org/atom.xml"/>
+   </outline>
+  </outline>
+ </body>
+</opml>
+
