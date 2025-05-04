@@ -25,21 +25,14 @@
       "wheel"
     ];
     packages = with pkgs; [
-      yt-dlp
-
-      element-desktop
-
-      libreoffice
-
+      kdePackages.marknote
       protonmail-bridge-gui
-      protonmail-desktop
       protonvpn-gui
       protonvpn-cli
       proton-pass
-
-      mullvad-browser
     ];
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [ ];
   };
 
   # List packages installed in system profile. To search, run:
