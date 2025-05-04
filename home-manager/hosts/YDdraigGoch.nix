@@ -5,12 +5,43 @@
     ../modules/desktop/kde
   ];
 
-  drakolis.flatpak = {
-    enable = true;
-    enableCommunication = true;
-    enableGaming = true;
-    enableService = false;
+  drakolis = {
+    flatpak = {
+      enable = true;
+      enableCommunication = true;
+      enableGaming = true;
+    };
+    development = {
+      enable = true;
+      tools = {
+        windsurf = true;
+        sqlClient = true;
+        mongoClient = false;
+        apiClient = true;
+        scaleway = true;
+      };
+      languages = {
+        nodeExtended = true;
+        pythonExtended = false;
+        goExtended = true;
+        lua = true;
+        rust = false;
+        java = true;
+        terraform = true;
+        extraLanguageServers = true;
+      };
+    };
+    media = {
+      enable = true;
+      enablePhoto = true;
+      enableVideoRecording = true;
+    };
+    showoff.enable = true;
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.1.5"
+  ];
 
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";

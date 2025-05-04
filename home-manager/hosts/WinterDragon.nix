@@ -6,12 +6,35 @@
     ../modules/plasma-manager.nix
   ];
 
-  drakolis.flatpak = {
-    enable = true;
-    enableCommunication = true;
-    enableGaming = false;
-    enableService = false;
+  drakolis = {
+    flatpak = {
+      enable = true;
+      enableCommunication = true;
+      enableGaming = false;
+    };
+    development = {
+      enable = true;
+      tools = {
+        windsurf = false;
+        sqlClient = true;
+        mongoClient = false;
+        apiClient = true;
+        scaleway = true;
+      };
+      languages = {
+        nodeExtended = true;
+        goExtended = true;
+        extraLanguageServers = true;
+      };
+    };
+    media = {
+      enable = true;
+    };
   };
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "beekeeper-studio-5.1.5"
+  ];
 
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";

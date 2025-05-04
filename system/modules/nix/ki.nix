@@ -14,7 +14,7 @@ with lib;
     drakolis.ki = {
       enable = mkOption {
         default = false;
-        type = with types; bool;
+        type = types.bool;
         description = ''
           Enable coding AI suggestions server.
         '';

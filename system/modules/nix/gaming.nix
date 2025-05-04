@@ -13,7 +13,7 @@ with lib;
     drakolis.gaming = {
       enable = mkOption {
         default = false;
-        type = with types; bool;
+        type = types.bool;
         description = ''
           Enable gaming setup on this machine.
         '';

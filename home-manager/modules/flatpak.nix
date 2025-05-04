@@ -8,7 +8,7 @@ let
   cfg = config.drakolis.flatpak;
   grep = pkgs.gnugrep;
 
-  forcedFlatpaks = [
+  flatpaks = [
     # "it.fabiodistasio.AntaresSQL"
     "org.js.nuclear.Nuclear"
     "org.kde.kamoso"
@@ -31,38 +31,39 @@ let
   ];
 
   desiredFlatpaks =
-    forcedFlatpaks
+    flatpaks
     ++ lib.optionals cfg.enableCommunication communicationFlatpaks
     ++ lib.optionals cfg.enableGaming gamingFlatpaks
     ++ lib.optionals cfg.enableService serviceFlatpaks;
 in
+with lib;
 {
   options = {
     drakolis.flatpak = {
-      enable = lib.mkOption {
+      enable = mkOption {
         default = true;
-        type = lib.types.bool;
+        type = types.bool;
         description = ''
           Install flatpak software.
         '';
       };
-      enableCommunication = lib.mkOption {
+      enableCommunication = mkOption {
         default = false;
-        type = lib.types.bool;
+        type = types.bool;
         description = ''
           Install extra communication software.
         '';
       };
-      enableGaming = lib.mkOption {
+      enableGaming = mkOption {
         default = false;
-        type = lib.types.bool;
+        type = types.bool;
         description = ''
           Install extra gaming software.
         '';
       };
-      enableService = lib.mkOption {
+      enableService = mkOption {
         default = false;
-        type = lib.types.bool;
+        type = types.bool;
         description = ''
           Install extra service software.
         '';
@@ -70,7 +71,9 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf (cfg.enable && !pkgs.stdenv.hostPlatform.isDarwin) {
+    home.packages = with pkgs; [ flatpak ];
+
     home.activation = {
       myActivationAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
         # 2. Ensure the Flathub repo is added

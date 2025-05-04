@@ -59,10 +59,7 @@ in
         "genpass"
         "git"
         "qrcode"
-        "npm"
-        "scw"
         "sudo"
-        "taskwarrior"
       ];
     };
 
