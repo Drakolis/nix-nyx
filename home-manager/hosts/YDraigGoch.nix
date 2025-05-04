@@ -1,8 +1,7 @@
 {
   imports = [
     ../modules
-    ../modules/themes.nix
-    ../modules/plasma-manager.nix
+    ../modules/desktop/kde
   ];
 
   # Nicely reload system units when changing configs

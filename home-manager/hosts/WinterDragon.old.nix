@@ -2,10 +2,7 @@
 {
   imports = [
     ../modules
-    ../modules/hypr
-    ../modules/tiling
-    ../modules/terminals.nix
-    ../modules/themesHypr.nix
+    ../modules/desktop/hyprland
   ];
 
   # Nicely reload system units when changing configs

@@ -3,13 +3,6 @@ let
   commands = import ../../../constants/commands.nix;
 in
 {
-  imports = [
-    ./swaync.nix
-    ./wofi.nix
-    ./waybar.nix
-    ./wlogout.nix
-  ];
-
   home.file = {
     ".config/yofi/yofi.config".text = ''
       width = 500
