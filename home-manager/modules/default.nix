@@ -5,13 +5,13 @@
     ./security
     ./yazi
     ./browser.nix
-    ./cloud-storage.nix
     ./flatpak.nix
     ./internet.nix
     ./media.nix
     ./office.nix
     ./shell.nix
     ./showoff.nix
+    ./sync.nix
     ./tui.nix
     ./unfree.nix
   ];

@@ -47,6 +47,15 @@
 
   security = {
     protectKernelImage = true; # Prevent kernel image tampering
+    auditd.enable = true;
+    audit.enable = true;
+
+    sudo = {
+      execWheelOnly = true; # Only allow wheel group to run sudo
+      extraConfig = ''
+        Defaults timestamp_timeout=30
+      '';
+    };
   };
 
   environment.etc."issue".text = ''
@@ -58,20 +67,10 @@
 
   hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
 
-  security.sudo = {
-    execWheelOnly = true; # Only allow wheel group to run sudo
-    extraConfig = ''
-      Defaults timestamp_timeout=30
-    '';
-  };
-
   services.journald.extraConfig = ''
     Storage=persistent
     SystemMaxUse=1G  # Limit log size
   '';
-
-  security.auditd.enable = true;
-  security.audit.enable = true;
 
   services.fwupd.enable = true;
 
@@ -104,8 +103,6 @@
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ ];
   };
-
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -167,7 +164,6 @@
     kdePackages.filelight
     kdePackages.kompare
     krename
-    krusader
 
     # Configuration
     qpwgraph
@@ -190,8 +186,9 @@
     backintime-qt
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
+
   drakolis.gaming.enable = true;
-  drakolis.ki.enable = false;
   drakolis.geolocation.enable = true;
 
   environment.sessionVariables = {

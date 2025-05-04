@@ -80,8 +80,8 @@
           modules = [
             sops-nix.nixosModules.sops
             ./system/nixos.nix
-            ./system/hosts/YDraigGoch/configuration.nix
-            ./system/hosts/YDraigGoch/hardware-configuration.nix
+            ./system/hosts/YDdraigGoch/configuration.nix
+            ./system/hosts/YDdraigGoch/hardware-configuration.nix
           ];
         };
 
