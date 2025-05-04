@@ -5,7 +5,6 @@
     ./yazi
     ./browser.nix
     ./cloud-storage.nix
-    ./development.nix
     ./flatpak.nix
     ./internet.nix
     ./media.nix
@@ -15,7 +14,5 @@
     ./showoff.nix
     ./tui.nix
     ./unfree.nix
-
-    ./eww.nix
   ];
 }
