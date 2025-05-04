@@ -29,9 +29,30 @@
       url = "github:nix-community/nix-vscode-extensions";
     };
 
+    # MacOS/Darwin Stuff
+
     nix-darwin = {
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+    };
+
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
     };
   };
 
@@ -45,6 +66,10 @@
       nix-vscode-extensions,
       sops-nix,
       nix-darwin,
+      nix-homebrew,
+      homebrew-bundle,
+      homebrew-core,
+      homebrew-cask,
       ...
     }:
     {
@@ -74,6 +99,19 @@
       darwinConfigurations = {
         "mb-H02L4YFQ6P" = nix-darwin.lib.darwinSystem {
           modules = [
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nix-homebrew = {
+                user = "mika.zimina";
+                enable = true;
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
+                autoMigrate = true;
+              };
+            }
             ./system/darwin.nix
             ./system/hosts/WorkerBee/configuration.nix
           ];
