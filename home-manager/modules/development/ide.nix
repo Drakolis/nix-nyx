@@ -1,11 +1,20 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # IDEs
+    # Code IDEs
     jetbrains.idea-community-bin
     jetbrains.pycharm-community
     windsurf
+
+    # DB IDEs
+    beekeeper-studio
+
+    # API Testing
+    # bruno
+    hoppscotch
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.1.5" ];
 
   programs.vscode = {
     enable = true;
