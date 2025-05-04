@@ -33,7 +33,8 @@ with lib;
       enable = true;
       port = 50000;
       usageCollection = false;
-      model = "TabbyML/DeepSeekCoder-1.3B";
+      acceleration = "rocm";
+      model = "TabbyML/Qwen2.5-Coder-0.5B";
     };
 
     systemd.services.ollama = {

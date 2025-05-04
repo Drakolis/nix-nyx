@@ -5,6 +5,12 @@
   ...
 }:
 {
+  nixpkgs.config.rocmSupport = true;
+  hardware.graphics.extraPackages = with pkgs; [
+    pocl
+    rocmPackages.clr.icd
+  ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -77,21 +83,7 @@
       "wheel"
     ];
     packages = with pkgs; [
-      yt-dlp
-
-      kdePackages.dragon
-      kdePackages.kasts
-      kdePackages.kompare
-      kdePackages.krdc
-      kdePackages.krfb
-      kdePackages.ktorrent
-      kdePackages.kweather
       kdePackages.marknote
-      kdePackages.neochat
-      crow-translate
-      haruna
-
-      libreoffice
 
       protonmail-bridge-gui
       protonvpn-gui
@@ -137,43 +129,69 @@
     # XDG extras
     xdg-terminal-exec
 
-    # Backups
-    fcron
-    backintime-qt
-
-    podman-compose
-
     # Wayland utils
     wev
     wl-clipboard
     wayvnc
 
-    # KDE Extras
-    kdePackages.falkon
-    kdePackages.filelight
-    kdePackages.kate
-    kdePackages.kcharselect
-    kdePackages.kcolorchooser
-    kdePackages.kget
-    kdePackages.kcalc
-    kdePackages.yakuake
-    kdePackages.sweeper
+    # Media
+    kdePackages.dragon
+    kdePackages.kasts
+    haruna
 
-    kdePackages.kleopatra
-    kdePackages.zanshin
+    # Communication
+    kdePackages.falkon
+    kdePackages.konversation
+    kdePackages.krdc
+    kdePackages.krfb
+    kdePackages.neochat
+
+    # Downloading
+    kdePackages.kget
+    kdePackages.ktorrent
+
+    # Office
     kdePackages.akregator
     kdePackages.kdepim-addons
+    kdePackages.kweather
+    kdePackages.zanshin
+    libreoffice
 
-    kdePackages.ksystemlog
-    krusader
-    krename
-    qpwgraph
+    # Tech tools
     kdePackages.isoimagewriter
-    kdePackages.konversation
+    kdePackages.kate
+    kdePackages.yakuake
+    podman-compose
+
+    # File management
+    kdePackages.filelight
+    kdePackages.kompare
+    krename
+    krusader
+
+    # Configuration
+    qpwgraph
+
+    # Utilities
+    kdePackages.kcalc
+    kdePackages.kcharselect
+    kdePackages.kcolorchooser
+    kdePackages.ksystemlog
+    kdePackages.sweeper
+    crow-translate
+
+    # Security
+    kdePackages.kleopatra
+    keepassxc
+    wireshark
+
+    # Backups
+    fcron
+    backintime-qt
   ];
 
   drakolis.gaming.enable = true;
-  drakolis.ki.enable = true;
+  drakolis.ki.enable = false;
   drakolis.geolocation.enable = true;
 
   environment.sessionVariables = {
