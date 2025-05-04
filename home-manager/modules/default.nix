@@ -1,5 +1,6 @@
 {
   imports = [
+    ./development
     ./neovim
     ./yazi
     ./browser.nix
