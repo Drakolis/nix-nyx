@@ -55,8 +55,8 @@
           modules = [
             sops-nix.nixosModules.sops
             ./system/nixos.nix
-            ./hosts/YDdraigGoch/configuration.nix
-            ./hosts/YDdraigGoch/hardware-configuration.nix
+            ./hosts/YDraigGoch/configuration.nix
+            ./hosts/YDraigGoch/hardware-configuration.nix
           ];
         };
 
