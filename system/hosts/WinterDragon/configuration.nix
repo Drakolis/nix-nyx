@@ -34,6 +34,19 @@
     flake = "gitlab:Drakolis/nix-nyx";
   };
 
+  security = {
+    protectKernelImage = true; # Prevent kernel image tampering
+    auditd.enable = true;
+    audit.enable = true;
+
+    sudo = {
+      execWheelOnly = true; # Only allow wheel group to run sudo
+      extraConfig = ''
+        Defaults timestamp_timeout=30
+      '';
+    };
+  };
+
   environment.etc."issue".text = ''
     \n (\l), \S Linux Kernel \r \m
     Unauthorized access to this system is prohibited.
@@ -43,20 +56,10 @@
 
   hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
 
-  security.sudo = {
-    execWheelOnly = true; # Only allow wheel group to run sudo
-    extraConfig = ''
-      Defaults timestamp_timeout=30
-    '';
-  };
-
   services.journald.extraConfig = ''
     Storage=persistent
     SystemMaxUse=1G  # Limit log size
   '';
-
-  security.auditd.enable = true;
-  security.audit.enable = true;
 
   services.fwupd.enable = true;
 
@@ -68,39 +71,22 @@
       "wheel"
     ];
     packages = with pkgs; [
-      yt-dlp
-
-      kdePackages.dragon
-      kdePackages.kasts
-      kdePackages.kompare
-      kdePackages.ktorrent
-      kdePackages.kweather
-      kdePackages.neochat
-      crow-translate
-      haruna
-
-      libreoffice
+      kdePackages.marknote
 
       protonmail-bridge-gui
       protonvpn-gui
       protonvpn-cli
       proton-pass
-
-      mullvad-browser
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ ];
   };
-
-  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # File system support
     exfatprogs
-    apfsprogs
-    ntfs3g
 
     # Spell Checking
     aspell
@@ -116,41 +102,57 @@
     # XDG extras
     xdg-terminal-exec
 
-    # Backups
-    fcron
-    backintime-qt
-
     # Wayland utils
     wev
     wl-clipboard
     wayvnc
 
-    # KDE Extras
+    # Communication
     kdePackages.falkon
-    kdePackages.filelight
-    kdePackages.kate
-    kdePackages.kompare
+    kdePackages.konversation
     kdePackages.krdc
     kdePackages.krfb
+    kdePackages.neochat
+
+    # Office
+    kdePackages.akregator
+    kdePackages.kdepim-addons
+    kdePackages.kweather
+    kdePackages.zanshin
+    libreoffice
+
+    # Tech tools
+    kdePackages.kate
+    kdePackages.yakuake
+    podman-compose
+
+    # File management
+    kdePackages.filelight
+    kdePackages.kompare
+    krename
+
+    # Configuration
+    qpwgraph
+
+    # Utilities
+    kdePackages.kcalc
     kdePackages.kcharselect
     kdePackages.kcolorchooser
-    kdePackages.kget
-    kdePackages.kcalc
-    kdePackages.yakuake
-    kdePackages.sweeper
-
-    kdePackages.kleopatra
-    kdePackages.zanshin
-    kdePackages.akregator
-
-    kdePackages.kdepim-addons
-
     kdePackages.ksystemlog
-    krename
-    qpwgraph
-    kdePackages.isoimagewriter
-    kdePackages.konversation
+    kdePackages.sweeper
+    crow-translate
+
+    # Security
+    kdePackages.kgpg
+    keepassxc
+    wireshark
+
+    # Backups
+    fcron
+    backintime-qt
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [ "olm-3.2.16" ];
 
   drakolis.geolocation.enable = true;
 
