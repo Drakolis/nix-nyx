@@ -55,8 +55,8 @@
           modules = [
             sops-nix.nixosModules.sops
             ./system/nixos.nix
-            ./hosts/YDraigGoch/configuration.nix
-            ./hosts/YDraigGoch/hardware-configuration.nix
+            ./system/hosts/YDraigGoch/configuration.nix
+            ./system/hosts/YDraigGoch/hardware-configuration.nix
           ];
         };
 
@@ -65,8 +65,8 @@
           modules = [
             sops-nix.nixosModules.sops
             ./system/nixos.nix
-            ./hosts/WinterDragon/configuration.nix
-            ./hosts/WinterDragon/hardware-configuration.nix
+            ./system/hosts/WinterDragon/configuration.nix
+            ./system/hosts/WinterDragon/hardware-configuration.nix
           ];
         };
       };
@@ -75,7 +75,7 @@
         "mb-H02L4YFQ6P" = nix-darwin.lib.darwinSystem {
           modules = [
             ./system/darwin.nix
-            ./hosts/WorkerBee/configuration.nix
+            ./system/hosts/WorkerBee/configuration.nix
           ];
         };
       };
@@ -90,7 +90,8 @@
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager
-            ./home-manager/drakolis.nix
+            ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/YDdraigGoch.nix
           ];
         };
 
@@ -103,7 +104,8 @@
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeManagerModules.plasma-manager
-            ./home-manager/drakolis.nix
+            ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/WinterDragon.nix
           ];
         };
       };
