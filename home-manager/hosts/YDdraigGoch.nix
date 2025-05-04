@@ -5,6 +5,13 @@
     ../modules/desktop/kde
   ];
 
+  drakolis.flatpak = {
+    enable = true;
+    enableCommunication = true;
+    enableGaming = true;
+    enableService = false;
+  };
+
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 

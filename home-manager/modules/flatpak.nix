@@ -1,48 +1,105 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
+  cfg = config.drakolis.flatpak;
   grep = pkgs.gnugrep;
-  desiredFlatpaks = [
-    "com.slack.Slack"
+
+  forcedFlatpaks = [
     # "it.fabiodistasio.AntaresSQL"
     "org.js.nuclear.Nuclear"
-    "org.telegram.desktop"
-    "us.zoom.Zoom"
-    "com.valvesoftware.Steam"
-    # "com.heroicgameslauncher.hgl"
-    "com.discordapp.Discord"
-    # "com.github.tchx84.Flatseal"
     "org.kde.kamoso"
   ];
+
+  communicationFlatpaks = [
+    "com.slack.Slack"
+    "org.telegram.desktop"
+    "us.zoom.Zoom"
+  ];
+
+  gamingFlatpaks = [
+    "com.valvesoftware.Steam"
+    "com.discordapp.Discord"
+    # "com.heroicgameslauncher.hgl"
+  ];
+
+  serviceFlatpaks = [
+    "com.github.tchx84.Flatseal"
+  ];
+
+  desiredFlatpaks =
+    forcedFlatpaks
+    ++ lib.optionals cfg.enableCommunication communicationFlatpaks
+    ++ lib.optionals cfg.enableGaming gamingFlatpaks
+    ++ lib.optionals cfg.enableService serviceFlatpaks;
 in
 {
-  home.activation = {
-    myActivationAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      # 2. Ensure the Flathub repo is added
-      ${pkgs.flatpak}/bin/flatpak remote-add --user --if-not-exists flathub \
-        https://flathub.org/repo/flathub.flatpakrepo
+  options = {
+    drakolis.flatpak = {
+      enable = lib.mkOption {
+        default = true;
+        type = lib.types.bool;
+        description = ''
+          Install flatpak software.
+        '';
+      };
+      enableCommunication = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+        description = ''
+          Install extra communication software.
+        '';
+      };
+      enableGaming = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+        description = ''
+          Install extra gaming software.
+        '';
+      };
+      enableService = lib.mkOption {
+        default = false;
+        type = lib.types.bool;
+        description = ''
+          Install extra service software.
+        '';
+      };
+    };
+  };
 
-      # 3. Get currently installed Flatpaks
-      installedFlatpaks=$(${pkgs.flatpak}/bin/flatpak list --user --app --columns=application)
+  config = lib.mkIf cfg.enable {
+    home.activation = {
+      myActivationAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        # 2. Ensure the Flathub repo is added
+        ${pkgs.flatpak}/bin/flatpak remote-add --user --if-not-exists flathub \
+          https://flathub.org/repo/flathub.flatpakrepo
 
-      # 4. Remove any Flatpaks that are NOT in the desired list
-      for installed in $installedFlatpaks; do
-        if ! echo ${toString desiredFlatpaks} | ${grep}/bin/grep -q $installed; then
-          echo "Removing $installed because it's not in the desiredFlatpaks list."
-          ${pkgs.flatpak}/bin/flatpak uninstall --user -y --noninteractive $installed
-        fi
-      done
+        # 3. Get currently installed Flatpaks
+        installedFlatpaks=$(${pkgs.flatpak}/bin/flatpak list --user --app --columns=application)
 
-      # 5. Install or re-install the Flatpaks you DO want
-      for app in ${toString desiredFlatpaks}; do
-        echo "Ensuring $app is installed."
-        ${pkgs.flatpak}/bin/flatpak install --user -y flathub $app
-      done
+        # 4. Remove any Flatpaks that are NOT in the desired list
+        for installed in $installedFlatpaks; do
+          if ! echo ${toString desiredFlatpaks} | ${grep}/bin/grep -q $installed; then
+            echo "Removing $installed because it's not in the desiredFlatpaks list."
+            ${pkgs.flatpak}/bin/flatpak uninstall --user -y --noninteractive $installed
+          fi
+        done
 
-      # 6. Remove unused Flatpaks
-      ${pkgs.flatpak}/bin/flatpak uninstall --user --unused -y
+        # 5. Install or re-install the Flatpaks you DO want
+        for app in ${toString desiredFlatpaks}; do
+          echo "Ensuring $app is installed."
+          ${pkgs.flatpak}/bin/flatpak install --user -y flathub $app
+        done
 
-      # 7. Update all installed Flatpaks
-      ${pkgs.flatpak}/bin/flatpak update --user -y
-    '';
+        # 6. Remove unused Flatpaks
+        ${pkgs.flatpak}/bin/flatpak uninstall --user --unused -y
+
+        # 7. Update all installed Flatpaks
+        ${pkgs.flatpak}/bin/flatpak update --user -y
+      '';
+    };
   };
 }
