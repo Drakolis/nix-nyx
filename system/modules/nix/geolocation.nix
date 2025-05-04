@@ -17,10 +17,8 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    services.avahi.enable = true; # Connects to other devices on the network
     services.geoclue2 = {
       enable = true;
-      enableNmea = true; # Needs avahi to ask phones for location
     };
     location.provider = "geoclue2";
   };

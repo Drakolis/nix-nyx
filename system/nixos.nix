@@ -1,15 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./modules/nix/browser.nix
-    ./modules/nix/flatpak.nix
-    ./modules/nix/fonts.nix
-    ./modules/nix/gaming.nix
-    ./modules/nix/geolocation.nix
-    ./modules/nix/input.nix
-    ./modules/nix/ki.nix
-    ./modules/nix/nix.nix
-    ./modules/nix/shell.nix
+    ./modules/nix
   ];
 
   time.timeZone = "Europe/Berlin";
