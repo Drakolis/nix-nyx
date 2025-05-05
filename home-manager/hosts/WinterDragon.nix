@@ -2,22 +2,18 @@
 {
   imports = [
     ../modules
-    ../modules/themes.nix
-    ../modules/plasma-manager.nix
+    ../modules/desktop/kde
   ];
 
   drakolis = {
     flatpak = {
       enable = true;
       enableCommunication = true;
-      enableGaming = false;
     };
     development = {
       enable = true;
       tools = {
-        windsurf = false;
         sqlClient = true;
-        mongoClient = false;
         apiClient = true;
         scaleway = true;
       };
