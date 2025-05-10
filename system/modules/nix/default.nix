@@ -1,6 +1,5 @@
 {
   imports = [
-    ./browser.nix
     ./flatpak.nix
     ./fonts.nix
     ./gaming.nix
