@@ -135,6 +135,7 @@ in
       hostname = {
         ssh_only = false;
         ssh_symbol = " 🌐";
+        style = "bold green";
         format = "[$hostname$ssh_symbol]($style) in ";
       };
     };

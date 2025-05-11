@@ -18,13 +18,17 @@
         "WinterDragon" = {
           id = "J3ABNVA-VXV3CBZ-FWYWKWY-UXZNNKW-SSNSCLZ-KTU35OS-PE6YUHR-EIEOCA5";
         };
+        "mb-H02L4YFQ6P" = {
+          id = "ZZKPN74-4BCOU4T-6K4IXL3-IKL4DDF-7B3JIDX-2LWZWGU-OPYYJJS-SEDALAZ";
+        };
       };
       folders = {
         "Drakolis Files" = {
-          path = "/home/drakolis/Shared";
+          path = "~/Shared";
           devices = [
             "YDdraigGoch"
             "WinterDragon"
+            "mb-H02L4YFQ6P"
           ];
         };
       };

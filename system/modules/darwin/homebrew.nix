@@ -7,7 +7,6 @@
       "beekeeper-studio"
 
       # inet:
-      "librewolf"
       "slack"
       "zoom"
 
@@ -21,26 +20,7 @@
 
       # other:
       "vial"
+      "caffeine"
     ];
   };
 }
-
-# Has package in Nix
-# dev:
-# hoppscotch
-# dbeaver-bin
-# iterm2
-# vscodium
-
-# inet:
-# element
-# proton-mail
-
-# security:
-# _1password-gui
-# keepassxc
-# protonvpn
-
-# other:
-# maccy
-# numi

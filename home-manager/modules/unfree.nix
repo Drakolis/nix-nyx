@@ -4,8 +4,8 @@
     pkg:
     builtins.elem (lib.getName pkg) [
       "windsurf"
-      "obsidian"
       "mongodb-compass"
       "terraform"
+      "numi"
     ];
 }

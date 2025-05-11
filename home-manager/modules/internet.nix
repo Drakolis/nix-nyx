@@ -1,4 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  desiredInternetPackages =
+    [ ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      pkgs.signal-desktop-bin
+    ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+      pkgs.element-desktop
+    ];
+in
+with lib;
 {
-  home.packages = with pkgs; [ signal-desktop-bin ];
+  home.packages = desiredInternetPackages;
 }

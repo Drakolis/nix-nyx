@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  desiredDataSecurityPackages =
+    [ ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.cryptomator ];
+in
+with lib;
 {
-  home.packages = with pkgs; [
-    cryptomator
-  ];
+  home.packages = desiredDataSecurityPackages;
 }

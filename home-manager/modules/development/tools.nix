@@ -30,12 +30,22 @@ let
     scaleway-cli
   ];
 
+  awsPackages = with pkgs; [
+    awscli
+  ];
+
+  kubernetesPackages = with pkgs; [
+    kubectl
+  ];
+
   desiredDevelopmentPackages =
     developmentPackages
     ++ lib.optionals cfg.tools.windsurf windsurfPackages
     ++ lib.optionals cfg.tools.sqlClient sqlClientPackages
     ++ lib.optionals cfg.tools.mongoClient mongoClientPackages
     ++ lib.optionals cfg.tools.apiClient apiClientPackages
+    ++ lib.optionals cfg.tools.aws awsPackages
+    ++ lib.optionals cfg.tools.kubernetes kubernetesPackages
     ++ lib.optionals cfg.tools.scaleway scalewayPackages;
 
   zshExtraPlugins = [ ] ++ lib.optionals cfg.tools.scaleway [ "scw" ];
@@ -76,7 +86,21 @@ with lib;
         default = false;
         type = types.bool;
         description = ''
-          Enable Scaleway connection for this user.
+          Enable Scaleway cli for this user.
+        '';
+      };
+      aws = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Enable AWS cli for this user.
+        '';
+      };
+      kubernetes = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Enable Kubernetes cli for this user.
         '';
       };
     };
