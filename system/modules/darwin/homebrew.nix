@@ -7,12 +7,16 @@
       "beekeeper-studio"
 
       # inet:
+      "proton-mail"
+      "protonvpn"
       "slack"
       "zoom"
 
       # security:
+      "1password"
       "proton-pass"
-      "protonvpn"
+      "cryptomator"
+      "proton-drive"
 
       # media:
       "vlc"

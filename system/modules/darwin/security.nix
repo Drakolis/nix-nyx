@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    _1password-gui
+  environment.systemPackages = with pkgs; [
     keepassxc
-    proton-mail
-    protonvpn
   ];
 }
