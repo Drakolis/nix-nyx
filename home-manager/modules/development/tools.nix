@@ -9,6 +9,7 @@ let
 
   developmentPackages = with pkgs; [
     tokei # Language usage analyser
+    zed-editor
   ];
 
   windsurfPackages = with pkgs; [
