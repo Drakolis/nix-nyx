@@ -36,6 +36,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+    };
+
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
     };
@@ -66,6 +70,7 @@
       nix-vscode-extensions,
       sops-nix,
       nix-darwin,
+      mac-app-util,
       nix-homebrew,
       homebrew-bundle,
       homebrew-core,
@@ -101,6 +106,7 @@
       darwinConfigurations = {
         "mb-H02L4YFQ6P" = nix-darwin.lib.darwinSystem {
           modules = [
+            mac-app-util.darwinModules.default
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
@@ -146,6 +152,20 @@
             plasma-manager.homeManagerModules.plasma-manager
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/WinterDragon.nix
+          ];
+        };
+
+        "mika.zimina@mb-H02L4YFQ6P" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          modules = [
+            mac-app-util.homeManagerModules.default
+            sops-nix.homeManagerModules.sops
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            ./home-manager/users/mikaz.nix
+            ./home-manager/hosts/WorkerBee.nix
           ];
         };
       };
