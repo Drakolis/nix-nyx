@@ -2,5 +2,6 @@
 {
   imports = [
     ./modules/darwin
+    ./modules/unfree.nix
   ];
 }
