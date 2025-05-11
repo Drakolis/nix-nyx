@@ -46,6 +46,9 @@ let
     maven
     gradle
     java-language-server
+  ];
+
+  ideaCEPackages = with pkgs; [
     jetbrains.idea-community-bin
   ];
 
@@ -68,6 +71,7 @@ let
     ++ lib.optionals cfg.languages.lua luaPackages
     ++ lib.optionals cfg.languages.rust rustPackages
     ++ lib.optionals cfg.languages.java javaPackages
+    ++ lib.optionals (cfg.languages.java && !cfg.languages.noIdea) ideaCEPackages
     ++ lib.optionals cfg.languages.terraform terraformPackages
     ++ lib.optionals cfg.languages.extraLanguageServers extraLanguageServersPackages;
 
@@ -117,6 +121,13 @@ with lib;
         type = types.bool;
         description = ''
           Enable Java Language for this user.
+        '';
+      };
+      noIdea = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Do not install IDEA CE
         '';
       };
       terraform = mkOption {
