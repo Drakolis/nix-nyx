@@ -121,13 +121,16 @@ with lib;
 
           "symbols.folders.associations" = {
             "entities" = "folder-assets";
+            "files" = "folder-assets";
             "infra" = "folder-app";
             "schemas" = "folder-purple";
           };
 
           "symbols.files.associations" = {
             "app.module.ts" = "nest";
-            "*.service.ts" = "nest";
+            "*.service.ts" = "nest-service";
+            "*.controller.ts" = "nest-controller";
+            "*.guard.ts" = "nest-guard";
           };
 
           # Catppuccin Theme
