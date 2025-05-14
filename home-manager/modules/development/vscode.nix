@@ -25,7 +25,6 @@ with lib;
 
           # Theming
           pkgs.vscode-extensions.catppuccin.catppuccin-vsc
-          pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
           pkgs.vscode-marketplace.miguelsolorio.symbols
 
           # Everything
