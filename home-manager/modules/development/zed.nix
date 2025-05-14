@@ -14,8 +14,12 @@ with lib;
       extensions = [
         "catppuccin"
         "symbols"
-        "lua"
         "nix"
+        "vue"
+        "lua"
+        "java"
+        "terraform"
+        "cspell"
       ];
       userSettings = ''
         // Zed settings
