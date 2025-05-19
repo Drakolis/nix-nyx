@@ -85,7 +85,6 @@
           modules = [
             sops-nix.nixosModules.sops
             ./system/nixos.nix
-            ./system/modules/tailscale.nix
             ./system/hosts/YDdraigGoch/configuration.nix
             ./system/hosts/YDdraigGoch/hardware-configuration.nix
           ];
@@ -96,7 +95,6 @@
           modules = [
             sops-nix.nixosModules.sops
             ./system/nixos.nix
-            ./system/modules/tailscale.nix
             ./system/hosts/WinterDragon/configuration.nix
             ./system/hosts/WinterDragon/hardware-configuration.nix
           ];

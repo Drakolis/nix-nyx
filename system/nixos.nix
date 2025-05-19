@@ -2,6 +2,9 @@
 {
   imports = [
     ./modules/nix
+    ./modules/fonts.nix
+    ./modules/tailscale.nix
+    ./modules/unfree.nix
   ];
 
   time.timeZone = "Europe/Berlin";
