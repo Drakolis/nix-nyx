@@ -95,6 +95,8 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFpvdctXVRoijDWhYa4BTX33+JfFE0a3+9+tkaB4Szup"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUpNcUS4NNyE+yDz/npwhZojZcH17Hybtc95aWbkA4i"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJaNfEcfSnRGQF4k4PWtFhPEME2Ao9QWTyhu/w+/ftgb"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILrwMCLeZhbuep6a0BHGJe3DLY5KzVQ6ylwvd1Rjv/T/"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLXFwVqF0t+J5J1pN4To05Ddtmyd7DBbvHTdoXAC8fw"
     ];
   };
 
@@ -195,6 +197,8 @@
 
   drakolis.gaming.enable = true;
   drakolis.geolocation.enable = true;
+
+  drakolis.ki.enable = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = 1;
