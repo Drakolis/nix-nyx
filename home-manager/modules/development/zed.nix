@@ -20,6 +20,7 @@ with lib;
         "java"
         "terraform"
         "cspell"
+        "git-firefly"
       ];
       # Zed settings
       #
@@ -39,9 +40,20 @@ with lib;
         "assistant" = {
           "dock" = "left";
           "version" = "2";
+          # "default_model" = {
+          #   "provider" = "ollama";
+          #   "model" = "gemma3:latest";
+          # };
         };
         "icon_theme" = "Symbols";
-        "ui_font_size" = 14;
+        "tab_size" = 2;
+
+        "indent_guides"= {
+          "enabled" = true;
+          "coloring" = "indent_aware";
+      };
+
+        "ui_font_size" = 16;
         "ui_font_family" = "Noto Sans";
         "ui_font_weight" = 500;
         "buffer_font_size" = 14;
