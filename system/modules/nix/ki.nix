@@ -9,7 +9,6 @@ let
 in
 with lib;
 {
-
   options = {
     drakolis.ki = {
       enable = mkOption {
@@ -30,22 +29,25 @@ with lib;
     ];
 
     services.tabby = {
-      enable = true;
+      enable = false;
       port = 50000;
       usageCollection = false;
       acceleration = "rocm";
       model = "TabbyML/Qwen2.5-Coder-0.5B";
     };
 
-    systemd.services.ollama = {
-      description = "Ollama AI server";
-      wantedBy = [ "multi-user.target" ];
+    # Define the Ollama server service
+    systemd.services.ollama-server = {
+      description = "Ollama AI Server";
       serviceConfig = {
         ExecStart = "ollama serve";
         Restart = "always";
-        # User = "ollama";
-        # Group = "ollama";
       };
+      wantedBy = [ "multi-user.target" ];
+
+      preStart = ''
+        ollama pull llama2
+      '';
     };
   };
 
