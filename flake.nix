@@ -107,6 +107,7 @@
             mac-app-util.darwinModules.default
             nix-homebrew.darwinModules.nix-homebrew
             {
+              system.primaryUser = "mika.zimina";
               nix-homebrew = {
                 user = "mika.zimina";
                 enable = true;
