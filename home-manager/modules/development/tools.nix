@@ -34,31 +34,43 @@ let
     awscli
   ];
 
+  googleCloudPackages = with pkgs; [
+    google-cloud-sdk
+  ];
+
   kubernetesPackages = with pkgs; [
     kubectl
   ];
 
   desiredDevelopmentPackages =
     developmentPackages
-    ++ lib.optionals cfg.tools.windsurf windsurfPackages
+    ++ lib.optionals cfg.tools.apiClient apiClientPackages
     ++ lib.optionals cfg.tools.sqlClient sqlClientPackages
     ++ lib.optionals cfg.tools.mongoClient mongoClientPackages
-    ++ lib.optionals cfg.tools.apiClient apiClientPackages
-    ++ lib.optionals cfg.tools.aws awsPackages
-    ++ lib.optionals cfg.tools.kubernetes kubernetesPackages
-    ++ lib.optionals cfg.tools.scaleway scalewayPackages;
 
-  zshExtraPlugins = [ ] ++ lib.optionals cfg.tools.scaleway [ "scw" ];
+    ++ lib.optionals cfg.tools.windsurf windsurfPackages
+
+    ++ lib.optionals cfg.tools.kubernetes kubernetesPackages
+    ++ lib.optionals cfg.tools.aws awsPackages
+    ++ lib.optionals cfg.tools.scaleway scalewayPackages
+    ++ lib.optionals cfg.tools.googleCloud googleCloudPackages;
+
+  zshExtraPlugins =
+    [ ]
+    ++ lib.optionals cfg.tools.kubernetes [ "kubectl" ]
+    ++ lib.optionals cfg.tools.aws [ "aws" ]
+    ++ lib.optionals cfg.tools.scaleway [ "scw" ]
+    ++ lib.optionals cfg.tools.googleCloud [ "gcloud" ];
 in
 with lib;
 {
   options = {
     drakolis.development.tools = {
-      windsurf = mkOption {
+      apiClient = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enable Windsurf IDE for this user.
+          Enable API testing tools for this user.
         '';
       };
       sqlClient = mkOption {
@@ -75,18 +87,20 @@ with lib;
           Enable MongoDB client for this user.
         '';
       };
-      apiClient = mkOption {
+
+      windsurf = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enable API testing tools for this user.
+          Enable Windsurf IDE for this user.
         '';
       };
-      scaleway = mkOption {
+
+      kubernetes = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enable Scaleway cli for this user.
+          Enable Kubernetes cli for this user.
         '';
       };
       aws = mkOption {
@@ -96,11 +110,18 @@ with lib;
           Enable AWS cli for this user.
         '';
       };
-      kubernetes = mkOption {
+      googleCloud = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enable Kubernetes cli for this user.
+          Enable Google Cloud cli for this user.
+        '';
+      };
+      scaleway = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Enable Scaleway cli for this user.
         '';
       };
     };
