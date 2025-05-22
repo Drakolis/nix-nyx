@@ -25,6 +25,7 @@
       # other:
       "vial"
       "caffeine"
+      "balenaetcher"
     ];
   };
 }
