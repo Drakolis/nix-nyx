@@ -41,8 +41,10 @@
 
   hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
 
-  services.journald.extraConfig = ''
-    Storage=persistent
-    SystemMaxUse=1G  # Limit log size
-  '';
+  services = {
+    journald.extraConfig = ''
+      Storage=persistent
+      SystemMaxUse=1G  # Limit log size
+    '';
+  };
 }
