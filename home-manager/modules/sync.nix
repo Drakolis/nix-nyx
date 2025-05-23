@@ -3,10 +3,15 @@
   home.packages = with pkgs; [
     vdirsyncer
     rclone
+    syncthingtray-qt6
   ];
 
   services.syncthing = {
     enable = true;
+    tray = {
+      enable = false;
+      package = pkgs.syncthingtray-qt6;
+    };
     settings = {
       gui = {
         user = "drakolis";
