@@ -13,10 +13,12 @@
       "zoom"
 
       # security:
-      "1password"
+      "1password" # Work only?
       "proton-pass"
       "cryptomator"
       "proton-drive"
+      "micro-snitch"
+      "little-snitch"
 
       # media:
       "vlc"
