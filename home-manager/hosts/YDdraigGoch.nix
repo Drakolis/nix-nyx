@@ -35,12 +35,13 @@
       enable = true;
       enablePhoto = true;
       enableVideoRecording = true;
+      enable3DPrinting = true;
     };
     showoff.enable = true;
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.1.5"
+    "beekeeper-studio-5.2.9"
   ];
 
   # Nicely reload system units when changing configs

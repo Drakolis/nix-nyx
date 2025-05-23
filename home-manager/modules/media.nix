@@ -10,6 +10,7 @@ let
   mediaPackages = with pkgs; [
     krita
     inkscape-with-extensions
+    kid3
   ];
 
   photoMediaPackages = with pkgs; [
@@ -25,8 +26,25 @@ let
     kdePackages.kdenlive
   ];
 
-  _3DMediaPackages = with pkgs; [
+  _3DModellingMediaPackages = with pkgs; [
     blender
+  ];
+
+  _3DPrintingMediaPackages = with pkgs; [
+    # Slicers
+    prusa-slicer
+    # super-slicer
+
+    # Printer control
+    octoprint
+    printrun
+
+    # CAD tools (optional)
+    freecad
+    openscad
+
+    # Utilities
+    meshlab
   ];
 
   desiredMediaPackages =
@@ -34,7 +52,8 @@ let
     ++ lib.optionals cfg.enablePhoto photoMediaPackages
     ++ lib.optionals cfg.enableVideoRecording videoRecordingMediaPackages
     ++ lib.optionals cfg.enableVideoEditing videoEditingMediaPackages
-    ++ lib.optionals cfg.enable3D _3DMediaPackages;
+    ++ lib.optionals cfg.enable3DModelling _3DModellingMediaPackages
+    ++ lib.optionals cfg.enable3DPrinting _3DPrintingMediaPackages;
 in
 with lib;
 {
@@ -68,11 +87,18 @@ with lib;
           Enable video editing software for this user.
         '';
       };
-      enable3D = mkOption {
+      enable3DModelling = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enable 3D modelling and printing software for this user.
+          Enable 3D modelling software for this user.
+        '';
+      };
+      enable3DPrinting = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Enable 3D printing software for this user.
         '';
       };
     };

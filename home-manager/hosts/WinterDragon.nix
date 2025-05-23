@@ -29,7 +29,7 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.1.5"
+    "beekeeper-studio-5.2.9"
   ];
 
   # Nicely reload system units when changing configs
