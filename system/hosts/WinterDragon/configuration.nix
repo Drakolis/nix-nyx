@@ -37,19 +37,8 @@
     # File system support
     exfatprogs
 
-    # Spell Checking
-    aspell
-    aspellDicts.de
-    aspellDicts.ru
-    aspellDicts.pt_BR
-    aspellDicts.en
-    aspellDicts.en-computers
-
     # Nix Specific
     home-manager
-
-    podman-compose
-
   ];
 
   # Enable CUPS to print documents.

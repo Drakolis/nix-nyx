@@ -47,22 +47,12 @@
     apfsprogs
     ntfs3g
 
-    # Spell Checking
-    aspell
-    aspellDicts.de
-    aspellDicts.ru
-    aspellDicts.pt_BR
-    aspellDicts.en
-    aspellDicts.en-computers
-
     # Nix Specific
     home-manager
 
     # Downloading
     kdePackages.kget
     kdePackages.ktorrent
-
-    podman-compose
   ];
 
   # Enable CUPS to print documents.

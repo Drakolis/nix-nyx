@@ -46,6 +46,18 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    # Spell Checking
+    aspell
+    aspellDicts.de
+    aspellDicts.ru
+    aspellDicts.pt_BR
+    aspellDicts.en
+    aspellDicts.en-computers
+
+    podman-compose
+  ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
