@@ -71,14 +71,7 @@
   };
 
   programs.wireshark.enable = true;
-  programs.partition-manager.enable = true;
-  programs.kclock.enable = true;
-  programs.kde-pim.enable = true;
-  programs.kde-pim.kmail = true;
-  programs.kde-pim.kontact = true;
-  programs.kdeconnect.enable = true;
 
-  services.gvfs.enable = true;
   services.fcron.enable = true;
 
   networking.firewall = {
