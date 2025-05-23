@@ -31,13 +31,11 @@ let
   ];
 
   _3DPrintingMediaPackages = with pkgs; [
-    # Slicers
-    prusa-slicer
-    # super-slicer
+    orca-slicer
 
     # Printer control
-    octoprint
-    printrun
+    # octoprint
+    # printrun
 
     # CAD tools (optional)
     freecad
