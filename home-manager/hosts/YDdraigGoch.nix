@@ -9,6 +9,7 @@
     flatpak = {
       enable = true;
       enableCommunication = true;
+      enableEntertainment = true;
       enableGaming = true;
     };
     development = {

@@ -9,8 +9,6 @@ let
   grep = pkgs.gnugrep;
 
   flatpaks = [
-    # "it.fabiodistasio.AntaresSQL"
-    "org.js.nuclear.Nuclear"
     "org.kde.kamoso"
   ];
 
@@ -18,6 +16,14 @@ let
     "com.slack.Slack"
     "org.telegram.desktop"
     "us.zoom.Zoom"
+  ];
+
+  developmentFlatpaks = [
+    "it.fabiodistasio.AntaresSQL"
+  ];
+
+  entertainmentFlatpaks = [
+    "org.js.nuclear.Nuclear"
   ];
 
   gamingFlatpaks = [
@@ -33,6 +39,8 @@ let
   desiredFlatpaks =
     flatpaks
     ++ lib.optionals cfg.enableCommunication communicationFlatpaks
+    ++ lib.optionals cfg.enableDevelopment developmentFlatpaks
+    ++ lib.optionals cfg.enableEntertainment entertainmentFlatpaks
     ++ lib.optionals cfg.enableGaming gamingFlatpaks
     ++ lib.optionals cfg.enableService serviceFlatpaks;
 in
@@ -48,6 +56,20 @@ with lib;
         '';
       };
       enableCommunication = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Install extra communication software.
+        '';
+      };
+      enableDevelopment = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Install extra communication software.
+        '';
+      };
+      enableEntertainment = mkOption {
         default = false;
         type = types.bool;
         description = ''
