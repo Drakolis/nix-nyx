@@ -78,7 +78,6 @@
       ...
     }:
     {
-
       nixosConfigurations = {
         YDdraigGoch = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -87,6 +86,8 @@
             ./system/nixos.nix
             ./system/hosts/YDdraigGoch/configuration.nix
             ./system/hosts/YDdraigGoch/hardware-configuration.nix
+            ./system/users/drakolis.nix
+            ./system/users/lilyo.nix
           ];
         };
 
@@ -97,6 +98,7 @@
             ./system/nixos.nix
             ./system/hosts/WinterDragon/configuration.nix
             ./system/hosts/WinterDragon/hardware-configuration.nix
+            ./system/users/drakolis.nix
           ];
         };
       };
