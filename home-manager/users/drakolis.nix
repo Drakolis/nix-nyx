@@ -1,6 +1,9 @@
+{ lib, pkgs, ... }:
+with lib;
 {
   home.username = "drakolis";
-  home.homeDirectory = "/home/drakolis";
+  home.homeDirectory =
+    if (pkgs.stdenv.hostPlatform.isDarwin) then "/Users/drakolis" else "/home/drakolis";
 
   programs.home-manager.enable = true;
 
