@@ -31,18 +31,22 @@ with lib;
         [
           ubuntu-sans
           ubuntu-sans-mono
-          noto-fonts-emoji
           nerd-fonts.ubuntu
           nerd-fonts.ubuntu-mono
+        ]
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
+          noto-fonts-emoji
         ]
       else
         [
           noto-fonts
           noto-fonts-extra
           noto-fonts-cjk-sans
-          noto-fonts-emoji
           hack-font
           nerd-fonts.hack
+        ]
+        ++ lib.optionals stdenv.hostPlatform.isLinux [
+          noto-fonts-emoji
         ];
   };
 }
