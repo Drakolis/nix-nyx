@@ -1,12 +1,11 @@
 { pkgs, lib, ... }:
 let
   desiredInternetPackages =
-    [ ]
+    [
+      pkgs.element-desktop
+    ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       pkgs.signal-desktop-bin
-    ]
-    ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
-      pkgs.element-desktop
     ];
 in
 with lib;
