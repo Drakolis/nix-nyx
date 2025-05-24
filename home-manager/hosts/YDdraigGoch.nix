@@ -17,7 +17,7 @@
       tools = {
         windsurf = true;
         sqlClient = true;
-        mongoClient = false;
+        mongoClient = true;
         apiClient = true;
         scaleway = true;
       };
