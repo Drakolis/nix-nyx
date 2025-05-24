@@ -11,7 +11,6 @@
     fzf
     gnupg
     jq # JSON parsing
-    lynis # Security audit
     lynx # Terminal Browser
     ncdu
     ripgrep

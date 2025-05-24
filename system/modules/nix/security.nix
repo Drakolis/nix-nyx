@@ -42,9 +42,18 @@
   hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
 
   services = {
+    opensnitch.enable = true;
+    picosnitch.enable = true;
     journald.extraConfig = ''
       Storage=persistent
       SystemMaxUse=1G  # Limit log size
     '';
   };
+
+  environment.systemPackages = with pkgs; [
+    termshark
+    nmap
+    opensnitch-ui
+    lynis # Security audit
+  ];
 }
