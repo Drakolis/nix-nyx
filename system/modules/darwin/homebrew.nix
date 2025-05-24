@@ -11,6 +11,7 @@
       "protonvpn"
       "slack"
       "zoom"
+      "element"
 
       # security:
       "1password" # Work only?
