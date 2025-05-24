@@ -17,8 +17,8 @@
       "proton-pass"
       "cryptomator"
       "proton-drive"
-      "micro-snitch"
-      "little-snitch"
+      # "micro-snitch"
+      # "little-snitch"
 
       # media:
       "vlc"
