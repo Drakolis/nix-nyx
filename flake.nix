@@ -125,6 +125,28 @@
             ./system/hosts/WorkerBee/configuration.nix
           ];
         };
+        "SilverWing" = nix-darwin.lib.darwinSystem {
+          modules = [
+            mac-app-util.darwinModules.default
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              nixpkgs.config.allowBroken = true;
+              system.primaryUser = "drakolis";
+              nix-homebrew = {
+                user = "drakolis";
+                enable = true;
+                taps = {
+                  "homebrew/homebrew-core" = homebrew-core;
+                  "homebrew/homebrew-cask" = homebrew-cask;
+                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                };
+                autoMigrate = true;
+              };
+            }
+            ./system/darwin.nix
+            ./system/hosts/SilverWing/configuration.nix
+          ];
+        };
       };
 
       homeConfigurations = {
@@ -167,6 +189,20 @@
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             ./home-manager/users/mikaz.nix
             ./home-manager/hosts/WorkerBee.nix
+          ];
+        };
+
+        "drakolis@SilverWing" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          modules = [
+            mac-app-util.homeManagerModules.default
+            sops-nix.homeManagerModules.sops
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/SilverWing.nix
           ];
         };
       };
