@@ -15,6 +15,7 @@
 
   services.syncthing = {
     enable = true;
+    tray = false;
     settings = {
       gui = {
         user = "drakolis";

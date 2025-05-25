@@ -43,7 +43,6 @@
 
   services = {
     opensnitch.enable = true;
-    picosnitch.enable = true;
     journald.extraConfig = ''
       Storage=persistent
       SystemMaxUse=1G  # Limit log size

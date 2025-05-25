@@ -33,10 +33,6 @@ let
   _3DPrintingMediaPackages = with pkgs; [
     orca-slicer
 
-    # Printer control
-    # octoprint
-    # printrun
-
     # CAD tools (optional)
     freecad
     openscad
