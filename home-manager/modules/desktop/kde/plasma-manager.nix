@@ -64,7 +64,292 @@ with lib;
     programs.kate = {
       enable = true;
       package = null;
-      # Unfinished
+      editor = {
+        brackets = {
+          automaticallyAddClosing = true;
+          # flashMatching = true;
+          highlightMatching = true;
+        };
+        font = {
+          family = "Hack Nerd Font";
+          pointSize = 11;
+        };
+        indent = {
+          autodetect = true;
+          backspaceDecreaseIndent = true;
+          replaceWithSpaces = true;
+          showLines = true;
+          tabFromEverywhere = true;
+          undoByShiftTab = true;
+          width = 2;
+        };
+        tabWidth = 2;
+        theme.name = "";
+      };
+      # Kate LSP!
+      # lsp.customServers = "";
+      ui.colorScheme = "";
+    };
+
+    programs.plasma.configFile.katerc = {
+      BuildConfig = {
+        AllowedCommandLines = "";
+        AutoSwitchToOutput = true;
+        BlockedCommandLines = "";
+        UseDiagnosticsOutput = true;
+      };
+      CTags = {
+        GlobalCommand = "ctags -R --c++-types=+px --extra=+q --excmd=pattern --exclude=Makefile --exclude=.";
+        GlobalNumTargets = 0;
+      };
+      ColorPicker = {
+        HexLengths = "3,6";
+        NamedColors = true;
+        PreviewAfterColor = true;
+      };
+      ColoredBrackets = {
+        color1 = "#ee99a0";
+        color2 = "#eed49f";
+        color3 = "#a6da95";
+        color4 = "#7dc4e4";
+        color5 = "#b7bdf8";
+      };
+      "General" = {
+        "Allow Tab Scrolling" = true;
+        "Auto Hide Tabs" = false;
+        "Close After Last" = false;
+        "Close documents with window" = true;
+        "Cycle To First Tab" = true;
+        "Days Meta Infos" = 30;
+        "Diagnostics Limit" = 12000;
+        "Diff Show Style" = 0;
+        "Elide Tab Text" = false;
+        "Enable Context ToolView" = false;
+        "Expand Tabs" = false;
+        "Icon size for left and right sidebar buttons" = 32;
+        "Modified Notification" = false;
+        "Mouse back button action" = 0;
+        "Mouse forward button action" = 0;
+        "Open New Tab To The Right Of Current" = false;
+        "Output History Limit" = 100;
+        "Output With Date" = false;
+        "Recent File List Entry Count" = 10;
+        "Restore Window Configuration" = true;
+        "SDI Mode" = false;
+        "Save Meta Infos" = true;
+        "Session Manager Sort Column" = 0;
+        "Session Manager Sort Order" = 0;
+        "Show Full Path in Title" = false;
+        "Show Menu Bar" = true;
+        "Show Status Bar" = true;
+        "Show Symbol In Navigation Bar" = true;
+        "Show Tab Bar" = true;
+        "Show Tabs Close Button" = true;
+        "Show Url Nav Bar" = true;
+        "Show output view for message type" = 1;
+        "Show text for left and right sidebar" = false;
+        "Show welcome view for new window" = true;
+        "Startup Session" = "last";
+        "Stash new unsaved files" = true;
+        "Stash unsaved file changes" = true;
+        "Sync section size with tab positions" = false;
+        "Tab Double Click New Document" = true;
+        "Tab Middle Click Close Document" = true;
+        "Tabbar Tab Limit" = 0;
+      };
+      "KTextEditor Document" = {
+        "Allow End of Line Detection" = true;
+        "Auto Detect Indent" = true;
+        "Auto Reload If State Is In Version Control" = true;
+        "Auto Save" = false;
+        "Auto Save Interval" = 0;
+        "Auto Save On Focus Out" = false;
+        "BOM" = false;
+        "Backup Local" = false;
+        "Backup Prefix" = "";
+        "Backup Remote" = false;
+        "Backup Suffix" = "~";
+        "Camel Cursor" = true;
+        "Encoding" = "UTF-8";
+        "End of Line" = 0;
+        "Indent On Backspace" = true;
+        "Indent On Tab" = true;
+        "Indent On Text Paste" = true;
+        "Indentation Mode" = "normal";
+        "Indentation Width" = 2;
+        "Keep Extra Spaces" = false;
+        "Line Length Limit" = 10000;
+        "Newline at End of File" = true;
+        "On-The-Fly Spellcheck" = true;
+        "Overwrite Mode" = false;
+        "PageUp/PageDown Moves Cursor" = false;
+        "Remove Spaces" = 1;
+        "ReplaceTabsDyn" = true;
+        "Show Spaces" = 0;
+        "Show Tabs" = true;
+        "Smart Home" = true;
+        "Swap Directory" = "";
+        "Swap File Mode" = 1;
+        "Swap Sync Interval" = 15;
+        "Trailing Marker Size" = 1;
+        "Use Editor Config" = true;
+        "Word Wrap" = false;
+        "Word Wrap Column" = 80;
+      };
+      "KTextEditor Editor" = {
+        "Encoding Prober Type" = 1;
+        "Fallback Encoding" = "cp 1251";
+      };
+      "KTextEditor Renderer" = {
+        "Animate Bracket Matching" = false;
+        "Line Height Multiplier" = 1;
+        "Show Whole Bracket Expression" = false;
+        "Word Wrap Marker" = false;
+      };
+      "KTextEditor View" = {
+        "Allow Mark Menu" = true;
+        "Auto Brackets" = true;
+        "Auto Center Lines" = 0;
+        "Auto Completion" = true;
+        "Auto Completion Preselect First Entry" = true;
+        "Backspace Remove Composed Characters" = false;
+        "Bookmark Menu Sorting" = 0;
+        "Cycle Through Bookmarks" = true;
+        "Default Mark Type" = 1;
+        "Dynamic Word Wrap" = false;
+        "Dynamic Word Wrap Align Indent" = 80;
+        "Dynamic Word Wrap At Static Marker" = false;
+        "Dynamic Word Wrap Indicators" = 1;
+        "Dynamic Wrap not at word boundaries" = false;
+        "Enable Accessibility" = true;
+        "Enable Tab completion" = false;
+        "Enter To Insert Completion" = true;
+        "Fold First Line" = false;
+        "Folding Bar" = true;
+        "Folding Preview" = true;
+        "Icon Bar" = false;
+        "Input Mode" = 0;
+        "Keyword Completion" = true;
+        "Line Modification" = true;
+        "Line Numbers" = true;
+        "Max Clipboard History Entries" = 20;
+        "Maximum Search History Size" = 100;
+        "Mouse Paste At Cursor Position" = false;
+        "Multiple Cursor Modifier" = 134217728;
+        "Persistent Selection" = false;
+        "Scroll Bar Marks" = false;
+        "Scroll Bar Mini Map All" = true;
+        "Scroll Bar Mini Map Width" = 60;
+        "Scroll Bar MiniMap" = true;
+        "Scroll Bar Preview" = true;
+        "Scroll Past End" = false;
+        "Search/Replace Flags" = 140;
+        "Shoe Line Ending Type in Statusbar" = false;
+        "Show Documentation With Completion" = true;
+        "Show File Encoding" = true;
+        "Show Folding Icons On Hover Only" = true;
+        "Show Line Count" = true;
+        "Show Scrollbars" = 0;
+        "Show Statusbar Dictionary" = true;
+        "Show Statusbar Highlighting Mode" = true;
+        "Show Statusbar Input Mode" = true;
+        "Show Statusbar Line Column" = true;
+        "Show Statusbar Tab Settings" = true;
+        "Show Word Count" = false;
+        "Smart Copy Cut" = true;
+        "Statusbar Line Column Compact Mode" = true;
+        "Text Drag And Drop" = true;
+        "User Sets Of Chars To Enclose Selection" = "";
+        "Vi Input Mode Steal Keys" = false;
+        "Vi Relative Line Numbers" = false;
+        "Word Completion" = true;
+        "Word Completion Minimal Word Length" = 3;
+        "Word Completion Remove Tail" = true;
+      };
+      "KateSQLPlugin"."SaveConnections" = true;
+      "KateSQLPlugin/OutputCustomization/blob" = {
+        "backgroundColor" = "30,30,46";
+        "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+        "foregroundColor" = "205,214,244";
+      };
+      "KateSQLPlugin/OutputCustomization/bool" = {
+        "backgroundColor" = "30,30,46";
+        "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+        "foregroundColor" = "205,214,244";
+      };
+      "KateSQLPlugin/OutputCustomization/datetime" = {
+        "backgroundColor" = "30,30,46";
+        "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+        "foregroundColor" = "205,214,244";
+      };
+      "KateSQLPlugin/OutputCustomization/null" = {
+        "backgroundColor" = "30,30,46";
+        "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+        "foregroundColor" = "205,214,244";
+      };
+      "KateSQLPlugin/OutputCustomization/number" = {
+        "backgroundColor" = "30,30,46";
+        "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+        "foregroundColor" = "205,214,244";
+      };
+      "KateSQLPlugin/OutputCustomization/text" = {
+        "backgroundColor" = "30,30,46";
+        "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+        "foregroundColor" = "205,214,244";
+      };
+      Konsole = {
+        AutoSyncronizeMode = 0;
+        KonsoleEscKeyBehaviour = false;
+        KonsoleEscKeyExceptions = "vi,vim,nvim,git";
+        RemoveExtension = false;
+        RunPrefix = "";
+        SetEditor = true;
+      };
+      filetree = {
+        editShade = "183,220,246";
+        listMode = false;
+        middleClickToClose = false;
+        shadingEnabled = true;
+        showCloseButton = false;
+        showFullPathOnRoots = false;
+        showToolbar = true;
+        sortRole = 0;
+        viewShade = "211,190,222";
+      };
+      "lspclient" = {
+        AllowedServerCommandLines = "/home/drakolis/.nix-profile/bin/lua-language-server,/home/drakolis/.nix-profile/bin/typescript-language-server --stdio,/run/current-system/sw/bin/nil";
+        AutoHover = true;
+        AutoImport = true;
+        BlockedServerCommandLines = "/home/drakolis/.nix-profile/bin/yaml-language-server --stdio";
+        CompletionDocumentation = true;
+        CompletionParens = true;
+        Diagnostics = true;
+        FormatOnSave = true;
+        HighlightGoto = true;
+        IncrementalSync = false;
+        InlayHints = false;
+        Messages = true;
+        ReferencesDeclaration = true;
+        SemanticHighlighting = true;
+        ServerConfiguration = "";
+        SignatureHelp = true;
+        SymbolDetails = false;
+        SymbolExpand = true;
+        SymbolSort = false;
+        SymbolTree = true;
+        TypeFormatting = false;
+      };
+      project = {
+        autoCMake = true;
+        autorepository = "git";
+        gitStatusDoubleClick = 3;
+        gitStatusSingleClick = 1;
+        index = false;
+        indexDirectory = "";
+        multiProjectCompletion = false;
+        multiProjectGoto = false;
+        restoreProjectsForSessions = true;
+      };
     };
 
     programs.konsole = {
@@ -100,11 +385,11 @@ with lib;
         shortcuts.runCommandOnClipboard = "Meta+Shift+Space";
       };
 
-      configFile."krunnerrc" = {
-        "Plugins" = {
-          "krunner_appstreamEnabled" = false;
-          "krunner_konsoleprofilesEnabled" = false;
-          "plasma-runner-neochatEnabled" = true;
+      configFile.krunnerrc = {
+        Plugins = {
+          krunner_appstreamEnabled = false;
+          krunner_konsoleprofilesEnabled = false;
+          plasma-runner-neochatEnabled = true;
         };
 
         "Plugins/Favorites"."plugins" = "krunner_services,krunner_bookmarksrunner,krunner_systemsettings";
@@ -135,17 +420,19 @@ with lib;
         recordWindow = "Meta+Ctrl+Print";
       };
 
-      configFile."spectaclerc" = {
-        "Annotations"."annotationToolType" = 10;
-        "Annotations"."freehandStrokeColor" = "243,139,168";
-        "Annotations"."highlighterStrokeColor" = "249,226,175";
-        "Annotations"."lineStrokeColor" = "243,139,168";
-        "Annotations"."arrowStrokeColor" = "243,139,168";
-        "Annotations"."numberFillColor" = "245,189,230";
-        "Annotations"."numberFontColor" = "24,25,38";
-        "Annotations"."textFontColor" = "205,214,244";
-        "ImageSave"."translatedScreenshotsFolder" = "Screenshots";
-        "VideoSave"."translatedScreencastsFolder" = "Screencasts";
+      configFile.spectaclerc = {
+        Annotations = {
+          annotationToolType = 10;
+          freehandStrokeColor = "243,139,168";
+          highlighterStrokeColor = "249,226,175";
+          lineStrokeColor = "243,139,168";
+          arrowStrokeColor = "243,139,168";
+          numberFillColor = "245,189,230";
+          numberFontColor = "24,25,38";
+          textFontColor = "205,214,244";
+        };
+        ImageSave.translatedScreenshotsFolder = "Screenshots";
+        VideoSave.translatedScreencastsFolder = "Screencasts";
       };
 
       shortcuts = {
@@ -536,6 +823,7 @@ with lib;
       #     "Meta+Shift+N,,Toggle do not disturb";
       #   "services/net.local.eww.desktop"."_launch" = "Meta+F11";
       # };
+
       # configFile = {
       #   "baloofilerc"."General"."dbVersion" = 2;
       #   "baloofilerc"."General"."exclude filters" =
@@ -573,262 +861,6 @@ with lib;
       #     "accept_time_event";
       #   "kactivitymanagerdrc"."main"."currentActivity" =
       #     "775e9937-87ae-430c-927b-5e2e1d8cbcf1";
-      #   "katerc"."BuildConfig"."AllowedCommandLines" = "";
-      #   "katerc"."BuildConfig"."AutoSwitchToOutput" = true;
-      #   "katerc"."BuildConfig"."BlockedCommandLines" = "";
-      #   "katerc"."BuildConfig"."UseDiagnosticsOutput" = true;
-      #   "katerc"."CTags"."GlobalCommand" =
-      #     "ctags -R --c++-types=+px --extra=+q --excmd=pattern --exclude=Makefile --exclude=.";
-      #   "katerc"."CTags"."GlobalNumTargets" = 0;
-      #   "katerc"."ColorPicker"."HexLengths" = "3,6";
-      #   "katerc"."ColorPicker"."NamedColors" = true;
-      #   "katerc"."ColorPicker"."PreviewAfterColor" = true;
-      #   "katerc"."ColoredBrackets"."color1" = "#89b4fa";
-      #   "katerc"."ColoredBrackets"."color2" = "#eba0ac";
-      #   "katerc"."ColoredBrackets"."color3" = "#fab387";
-      #   "katerc"."ColoredBrackets"."color4" = "#b4befe";
-      #   "katerc"."ColoredBrackets"."color5" = "#94e2d5";
-      #   "katerc"."General"."Allow Tab Scrolling" = true;
-      #   "katerc"."General"."Auto Hide Tabs" = false;
-      #   "katerc"."General"."Close After Last" = false;
-      #   "katerc"."General"."Close documents with window" = true;
-      #   "katerc"."General"."Cycle To First Tab" = true;
-      #   "katerc"."General"."Days Meta Infos" = 30;
-      #   "katerc"."General"."Diagnostics Limit" = 12000;
-      #   "katerc"."General"."Diff Show Style" = 0;
-      #   "katerc"."General"."Elide Tab Text" = false;
-      #   "katerc"."General"."Enable Context ToolView" = false;
-      #   "katerc"."General"."Expand Tabs" = false;
-      #   "katerc"."General"."Icon size for left and right sidebar buttons" = 32;
-      #   "katerc"."General"."Last Session" = "NixNyx";
-      #   "katerc"."General"."Modified Notification" = false;
-      #   "katerc"."General"."Mouse back button action" = 0;
-      #   "katerc"."General"."Mouse forward button action" = 0;
-      #   "katerc"."General"."Open New Tab To The Right Of Current" = false;
-      #   "katerc"."General"."Output History Limit" = 100;
-      #   "katerc"."General"."Output With Date" = false;
-      #   "katerc"."General"."Recent File List Entry Count" = 10;
-      #   "katerc"."General"."Restore Window Configuration" = true;
-      #   "katerc"."General"."SDI Mode" = false;
-      #   "katerc"."General"."Save Meta Infos" = true;
-      #   "katerc"."General"."Session Manager Sort Column" = 0;
-      #   "katerc"."General"."Session Manager Sort Order" = 0;
-      #   "katerc"."General"."Show Full Path in Title" = false;
-      #   "katerc"."General"."Show Menu Bar" = true;
-      #   "katerc"."General"."Show Status Bar" = true;
-      #   "katerc"."General"."Show Symbol In Navigation Bar" = true;
-      #   "katerc"."General"."Show Tab Bar" = true;
-      #   "katerc"."General"."Show Tabs Close Button" = true;
-      #   "katerc"."General"."Show Url Nav Bar" = true;
-      #   "katerc"."General"."Show output view for message type" = 1;
-      #   "katerc"."General"."Show text for left and right sidebar" = false;
-      #   "katerc"."General"."Show welcome view for new window" = true;
-      #   "katerc"."General"."Startup Session" = "last";
-      #   "katerc"."General"."Stash new unsaved files" = true;
-      #   "katerc"."General"."Stash unsaved file changes" = true;
-      #   "katerc"."General"."Sync section size with tab positions" = false;
-      #   "katerc"."General"."Tab Double Click New Document" = true;
-      #   "katerc"."General"."Tab Middle Click Close Document" = true;
-      #   "katerc"."General"."Tabbar Tab Limit" = 0;
-      #   "katerc"."KTextEditor Document"."Allow End of Line Detection" = true;
-      #   "katerc"."KTextEditor Document"."Auto Detect Indent" = true;
-      #   "katerc"."KTextEditor Document"."Auto Reload If State Is In Version Control" =
-      #     true;
-      #   "katerc"."KTextEditor Document"."Auto Save" = false;
-      #   "katerc"."KTextEditor Document"."Auto Save Interval" = 0;
-      #   "katerc"."KTextEditor Document"."Auto Save On Focus Out" = false;
-      #   "katerc"."KTextEditor Document"."BOM" = false;
-      #   "katerc"."KTextEditor Document"."Backup Local" = false;
-      #   "katerc"."KTextEditor Document"."Backup Prefix" = "";
-      #   "katerc"."KTextEditor Document"."Backup Remote" = false;
-      #   "katerc"."KTextEditor Document"."Backup Suffix" = "~";
-      #   "katerc"."KTextEditor Document"."Camel Cursor" = true;
-      #   "katerc"."KTextEditor Document"."Encoding" = "UTF-8";
-      #   "katerc"."KTextEditor Document"."End of Line" = 0;
-      #   "katerc"."KTextEditor Document"."Indent On Backspace" = true;
-      #   "katerc"."KTextEditor Document"."Indent On Tab" = true;
-      #   "katerc"."KTextEditor Document"."Indent On Text Paste" = true;
-      #   "katerc"."KTextEditor Document"."Indentation Mode" = "normal";
-      #   "katerc"."KTextEditor Document"."Indentation Width" = 2;
-      #   "katerc"."KTextEditor Document"."Keep Extra Spaces" = false;
-      #   "katerc"."KTextEditor Document"."Line Length Limit" = 10000;
-      #   "katerc"."KTextEditor Document"."Newline at End of File" = true;
-      #   "katerc"."KTextEditor Document"."On-The-Fly Spellcheck" = true;
-      #   "katerc"."KTextEditor Document"."Overwrite Mode" = false;
-      #   "katerc"."KTextEditor Document"."PageUp/PageDown Moves Cursor" = false;
-      #   "katerc"."KTextEditor Document"."Remove Spaces" = 1;
-      #   "katerc"."KTextEditor Document"."ReplaceTabsDyn" = true;
-      #   "katerc"."KTextEditor Document"."Show Spaces" = 0;
-      #   "katerc"."KTextEditor Document"."Show Tabs" = true;
-      #   "katerc"."KTextEditor Document"."Smart Home" = true;
-      #   "katerc"."KTextEditor Document"."Swap Directory" = "";
-      #   "katerc"."KTextEditor Document"."Swap File Mode" = 1;
-      #   "katerc"."KTextEditor Document"."Swap Sync Interval" = 15;
-      #   "katerc"."KTextEditor Document"."Tab Handling" = 2;
-      #   "katerc"."KTextEditor Document"."Tab Width" = 2;
-      #   "katerc"."KTextEditor Document"."Trailing Marker Size" = 1;
-      #   "katerc"."KTextEditor Document"."Use Editor Config" = true;
-      #   "katerc"."KTextEditor Document"."Word Wrap" = false;
-      #   "katerc"."KTextEditor Document"."Word Wrap Column" = 80;
-      #   "katerc"."KTextEditor Editor"."Encoding Prober Type" = 1;
-      #   "katerc"."KTextEditor Editor"."Fallback Encoding" = "cp 1251";
-      #   "katerc"."KTextEditor Renderer"."Animate Bracket Matching" = false;
-      #   "katerc"."KTextEditor Renderer"."Auto Color Theme Selection" = false;
-      #   "katerc"."KTextEditor Renderer"."Color Theme" = "Catppuccin Mocha";
-      #   "katerc"."KTextEditor Renderer"."Line Height Multiplier" = 1;
-      #   "katerc"."KTextEditor Renderer"."Show Indentation Lines" = true;
-      #   "katerc"."KTextEditor Renderer"."Show Whole Bracket Expression" = false;
-      #   "katerc"."KTextEditor Renderer"."Text Font" =
-      #     "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KTextEditor Renderer"."Text Font Features" = "";
-      #   "katerc"."KTextEditor Renderer"."Word Wrap Marker" = false;
-      #   "katerc"."KTextEditor View"."Allow Mark Menu" = true;
-      #   "katerc"."KTextEditor View"."Auto Brackets" = true;
-      #   "katerc"."KTextEditor View"."Auto Center Lines" = 0;
-      #   "katerc"."KTextEditor View"."Auto Completion" = true;
-      #   "katerc"."KTextEditor View"."Auto Completion Preselect First Entry" =
-      #     true;
-      #   "katerc"."KTextEditor View"."Backspace Remove Composed Characters" =
-      #     false;
-      #   "katerc"."KTextEditor View"."Bookmark Menu Sorting" = 0;
-      #   "katerc"."KTextEditor View"."Bracket Match Preview" = false;
-      #   "katerc"."KTextEditor View"."Chars To Enclose Selection" = ''<>(){}[]'"'';
-      #   "katerc"."KTextEditor View"."Cycle Through Bookmarks" = true;
-      #   "katerc"."KTextEditor View"."Default Mark Type" = 1;
-      #   "katerc"."KTextEditor View"."Dynamic Word Wrap" = false;
-      #   "katerc"."KTextEditor View"."Dynamic Word Wrap Align Indent" = 80;
-      #   "katerc"."KTextEditor View"."Dynamic Word Wrap At Static Marker" = false;
-      #   "katerc"."KTextEditor View"."Dynamic Word Wrap Indicators" = 1;
-      #   "katerc"."KTextEditor View"."Dynamic Wrap not at word boundaries" = false;
-      #   "katerc"."KTextEditor View"."Enable Accessibility" = true;
-      #   "katerc"."KTextEditor View"."Enable Tab completion" = false;
-      #   "katerc"."KTextEditor View"."Enter To Insert Completion" = true;
-      #   "katerc"."KTextEditor View"."Fold First Line" = false;
-      #   "katerc"."KTextEditor View"."Folding Bar" = true;
-      #   "katerc"."KTextEditor View"."Folding Preview" = true;
-      #   "katerc"."KTextEditor View"."Icon Bar" = false;
-      #   "katerc"."KTextEditor View"."Input Mode" = 0;
-      #   "katerc"."KTextEditor View"."Keyword Completion" = true;
-      #   "katerc"."KTextEditor View"."Line Modification" = true;
-      #   "katerc"."KTextEditor View"."Line Numbers" = true;
-      #   "katerc"."KTextEditor View"."Max Clipboard History Entries" = 20;
-      #   "katerc"."KTextEditor View"."Maximum Search History Size" = 100;
-      #   "katerc"."KTextEditor View"."Mouse Paste At Cursor Position" = false;
-      #   "katerc"."KTextEditor View"."Multiple Cursor Modifier" = 134217728;
-      #   "katerc"."KTextEditor View"."Persistent Selection" = false;
-      #   "katerc"."KTextEditor View"."Scroll Bar Marks" = false;
-      #   "katerc"."KTextEditor View"."Scroll Bar Mini Map All" = true;
-      #   "katerc"."KTextEditor View"."Scroll Bar Mini Map Width" = 60;
-      #   "katerc"."KTextEditor View"."Scroll Bar MiniMap" = true;
-      #   "katerc"."KTextEditor View"."Scroll Bar Preview" = true;
-      #   "katerc"."KTextEditor View"."Scroll Past End" = false;
-      #   "katerc"."KTextEditor View"."Search/Replace Flags" = 140;
-      #   "katerc"."KTextEditor View"."Shoe Line Ending Type in Statusbar" = false;
-      #   "katerc"."KTextEditor View"."Show Documentation With Completion" = true;
-      #   "katerc"."KTextEditor View"."Show File Encoding" = true;
-      #   "katerc"."KTextEditor View"."Show Folding Icons On Hover Only" = true;
-      #   "katerc"."KTextEditor View"."Show Line Count" = true;
-      #   "katerc"."KTextEditor View"."Show Scrollbars" = 0;
-      #   "katerc"."KTextEditor View"."Show Statusbar Dictionary" = true;
-      #   "katerc"."KTextEditor View"."Show Statusbar Highlighting Mode" = true;
-      #   "katerc"."KTextEditor View"."Show Statusbar Input Mode" = true;
-      #   "katerc"."KTextEditor View"."Show Statusbar Line Column" = true;
-      #   "katerc"."KTextEditor View"."Show Statusbar Tab Settings" = true;
-      #   "katerc"."KTextEditor View"."Show Word Count" = false;
-      #   "katerc"."KTextEditor View"."Smart Copy Cut" = true;
-      #   "katerc"."KTextEditor View"."Statusbar Line Column Compact Mode" = true;
-      #   "katerc"."KTextEditor View"."Text Drag And Drop" = true;
-      #   "katerc"."KTextEditor View"."User Sets Of Chars To Enclose Selection" =
-      #     "";
-      #   "katerc"."KTextEditor View"."Vi Input Mode Steal Keys" = false;
-      #   "katerc"."KTextEditor View"."Vi Relative Line Numbers" = false;
-      #   "katerc"."KTextEditor View"."Word Completion" = true;
-      #   "katerc"."KTextEditor View"."Word Completion Minimal Word Length" = 3;
-      #   "katerc"."KTextEditor View"."Word Completion Remove Tail" = true;
-      #   "katerc"."KateSQLPlugin"."SaveConnections" = true;
-      #   "katerc"."KateSQLPlugin/OutputCustomization/blob"."backgroundColor" =
-      #     "30,30,46";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/blob"."font" =
-      #     "Ubuntu Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/blob"."foregroundColor" =
-      #     "205,214,244";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/bool"."backgroundColor" =
-      #     "30,30,46";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/bool"."font" =
-      #     "Ubuntu Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/bool"."foregroundColor" =
-      #     "205,214,244";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/datetime"."backgroundColor" =
-      #     "30,30,46";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/datetime"."font" =
-      #     "Ubuntu Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/datetime"."foregroundColor" =
-      #     "205,214,244";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/null"."backgroundColor" =
-      #     "30,30,46";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/null"."font" =
-      #     "Ubuntu Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/null"."foregroundColor" =
-      #     "205,214,244";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/number"."backgroundColor" =
-      #     "30,30,46";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/number"."font" =
-      #     "Ubuntu Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/number"."foregroundColor" =
-      #     "205,214,244";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/text"."backgroundColor" =
-      #     "30,30,46";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/text"."font" =
-      #     "Ubuntu Sans,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
-      #   "katerc"."KateSQLPlugin/OutputCustomization/text"."foregroundColor" =
-      #     "205,214,244";
-      #   "katerc"."Konsole"."AutoSyncronizeMode" = 0;
-      #   "katerc"."Konsole"."KonsoleEscKeyBehaviour" = false;
-      #   "katerc"."Konsole"."KonsoleEscKeyExceptions" = "vi,vim,nvim,git";
-      #   "katerc"."Konsole"."RemoveExtension" = false;
-      #   "katerc"."Konsole"."RunPrefix" = "";
-      #   "katerc"."Konsole"."SetEditor" = true;
-      #   "katerc"."filetree"."editShade" = "183,220,246";
-      #   "katerc"."filetree"."listMode" = false;
-      #   "katerc"."filetree"."middleClickToClose" = false;
-      #   "katerc"."filetree"."shadingEnabled" = true;
-      #   "katerc"."filetree"."showCloseButton" = false;
-      #   "katerc"."filetree"."showFullPathOnRoots" = false;
-      #   "katerc"."filetree"."showToolbar" = true;
-      #   "katerc"."filetree"."sortRole" = 0;
-      #   "katerc"."filetree"."viewShade" = "211,190,222";
-      #   "katerc"."lspclient"."AllowedServerCommandLines" =
-      #     "/home/drakolis/.nix-profile/bin/lua-language-server,/home/drakolis/.nix-profile/bin/typescript-language-server --stdio,/run/current-system/sw/bin/nil";
-      #   "katerc"."lspclient"."AutoHover" = true;
-      #   "katerc"."lspclient"."AutoImport" = true;
-      #   "katerc"."lspclient"."BlockedServerCommandLines" =
-      #     "/home/drakolis/.nix-profile/bin/yaml-language-server --stdio";
-      #   "katerc"."lspclient"."CompletionDocumentation" = true;
-      #   "katerc"."lspclient"."CompletionParens" = true;
-      #   "katerc"."lspclient"."Diagnostics" = true;
-      #   "katerc"."lspclient"."FormatOnSave" = true;
-      #   "katerc"."lspclient"."HighlightGoto" = true;
-      #   "katerc"."lspclient"."IncrementalSync" = false;
-      #   "katerc"."lspclient"."InlayHints" = false;
-      #   "katerc"."lspclient"."Messages" = true;
-      #   "katerc"."lspclient"."ReferencesDeclaration" = true;
-      #   "katerc"."lspclient"."SemanticHighlighting" = true;
-      #   "katerc"."lspclient"."ServerConfiguration" = "";
-      #   "katerc"."lspclient"."SignatureHelp" = true;
-      #   "katerc"."lspclient"."SymbolDetails" = false;
-      #   "katerc"."lspclient"."SymbolExpand" = true;
-      #   "katerc"."lspclient"."SymbolSort" = false;
-      #   "katerc"."lspclient"."SymbolTree" = true;
-      #   "katerc"."lspclient"."TypeFormatting" = false;
-      #   "katerc"."project"."autoCMake" = true;
-      #   "katerc"."project"."autorepository" = "git";
-      #   "katerc"."project"."gitStatusDoubleClick" = 3;
-      #   "katerc"."project"."gitStatusSingleClick" = 1;
-      #   "katerc"."project"."index" = false;
-      #   "katerc"."project"."indexDirectory" = "";
-      #   "katerc"."project"."multiProjectCompletion" = false;
-      #   "katerc"."project"."multiProjectGoto" = false;
-      #   "katerc"."project"."restoreProjectsForSessions" = true;
       #   "kded5rc"."Module-browserintegrationreminder"."autoload" = false;
       #   "kded5rc"."Module-device_automounter"."autoload" = false;
       #   "kdeglobals"."DirSelect Dialog"."DirSelectDialog Size" = "862,591";
@@ -982,12 +1014,6 @@ with lib;
       #     "Maximize (vertical only)";
       #   "kwinrc"."Xwayland"."Scale" = 1;
       #   "kwinrc"."org.kde.kdecoration2"."theme" = "Breeze";
-      #   "kxkbrc"."Layout"."LayoutList" = "nz";
-      #   "kxkbrc"."Layout"."Options" =
-      #     "fkeys:basic_13-24,compose:rwin,lv3:ralt_switch,grp:ctrl_space_toggle";
-      #   "kxkbrc"."Layout"."ResetOldOptions" = true;
-      #   "kxkbrc"."Layout"."Use" = true;
-      #   "plasma-localerc"."Formats"."LANG" = "en_IE.UTF-8";
       # };
       # dataFile = {
       #   "kate/anonymous.katesession"."Document 0"."URL" =
