@@ -29,7 +29,7 @@
   };
 
   # Has no other image editing tools
-  home.packages = pkgs.kdePackages.kolourpaint;
+  home.packages = [ pkgs.kdePackages.kolourpaint ];
 
   nixpkgs.config.permittedInsecurePackages = [
     "beekeeper-studio-5.2.9"
