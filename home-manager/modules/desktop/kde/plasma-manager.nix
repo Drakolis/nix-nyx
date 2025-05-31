@@ -114,26 +114,90 @@ with lib;
 
       desktop.widgets = [ ];
 
-      fonts.fixedWidth = {
-        family = "Hack Nerd Font";
-        pointSize = 11;
+      panels = [
+        {
+          alignment = "center";
+          floating = true;
+          height = 44;
+          hiding = null;
+          lengthMode = "fill";
+          location = "bottom";
+          opacity = "opaque";
+          screen = "all";
+          widgets = [
+            {
+              name = "org.kde.plasma.pager";
+              config = {
+                General = {
+
+                };
+              };
+            }
+
+            "org.kde.plasma.panelspacer"
+
+            {
+              name = "org.kde.plasma.kickoff";
+              config = { };
+            }
+
+            {
+              name = "org.kde.plasma.icontasks";
+              config = { };
+            }
+
+            "org.kde.plasma.panelspacer"
+
+            "org.kde.plasma.marginsseparator"
+
+            {
+              name = "org.kde.plasma.systemtray";
+              config = { };
+            }
+
+            {
+              name = "org.kde.plasma.digitalclock";
+              config = {
+                Appearance = {
+                  showSeconds = "always";
+                };
+              };
+            }
+
+            "org.kde.plasma.showdesktop"
+          ];
+
+          extraSettings = "";
+        }
+      ];
+
+      fonts = {
+        fixedWidth = {
+          family = "Hack Nerd Font";
+          pointSize = 11;
+        };
+        general = {
+          family = "Ubuntu Sans";
+          pointSize = 11;
+        };
+        menu = {
+          family = "Ubuntu Sans";
+          pointSize = 11;
+        };
+        small = {
+          family = "Ubuntu Sans";
+          pointSize = 9;
+        };
+        toolbar = {
+          family = "Ubuntu Sans";
+          pointSize = 11;
+        };
+        windowTitle = {
+          family = "Ubuntu Sans";
+          pointSize = 11;
+          weight = "medium";
+        };
       };
-      # fonts.general = {
-      #   family = "Hack Nerd Font";
-      #   pointSize = 11;
-      # };
-      # fonts.menu = {
-      #   family = "Hack Nerd Font";
-      #   pointSize = 11;
-      # };
-      # fonts.small = {
-      #   family = "Hack Nerd Font";
-      #   pointSize = 9;
-      # };
-      # fonts.toolbar = {
-      #   family = "Hack Nerd Font";
-      #   pointSize = 11;
-      # };
 
       input.keyboard = {
         layouts = [
