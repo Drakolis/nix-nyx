@@ -199,7 +199,6 @@ with lib;
         "privacy.trackingprotection.enabled" = true;
         "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
         "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
-        "privacy.resistFingerprinting.letterboxing" = true;
         "dom.security.https_only_mode" = true;
         "webgl.disabled" = true;
         "browser.search.defaultenginename" = "Ecosia";

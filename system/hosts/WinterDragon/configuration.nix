@@ -1,17 +1,21 @@
 { config, pkgs, ... }:
 {
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   networking.hostName = "WinterDragon";
 
-  security.polkit.enable = true;
+  # Bootloader.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+    systemd-boot.configurationLimit = 2;
+  };
+
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-
-  boot.loader.systemd-boot.configurationLimit = 2;
 
   system.autoUpgrade = {
     enable = true;
@@ -29,8 +33,6 @@
     flake = "gitlab:Drakolis/nix-nyx";
   };
 
-  services.fwupd.enable = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -41,39 +43,38 @@
     home-manager
   ];
 
-  # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    defaultShared = false;
-    extraConf = ''
-      <Location />
-        Order deny,allow
-        Deny from all
-        Allow from 127.0.0.1
-      </Location>
-    '';
+  services = {
+    # Enable CUPS to print documents.
+    printing = {
+      enable = true;
+      browsing = false;
+      listenAddresses = [ "localhost:631" ]; # Only listen on localhost
+      allowFrom = [ "localhost" ];
+      defaultShared = false;
+    };
+
+    # Enable firmware updating
+    fwupd.enable = true;
+
+    fcron.enable = true;
+
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      # jack.enable = true;
+
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      # media-session.enable = true;
+    };
   };
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    # jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    # media-session.enable = true;
-  };
-
-  programs.wireshark.enable = true;
-
-  services.fcron.enable = true;
-
+  # Firewall
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ ]; # Explicitly allow only needed ports
@@ -81,19 +82,12 @@
     logRefusedConnections = false; # Reduce log noise (set to true if debugging)
   };
 
+  # SSH Access
   services.openssh = {
-    enable = true;
-    ports = [ 22 ];
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-      AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
-      UseDns = true;
-      X11Forwarding = false;
-      PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
-    };
+    enable = false; # Should not be accessible on SSH
   };
 
+  # Mobile SSH
   programs.mosh.enable = true;
 
   drakolis = {
