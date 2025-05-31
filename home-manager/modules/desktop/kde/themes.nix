@@ -49,27 +49,27 @@ in
   ];
 
   # Systemd user service
-  systemd.user.services.theme-switcher = {
-    Unit = {
-      Description = "Switch KDE theme based on time of day";
-    };
-    Service = {
-      Type = "oneshot";
-      ExecStart = "${theme-switcher}/bin/theme-switcher";
-    };
-  };
+  # systemd.user.services.theme-switcher = {
+  #   Unit = {
+  #     Description = "Switch KDE theme based on time of day";
+  #   };
+  #   Service = {
+  #     Type = "oneshot";
+  #     ExecStart = "${theme-switcher}/bin/theme-switcher";
+  #   };
+  # };
 
-  systemd.user.timers.theme-switcher = {
-    Unit = {
-      Description = "Hourly check for KDE theme";
-    };
-    Timer = {
-      OnBootSec = "5m"; # Run 5 minutes after login
-      OnCalendar = "hourly";
-      Persistent = true;
-    };
-    Install = {
-      WantedBy = [ "timers.target" ];
-    };
-  };
+  # systemd.user.timers.theme-switcher = {
+  #   Unit = {
+  #     Description = "Hourly check for KDE theme";
+  #   };
+  #   Timer = {
+  #     OnBootSec = "5m"; # Run 5 minutes after login
+  #     OnCalendar = "hourly";
+  #     Persistent = true;
+  #   };
+  #   Install = {
+  #     WantedBy = [ "timers.target" ];
+  #   };
+  # };
 }
