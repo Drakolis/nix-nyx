@@ -3,9 +3,10 @@
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
-      "windsurf"
       "mongodb-compass"
-      "terraform"
       "numi"
+      "obsidian"
+      "terraform"
+      "windsurf"
     ];
 }

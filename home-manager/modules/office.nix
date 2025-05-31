@@ -3,6 +3,7 @@ let
   desiredOfficePackages =
     [
       pkgs.appflowy
+      pkgs.obsidian
       (pkgs.writeShellScriptBin "wttr" ''
         curl wttr.in/$1
       '')
