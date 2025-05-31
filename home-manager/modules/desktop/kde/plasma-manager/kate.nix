@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.kate = {
     enable = true;

@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   programs.konsole = {
     enable = true;
@@ -13,5 +12,10 @@
       };
     };
     ui.colorScheme = "Catppuccin Mocha Mauve"; # To keep it always dark
+
+    extraConfig = {
+      MainWindow.MenuBar = true;
+      TabBar.ExpandTabWidth = true;
+    };
   };
 }
