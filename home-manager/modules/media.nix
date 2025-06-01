@@ -8,12 +8,13 @@ let
   cfg = config.drakolis.media;
 
   mediaPackages = with pkgs; [
-    krita
+    ente-desktop
     inkscape-with-extensions
     kid3
   ];
 
   photoMediaPackages = with pkgs; [
+    krita
     digikam
     rawtherapee
   ];
