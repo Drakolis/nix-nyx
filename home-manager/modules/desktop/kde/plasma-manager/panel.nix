@@ -39,7 +39,6 @@
                 "applications:systemsettings.desktop"
                 "applications:org.kde.konsole.desktop"
                 "applications:codium.desktop"
-                "applications:appflowy.desktop"
                 "applications:obsidian.desktop"
               ];
               appearance = {
@@ -82,6 +81,7 @@
                   "org.kde.plasma.volume"
                   "org.kde.plasma.weather"
                   "org.kde.plasma.addons.katesessions"
+                  "martchus.syncthingplasmoid"
                 ];
                 configs = {
                   "org.kde.plasma.weather" = {
