@@ -89,7 +89,7 @@ with lib;
           };
           "chat.commandCenter.enabled" = false;
           "diffEditor.ignoreTrimWhitespace" = false;
-          "editor.fontFamily" = "'Hack Nerd Font', 'monospace', monospace";
+          "editor.fontFamily" = "'JetBrains Mono Nerd Font', 'monospace', monospace";
           "editor.formatOnSave" = true;
           "editor.minimap.autohide" = true;
           "editor.tabCompletion" = "on";

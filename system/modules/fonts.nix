@@ -19,6 +19,9 @@
 
       hack-font
       nerd-fonts.hack
+
+      jetbrains-mono
+      nerd-fonts.jetbrains-mono
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       noto-fonts-emoji

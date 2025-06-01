@@ -9,7 +9,7 @@
         highlightMatching = true;
       };
       font = {
-        family = "Hack Nerd Font";
+        family = "JetBrains Mono Nerd Font";
         pointSize = 11;
       };
       indent = {
@@ -207,32 +207,32 @@
     "KateSQLPlugin"."SaveConnections" = true;
     "KateSQLPlugin/OutputCustomization/blob" = {
       "backgroundColor" = "30,30,46";
-      "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      "font" = "JetBrains Mono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
       "foregroundColor" = "205,214,244";
     };
     "KateSQLPlugin/OutputCustomization/bool" = {
       "backgroundColor" = "30,30,46";
-      "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      "font" = "JetBrains Mono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
       "foregroundColor" = "205,214,244";
     };
     "KateSQLPlugin/OutputCustomization/datetime" = {
       "backgroundColor" = "30,30,46";
-      "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      "font" = "JetBrains Mono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
       "foregroundColor" = "205,214,244";
     };
     "KateSQLPlugin/OutputCustomization/null" = {
       "backgroundColor" = "30,30,46";
-      "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      "font" = "JetBrains Mono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
       "foregroundColor" = "205,214,244";
     };
     "KateSQLPlugin/OutputCustomization/number" = {
       "backgroundColor" = "30,30,46";
-      "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      "font" = "JetBrains Mono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
       "foregroundColor" = "205,214,244";
     };
     "KateSQLPlugin/OutputCustomization/text" = {
       "backgroundColor" = "30,30,46";
-      "font" = "Hack Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
+      "font" = "JetBrains Mono Nerd Font,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1";
       "foregroundColor" = "205,214,244";
     };
     Konsole = {

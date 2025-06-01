@@ -48,16 +48,16 @@ with lib;
         "icon_theme" = "Symbols";
         "tab_size" = 2;
 
-        "indent_guides"= {
+        "indent_guides" = {
           "enabled" = true;
           "coloring" = "indent_aware";
-      };
+        };
 
         "ui_font_size" = 16;
-        "ui_font_family" = "Noto Sans";
+        "ui_font_family" = "Ubuntu Sans";
         "ui_font_weight" = 500;
         "buffer_font_size" = 14;
-        "buffer_font_family" = "Hack Nerd Font";
+        "buffer_font_family" = "JetBrains Mono Nerd Font";
         "theme" = {
           "mode" = "system";
           "light" = "Catppuccin Latte";
