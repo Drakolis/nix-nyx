@@ -52,7 +52,10 @@ with lib;
           "enabled" = true;
           "coloring" = "indent_aware";
         };
-
+        "telemetry" = {
+          "metrics" = false;
+          "diagnostics" = false;
+        };
         "ui_font_size" = 16;
         "ui_font_family" = "Ubuntu Sans";
         "ui_font_weight" = 500;
