@@ -46,6 +46,11 @@
       virtualDesktops.rows = 3;
     };
 
+    configFile.breezerc = {
+      Common.OutlineCloseButton = true;
+      Windeco.ButtonSize = "ButtonSmall";
+    };
+
     configFile.kwinrc = {
       Effect-diminactive.Strength = 15;
 
