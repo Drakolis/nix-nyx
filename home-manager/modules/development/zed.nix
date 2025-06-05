@@ -60,7 +60,7 @@ with lib;
         "ui_font_family" = "Ubuntu Sans";
         "ui_font_weight" = 500;
         "buffer_font_size" = 14;
-        "buffer_font_family" = "JetBrains Mono Nerd Font";
+        "buffer_font_family" = "JetBrainsMono Nerd Font";
         "theme" = {
           "mode" = "system";
           "light" = "Catppuccin Latte";

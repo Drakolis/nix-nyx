@@ -43,7 +43,7 @@ with lib;
 
       fonts = {
         fixedWidth = {
-          family = "Hack Nerd Font";
+          family = "JetBrainsMono Nerd Font";
           pointSize = 11;
         };
         general = {
