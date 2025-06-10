@@ -109,6 +109,7 @@
             mac-app-util.darwinModules.default
             nix-homebrew.darwinModules.nix-homebrew
             {
+              nixpkgs.config.allowBroken = true;
               system.primaryUser = "mika.zimina";
               nix-homebrew = {
                 user = "mika.zimina";
