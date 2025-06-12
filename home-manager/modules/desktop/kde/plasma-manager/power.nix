@@ -19,30 +19,28 @@
       general.pausePlayersOnSuspend = true;
 
       AC = {
-        powerProfile = "performance";
+        powerProfile = "balanced";
 
         autoSuspend = {
           action = "sleep";
-          idleTimeout = 3600; # sec, POWER
+          idleTimeout = 900; # sec, POWER
         };
         dimDisplay = {
           enable = true;
           idleTimeout = 300; # sec, POWER
         };
         turnOffDisplay = {
-          idleTimeout = 900; # sec, POWER
-          idleTimeoutWhenLocked = 300; # sec, POWER
+          idleTimeout = 600; # sec, POWER
+          idleTimeoutWhenLocked = 60; # sec, POWER
         };
         powerButtonAction = "showLogoutScreen";
-
-        displayBrightness = 100;
 
         inhibitLidActionWhenExternalMonitorConnected = true;
         whenLaptopLidClosed = "lockScreen";
       };
 
       battery = {
-        powerProfile = "balanced";
+        powerProfile = "powerSaving";
 
         autoSuspend = {
           action = "sleep";
@@ -54,14 +52,14 @@
         };
         turnOffDisplay = {
           idleTimeout = 300; # sec, POWER
-          idleTimeoutWhenLocked = 120; # sec, POWER
+          idleTimeoutWhenLocked = 60; # sec, POWER
         };
-        powerButtonAction = "sleep";
+        powerButtonAction = "showLogoutScreen";
 
         displayBrightness = 80;
 
         inhibitLidActionWhenExternalMonitorConnected = true;
-        whenLaptopLidClosed = "lockScreen";
+        whenLaptopLidClosed = "sleep";
       };
 
       lowBattery = {
@@ -73,24 +71,24 @@
         };
         dimDisplay = {
           enable = true;
-          idleTimeout = 30; # sec, POWER
+          idleTimeout = 60; # sec, POWER
         };
         turnOffDisplay = {
           idleTimeout = 120; # sec, POWER
           idleTimeoutWhenLocked = 60; # sec, POWER
         };
-        powerButtonAction = "sleep";
+        powerButtonAction = "showLogoutScreen";
 
-        displayBrightness = 60;
+        displayBrightness = 45;
 
         inhibitLidActionWhenExternalMonitorConnected = false;
         whenLaptopLidClosed = "sleep";
       };
 
-      batteryLevels.lowLevel = 30;
+      batteryLevels.lowLevel = 25;
 
       batteryLevels.criticalLevel = 5;
-      batteryLevels.criticalAction = "hibernate";
+      batteryLevels.criticalAction = "sleep";
     };
   };
 }
