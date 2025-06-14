@@ -24,7 +24,6 @@ with lib;
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       tabby-agent
-      ollama
       kdePackages.alpaka
     ];
 
@@ -36,19 +35,14 @@ with lib;
       model = "TabbyML/Qwen2.5-Coder-0.5B";
     };
 
-    # Define the Ollama server service
-    systemd.services.ollama-server = {
-      description = "Ollama AI Server";
-      serviceConfig = {
-        ExecStart = "ollama serve";
-        Restart = "always";
-      };
-      wantedBy = [ "multi-user.target" ];
-
-      preStart = ''
-        ollama pull llama2
-      '';
+    services.ollama = {
+      acceleration = false;
+      enable = true;
+      loadModels = [
+        "mistral"
+      ];
+      openFirewall = true;
+      rocmOverrideGfx = "10.3.0";
     };
   };
-
 }
