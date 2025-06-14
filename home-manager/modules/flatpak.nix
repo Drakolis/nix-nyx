@@ -10,6 +10,7 @@ let
 
   flatpaks = [
     "org.kde.kamoso"
+    "app.organicmaps.desktop"
   ];
 
   communicationFlatpaks = [
