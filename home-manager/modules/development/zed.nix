@@ -1,10 +1,15 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }:
 let
   cfg = config.drakolis.development;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
+
+  bufferFontSize = if isDarwin then 13 else 14;
+  uiFontSize = if isDarwin then 14 else 16;
 in
 with lib;
 {
@@ -37,13 +42,13 @@ with lib;
         "outline_panel" = {
           "dock" = "right";
         };
-        "assistant" = {
+        "agent" = {
           "dock" = "left";
           "version" = "2";
-          # "default_model" = {
-          #   "provider" = "ollama";
-          #   "model" = "gemma3:latest";
-          # };
+          "default_model" = {
+            "provider" = "zed.dev";
+            "model" = "claude-sonnet-4-latest";
+          };
         };
         "icon_theme" = "Symbols";
         "tab_size" = 2;
@@ -56,10 +61,10 @@ with lib;
           "metrics" = false;
           "diagnostics" = false;
         };
-        "ui_font_size" = 16;
+        "ui_font_size" = uiFontSize;
         "ui_font_family" = "Ubuntu Sans";
         "ui_font_weight" = 500;
-        "buffer_font_size" = 14;
+        "buffer_font_size" = bufferFontSize;
         "buffer_font_family" = "JetBrainsMono Nerd Font";
         "theme" = {
           "mode" = "system";
