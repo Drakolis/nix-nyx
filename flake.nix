@@ -15,6 +15,9 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    bzmenu.url = "github:e-tho/bzmenu";
+    iwmenu.url = "github:e-tho/iwmenu";
+
     nix-yazi-plugins = {
       url = "github:lordkekz/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +64,7 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
       home-manager,
@@ -156,6 +159,7 @@
             system = "x86_64-linux";
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
@@ -170,6 +174,7 @@
             system = "x86_64-linux";
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
