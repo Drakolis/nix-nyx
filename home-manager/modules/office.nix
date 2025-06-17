@@ -2,7 +2,6 @@
 let
   desiredOfficePackages =
     [
-      pkgs.appflowy
       pkgs.obsidian
       (pkgs.writeShellScriptBin "wttr" ''
         curl wttr.in/$1
@@ -15,7 +14,6 @@ let
       pkgs.numi
     ];
 in
-with lib;
 {
   home.packages = desiredOfficePackages;
 }
