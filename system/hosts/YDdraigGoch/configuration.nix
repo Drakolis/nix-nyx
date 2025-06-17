@@ -56,6 +56,21 @@
     # Downloading
     kdePackages.kget
     kdePackages.ktorrent
+
+    # Hyprland
+    hyprland
+    hyprcursor
+    hypridle
+    hyprlock
+    hyprpaper
+    hyprpicker
+    hyprshade
+    hyprshot
+    hyprsunset
+    brightnessctl
+    libnotify
+    playerctl
+    hyprpolkitagent
   ];
 
   services = {

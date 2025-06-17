@@ -1,8 +1,9 @@
 let
-  style = import ../../../constants/style.nix;
+  style = import ../../../../constants/style.nix;
 in
 {
   imports = [
+    ./eww.nix
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix

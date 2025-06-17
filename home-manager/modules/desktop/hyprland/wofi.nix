@@ -1,5 +1,5 @@
 let
-  style = import ../../../constants/style.nix;
+  style = import ../../../../constants/style.nix;
 in
 {
   programs.wofi = {

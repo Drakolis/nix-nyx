@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  style = import ../../constants/style.nix;
+  style = import ../../../constants/style.nix;
 in
 {
   home.packages = with pkgs; [
