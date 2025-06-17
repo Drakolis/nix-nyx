@@ -11,7 +11,7 @@
   ];
 
   # TEMP ALL
-  services.sketchybar.enable = true;
+  services.yabai.enable = true;
 
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;
