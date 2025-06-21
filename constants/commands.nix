@@ -23,18 +23,20 @@
   notifyHyprpicker = ''notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
   dialogues = {
-    runner = "wofi -I";
-    runnerShift = "wofi --show run";
+    runner = "walker";
+    runnerShift = "walker -m runer";
     runnerClipboard = "walker -m clipboard";
     shutdown = "wlogout -s";
   };
 
   autostart = [
+    "kwalletd6"
     "element-desktop --hidden"
-    "keepassxc"
-    "proton-pass"
+    # "keepassxc"
+    # "proton-pass"
     "protonvpn-app"
     # "colima start &"
-    "systemctl --user start hyprpolkitagent.service"
+    # "systemctl --user start hyprpolkitagent.service"
+    "eww open --screen 0 toolbar"
   ];
 }

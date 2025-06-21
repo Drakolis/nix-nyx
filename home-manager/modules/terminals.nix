@@ -76,7 +76,7 @@ in
     enable = true;
     font = {
       name = style.fontMonospace;
-      size = style.fontSize;
+      size = style.fontMonospaceSize;
     };
     shellIntegration = {
       enableBashIntegration = true;

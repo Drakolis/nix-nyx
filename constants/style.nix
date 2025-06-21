@@ -2,12 +2,14 @@ let
   catppuccinMocha = import ./catppuccinMocha.nix;
 in
 {
-  background = "$HOME/.background";
+  background = "~/nix-nyx/files/images/arch-wallpaper.png";
   avatar = "$HOME/.face";
 
-  fontGui = "Ubuntu Nerd Font";
-  fontMonospace = "UbuntuMono Nerd Font";
+  fontGui = "Ubuntu Sans";
+  fontGuiNerd = "Ubuntu Nerd Font";
+  fontMonospace = "JetBrainsMono Nerd Font";
   fontSize = 12;
+  fontMonospaceSize = 12;
   fontSizeLarger = 14;
   fontSizeLargest = 16;
 

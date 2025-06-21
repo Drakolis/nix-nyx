@@ -32,12 +32,12 @@ in
         "GSK_RENDERER, cairo"
       ];
       monitor = [
-        "eDP-1,1920x1080,0x0,1"
-        "DP-1,2560x1440,1920x0,1"
+        "DP-1,2560x1440@144,1920x0,1"
       ];
       layerrule = [
         "blur, rofi"
         "blur, wofi"
+        "blur, walker"
       ];
       xwayland = {
         force_zero_scaling = true;
@@ -147,8 +147,14 @@ in
         "col.border_locked_inactive" = "rgb(${style.colors.panel})";
         groupbar = {
           font_family = style.fontGui;
-          font_size = style.fontSize;
+          font_size = style.fontSizeLarger;
           height = 20;
+          text_offset = -2;
+          gradient_rounding = 5;
+          indicator_height = 0;
+          font_weight_active = "bold";
+          font_weight_inactive = "bold";
+          gradients = true;
           text_color = "rgb(${style.colors.textInverted})";
           "col.active" = "rgb(${style.colors.primary})";
           "col.inactive" = "rgba(${style.colors.primary}a0)";
