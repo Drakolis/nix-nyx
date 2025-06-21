@@ -14,5 +14,6 @@
     ./tui.nix
     ./unfree.nix
     ./yazi
+    ./walker.nix
   ];
 }
