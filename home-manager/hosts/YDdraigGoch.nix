@@ -3,7 +3,6 @@
   imports = [
     ../modules
     ../modules/desktop/kde
-    ../modules/desktop/hyprland
   ];
 
   drakolis = {
@@ -29,7 +28,7 @@
         lua = true;
         rust = false;
         java = true;
-        terraform = true;
+        terraform = false;
         extraLanguageServers = true;
       };
     };

@@ -58,19 +58,21 @@
     kdePackages.ktorrent
 
     # Hyprland
-    hyprland
-    hyprcursor
-    hypridle
-    hyprlock
-    hyprpaper
-    hyprpicker
-    hyprshade
-    hyprshot
-    hyprsunset
-    brightnessctl
-    libnotify
-    playerctl
-    hyprpolkitagent
+    # hyprland
+    # hyprcursor
+    # hypridle
+    # hyprlock
+    # hyprpaper
+    # hyprpicker
+    # hyprshade
+    # hyprshot
+    # hyprsunset
+    # brightnessctl
+    # libnotify
+    # playerctl
+    # hyprpolkitagent
+    # kitty
+    # networkmanager_dmenu
   ];
 
   services = {
