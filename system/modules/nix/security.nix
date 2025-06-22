@@ -62,6 +62,7 @@
   '';
 
   services = {
+    opensnitch.enable = true;
     # [LOGG-2146, LOGG-2154] Configure logging
     journald.extraConfig = ''
       Storage=persistent
@@ -76,6 +77,7 @@
     nmap
     lynis # Security audit
     vulnix
+    opensnitch-ui
   ];
 
   hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket"; # Restrict profiles
