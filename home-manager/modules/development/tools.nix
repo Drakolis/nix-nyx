@@ -9,6 +9,7 @@ let
 
   developmentPackages = with pkgs; [
     tokei # Language usage analyser
+    zeal # Offline docs
   ];
 
   windsurfPackages = with pkgs; [
@@ -31,7 +32,7 @@ let
   ];
 
   awsPackages = with pkgs; [
-    awscli
+    awscli2
   ];
 
   googleCloudPackages = with pkgs; [
