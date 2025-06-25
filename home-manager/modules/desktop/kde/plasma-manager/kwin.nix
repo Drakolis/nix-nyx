@@ -17,7 +17,7 @@
         desktopSwitching.animation = "slide"; # "off"
         minimization.animation = "squash"; # "off"
         windowOpenClose.animation = "glide"; # "off"
-        wobblyWindows.enable = true; # false
+        wobblyWindows.enable = false; # false
       };
 
       nightLight = {
