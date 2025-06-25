@@ -38,8 +38,6 @@ with lib;
       # Office
       kdePackages.akregator
       kdePackages.kdepim-addons
-      kdePackages.kweather
-      kdePackages.zanshin
       libreoffice
 
       # Tech tools
@@ -58,7 +56,6 @@ with lib;
       kdePackages.kcalc
       kdePackages.kcharselect
       kdePackages.kcolorchooser
-      kdePackages.ksystemlog
       kdePackages.sweeper
       crow-translate
 
@@ -72,10 +69,11 @@ with lib;
     ];
 
     programs.partition-manager.enable = true;
-    programs.kclock.enable = true;
+    programs.kclock.enable = false;
     programs.kde-pim.enable = true;
     programs.kde-pim.kmail = true;
-    programs.kde-pim.kontact = true;
+    programs.kde-pim.kontact = false;
+    programs.kde-pim.merkuro = true;
     programs.kdeconnect.enable = true;
   };
 }
