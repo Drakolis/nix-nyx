@@ -104,7 +104,7 @@ with lib;
 
       session = {
         sessionRestore = {
-          restoreOpenApplicationsOnLogin = "onLastLogout"; # "whenSessionWasManuallySaved"
+          restoreOpenApplicationsOnLogin = "startWithEmptySession";
           excludeApplications = [ ];
         };
         general.askForConfirmationOnLogout = true;
