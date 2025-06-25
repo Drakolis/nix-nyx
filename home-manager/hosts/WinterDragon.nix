@@ -6,6 +6,9 @@
   ];
 
   drakolis = {
+    deviceSettings = {
+      formFactor = "laptop";
+    };
     flatpak = {
       enable = true;
       enableCommunication = true;

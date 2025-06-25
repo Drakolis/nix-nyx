@@ -17,7 +17,7 @@ with lib;
   services.syncthing = {
     enable = true;
     tray = {
-      package = if (lib.optionals stdenv.hostPlatform.isLinux) then syncthingtray-qt6 else syncthingtray;
+      package = if (stdenv.hostPlatform.isLinux) then syncthingtray-qt6 else syncthingtray;
     };
     settings = {
       devices = {

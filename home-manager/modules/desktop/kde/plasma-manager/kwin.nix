@@ -1,3 +1,7 @@
+{ config, ... }:
+let
+  cfg = config.drakolis.development;
+in
 {
   programs.plasma = {
     kwin = {
@@ -11,13 +15,12 @@
         dimInactive.enable = false;
         shakeCursor.enable = true;
 
-        # POWER
-        fps.enable = false; # true
-        blur.enable = true; # false
-        desktopSwitching.animation = "slide"; # "off"
-        minimization.animation = "squash"; # "off"
-        windowOpenClose.animation = "glide"; # "off"
-        wobblyWindows.enable = false; # false
+        fps.enable = cfg.formFactor != "desktop";
+        blur.enable = cfg.formFactor == "desktop";
+        desktopSwitching.animation = if (cfg.formFactor == "desktop") then "slide" else "off";
+        minimization.animation = if (cfg.formFactor == "desktop") then "squash" else "off";
+        windowOpenClose.animation = if (cfg.formFactor == "desktop") then "glide" else "off";
+        wobblyWindows.enable = false;
       };
 
       nightLight = {
@@ -68,8 +71,7 @@
       Plugins = {
         translucencyEnabled = true;
 
-        # POWER
-        sheetEnabled = true; # false
+        sheetEnabled = true;
       };
 
       Wayland.VirtualKeyboardEnabled = true;
