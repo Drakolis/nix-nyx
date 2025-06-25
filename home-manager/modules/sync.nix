@@ -1,4 +1,5 @@
 { pkgs, lib, ... }:
+with lib;
 {
   home.packages =
     with pkgs;
@@ -15,11 +16,10 @@
 
   services.syncthing = {
     enable = true;
-    tray = false;
+    tray = {
+      package = if (lib.optionals stdenv.hostPlatform.isLinux) then syncthingtray-qt6 else syncthingtray;
+    };
     settings = {
-      gui = {
-        user = "drakolis";
-      };
       devices = {
         "YDdraigGoch" = {
           id = "NHJSCOU-DUNYOC3-ZSMG4ZF-IKWJZOF-Y2DKF2V-2MOWFU4-EXZJRG7-PP235AO";
