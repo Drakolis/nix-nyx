@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  cfg = config.drakolis.development;
+  cfg = config.drakolis.deviceSettings;
 in
 {
   programs.plasma = {

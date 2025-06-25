@@ -27,23 +27,21 @@ with lib;
       };
     };
   };
-  config = {
-    imports = [
-      ./browser.nix
-      ./development
-      ./flatpak.nix
-      ./internet.nix
-      ./media.nix
-      ./neovim
-      ./office.nix
-      ./security
-      ./shell.nix
-      ./showoff.nix
-      ./sync.nix
-      ./tui.nix
-      ./unfree.nix
-      ./yazi
-      ./walker.nix
-    ];
-  };
+  imports = [
+    ./browser.nix
+    ./development
+    ./flatpak.nix
+    ./internet.nix
+    ./media.nix
+    ./neovim
+    ./office.nix
+    ./security
+    ./shell.nix
+    ./showoff.nix
+    ./sync.nix
+    ./tui.nix
+    ./unfree.nix
+    ./yazi
+    ./walker.nix
+  ];
 }
