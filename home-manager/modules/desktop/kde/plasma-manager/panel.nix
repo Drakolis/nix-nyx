@@ -35,10 +35,11 @@
                 "preferred://filemanager"
                 "applications:org.kde.falkon.desktop"
                 "preferred://browser"
-                "applications:org.kde.kontact.desktop"
+                "applications:org.kde.kmail2.desktop"
                 "applications:systemsettings.desktop"
                 "applications:org.kde.konsole.desktop"
                 "applications:codium.desktop"
+                "applications:dev.zed.Zed.desktop"
                 "applications:obsidian.desktop"
               ];
               appearance = {
