@@ -9,6 +9,7 @@ in
     ./hyprlock.nix
     ./swaync.nix
     # ./themesHypr.nix
+    ./terminals.nix
     ./waybar.nix
     ./wlogout.nix
     ./wofi.nix

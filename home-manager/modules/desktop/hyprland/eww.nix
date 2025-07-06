@@ -1,1 +1,8 @@
-{ pkgs, ... }: { home.packages = with pkgs; [ eww hyprland-activewindow hyprland-workspaces ]; }
+{ pkgs, ... }:
+{
+  home.packages = with pkgs; [
+    eww
+    hyprland-activewindow
+    hyprland-workspaces
+  ];
+}
