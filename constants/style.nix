@@ -9,7 +9,7 @@ in
   fontGuiNerd = "Ubuntu Nerd Font";
   fontMonospace = "JetBrainsMono Nerd Font";
   fontSize = 12;
-  fontMonospaceSize = 12;
+  fontMonospaceSize = 11;
   fontSizeLarger = 14;
   fontSizeLargest = 16;
 
