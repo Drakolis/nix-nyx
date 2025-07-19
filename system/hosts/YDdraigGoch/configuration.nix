@@ -42,6 +42,12 @@
     flake = "gitlab:Drakolis/nix-nyx";
   };
 
+  boot.supportedFilesystems = [
+    "exfat"
+    "apfs"
+    "ntfs"
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
