@@ -8,7 +8,7 @@ in
     ./hyprland.nix
     ./hyprlock.nix
     ./swaync.nix
-    # ./themesHypr.nix
+    ./themes.nix
     ./terminals.nix
     ./waybar.nix
     ./wlogout.nix

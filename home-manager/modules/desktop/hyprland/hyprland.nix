@@ -45,8 +45,8 @@ in
       "$mainMod" = "SUPER";
       exec-once = [
         "brightnessctl -sd tpacpi::kbd_backlight set 2"
-        "wl-paste --type text --watch cliphist store"
-        "wl-paste --type image --watch cliphist store"
+        # "wl-paste --type text --watch cliphist store"
+        # "wl-paste --type image --watch cliphist store"
       ] ++ commands.autostart;
       general = {
         border_size = style.border.outer.width;
