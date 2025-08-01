@@ -13,7 +13,7 @@ with lib;
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
-      mutableExtensionsDir = false;
+      mutableExtensionsDir = true;
       profiles.default = {
         enableExtensionUpdateCheck = false;
         enableUpdateCheck = false;
@@ -25,7 +25,7 @@ with lib;
 
           # Theming
           pkgs.vscode-extensions.catppuccin.catppuccin-vsc
-          pkgs.vscode-marketplace.miguelsolorio.symbols
+          pkgs.vscode-extensions.catppuccin.catppuccin-vsc-icons
 
           # Everything
           pkgs.vscode-extensions.esbenp.prettier-vscode
@@ -108,7 +108,7 @@ with lib;
           "workbench.colorTheme" = "Catppuccin Mocha";
           "workbench.editor.closeOnFileDelete" = true;
           "workbench.editor.highlightModifiedTabs" = true;
-          "workbench.iconTheme" = "symbols";
+          "workbench.iconTheme" = "catppuccin-mocha";
           "workbench.preferredDarkColorTheme" = "Catppuccin Mocha";
           "workbench.preferredLightColorTheme" = "Catppuccin Latte";
           "workbench.sideBar.location" = "right";
@@ -120,6 +120,21 @@ with lib;
 
           # Catppuccin Theme
           "catppuccin.italicKeywords" = false;
+          "catppuccin-icons.associations.extensions" = {
+            "controller.ts" = "nest-controller";
+            "decorator.ts" = "nest-decorator";
+            "filter.ts" = "nest-filter";
+            "guard.ts" = "nest-guard";
+            "middleware.ts" = "nest-middleware";
+            "pipe.ts" = "nest-pipe";
+            "service.ts" = "nest-service";
+            "module.ts" = "nest";
+            "entity.ts" = "java-class";
+            "provider.ts" = "database";
+          };
+          "catppuccin-icons.associations.folders" = {
+            "metrics" = "folder_types";
+          };
 
           # Nix Language
           "nix.enableLanguageServer" = false;

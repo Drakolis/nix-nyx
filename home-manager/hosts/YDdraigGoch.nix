@@ -30,7 +30,7 @@
         goExtended = true;
         lua = true;
         rust = false;
-        java = true;
+        java = false;
         terraform = false;
         extraLanguageServers = true;
       };
@@ -46,6 +46,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "beekeeper-studio-5.2.12"
+    "libsoup-2.74.3"
   ];
 
   # Nicely reload system units when changing configs
