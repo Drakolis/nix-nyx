@@ -101,7 +101,7 @@ with lib;
       name = "drakolis";
       isDefault = true;
       search = {
-        default = "ecosia";
+        default = "startpage";
         force = true;
         engines = {
           ecosia = {
@@ -109,6 +109,13 @@ with lib;
             urls = [ { template = "https://www.ecosia.org/search?q={searchTerms}"; } ];
             icon = "https://www.ecosia.org/favicon.ico";
             definedAliases = [ "@e" ];
+          };
+
+          startpage = {
+            name = "StartPage";
+            urls = [ { template = "https://www.startpage.com/sp/search?query={searchTerms}"; } ];
+            icon = "https://www.startpage.com/favicon.ico";
+            definedAliases = [ "@s" ];
           };
 
           nixpackages = {
@@ -196,13 +203,39 @@ with lib;
         "widget.use-xdg-desktop-portal.file-picker" = 1;
         "extensions.pocket.enabled" = false;
         "extensions.experiments.enabled" = true;
-        "privacy.trackingprotection.enabled" = true;
+        "privacy.resistFingerprinting" = false;
+        "privacy.resistFingerprinting.letterboxing" = true;
         "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
         "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.fingerprintingProtection" = true;
+        "privacy.fingerprintingProtection.overrides" = "+AllTargets";
+        "privacy.fingerprintingProtection.granularOverrides" = [
+          {
+            "firstPartyDomain" = "element.io";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
+            "firstPartyDomain" = "proton.me";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
+            "firstPartyDomain" = "perplexity.ai";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
+            "firstPartyDomain" = "github.io";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
+            "firstPartyDomain" = "gitlab.io";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+        ];
         "dom.security.https_only_mode" = true;
         "webgl.disabled" = true;
-        "browser.search.defaultenginename" = "Ecosia";
-        "browser.search.selectedEngine" = "ecosia";
+        "browser.search.defaultenginename" = "StartPage";
+        "browser.search.selectedEngine" = "startpage";
       };
     };
   };
