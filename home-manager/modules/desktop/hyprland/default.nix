@@ -11,6 +11,7 @@ in
     ./themes.nix
     ./terminals.nix
     ./waybar.nix
+    ./walker.nix
     ./wlogout.nix
     ./wofi.nix
   ];
