@@ -11,6 +11,7 @@ let
     ente-desktop
     inkscape-with-extensions
     kid3
+    camset
   ];
 
   photoMediaPackages = with pkgs; [
