@@ -9,7 +9,6 @@ let
 
   developmentPackages = with pkgs; [
     tokei # Language usage analyser
-    zeal # Offline docs
   ];
 
   windsurfPackages = with pkgs; [
