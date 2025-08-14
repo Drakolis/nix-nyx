@@ -216,8 +216,16 @@ with lib;
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
           }
           {
+            "firstPartyDomain" = "startpage.com";
+            "overrides" = "-CSSPrefersColorScheme";
+          }
+          {
             "firstPartyDomain" = "proton.me";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
+            "firstPartyDomain" = "calendly.com";
+            "overrides" = "-JSDateTimeUTC";
           }
           {
             "firstPartyDomain" = "perplexity.ai";
