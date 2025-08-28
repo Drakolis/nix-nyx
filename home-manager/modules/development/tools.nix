@@ -11,7 +11,8 @@ let
     tokei # Language usage analyser
   ];
 
-  windsurfPackages = with pkgs; [
+  aiEditorsPackages = with pkgs; [
+    code-cursor
     windsurf
   ];
 
@@ -48,7 +49,7 @@ let
     ++ lib.optionals cfg.tools.sqlClient sqlClientPackages
     ++ lib.optionals cfg.tools.mongoClient mongoClientPackages
 
-    ++ lib.optionals cfg.tools.windsurf windsurfPackages
+    ++ lib.optionals cfg.tools.aiEditors aiEditorsPackages
 
     ++ lib.optionals cfg.tools.kubernetes kubernetesPackages
     ++ lib.optionals cfg.tools.aws awsPackages
@@ -88,11 +89,11 @@ with lib;
         '';
       };
 
-      windsurf = mkOption {
+      aiEditors = mkOption {
         default = false;
         type = types.bool;
         description = ''
-          Enable Windsurf IDE for this user.
+          Enable AI IDEs for this user.
         '';
       };
 

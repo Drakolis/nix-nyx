@@ -7,7 +7,7 @@
     development = {
       enable = true;
       tools = {
-        windsurf = true;
+        aiEditors = true;
         sqlClient = false;
         apiClient = true;
         aws = true;

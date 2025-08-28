@@ -7,7 +7,7 @@
     development = {
       enable = true;
       tools = {
-        windsurf = false;
+        aiEditors = false;
         sqlClient = false;
         mongoClient = true;
         apiClient = true;

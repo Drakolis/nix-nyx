@@ -8,5 +8,6 @@
       "obsidian"
       "terraform"
       "windsurf"
+      "cursor"
     ];
 }
