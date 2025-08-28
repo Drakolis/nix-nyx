@@ -211,6 +211,7 @@ with lib;
         "privacy.fingerprintingProtection" = true;
         "privacy.fingerprintingProtection.overrides" = "+AllTargets";
         "privacy.fingerprintingProtection.granularOverrides" = [
+          # Safe
           {
             "firstPartyDomain" = "element.io";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
@@ -223,14 +224,7 @@ with lib;
             "firstPartyDomain" = "proton.me";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
           }
-          {
-            "firstPartyDomain" = "calendly.com";
-            "overrides" = "-JSDateTimeUTC";
-          }
-          {
-            "firstPartyDomain" = "perplexity.ai";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
+          # Gits
           {
             "firstPartyDomain" = "github.io";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
@@ -238,6 +232,20 @@ with lib;
           {
             "firstPartyDomain" = "gitlab.io";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          # Already knows a lot about me
+          {
+            "firstPartyDomain" = "perplexity.ai";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
+            "firstPartyDomain" = "microsoft.com";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          # Just for the sake of time
+          {
+            "firstPartyDomain" = "calendly.com";
+            "overrides" = "-JSDateTimeUTC";
           }
         ];
         "dom.security.https_only_mode" = true;
