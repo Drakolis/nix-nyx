@@ -111,12 +111,12 @@ with lib;
             definedAliases = [ "@e" ];
           };
 
-          startpage = {
-            name = "StartPage";
-            urls = [ { template = "https://www.startpage.com/sp/search?query={searchTerms}"; } ];
-            icon = "https://www.startpage.com/favicon.ico";
-            definedAliases = [ "@s" ];
-          };
+          # startpage = {
+          #   name = "StartPage";
+          #   urls = [ { template = "https://www.startpage.com/sp/search?query={searchTerms}"; } ];
+          #   icon = "https://www.startpage.com/favicon.ico";
+          #   definedAliases = [ "@s" ];
+          # };
 
           nixpackages = {
             name = "Nix Packages";
@@ -242,6 +242,10 @@ with lib;
             "firstPartyDomain" = "microsoft.com";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
           }
+          {
+            "firstPartyDomain" = "google.com";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
           # Just for the sake of time
           {
             "firstPartyDomain" = "calendly.com";
@@ -250,8 +254,8 @@ with lib;
         ];
         "dom.security.https_only_mode" = true;
         "webgl.disabled" = true;
-        "browser.search.defaultenginename" = "StartPage";
-        "browser.search.selectedEngine" = "startpage";
+        # "browser.search.defaultenginename" = "StartPage";
+        # "browser.search.selectedEngine" = "startpage";
       };
     };
   };
