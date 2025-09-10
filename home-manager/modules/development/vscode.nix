@@ -91,7 +91,7 @@ with lib;
           "diffEditor.ignoreTrimWhitespace" = false;
           "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace', monospace";
           "editor.formatOnSave" = true;
-          "editor.minimap.autohide" = true;
+          "editor.minimap.autohide" = "mouseover";
           "editor.tabCompletion" = "on";
           "editor.tabSize" = 2;
           "files.eol" = "\n";
