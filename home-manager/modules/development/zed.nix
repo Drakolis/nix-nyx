@@ -9,7 +9,7 @@ let
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
   bufferFontSize = if isDarwin then 13 else 14;
-  uiFontSize = if isDarwin then 14 else 16;
+  uiFontSize = if isDarwin then 16 else 14;
 in
 with lib;
 {
@@ -44,13 +44,12 @@ with lib;
         };
         "agent" = {
           "dock" = "left";
-          "version" = "2";
           "default_model" = {
             "provider" = "zed.dev";
             "model" = "claude-sonnet-4-latest";
           };
         };
-        "icon_theme" = "Symbols";
+        "icon_theme" = "Symbols Icon Theme";
         "tab_size" = 2;
 
         "indent_guides" = {
