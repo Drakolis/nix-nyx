@@ -15,7 +15,6 @@ in
         dimInactive.enable = false;
         shakeCursor.enable = true;
 
-        fps.enable = cfg.formFactor != "desktop";
         blur.enable = cfg.formFactor == "desktop";
         desktopSwitching.animation = if (cfg.formFactor == "desktop") then "slide" else "off";
         minimization.animation = if (cfg.formFactor == "desktop") then "squash" else "off";
