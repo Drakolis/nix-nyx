@@ -35,7 +35,7 @@
   home.packages = [ pkgs.kdePackages.kolourpaint ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.2.12"
+    "beekeeper-studio-5.3.4"
   ];
 
   # Nicely reload system units when changing configs
