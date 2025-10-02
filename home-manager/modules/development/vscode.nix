@@ -166,5 +166,30 @@ with lib;
         };
       };
     };
+
+    home.activation.vscodium-cursor-sync = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      mkdir -pv ${config.xdg.configHome}/Cursor/User
+      mkdir -pv ${config.xdg.configHome}/Windsurf/User
+      cp -av \
+        ${config.xdg.configHome}/VSCodium/User/settings.json \
+        ${config.xdg.configHome}/Cursor/User/settings.json
+      cp -av \
+        ${config.xdg.configHome}/VSCodium/User/settings.json \
+        ${config.xdg.configHome}/Windsurf/User
+      cp -av \
+        ${config.xdg.configHome}/VSCodium/User/keybindings.json \
+        ${config.xdg.configHome}/Cursor/User
+      cp -av \
+        ${config.xdg.configHome}/VSCodium/User/keybindings.json \
+        ${config.xdg.configHome}/Windsurf/User
+      mkdir -pv ${config.home.homeDirectory}/.cursor
+      mkdir -pv ${config.home.homeDirectory}/.windsurf
+      cp -av \
+        ${config.home.homeDirectory}/.vscode-oss/extensions \
+        ${config.home.homeDirectory}/.cursor
+      cp -av \
+        ${config.home.homeDirectory}/.vscode-oss/extensions \
+        ${config.home.homeDirectory}/.windsurf
+    '';
   };
 }
