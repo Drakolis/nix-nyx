@@ -163,7 +163,7 @@
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
-            plasma-manager.homeManagerModules.plasma-manager
+            plasma-manager.homeModules.plasma-manager
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/YDdraigGoch.nix
           ];
@@ -178,7 +178,7 @@
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
-            plasma-manager.homeManagerModules.plasma-manager
+            plasma-manager.homeModules.plasma-manager
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/WinterDragon.nix
           ];

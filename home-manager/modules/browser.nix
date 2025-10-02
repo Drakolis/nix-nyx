@@ -211,7 +211,7 @@ with lib;
         "privacy.fingerprintingProtection" = true;
         "privacy.fingerprintingProtection.overrides" = "+AllTargets";
         "privacy.fingerprintingProtection.granularOverrides" = [
-          # Loval
+          # Local
           {
             "firstPartyDomain" = "nanowyrm";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";

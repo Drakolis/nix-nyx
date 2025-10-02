@@ -58,7 +58,7 @@ let
   ];
 
   extraLanguageServersPackages = with pkgs; [
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     yaml-language-server
     docker-compose-language-service
   ];
