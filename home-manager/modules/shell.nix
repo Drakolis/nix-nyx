@@ -3,6 +3,15 @@ let
   style = import ../../constants/style.nix;
   commands = import ../../constants/commands.nix;
   paths = import ../../constants/paths.nix;
+
+  shellAliases = {
+    lsl = "eza -1la --icons=always --group-directories-first";
+    lsg = "eza -Gla --icons=always --group-directories-first";
+    nix-package-find = "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
+    fzyp = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
+    fzon = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
+    nix-store-find = "ls /nix/store | fzf";
+  };
 in
 {
   home.packages = with pkgs; [ exiftool ];
@@ -29,14 +38,7 @@ in
       nyx = paths.nyxRepository;
     };
 
-    shellAliases = {
-      lsl = "eza -1la --icons=always --group-directories-first";
-      lsg = "eza -Gla --icons=always --group-directories-first";
-      nix-package-find = "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
-      fzyp = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
-      fzon = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
-      nix-store-find = "ls /nix/store | fzf";
-    };
+    shellAliases = shellAliases;
 
     history = {
       save = 10000;
@@ -75,10 +77,31 @@ in
     '';
   };
 
+  programs.aliae = {
+    enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+
+  programs.nushell = {
+    enable = true;
+    settings = {
+      show_banner = false;
+      completions.external = {
+        enable = true;
+        max_results = 200;
+      };
+    };
+    shellAliases = shellAliases;
+    plugins = [ ];
+  };
+
   programs.eza = {
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 
   programs.fzf = {
@@ -114,10 +137,14 @@ in
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 
   programs.starship = {
     enable = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
     # Configuration written to ~/.config/starship.toml
     settings = {
       add_newline = false;
@@ -145,6 +172,7 @@ in
     # enable = true;
     # enableBashIntegration = true;
     # enableZshIntegration = true;
+    # enableNushellIntegration = true;
     settings = { };
   };
 
