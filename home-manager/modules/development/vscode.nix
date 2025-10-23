@@ -41,12 +41,26 @@ with lib;
           pkgs.vscode-marketplace.koihik.vscode-lua-format
           pkgs.vscode-extensions.sumneko.lua
 
+          # Python
+          pkgs.vscode-marketplace.ms-python.python
+          pkgs.vscode-marketplace.franneck94.vscode-python-config
+          pkgs.vscode-marketplace.ms-python.debugpy
+          pkgs.vscode-marketplace.ms-python.vscode-python-envs
+          pkgs.vscode-marketplace.njqdev.vscode-python-typehint
+          pkgs.vscode-marketplace.ms-toolsai.vscode-jupyter-cell-tags
+          pkgs.vscode-marketplace.ms-toolsai.jupyter-keymap
+          pkgs.vscode-marketplace.ms-toolsai.jupyter-renderers
+          pkgs.vscode-marketplace.ms-toolsai.vscode-jupyter-slideshow
+
           # Yuck
           pkgs.vscode-marketplace.eww-yuck.yuck
 
           # Markdown
           pkgs.vscode-extensions.yzhang.markdown-all-in-one
           pkgs.vscode-extensions.davidanson.vscode-markdownlint
+
+          # CSV
+          pkgs.vscode-marketplace.repreng.csv
 
           # Terraform
           pkgs.vscode-extensions.hashicorp.terraform
