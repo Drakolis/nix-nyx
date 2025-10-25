@@ -17,6 +17,7 @@
 
     bzmenu.url = "github:e-tho/bzmenu";
     iwmenu.url = "github:e-tho/iwmenu";
+    zjstatus.url = "github:dj95/zjstatus";
 
     nix-yazi-plugins = {
       url = "github:lordkekz/nix-yazi-plugins";
