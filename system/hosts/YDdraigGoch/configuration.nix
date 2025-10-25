@@ -134,6 +134,10 @@
     gaming.enable = true;
     geolocation.enable = true;
     ki.enable = true;
+    virtualization = {
+      enable = true;
+      type = "amd";
+    };
   };
 
   # This value determines the NixOS release from which the default

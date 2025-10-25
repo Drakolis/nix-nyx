@@ -1,15 +1,30 @@
 {
+  lib,
+  config,
   pkgs,
   ...
 }:
+let
+  cfgVirtual = config.drakolis.virtualization;
+
+  groupsRegular = [
+    "networkmanager"
+    "wheel"
+  ];
+
+  groupsVirtual = [
+    "libvirtd"
+    "qemu-libvirtd"
+  ];
+
+  desiredGroups = groupsRegular ++ lib.optionals cfgVirtual.enable groupsVirtual;
+in
+with lib;
 {
   users.users.drakolis = {
     isNormalUser = true;
     description = "Mika Drakolis";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
+    extraGroups = desiredGroups;
     packages = with pkgs; [
       protonmail-bridge-gui
       protonvpn-gui
