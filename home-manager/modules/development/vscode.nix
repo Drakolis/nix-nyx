@@ -162,6 +162,8 @@ with lib;
             "indent_size" = "2";
           };
 
+          "mdb.mcp.server" = "prompt";
+
           # GitLens
           "gitlens.advanced.messages" = {
             "suppressGitDisabledWarning" = true;
