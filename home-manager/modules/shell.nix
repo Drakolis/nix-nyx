@@ -1,20 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   style = import ../../constants/style.nix;
   commands = import ../../constants/commands.nix;
   paths = import ../../constants/paths.nix;
 
-  shellAliases = {
+  shellAliasesEza = {
     lsl = "eza -1la --icons=always --group-directories-first";
     lsg = "eza -Gla --icons=always --group-directories-first";
+  };
+  shellAliases = {
     nix-package-find = "nix --extra-experimental-features 'nix-command flakes' search nixpkgs ";
-    fzyp = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
-    fzon = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
     nix-store-find = "ls /nix/store | fzf";
+    nix-shell = "nix-shell --command zsh";
   };
 in
 {
-  home.packages = with pkgs; [ exiftool ];
+  home.packages = [
+    pkgs.exiftool
+  ];
 
   programs.zsh = {
     enable = true;
@@ -38,7 +41,13 @@ in
       nyx = paths.nyxRepository;
     };
 
-    shellAliases = shellAliases;
+    shellAliases =
+      shellAliases
+      // shellAliasesEza
+      // {
+        fzyp = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Copy path: $PWD"' | xargs -I {} wl-copy $PWD/{}'';
+        fzon = ''fzf --preview '${commands.previewTextInFzf}' ${commands.fzfPreviewOptions} --info-command 'echo "Search and Open in nvim: $PWD"' | xargs -I {} nvim $PWD/{}'';
+      };
 
     history = {
       save = 10000;
@@ -92,6 +101,7 @@ in
         enable = true;
         max_results = 200;
       };
+      buffer_editor = "nvim";
     };
     shellAliases = shellAliases;
     plugins = [ ];
@@ -101,7 +111,6 @@ in
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
   };
 
   programs.fzf = {
@@ -165,15 +174,24 @@ in
         style = "bold green";
         format = "[$hostname$ssh_symbol]($style) in ";
       };
+      shell = {
+        disabled = false;
+      };
     };
   };
 
   programs.zellij = {
-    # enable = true;
+    enable = true;
     # enableBashIntegration = true;
     # enableZshIntegration = true;
     # enableNushellIntegration = true;
-    settings = { };
+    settings = {
+      theme = "catppuccin-mocha";
+      pane_frames = {
+        rounded_corners = true;
+      };
+    };
+
   };
 
   programs.navi = {
