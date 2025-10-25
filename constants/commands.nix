@@ -24,7 +24,7 @@
 
   dialogues = {
     runner = "walker";
-    runnerShift = "walker -m runer";
+    runnerShift = "walker -m runner";
     runnerClipboard = "walker -m clipboard";
     shutdown = "wlogout -s";
   };
@@ -33,10 +33,12 @@
     "kwalletd6"
     "element-desktop --hidden"
     # "keepassxc"
-    # "proton-pass"
+    "proton-pass"
     "protonvpn-app"
     # "colima start &"
-    # "systemctl --user start hyprpolkitagent.service"
-    "eww open --screen 0 toolbar"
+    "systemctl --user start hyprpolkitagent.service"
+    "caffeine"
+    "syncthingtray"
+    "tailscale-systray"
   ];
 }

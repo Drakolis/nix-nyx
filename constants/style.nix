@@ -2,7 +2,7 @@ let
   catppuccinMocha = import ./catppuccinMocha.nix;
 in
 {
-  background = "~/nix-nyx/files/images/nix_trans_light.png";
+  background = "~/nix-nyx/files/images/nix_trans_dark_capy.png";
   avatar = "$HOME/.face";
 
   fontGui = "Ubuntu Sans";
@@ -87,6 +87,7 @@ in
     shadow = catppuccinMocha.crust;
 
     # Waybar Modules
+    waybar = catppuccinMocha.crust;
     keyboard = catppuccinMocha.sky;
     sound = catppuccinMocha.flamingo;
     brightness = catppuccinMocha.yellow;
