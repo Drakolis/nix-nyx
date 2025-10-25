@@ -33,6 +33,7 @@ in
       ];
       monitor = [
         "DP-1,2560x1440@144,1920x0,1"
+        "eDP-1,1920x1080@60,0x0,1.2"
       ];
       layerrule = [
         "blur, rofi"
@@ -47,7 +48,8 @@ in
         "brightnessctl -sd tpacpi::kbd_backlight set 2"
         # "wl-paste --type text --watch cliphist store"
         # "wl-paste --type image --watch cliphist store"
-      ] ++ commands.autostart;
+      ]
+      ++ commands.autostart;
       general = {
         border_size = style.border.outer.width;
         gaps_in = style.gaps.inner;
@@ -130,11 +132,11 @@ in
           disable_while_typing = true;
         };
       };
-      gestures = {
-        workspace_swipe = true;
-      };
+      # gestures = {
+      #   workspace_swipe = true;
+      # };
       misc = {
-        font_family = style.fontGui;
+        font_family = style.fontGuiNerd;
         disable_hyprland_logo = true;
         background_color = "rgb(${style.colors.background})";
         focus_on_activate = true; # Ensure new popups get focus
@@ -146,7 +148,7 @@ in
         "col.border_locked_active" = "rgb(${style.colors.locked})";
         "col.border_locked_inactive" = "rgb(${style.colors.panel})";
         groupbar = {
-          font_family = style.fontGui;
+          font_family = style.fontGuiNerd;
           font_size = style.fontSizeLarger;
           height = 20;
           text_offset = -2;
@@ -179,108 +181,107 @@ in
           gesture_positive = true; # positive = swipe down. Negative = swipe up.
         };
       };
-      bind =
-        [
-          "$mainMod, RETURN, exec, ${commands.terminal}"
-          "$mainMod SHIFT, RETURN, exec, ghostty"
+      bind = [
+        "$mainMod, RETURN, exec, ${commands.terminal}"
+        "$mainMod SHIFT, RETURN, exec, ghostty"
 
-          # Kill actions
-          "$mainMod, Q, killactive, "
-          "$mainMod SHIFT, Q, exec, ${commands.dialogues.shutdown}"
-          "CTRL ALT, DELETE, exit, "
+        # Kill actions
+        "$mainMod, Q, killactive, "
+        "$mainMod SHIFT, Q, exec, ${commands.dialogues.shutdown}"
+        "CTRL ALT, DELETE, exit, "
 
-          # Window Controls
-          "$mainMod, O, togglefloating, "
-          "$mainMod, I, pin, "
-          "$mainMod, U, centerwindow, "
-          "$mainMod, P, pseudo, "
-          "$mainMod, J, togglesplit, "
-          "$mainMod, F, fullscreen, "
+        # Window Controls
+        "$mainMod, O, togglefloating, "
+        "$mainMod, I, pin, "
+        "$mainMod, U, centerwindow, "
+        "$mainMod, P, pseudo, "
+        "$mainMod, J, togglesplit, "
+        "$mainMod, F, fullscreen, "
 
-          "$mainMod, G, togglegroup, "
-          "$mainMod ALT, G, lockactivegroup, toggle"
-          "$mainMod SHIFT, G, moveoutofgroup, "
-          "$mainMod, TAB, changegroupactive, f"
-          "$mainMod SHIFT, TAB, changegroupactive, b"
+        "$mainMod, G, togglegroup, "
+        "$mainMod ALT, G, lockactivegroup, toggle"
+        "$mainMod SHIFT, G, moveoutofgroup, "
+        "$mainMod, TAB, changegroupactive, f"
+        "$mainMod SHIFT, TAB, changegroupactive, b"
 
-          "$mainMod SHIFT, F5, exec, systemctl --user restart waybar"
-          "$mainMod, L, exec, loginctl lock-session"
-          "$mainMod, K, exec, ${commands.notifyHyprpicker} & hyprpicker -a"
-          "$mainMod, N, exec, swaync-client -t"
-          "$mainMod SHIFT, N, exec, swaync-client -d"
-          ", Print, exec, hyprshot -z -m region -o ${paths.screenshots} ${commands.previewScreenshot}"
-          "CTRL, Print, exec, hyprshot -z -m output -o ${paths.screenshots} ${commands.previewScreenshot}"
-          "$mainMod, Print, exec, hyprshot -m window -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "$mainMod SHIFT, F5, exec, systemctl --user restart waybar"
+        "$mainMod, L, exec, loginctl lock-session"
+        "$mainMod, K, exec, ${commands.notifyHyprpicker} & hyprpicker -a"
+        "$mainMod, N, exec, swaync-client -t"
+        "$mainMod SHIFT, N, exec, swaync-client -d"
+        ", Print, exec, hyprshot -z -m region -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "CTRL, Print, exec, hyprshot -z -m output -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "$mainMod, Print, exec, hyprshot -m window -o ${paths.screenshots} ${commands.previewScreenshot}"
 
-          # "$mainMod, grave, hyprexpo:expo, toggle"
+        # "$mainMod, grave, hyprexpo:expo, toggle"
 
-          # Window Navigation
-          "$mainMod, left, movefocus, l"
-          "$mainMod, right, movefocus, r"
-          "$mainMod, up, movefocus, u"
-          "$mainMod, down, movefocus, d"
+        # Window Navigation
+        "$mainMod, left, movefocus, l"
+        "$mainMod, right, movefocus, r"
+        "$mainMod, up, movefocus, u"
+        "$mainMod, down, movefocus, d"
 
-          "$mainMod SHIFT, left, movewindow, l"
-          "$mainMod SHIFT, right, movewindow, r"
-          "$mainMod SHIFT, up, movewindow, u"
-          "$mainMod SHIFT, down, movewindow, d"
+        "$mainMod SHIFT, left, movewindow, l"
+        "$mainMod SHIFT, right, movewindow, r"
+        "$mainMod SHIFT, up, movewindow, u"
+        "$mainMod SHIFT, down, movewindow, d"
 
-          "$mainMod CTRL, left, swapwindow, l"
-          "$mainMod CTRL, right, swapwindow, r"
-          "$mainMod CTRL, up, swapwindow, u"
-          "$mainMod CTRL, down, swapwindow, d"
+        "$mainMod CTRL, left, swapwindow, l"
+        "$mainMod CTRL, right, swapwindow, r"
+        "$mainMod CTRL, up, swapwindow, u"
+        "$mainMod CTRL, down, swapwindow, d"
 
-          "$mainMod ALT, left, movewindoworgroup, l"
-          "$mainMod ALT, right, movewindoworgroup, r"
-          "$mainMod ALT, up, movewindoworgroup, u"
-          "$mainMod ALT, down, movewindoworgroup, d"
+        "$mainMod ALT, left, movewindoworgroup, l"
+        "$mainMod ALT, right, movewindoworgroup, r"
+        "$mainMod ALT, up, movewindoworgroup, u"
+        "$mainMod ALT, down, movewindoworgroup, d"
 
-          # Scroll through existing workspaces with mainMod + scroll
-          "$mainMod, mouse_down, workspace, e+1"
-          "$mainMod, mouse_up, workspace, e-1"
+        # Scroll through existing workspaces with mainMod + scroll
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
 
-          # Example special workspace (scratchpad)
-          "$mainMod, S, togglespecialworkspace, magic"
-          "$mainMod SHIFT, S, movetoworkspace, special:magic"
+        # Example special workspace (scratchpad)
+        "$mainMod, S, togglespecialworkspace, magic"
+        "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-          # Launchers
-          "$mainMod, Z, exec, ${commands.terminal} ${commands.tui.fileManager}"
-          "$mainMod SHIFT, Z, exec, ${commands.gui.fileManager}"
-          "$mainMod, B, exec, ${commands.gui.browser}"
-          "$mainMod, T, exec, qalculate-gtk"
-          "$mainMod, E, exec, ${commands.terminal} ${commands.tui.editor}"
-          "$mainMod SHIFT, E, exec, ${commands.gui.editor}"
-          "$mainMod, M, exec, ${commands.terminal} (wl-paste | xargs ${commands.previewText})"
-          "$mainMod, Y, exec, ${commands.gui.passwords}"
+        # Launchers
+        "$mainMod, Z, exec, ${commands.terminal} ${commands.tui.fileManager}"
+        "$mainMod SHIFT, Z, exec, ${commands.gui.fileManager}"
+        "$mainMod, B, exec, ${commands.gui.browser}"
+        "$mainMod, T, exec, qalculate-gtk"
+        "$mainMod, E, exec, ${commands.terminal} ${commands.tui.editor}"
+        "$mainMod SHIFT, E, exec, ${commands.gui.editor}"
+        "$mainMod, M, exec, ${commands.terminal} (wl-paste | xargs ${commands.previewText})"
+        "$mainMod, Y, exec, ${commands.gui.passwords}"
 
-          # Runner
-          "$mainMod, SPACE, exec, ${commands.dialogues.runner}"
-          "$mainMod, V, exec, ${commands.dialogues.runnerClipboard}"
-          "$mainMod SHIFT, SPACE, exec, ${commands.dialogues.runnerShift}"
+        # Runner
+        "$mainMod, SPACE, exec, ${commands.dialogues.runner}"
+        "$mainMod, V, exec, ${commands.dialogues.runnerClipboard}"
+        "$mainMod SHIFT, SPACE, exec, ${commands.dialogues.runnerShift}"
 
-          ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-          ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-          ", XF86AudioNext, exec, playerctl next"
-          ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
 
-          "$mainMod, F4, exec, toggle-hyprland-animations"
-        ]
-        ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (
-            builtins.genList (
-              i:
-              let
-                ws = i + 1;
-              in
-              [
-                "$mainMod, code:1${toString i}, workspace, ${toString ws}"
-                "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            ) 9
-          )
-        );
+        "$mainMod, F4, exec, toggle-hyprland-animations"
+      ]
+      ++ (
+        # workspaces
+        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+        builtins.concatLists (
+          builtins.genList (
+            i:
+            let
+              ws = i + 1;
+            in
+            [
+              "$mainMod, code:1${toString i}, workspace, ${toString ws}"
+              "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+            ]
+          ) 9
+        )
+      );
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"

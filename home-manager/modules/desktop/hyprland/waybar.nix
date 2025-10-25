@@ -82,22 +82,37 @@ in
         modules-left = [
           "hyprland/workspaces"
           "hyprland/window"
+          "niri/workspaces"
+          "niri/window"
         ];
-        modules-center = [ "custom/notification" ];
+        modules-center = [
+          "custom/notification"
+          "clock"
+          "custom/weather"
+        ];
         modules-right = [
           "hyprland/language"
+          "niri/language"
           "pulseaudio"
           # "wireplumber"
           "backlight"
           "battery"
           "bluetooth"
           "network"
-          "custom/weather"
-          "clock"
           "tray"
-          "custom/lock"
-          "custom/power"
         ];
+        "niri/workspaces" = {
+          active-only = false;
+          all-outputs = true;
+          format = " {icon} ";
+          format-icons = {
+            default = "";
+            empty = "";
+            special = "";
+          };
+          show-special = true;
+          sort-by = "number";
+        };
         "hyprland/workspaces" = {
           active-only = false;
           all-outputs = true;
@@ -110,9 +125,11 @@ in
           show-special = true;
           sort-by = "number";
         };
-        "hyprland/window" = {
+        "niri/window" = {
           separate-outputs = true;
           rewrite = {
+            "(.*) — LibreWolf" = "󰈹 $1";
+            "LibreWolf" = "󰈹";
             "(.*) — Mozilla Firefox" = "󰈹 $1";
             "Mozilla Firefox" = "󰈹";
             "(.*) - Visual Studio Code" = "󰨞 $1";
@@ -121,6 +138,28 @@ in
             "VSCodium" = "";
             "Telegram .*" = "";
           };
+        };
+        "hyprland/window" = {
+          separate-outputs = true;
+          rewrite = {
+            "(.*) — LibreWolf" = "󰈹 $1";
+            "LibreWolf" = "󰈹";
+            "(.*) — Mozilla Firefox" = "󰈹 $1";
+            "Mozilla Firefox" = "󰈹";
+            "(.*) - Visual Studio Code" = "󰨞 $1";
+            "Visual Studio Code" = "󰨞";
+            "(.*) - VSCodium" = " $1";
+            "VSCodium" = "";
+            "Telegram .*" = "";
+          };
+        };
+        "niri/language" = {
+          format-en = "󰘵 EN";
+          format-ru = "󰘵 RU";
+        };
+        "hyprland/language" = {
+          format-en = "󰘵 EN";
+          format-ru = "󰘵 RU";
         };
         "custom/notification" = {
           format = "{icon}";
@@ -140,10 +179,6 @@ in
           on-click = "swaync-client -t -sw";
           on-click-right = "swaync-client -d -sw";
           escape = true;
-        };
-        "hyprland/language" = {
-          format-en = "󰘵 EN";
-          format-ru = "󰘵 RU";
         };
         pulseaudio = {
           scroll-step = 5;
@@ -217,10 +252,10 @@ in
         };
         network = {
           format = "󱘖";
-          format-wifi = "{icon} {essid}";
+          format-wifi = "{icon} {signalStrength}%";
           format-ethernet = "󰌘";
           format-disconnected = "󰤭";
-          tooltip-format-wifi = "{ifname} - {signalStrength}% - {ipaddr}";
+          tooltip-format-wifi = "{ifname} - {essid} - {ipaddr}";
           tooltip-format-ethernet = "{ifname} - {ipaddr}";
           tooltip-format-disconnected = "Disconnected";
           tooltip-format = "Disconnected";
@@ -280,7 +315,7 @@ in
     style = ''
       * {
         all: unset;
-        font-family: "${style.fontGui}";
+        font-family: "${style.fontGuiNerd}";
         font-weight: 500;
         font-size: ${toString style.fontSizeLarger}px;
         min-height: 0;
@@ -297,20 +332,20 @@ in
       #pulseaudio, #wireplumber, #backlight, #battery,
       #bluetooth, #network, #language, #custom-lock,
       #clock, #custom-power, #custom-music, #custom-weather {
-        background-color: #${style.colors.panel};
+        background-color: #${style.colors.waybar};
         padding: 0.6rem 1rem 0.5rem;
         margin-top: 5px;
       }
 
       /* Section - Single */
-      #workspaces, #window, #tray, #custom-notification{
+      #workspaces, #window, #tray {
         border-radius: 2rem;
         margin-left: 5px;
         margin-right: 5px;
       }
 
       /* Section - Left */
-      #language, #custom-lock {
+      #language, #custom-lock, #custom-notification {
         border-radius: 2rem 0 0 2rem;
         padding-right: 0.5rem;
         margin-left: 5px;
@@ -318,13 +353,13 @@ in
 
       /* Section - Middle */
       #pulseaudio, #wireplumber, #backlight, #battery,
-      #bluetooth, #network, #custom-weather {
+      #bluetooth, #clock {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
       }
 
       /* Section - Right */
-      #clock, #custom-power, #custom-music {
+      #custom-power, #custom-music, #network, #custom-weather {
         border-radius: 0 2rem 2rem 0;
         padding-left: 0.5rem;
         margin-right: 5px;
@@ -368,7 +403,7 @@ in
       /* Section - Notifications */
       #custom-notification {
         padding-left: 0.7rem;
-        padding-right: 0.7rem;
+        padding-right: 0.5rem;
       }
 
       /* Section - Lock Screen */

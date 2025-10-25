@@ -12,10 +12,12 @@ in
     # catppuccin-whiskers
 
     # # Other DEs
-    # qt6Packages.qt6ct
-    # catppuccin-qt5ct
-    # kdePackages.breeze
-    # vanilla-dmz
+    qt6Packages.qt6ct
+    catppuccin-qt5ct
+    kdePackages.breeze
+    kdePackages.breeze-gtk
+    kdePackages.breeze-icons
+    vanilla-dmz
     catppuccin-papirus-folders
 
     # # Kvantum support
@@ -26,52 +28,54 @@ in
     # })
 
     # # GTK (Deprecated)
-    # (catppuccin-gtk.override {
-    #   accents = [ "mauve" ];
-    #   variant = "mocha";
-    # })
+    (catppuccin-gtk.override {
+      accents = [ "mauve" ];
+      variant = "mocha";
+    })
   ];
 
-  # home.pointerCursor = {
-  #   package = pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
-  #   name = "DMZ-Black";
-  #   size = style.cursorTheme.size;
-  #   hyprcursor.enable = true;
-  #   gtk.enable = true;
-  #   x11.enable = true;
-  # };
+  home.pointerCursor = {
+    package = pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
+    name = "DMZ-Black";
+    size = style.cursorTheme.size;
+    hyprcursor.enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+  };
 
-  # gtk = {
-  #   enable = true;
-  #   cursorTheme = {
-  #     name = "DMZ-Black";
-  #     size = style.cursorTheme.size;
-  #   };
-  #   font = {
-  #     name = style.fontGui;
-  #     size = style.fontSize;
-  #   };
-  #   iconTheme = {
-  #     name = style.iconTheme.name;
-  #   };
-  #   theme = {
-  #     name = "catppuccin-mocha-mauve-standard";
-  #   };
-  #   gtk3.extraConfig = {
-  #     gtk-menu-images = 1;
-  #     gtk-button-images = 0;
-  #   };
-  # };
+  gtk = {
+    enable = true;
+    colorScheme = "dark";
+    cursorTheme = {
+      name = "DMZ-Black";
+      size = style.cursorTheme.size;
+    };
+    font = {
+      name = style.fontGui;
+      size = style.fontSize;
+    };
+    iconTheme = {
+      name = style.iconTheme.name;
+    };
+    theme = {
+      # name = "catppuccin-mocha-mauve-standard";
+      name = "Breeze";
+    };
+    gtk3.extraConfig = {
+      gtk-menu-images = 1;
+      gtk-button-images = 0;
+    };
+  };
 
-  # qt = {
-  #   enable = true;
-  #   platformTheme = {
-  #     name = "qtct";
-  #   };
-  #   style = {
-  #     name = "kvantum";
-  #   };
-  # };
+  qt = {
+    enable = true;
+    platformTheme = {
+      name = "qtct";
+    };
+    style = {
+      name = "breeze";
+    };
+  };
 
   # home.file = {
   #   # This should be fixed in https://github.com/NixOS/nixpkgs/issues/355277

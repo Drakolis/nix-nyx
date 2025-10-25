@@ -12,12 +12,170 @@
   ];
 
   xdg.configFile = {
+    "walker/themes/drakolis.css".text = ''
+      @define-color mantle #181825;
+      @define-color text #cdd6f4;
+      @define-color primary #cba6f7;
+      @define-color error #f38ba8;
+      @define-color surface0 #313244;
+
+      #window,
+      #box,
+      #aiScroll,
+      #aiList,
+      #search,
+      #password,
+      #input,
+      #prompt,
+      #clear,
+      #typeahead,
+      #list,
+      child,
+      scrollbar,
+      slider,
+      #item,
+      #text,
+      #label,
+      #bar,
+      #sub,
+      #activationlabel {
+        all: unset;
+      }
+
+      #cfgerr {
+        background: @error;
+        margin-top: 20px;
+        padding: 8px;
+        font-size: 1.2em;
+      }
+
+      #window {
+        color: @text;
+      }
+
+      #box {
+        border-radius: 10px;
+        background: @mantle;
+        padding: 32px;
+        border: 2px solid @primary;
+        box-shadow:
+          0 19px 38px rgba(0, 0, 0, 0.3),
+          0 15px 12px rgba(0, 0, 0, 0.22);
+      }
+
+      #search {
+        /* box-shadow:
+          0 1px 3px rgba(0, 0, 0, 0.1),
+          0 1px 2px rgba(0, 0, 0, 0.22); */
+        background: @surface0;
+        padding: 8px;
+        border-radius: 7px;
+      }
+
+      #prompt {
+        margin-left: 5px;
+        margin-right: 10px;
+        color: @text;
+        opacity: 0.2;
+      }
+
+      #clear {
+        color: @text;
+      }
+
+      #password,
+      #input,
+      #typeahead {
+        border-radius: 2px;
+      }
+
+      #input {
+        background: none;
+      }
+
+      #password {}
+
+      #spinner {
+        padding: 8px;
+      }
+
+      #typeahead {
+        color: @text;
+        opacity: 0.8;
+      }
+
+      #input placeholder {
+        opacity: 0.5;
+      }
+
+      #list {}
+
+      child {
+        padding: 8px;
+        border-radius: 2px;
+        border-left: 4px solid transparent;
+      }
+
+      child:selected,
+      child:hover {
+        background: alpha(@primary, 0.1);
+        border-left: 4px solid @primary;
+      }
+
+      #item {}
+
+      #icon {
+        margin-right: 5px;
+      }
+
+      #text {}
+
+      #label {
+        font-weight: bolder;
+      }
+
+      #sub {
+        opacity: 0.5;
+        font-size: smaller;
+      }
+
+      #activationlabel {}
+
+      #bar {}
+
+      .barentry {}
+
+      .activation #activationlabel {}
+
+      .activation #text,
+      .activation #icon,
+      .activation #search {
+        opacity: 0.5;
+      }
+
+      .aiItem {
+        padding: 10px;
+        border-radius: 2px;
+        color: @text;
+        background: @mantle;
+      }
+
+      .aiItem.user {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .aiItem.assistant {
+        background: @surface0;
+      }
+    '';
+
     "walker/config.toml".text = ''
       app_launch_prefix = ""
       terminal_title_flag = ""
       locale = ""
       close_when_open = false
-      theme = "default"
+      theme = "drakolis"
       monitor = ""
       hotreload_theme = false
       as_window = false

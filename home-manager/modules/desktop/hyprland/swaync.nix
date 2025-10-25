@@ -92,7 +92,7 @@ in
       * {
         all: unset;
         font-size: ${toString style.fontSizeLarger}px;
-        font-family: ${style.fontGui};
+        font-family: ${style.fontGuiNerd};
         transition: 200ms;
       }
 

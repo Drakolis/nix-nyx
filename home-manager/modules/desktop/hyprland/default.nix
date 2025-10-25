@@ -3,10 +3,10 @@ let
 in
 {
   imports = [
-    ./eww.nix
     ./hypridle.nix
     ./hyprland.nix
     ./hyprlock.nix
+    ./fuzzel.nix
     ./swaync.nix
     ./themes.nix
     ./terminals.nix
@@ -14,6 +14,8 @@ in
     ./walker.nix
     ./wlogout.nix
     ./wofi.nix
+
+    ./niri.nix
   ];
 
   services.hyprpaper = {
@@ -23,5 +25,4 @@ in
       wallpaper = ", ${style.background}";
     };
   };
-
 }

@@ -22,7 +22,7 @@ in
           text = "Layout: $LAYOUT";
           color = "rgb(${style.colors.text})";
           font_size = 15;
-          font_family = style.fontGui;
+          font_family = style.fontGuiNerd;
           position = "30, -20";
           halign = "left";
           valign = "top";
@@ -36,7 +36,7 @@ in
           text = "$TIME";
           color = "rgb(${style.colors.text})";
           font_size = 90;
-          font_family = style.fontGui;
+          font_family = style.fontGuiNerd;
           position = "-30, 0";
           halign = "right";
           valign = "top";
@@ -50,7 +50,7 @@ in
           text = ''cmd[update:43200000] date +"%A, %d %B %Y"'';
           color = "rgb(${style.colors.text})";
           font_size = 25;
-          font_family = style.fontGui;
+          font_family = style.fontGuiNerd;
           position = "-30, -130";
           halign = "right";
           valign = "top";
@@ -82,7 +82,7 @@ in
         dots_center = true;
         outer_color = "rgb(${style.colors.primary})";
         inner_color = "rgb(${style.colors.activeSurface})";
-        font_family = style.fontGui;
+        font_family = style.fontGuiNerd;
         font_color = "rgb(${style.colors.text})";
         fade_on_empty = false;
         placeholder_text = ''<span foreground="##${style.colors.text}"><i>󰌾 Logged in as </i><span foreground="##${style.colors.primary}">$USER</span></span>'';
