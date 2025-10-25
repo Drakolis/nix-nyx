@@ -13,16 +13,19 @@ with lib;
     services.displayManager = {
       sddm = {
         enable = true;
-        theme = "catppuccin-mocha";
+        theme = "catppuccin-mocha-mauve";
         wayland.enable = true;
       };
     };
+
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;
     };
 
-    # Wayland
+    programs.niri.enable = true;
+    services.gnome.gnome-keyring.enable = false;
+
     environment.sessionVariables = {
       TERMINAL = "kitty";
       NIXOS_OZONE_WL = 1;
@@ -56,6 +59,10 @@ with lib;
       hyprshot
       hyprsunset
 
+      brightnessctl
+      playerctl
+      libnotify
+
       # Media
       imv
       mpv
@@ -75,7 +82,6 @@ with lib;
       krename
 
       # System
-      dconf-editor
       lxqt.qps
       lxqt.pavucontrol-qt
       qpwgraph
@@ -85,10 +91,13 @@ with lib;
       kdePackages.kcharselect
       kdePackages.kcolorchooser
       crow-translate
+      caffeine-ng
 
       # Security
       kdePackages.kgpg
       keepassxc
+      kdePackages.kwallet
+      kdePackages.kwalletmanager
 
       # Backups
       backintime-qt
