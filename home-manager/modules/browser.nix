@@ -204,7 +204,7 @@ with lib;
         "extensions.pocket.enabled" = false;
         "extensions.experiments.enabled" = true;
         "privacy.resistFingerprinting" = false;
-        "privacy.resistFingerprinting.letterboxing" = true;
+        "privacy.resistFingerprinting.letterboxing" = false;
         "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
         "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
         "privacy.trackingprotection.enabled" = true;
