@@ -2,7 +2,7 @@
   description = "Mika Drakolis NixOS System Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -14,6 +14,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    niri-switch = {
+      url = "github:Kiki-Bouba-Team/niri-switch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri-screen-time = {
+      url = "github:probeldev/niri-screen-time";
+    };
+
+    niri-flake.url = "github:sodiboo/niri-flake";
 
     bzmenu.url = "github:e-tho/bzmenu";
     iwmenu.url = "github:e-tho/iwmenu";
