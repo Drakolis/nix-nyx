@@ -3,6 +3,7 @@
   environment.systemPackages = with pkgs; [
     vial
     solaar
+    wootility
   ];
 
   # Vial/Via support
@@ -10,4 +11,6 @@
     vial
     via
   ];
+
+  hardware.wooting.enable = true;
 }

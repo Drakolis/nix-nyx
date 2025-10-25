@@ -5,5 +5,6 @@
     builtins.elem (lib.getName pkg) [
       "daisydisk"
       "via"
+      "wootility"
     ];
 }
