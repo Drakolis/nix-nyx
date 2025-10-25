@@ -18,7 +18,7 @@ with lib;
         defaultBranch = "main";
       };
       pull = {
-        rebase = true
+        rebase = true;
       };
     };
   };
