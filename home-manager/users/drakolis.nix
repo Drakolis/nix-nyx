@@ -9,9 +9,11 @@ with lib;
 
   programs.git = {
     enable = true;
-    userEmail = "mika.drakolis@pm.me";
-    userName = "Mika Drakolis";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "mika.drakolis@pm.me";
+        name = "Mika Drakolis";
+      };
       init = {
         defaultBranch = "main";
       };
