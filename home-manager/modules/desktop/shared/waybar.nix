@@ -481,19 +481,50 @@ in
       }
 
       /* Popups */
-      tooltip, #tray menu {
-        background-color: #${style.colors.background};
-        border-radius: 10px;
+      tooltip {
+        padding: 5px;
       }
 
-      #tray menu *, tooltip label  {
-        padding: 0.2rem;
-        border-radius: 10px;
+      #tray menu, tooltip label {
+        padding: 5px;
+        border-radius: 7px;
+        background-color: #${style.colors.background};
+        box-shadow: 0 0 3px 2px #${style.colors.shadow};
         color: #${style.colors.text}
       }
 
-      #tray menu *:hover {
-        background: #${style.colors.activeSurface};
+      menu {
+        color: #${style.colors.text};
+        font-weight: normal;
+        background-color: #${style.colors.background};
+        border-radius: 7px;
+        box-shadow: 0 0 3px 2px #${style.colors.shadow};
+        border: solid 1px #${style.colors.activeSurface};
+        padding: 5px;
+      }
+
+      menu menuitem:disabled {
+        color: #${style.colors.textGray};
+      }
+
+      menu menuitem {
+        color: #${style.colors.text};
+        border: solid 1px transparent;
+        border-radius: 7px;
+        padding: 5px;
+      }
+
+      menu menuitem arrow {
+      }
+
+      menu separator {
+        background-color: #${style.colors.activeSurface};
+        margin: 0 5px;
+      }
+
+      menu menuitem:hover {
+        background-color: #4f4465;
+        border: solid 1px #${style.colors.primary};
       }
 
       #tray {
