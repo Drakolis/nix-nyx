@@ -6,17 +6,15 @@
 }:
 let
   cfg = config.drakolis.desktop;
+  hasKde = builtins.elem "kde" cfg.types;
 in
 with lib;
 {
-  config = mkIf (cfg.enable && cfg.type == "kde") {
-    services.displayManager.sddm.enable = true;
+  imports = [
+    ./dm/sddm.nix
+  ];
+  config = mkIf (cfg.enable && hasKde) {
     services.desktopManager.plasma6.enable = true;
-
-    # Wayland
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = 1;
-    };
 
     environment.systemPackages = with pkgs; [
       # Wayland utils

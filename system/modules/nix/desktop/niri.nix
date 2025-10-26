@@ -6,18 +6,16 @@
 }:
 let
   cfg = config.drakolis.desktop;
-  hasHyprland = builtins.elem "hyprland" cfg.types;
+  hasNiri = builtins.elem "niri" cfg.types;
 in
 with lib;
 {
   imports = [
     ./dm/sddm.nix
   ];
-  config = mkIf (cfg.enable && hasHyprland) {
-    programs.hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
+  config = mkIf (cfg.enable && hasNiri) {
+    programs.niri.enable = true;
+    services.gnome.gnome-keyring.enable = false; # I like KWallet
 
     environment.sessionVariables = {
       TERMINAL = "kitty";
@@ -30,24 +28,19 @@ with lib;
       wl-mirror
       wayvnc
 
-      # Hyprland
-      hyprland
-      hyprcursor
-      hypridle
-      hyprlock
-      hyprpaper
-      hyprpicker
-      hyprshade
-      hyprshot
-      hyprsunset
-
       brightnessctl
       playerctl
       libnotify
 
+      hypridle
+      hyprlock
+      hyprpaper
+      hyprpicker
+
       # Media
       imv
       mpv
+      haruna
 
       # Office
       libreoffice

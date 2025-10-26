@@ -9,6 +9,7 @@ let
   desktopTypes = lib.types.enum [
     "kde"
     "hyprland"
+    "niri"
   ];
 in
 with lib;
@@ -22,9 +23,9 @@ with lib;
           Enable desktop on this machine.
         '';
       };
-      type = mkOption {
-        default = "kde";
-        type = desktopTypes;
+      types = mkOption {
+        default = [ "niri" ];
+        type = types.listOf desktopTypes;
         description = ''
           Select the desktop to use.
         '';
@@ -32,6 +33,7 @@ with lib;
     };
   };
   imports = [
+    ./niri.nix
     ./hyprland.nix
     ./kde.nix
   ];
@@ -43,5 +45,10 @@ with lib;
       # XDG extras
       xdg-terminal-exec
     ];
+
+    # Wayland
+    environment.sessionVariables = {
+      NIXOS_OZONE_WL = 1;
+    };
   };
 }

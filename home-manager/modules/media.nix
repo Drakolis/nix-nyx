@@ -16,7 +16,7 @@ let
 
   photoMediaPackages = with pkgs; [
     krita
-    digikam
+    # digikam
     rawtherapee
   ];
 
@@ -40,7 +40,7 @@ let
     openscad
 
     # Utilities
-    meshlab
+    # meshlab
   ];
 
   desiredMediaPackages =

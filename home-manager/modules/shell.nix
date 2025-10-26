@@ -86,13 +86,6 @@ in
     '';
   };
 
-  programs.aliae = {
-    enable = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
-    enableNushellIntegration = true;
-  };
-
   programs.nushell = {
     enable = true;
     settings = {

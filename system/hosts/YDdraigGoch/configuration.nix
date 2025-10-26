@@ -129,7 +129,11 @@
   drakolis = {
     desktop = {
       enable = true;
-      type = "kde";
+      types = [
+        "kde"
+        "hyprland"
+        "niri"
+      ];
     };
     gaming.enable = true;
     geolocation.enable = true;

@@ -3,7 +3,7 @@ let
 in
 {
   imports = [
-    ./hyprland.nix
+    ./niri.nix
 
     ../shared/hypridle.nix
     ../shared/hyprlock.nix

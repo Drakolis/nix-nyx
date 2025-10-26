@@ -95,7 +95,10 @@
   drakolis = {
     desktop = {
       enable = true;
-      type = "hyprland";
+      types = [
+        "hyprland"
+        "niri"
+      ];
     };
     geolocation.enable = true;
   };

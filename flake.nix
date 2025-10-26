@@ -81,6 +81,7 @@
       nixpkgs,
       home-manager,
       plasma-manager,
+      niri-flake,
       nix-yazi-plugins,
       nix-vscode-extensions,
       sops-nix,
@@ -176,6 +177,7 @@
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeModules.plasma-manager
+            niri-flake.homeModules.niri
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/YDdraigGoch.nix
           ];
@@ -191,6 +193,7 @@
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeModules.plasma-manager
+            niri-flake.homeModules.niri
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/WinterDragon.nix
           ];
