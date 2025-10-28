@@ -16,7 +16,9 @@
 
 ## Classic configuration file commands
 
-### `nix-channel -add`
+### `nix-channel --add https://nixos.org/channels/nixos-unstable nixos`
+
+### `nix-channel --list`
 
 ### `nixos-rebuild switch`
 
