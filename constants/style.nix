@@ -87,7 +87,7 @@ in
     shadow = catppuccinMocha.crust;
 
     # Waybar Modules
-    waybar = catppuccinMocha.crust;
+    waybar = catppuccinMocha.mantle;
     keyboard = catppuccinMocha.sky;
     sound = catppuccinMocha.flamingo;
     brightness = catppuccinMocha.yellow;

@@ -32,7 +32,7 @@ in
       keyboard-shortcuts = true;
       hide-on-clear = true;
       hide-on-action = false;
-      fit-to-screen = true;
+      fit-to-screen = false;
       relative-timestamps = true;
       # Must be notification width + paddings
       control-center-width = notificaionWidth + style.gaps.outer * 2;
@@ -96,8 +96,13 @@ in
         transition: 200ms;
       }
 
+      .floating-notifications {
+        margin: 5px;
+        margin-top: 25px;
+      }
+
       .floating-notifications.background .notification-row .notification-background {
-        margin: ${toString style.gaps.inner}px 0;
+        margin: ${toString style.gaps.inner}px;
         border-radius: ${toString style.border.inner.radius}px;
         box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.inner.width}px #${style.colors.primary};
         background-color: #${style.colors.panel};
@@ -188,10 +193,13 @@ in
       }
 
       .control-center {
+        margin: 5px;
+        margin-top: 25px;
         border-radius: ${toString style.border.outer.radius}px;
         box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${toString style.border.outer.width}px #${style.colors.primary};
         background-color: #${style.colors.background};
         padding: ${toString style.padding.notifications}px;
+        padding-top: 0;
       }
 
       .widget-title,
@@ -386,13 +394,13 @@ in
       }
 
       .control-center .notification-row .notification-background:hover {
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 2px ${
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
           toString (style.border.inner.width + 1)
         }px #${style.colors.primary};
       }
 
       .control-center .notification-row .notification-background:active {
-        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 2px ${
+        box-shadow: 0 0 3px 2px #${style.colors.shadow}, inset 0 0 0 ${
           toString (style.border.inner.width + 1)
         }px #${style.colors.primary};
       }

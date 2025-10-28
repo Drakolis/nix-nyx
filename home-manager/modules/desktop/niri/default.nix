@@ -9,7 +9,7 @@ in
     ../shared/hyprlock.nix
 
     ../shared/swaync.nix
-    # ../shared/themes.nix
+    ../shared/themes.nix
     ../shared/terminals.nix
 
     ../shared/waybar.nix

@@ -4,6 +4,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    bluetui
     (writeShellScriptBin "wttr-waybar" ''
       DATA=$(curl -s "wttr.in/?format=j1")
 
@@ -94,7 +95,6 @@ in
           "hyprland/language"
           "niri/language"
           "pulseaudio"
-          # "wireplumber"
           "backlight"
           "battery"
           "bluetooth"
@@ -137,6 +137,7 @@ in
             "(.*) - VSCodium" = " $1";
             "VSCodium" = "";
             "Telegram .*" = "";
+            "Element(.*)" = "󰬌 $1";
           };
         };
         "hyprland/window" = {
@@ -151,15 +152,16 @@ in
             "(.*) - VSCodium" = " $1";
             "VSCodium" = "";
             "Telegram .*" = "";
+            "Element(.*)" = "󰬌 $1";
           };
         };
         "niri/language" = {
-          format-en = "󰘵 EN";
-          format-ru = "󰘵 RU";
+          format-en = "󰘵 ENG";
+          format-ru = "󰘵 RUS";
         };
         "hyprland/language" = {
-          format-en = "󰘵 EN";
-          format-ru = "󰘵 RU";
+          format-en = "󰘵 ENG";
+          format-ru = "󰘵 RUS";
         };
         "custom/notification" = {
           format = "{icon}";
@@ -184,8 +186,8 @@ in
           scroll-step = 5;
           format = "{icon} {volume}%   {format_source}";
           format-source = "󰍬 {volume}%";
-          format-source-muted = "󰍭  Mute";
-          format-muted = "󰝟 Mute   {format_source}";
+          format-source-muted = "󰍭  OFF";
+          format-muted = "󰝟 OFF   {format_source}";
           format-icons = {
             default = [
               "󰕿 "
@@ -193,20 +195,8 @@ in
               "󰕾"
             ];
           };
-          on-click = "pavucontrol";
-          on-click-right = "helvum";
-        };
-        wireplumber = {
-          scroll-step = 5;
-          format = "{icon} {volume}%";
-          format-muted = "  Mute";
-          format-icons = [
-            ""
-            ""
-            " "
-          ];
-          on-click = "helvum";
-          on-right-click = "pavucontrol";
+          on-click = "pavucontrol-qt";
+          on-click-right = "qpwgraph";
         };
         backlight = {
           scroll-step = 5;
@@ -241,24 +231,27 @@ in
           ];
         };
         bluetooth = {
-          format = "󰂯";
-          format-off = "󰂲";
-          format-disabled = "󰂲";
-          format-connected = "󰂯";
-          tooltip-format = "{status} - {num_connections}";
-          tooltip-format-disabled = "Disconnected";
-          tooltip-format-off = "Disconnected";
+          format = "󰂯 UNK";
+          format-off = "󰂲 OFF";
+          format-on = "󰂯 RDY";
+          format-disabled = "󰂲 OFF";
+          format-connected = "󰂯 CON";
+          format-no-controller = "󰂲 N/A";
+          tooltip-format = "{controller_alias} - {status} - {num_connections}";
+          tooltip-format-disabled = "{controller_alias} - Disabled";
+          tooltip-format-off = "{controller_alias} - Turned Off";
           on-click = "kitty bluetui";
         };
         network = {
-          format = "󱘖";
+          interface = "*s0";
+          format = "󱘖 N/A";
           format-wifi = "{icon} {signalStrength}%";
-          format-ethernet = "󰌘";
-          format-disconnected = "󰤭";
+          format-ethernet = "󰌘 ETH";
+          format-disconnected = "󰤭 NON";
           tooltip-format-wifi = "{ifname} - {essid} - {ipaddr}";
           tooltip-format-ethernet = "{ifname} - {ipaddr}";
-          tooltip-format-disconnected = "Disconnected";
-          tooltip-format = "Disconnected";
+          tooltip-format-disconnected = "{ifname} - Disconnected";
+          tooltip-format = "{ifname} - Disconnected";
           format-icons = [
             "󰤯"
             "󰤟"

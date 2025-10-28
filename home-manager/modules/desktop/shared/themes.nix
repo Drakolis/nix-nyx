@@ -12,7 +12,6 @@ in
     # catppuccin-whiskers
 
     # # Other DEs
-    qt6Packages.qt6ct
     catppuccin-qt5ct
     kdePackages.breeze
     kdePackages.breeze-gtk
@@ -34,22 +33,22 @@ in
     })
   ];
 
-  home.pointerCursor = {
-    package = pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
-    name = "DMZ-Black";
-    size = style.cursorTheme.size;
-    hyprcursor.enable = true;
-    gtk.enable = true;
-    x11.enable = true;
-  };
+  # home.pointerCursor = {
+  #   package = pkgs.vanilla-dmz; # For some reason this is mandatory to repeat here
+  #   name = "DMZ-Black";
+  #   size = style.cursorTheme.size;
+  #   hyprcursor.enable = true;
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  # };
 
   gtk = {
     enable = true;
     colorScheme = "dark";
-    cursorTheme = {
-      name = "DMZ-Black";
-      size = style.cursorTheme.size;
-    };
+    # cursorTheme = {
+    #   name = "DMZ-Black";
+    #   size = style.cursorTheme.size;
+    # };
     font = {
       name = style.fontGui;
       size = style.fontSize;
@@ -70,7 +69,7 @@ in
   qt = {
     enable = true;
     platformTheme = {
-      name = "qtct";
+      name = "kde";
     };
     style = {
       name = "breeze";
