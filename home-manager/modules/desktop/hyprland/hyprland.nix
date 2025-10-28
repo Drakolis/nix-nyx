@@ -182,10 +182,36 @@ in
         };
       };
       bind = [
+        # Applications
         "$mainMod, RETURN, exec, ${commands.terminal}"
         "$mainMod SHIFT, RETURN, exec, ghostty"
+        "$mainMod SHIFT, F5, exec, systemctl --user restart waybar"
+        "$mainMod, L, exec, loginctl lock-session"
+        "$mainMod, K, exec, ${commands.notifyHyprpicker} & hyprpicker -a"
+        "$mainMod, N, exec, swaync-client -t"
+        "$mainMod SHIFT, N, exec, swaync-client -d"
+        ", Print, exec, hyprshot -z -m region -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "CTRL, Print, exec, hyprshot -z -m output -o ${paths.screenshots} ${commands.previewScreenshot}"
+        "$mainMod, Print, exec, hyprshot -m window -o ${paths.screenshots} ${commands.previewScreenshot}"
 
-        # Kill actions
+        # Launchers
+        "$mainMod, Z, exec, ${commands.terminal} ${commands.tui.fileManager}"
+        "$mainMod SHIFT, Z, exec, ${commands.gui.fileManager}"
+        "$mainMod, B, exec, ${commands.gui.browser}"
+        "$mainMod, T, exec, qalculate-gtk"
+        "$mainMod, E, exec, ${commands.terminal} ${commands.tui.editor}"
+        "$mainMod SHIFT, E, exec, ${commands.gui.editor}"
+        "$mainMod, M, exec, ${commands.terminal} (wl-paste | xargs ${commands.previewText})"
+        "$mainMod, Y, exec, ${commands.gui.passwords}"
+
+        # Runner
+        "$mainMod, SPACE, exec, ${commands.dialogues.runner}"
+        "$mainMod, V, exec, ${commands.dialogues.runnerClipboard}"
+        "$mainMod SHIFT, SPACE, exec, ${commands.dialogues.runnerShift}"
+
+        "$mainMod, F4, exec, toggle-hyprland-animations"
+
+        # Kill Actions
         "$mainMod, Q, killactive, "
         "$mainMod SHIFT, Q, exec, ${commands.dialogues.shutdown}"
         "CTRL ALT, DELETE, exit, "
@@ -203,15 +229,6 @@ in
         "$mainMod SHIFT, G, moveoutofgroup, "
         "$mainMod, TAB, changegroupactive, f"
         "$mainMod SHIFT, TAB, changegroupactive, b"
-
-        "$mainMod SHIFT, F5, exec, systemctl --user restart waybar"
-        "$mainMod, L, exec, loginctl lock-session"
-        "$mainMod, K, exec, ${commands.notifyHyprpicker} & hyprpicker -a"
-        "$mainMod, N, exec, swaync-client -t"
-        "$mainMod SHIFT, N, exec, swaync-client -d"
-        ", Print, exec, hyprshot -z -m region -o ${paths.screenshots} ${commands.previewScreenshot}"
-        "CTRL, Print, exec, hyprshot -z -m output -o ${paths.screenshots} ${commands.previewScreenshot}"
-        "$mainMod, Print, exec, hyprshot -m window -o ${paths.screenshots} ${commands.previewScreenshot}"
 
         # "$mainMod, grave, hyprexpo:expo, toggle"
 
@@ -244,27 +261,10 @@ in
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-        # Launchers
-        "$mainMod, Z, exec, ${commands.terminal} ${commands.tui.fileManager}"
-        "$mainMod SHIFT, Z, exec, ${commands.gui.fileManager}"
-        "$mainMod, B, exec, ${commands.gui.browser}"
-        "$mainMod, T, exec, qalculate-gtk"
-        "$mainMod, E, exec, ${commands.terminal} ${commands.tui.editor}"
-        "$mainMod SHIFT, E, exec, ${commands.gui.editor}"
-        "$mainMod, M, exec, ${commands.terminal} (wl-paste | xargs ${commands.previewText})"
-        "$mainMod, Y, exec, ${commands.gui.passwords}"
-
-        # Runner
-        "$mainMod, SPACE, exec, ${commands.dialogues.runner}"
-        "$mainMod, V, exec, ${commands.dialogues.runnerClipboard}"
-        "$mainMod SHIFT, SPACE, exec, ${commands.dialogues.runnerShift}"
-
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPrev, exec, playerctl previous"
-
-        "$mainMod, F4, exec, toggle-hyprland-animations"
       ]
       ++ (
         # workspaces
@@ -308,6 +308,7 @@ in
       bindo = [
         # Long press
       ];
+
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
