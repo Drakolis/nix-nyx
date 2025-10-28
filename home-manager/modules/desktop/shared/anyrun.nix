@@ -31,7 +31,6 @@ in
         "${pkgs.anyrun}/lib/libtranslate.so"
         "${pkgs.anyrun}/lib/librink.so"
         "${pkgs.anyrun}/lib/libkidex.so"
-        "${pkgs.anyrun}/lib/libstdin.so"
         "${pkgs.anyrun}/lib/libdictionary.so"
         "${pkgs.anyrun}/lib/libwebsearch.so"
         "${pkgs.anyrun}/lib/libnix_run.so"
@@ -61,8 +60,8 @@ in
       box.main {
         padding: ${toString style.padding.window}px;
         margin: 10px;
-        border-radius: ${toString style.border.outer.radius}px;
-        border: ${toString style.border.outer.width}px solid @accent;
+        border-radius: ${toString style.border.inner.radius}px;
+        border: ${toString style.border.inner.width}px solid @accent;
         background-color: @bg-color;
         box-shadow: 0 0 3px 2px #${style.colors.shadow};
       }
