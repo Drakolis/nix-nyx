@@ -66,7 +66,7 @@ with lib;
         "buffer_font_size" = bufferFontSize;
         "buffer_font_family" = "JetBrainsMono Nerd Font";
         "theme" = {
-          "mode" = "system";
+          "mode" = "dark";
           "light" = "Catppuccin Latte";
           "dark" = "Catppuccin Mocha";
         };
