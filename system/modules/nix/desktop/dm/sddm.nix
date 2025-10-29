@@ -32,10 +32,9 @@ with lib;
         [ ]
       else
         [
-
           # SDDM
-          nerd-fonts.ubuntu
-          (catppuccin-sddm.override {
+          pkgs.nerd-fonts.ubuntu
+          (pkgs.catppuccin-sddm.override {
             flavor = "mocha";
             font = "Ubuntu Nerd Font";
             fontSize = "14";
