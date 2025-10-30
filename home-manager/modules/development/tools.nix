@@ -12,7 +12,6 @@ let
   ];
 
   aiEditorsPackages = with pkgs; [
-    code-cursor
     windsurf
   ];
 
