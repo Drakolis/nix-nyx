@@ -33,6 +33,20 @@ in
           shadow_boost = 0.8;
         }
         {
+          text = ''cmd[update:60000] acpi'';
+          color = "rgb(${style.colors.text})";
+          font_size = 15;
+          font_family = style.fontGuiNerd;
+          position = "30, -50";
+          halign = "left";
+          valign = "top";
+
+          shadow_passes = 1;
+          shadow_size = 3;
+          shadow_color = "rgb(${style.colors.shadow})";
+          shadow_boost = 0.8;
+        }
+        {
           text = "$TIME";
           color = "rgb(${style.colors.text})";
           font_size = 90;
