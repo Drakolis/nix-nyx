@@ -26,6 +26,11 @@
 
     niri-flake.url = "github:sodiboo/niri-flake";
 
+    ignis = {
+      url = "github:ignis-sh/ignis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     bzmenu.url = "github:e-tho/bzmenu";
     iwmenu.url = "github:e-tho/iwmenu";
     zjstatus.url = "github:dj95/zjstatus";
@@ -178,6 +183,7 @@
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeModules.plasma-manager
             niri-flake.homeModules.niri
+            inputs.ignis.homeManagerModules.default
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/YDdraigGoch.nix
           ];
@@ -194,6 +200,7 @@
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
             plasma-manager.homeModules.plasma-manager
             niri-flake.homeModules.niri
+            inputs.ignis.homeManagerModules.default
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/WinterDragon.nix
           ];

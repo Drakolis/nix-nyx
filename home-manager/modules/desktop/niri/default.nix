@@ -14,6 +14,7 @@ in
 
     ../shared/waybar.nix
     ../shared/wlogout.nix
+    ../shared/ignis.nix
 
     ../shared/walker.nix
     ../shared/anyrun.nix
