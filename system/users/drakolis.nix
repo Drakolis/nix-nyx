@@ -28,7 +28,6 @@ with lib;
     packages = with pkgs; [
       # protonmail-bridge-gui
       protonvpn-gui
-      protonvpn-cli
       proton-pass
       element-desktop
     ];

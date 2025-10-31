@@ -13,7 +13,6 @@
       nerd-fonts.ubuntu-mono
 
       noto-fonts
-      noto-fonts-extra
       noto-fonts-cjk-sans
 
       hack-font
@@ -23,6 +22,6 @@
       nerd-fonts.jetbrains-mono
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
 }
