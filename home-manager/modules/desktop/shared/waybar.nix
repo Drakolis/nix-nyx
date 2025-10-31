@@ -332,7 +332,7 @@ in
       #bluetooth, #network, #language, #custom-lock,
       #clock, #custom-power, #custom-music, #custom-weather {
         background-color: #${style.colors.waybar};
-        padding: 0.6rem 0.5rem 0.5rem;
+        padding: 0.6rem 1rem 0.5rem;
         margin-top: 5px;
       }
 
@@ -346,21 +346,21 @@ in
       /* Section - Left */
       #language, #custom-lock, #custom-notification {
         border-radius: 2rem 0 0 2rem;
-        padding-right: 0.5rem;
+        padding-right: 0.3rem;
         margin-left: 5px;
       }
 
       /* Section - Middle */
       #pulseaudio, #wireplumber, #backlight, #battery,
       #bluetooth, #clock {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
       }
 
       /* Section - Right */
       #custom-power, #custom-music, #network, #custom-weather {
         border-radius: 0 2rem 2rem 0;
-        padding-left: 0.5rem;
+        padding-left: 0.3rem;
         margin-right: 5px;
       }
 
