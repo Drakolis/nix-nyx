@@ -346,21 +346,21 @@ in
       /* Section - Left */
       #language, #custom-lock, #custom-notification {
         border-radius: 2rem 0 0 2rem;
-        padding-right: 0.3rem;
+        padding-right: 0.35rem;
         margin-left: 5px;
       }
 
       /* Section - Middle */
       #pulseaudio, #wireplumber, #backlight, #battery,
       #bluetooth, #clock {
-        padding-left: 0.3rem;
-        padding-right: 0.3rem;
+        padding-left: 0.35rem;
+        padding-right: 0.35rem;
       }
 
       /* Section - Right */
       #custom-power, #custom-music, #network, #custom-weather {
         border-radius: 0 2rem 2rem 0;
-        padding-left: 0.3rem;
+        padding-left: 0.35rem;
         margin-right: 5px;
       }
 
