@@ -280,4 +280,6 @@ in
       };
     };
   };
+
+  programs.aichat.enable = true;
 }

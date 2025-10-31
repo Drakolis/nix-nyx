@@ -1,18 +1,11 @@
 { pkgs, lib, ... }:
 with lib;
 {
-  home.packages =
-    with pkgs;
-    [
-      vdirsyncer
-      rclone
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isLinux [
-      syncthingtray-qt6
-    ]
-    ++ lib.optionals stdenv.hostPlatform.isDarwin [
-      syncthingtray
-    ];
+  home.packages = with pkgs; [
+    vdirsyncer
+    rclone
+    syncthingtray
+  ];
 
   services.syncthing = {
     enable = true;

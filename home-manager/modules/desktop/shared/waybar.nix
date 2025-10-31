@@ -75,7 +75,6 @@ in
 
   programs.waybar = {
     enable = true;
-    systemd.enable = false;
 
     settings = {
       mainBar = {
@@ -138,7 +137,7 @@ in
             "(.*) - VSCodium" = " $1";
             "VSCodium" = "";
             "Telegram .*" = "";
-            "Element(.*)" = "󰬌 $1";
+            "Element (.*)" = "󰬌 $1";
           };
         };
         "hyprland/window" = {
@@ -153,7 +152,7 @@ in
             "(.*) - VSCodium" = " $1";
             "VSCodium" = "";
             "Telegram .*" = "";
-            "Element(.*)" = "󰬌 $1";
+            "Element (.*)" = "󰬌 $1";
           };
         };
         "niri/language" = {

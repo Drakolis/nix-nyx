@@ -3,6 +3,8 @@ let
   notificaionWidth = 500;
 in
 {
+  services.batsignal.enable = true;
+
   services.swaync = {
     enable = true;
     settings = {

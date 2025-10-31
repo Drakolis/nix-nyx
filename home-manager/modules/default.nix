@@ -31,6 +31,7 @@ with lib;
     ./browser.nix
     ./development
     ./flatpak.nix
+    ./glance.nix
     ./internet.nix
     ./media.nix
     ./neovim

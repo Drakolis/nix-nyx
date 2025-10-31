@@ -41,10 +41,7 @@ with lib;
     # Things we assume are necessary for any desktop session
     services.gvfs.enable = true; # Virtual filesystem support
 
-    environment.systemPackages = with pkgs; [
-      # XDG extras
-      xdg-terminal-exec
-    ];
+    xdg.terminal-exec.enable = true;
 
     # Wayland
     environment.sessionVariables = {

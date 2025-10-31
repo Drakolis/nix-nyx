@@ -9,11 +9,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zjstatus.url = "github:dj95/zjstatus";
+
+    nix-yazi-plugins = {
+      url = "github:lordkekz/nix-yazi-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
+
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    niri-flake.url = "github:sodiboo/niri-flake";
 
     niri-switch = {
       url = "github:Kiki-Bouba-Team/niri-switch";
@@ -33,12 +44,6 @@
 
     bzmenu.url = "github:e-tho/bzmenu";
     iwmenu.url = "github:e-tho/iwmenu";
-    zjstatus.url = "github:dj95/zjstatus";
-
-    nix-yazi-plugins = {
-      url = "github:lordkekz/nix-yazi-plugins";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

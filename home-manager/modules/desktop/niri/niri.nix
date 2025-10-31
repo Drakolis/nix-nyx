@@ -10,7 +10,6 @@ let
 in
 {
   home.packages = [
-    inputs.niri-switch.packages.${pkgs.system}.default
     inputs.niri-screen-time.packages.${pkgs.system}.default
   ];
 
@@ -22,14 +21,7 @@ in
       environment = { };
 
       spawn-at-startup = [
-        { argv = [ "waybar" ]; }
         { argv = [ "kwalletd6" ]; }
-        {
-          argv = [
-            "syncthingtray"
-            "--wait"
-          ];
-        }
         { argv = [ "tailscale-systray" ]; }
         { argv = [ "niriswitcher" ]; }
         {
@@ -231,14 +223,15 @@ in
         # }
       };
 
-      workspaces = { };
+      workspaces = {
+      };
 
       window-rules = [
         {
           matches = [
             {
               app-id = ''r#"(firefox|librewolf)$"#'';
-              title = "^Picture-in-Picture$";
+              title = "Picture-in-Picture";
             }
           ];
           open-floating = true;

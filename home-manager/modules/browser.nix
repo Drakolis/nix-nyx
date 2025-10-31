@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 let
   nativeMessagingHostsForPlatform =
     [ ]
@@ -6,6 +11,7 @@ let
 in
 with lib;
 {
+  home.packages = [ inputs.zen-browser.packages.${pkgs.system}.default ];
   nixpkgs.config.librewolf.enablePlasmaBrowserIntegration = pkgs.stdenv.hostPlatform.isLinux;
   programs.librewolf = {
     enable = true;
@@ -95,13 +101,16 @@ with lib;
         Enabled = true;
         Locked = true;
       };
+      SearchEngines = {
+        Default = "StartPage";
+      };
     };
 
     profiles.drakolis = {
       name = "drakolis";
       isDefault = true;
       search = {
-        default = "startpage";
+        default = "StartPage";
         force = true;
         engines = {
           ecosia = {
@@ -213,6 +222,10 @@ with lib;
         "privacy.fingerprintingProtection.granularOverrides" = [
           # Local
           {
+            "firstPartyDomain" = "localhost";
+            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+          }
+          {
             "firstPartyDomain" = "nanowyrm";
             "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
           }
@@ -259,8 +272,8 @@ with lib;
         ];
         "dom.security.https_only_mode" = true;
         "webgl.disabled" = true;
-        # "browser.search.defaultenginename" = "StartPage";
-        # "browser.search.selectedEngine" = "startpage";
+        "browser.search.defaultenginename" = "StartPage";
+        "browser.search.selectedEngine" = "startpage";
       };
     };
   };
