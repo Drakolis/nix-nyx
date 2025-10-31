@@ -35,8 +35,6 @@
       url = "github:probeldev/niri-screen-time";
     };
 
-    niri-flake.url = "github:sodiboo/niri-flake";
-
     ignis = {
       url = "github:ignis-sh/ignis";
       inputs.nixpkgs.follows = "nixpkgs";
