@@ -69,7 +69,7 @@ in
       ICON=''${WEATHER_ICONS[$WEATHER_CODE]:-""}
 
       # Output JSON for Waybar
-      echo "{\"text\": \"$ICON $TEMP°C\", \"tooltip\": \"$WEATHER_DESCRIPTION\"}"
+      echo "{\"text\": \"$ICON  $TEMP°C\", \"tooltip\": \"$WEATHER_DESCRIPTION\"}"
     '')
   ];
 
@@ -90,6 +90,7 @@ in
           "custom/notification"
           "clock"
           "custom/weather"
+          "gamemode"
         ];
         modules-right = [
           "hyprland/language"
@@ -275,6 +276,11 @@ in
           icon-size = style.fontSizeLarger + 1;
           spacing = style.fontSizeLarger;
         };
+        gamemode = {
+          format = "{glyph} GAM";
+          glyph = "G";
+          use-icon = false;
+        };
         "custom/lock" = {
           tooltip = false;
           on-click = "loginctl lock-session";
@@ -326,7 +332,7 @@ in
       #bluetooth, #network, #language, #custom-lock,
       #clock, #custom-power, #custom-music, #custom-weather {
         background-color: #${style.colors.waybar};
-        padding: 0.6rem 1rem 0.5rem;
+        padding: 0.6rem 0.5rem 0.5rem;
         margin-top: 5px;
       }
 

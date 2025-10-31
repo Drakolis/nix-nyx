@@ -144,5 +144,14 @@ in
     filetypeArchive = catppuccinMocha.pink;
     filetypeDocument = catppuccinMocha.green;
     filetypeFolder = catppuccinMocha.blue;
+
+    gauge1 = catppuccinMocha.teal;
+    gauge2 = catppuccinMocha.sky;
+    gauge3 = catppuccinMocha.sapphire;
+    gauge4 = catppuccinMocha.blue;
+    gauge5 = catppuccinMocha.mauve;
+    gauge6 = catppuccinMocha.pink;
+    gauge7 = catppuccinMocha.maroon;
+    gauge8 = catppuccinMocha.red;
   };
 }

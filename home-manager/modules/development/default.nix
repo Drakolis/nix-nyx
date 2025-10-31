@@ -1,12 +1,7 @@
 {
-  config,
-  pkgs,
   lib,
   ...
 }:
-let
-  cfg = config.drakolis.development;
-in
 with lib;
 {
   options = {

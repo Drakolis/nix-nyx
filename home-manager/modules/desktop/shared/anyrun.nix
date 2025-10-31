@@ -1,7 +1,6 @@
 { pkgs, ... }:
 let
   style = import ../../../../constants/style.nix;
-  commands = import ../../../../constants/commands.nix;
 in
 {
   programs.anyrun = {

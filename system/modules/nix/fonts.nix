@@ -1,8 +1,4 @@
 {
-  pkgs,
-  ...
-}:
-{
   fonts.fontconfig = {
     localConf = ''
       <?xml version="1.0"?>

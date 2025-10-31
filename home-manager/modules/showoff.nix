@@ -5,6 +5,7 @@
   ...
 }:
 let
+  style = import ../../constants/style.nix;
   cfg = config.drakolis.showoff;
 in
 with lib;
@@ -46,7 +47,22 @@ with lib;
 
     programs.cava = {
       enable = true;
-      settings = { };
+      settings = {
+        general.framerate = 60;
+        input.method = "alsa";
+        smoothing.noise_reduction = 88;
+        color = {
+          gradient = 1;
+          gradient_color_1 = ''#${style.colors.gauge1}'';
+          gradient_color_2 = ''#${style.colors.gauge2}'';
+          gradient_color_3 = ''#${style.colors.gauge3}'';
+          gradient_color_4 = ''#${style.colors.gauge4}'';
+          gradient_color_5 = ''#${style.colors.gauge5}'';
+          gradient_color_6 = ''#${style.colors.gauge6}'';
+          gradient_color_7 = ''#${style.colors.gauge7}'';
+          gradient_color_8 = ''#${style.colors.gauge8}'';
+        };
+      };
     };
 
     # NeoFetch

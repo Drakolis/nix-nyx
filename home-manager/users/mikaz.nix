@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   home.username = "mika.zimina";
   home.homeDirectory =

@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 let
   style = import ../../constants/style.nix;
   commands = import ../../constants/commands.nix;

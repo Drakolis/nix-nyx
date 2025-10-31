@@ -9,7 +9,7 @@ let
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
   bufferFontSize = if isDarwin then 13 else 13;
-  uiFontSize = if isDarwin then 16 else 14;
+  uiFontSize = if isDarwin then 15 else 15;
 in
 with lib;
 {

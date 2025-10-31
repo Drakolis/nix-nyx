@@ -9,7 +9,6 @@ let
     [ ]
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.kdePackages.plasma-browser-integration ];
 in
-with lib;
 {
   home.packages = [ inputs.zen-browser.packages.${pkgs.system}.default ];
   nixpkgs.config.librewolf.enablePlasmaBrowserIntegration = pkgs.stdenv.hostPlatform.isLinux;

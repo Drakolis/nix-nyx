@@ -28,7 +28,7 @@ let
     jetbrains.pycharm-community
   ];
 
-  goExtendedPackages = with pkgs; [ ];
+  goExtendedPackages = [ ];
 
   luaPackages = with pkgs; [
     lua

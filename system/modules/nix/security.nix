@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
   # [NETW-3200] Disable unused network protocols
   boot.blacklistedKernelModules = [
