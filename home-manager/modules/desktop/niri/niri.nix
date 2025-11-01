@@ -230,7 +230,7 @@ in
         {
           matches = [
             {
-              app-id = ''r#"(firefox|librewolf)$"#'';
+              app-id = "(firefox|librewolf)$";
               title = "Picture-in-Picture";
             }
           ];
@@ -238,10 +238,20 @@ in
         }
         {
           matches = [
-            { app-id = ''r#"^org\.keepassxc\.KeePassXC$"#''; }
-            { app-id = ''r#"^org\.gnome\.World\.Secrets$"#''; }
-            { app-id = ''r#"^org\.kde\.kwalletmanager$"#''; }
-            { app-id = ''r#"^Proton Pass$"#''; }
+            {
+              title = "^((Open|Save).*)$";
+            }
+          ];
+          open-floating = true;
+          default-window-height.proportion = 0.3;
+          default-column-width.proportion = 0.45;
+        }
+        {
+          matches = [
+            { app-id = "^org\.keepassxc\.KeePassXC$"; }
+            { app-id = "^org\.gnome\.World\.Secrets$"; }
+            { app-id = "^org\.kde\.kwalletmanager$"; }
+            { app-id = "^Proton Pass$"; }
           ];
           block-out-from = "screen-capture";
         }
