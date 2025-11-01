@@ -94,7 +94,9 @@ in
     bluetooth = catppuccinMocha.blue;
     network = catppuccinMocha.lavender;
     clock = catppuccinMocha.sapphire;
-    weather = catppuccinMocha.maroon;
+    weather = catppuccinMocha.pink;
+    gamemode = catppuccinMocha.maroon;
+    powermode = catppuccinMocha.peach;
 
     terminalBlack = catppuccinMocha.surface1;
     terminalRed = catppuccinMocha.red;

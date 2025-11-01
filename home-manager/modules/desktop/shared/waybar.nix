@@ -90,7 +90,6 @@ in
           "custom/notification"
           "clock"
           "custom/weather"
-          "gamemode"
         ];
         modules-right = [
           "hyprland/language"
@@ -98,6 +97,8 @@ in
           "pulseaudio"
           "backlight"
           "battery"
+          "power-profiles-daemon"
+          "gamemode"
           "bluetooth"
           "network"
           "tray"
@@ -171,10 +172,10 @@ in
             none = "󰂚";
             dnd-notification = "<span foreground='#${style.colors.error}'>󰂛/span>";
             dnd-none = "󰂛";
-            inhibited-notification = "<span foreground='#${style.colors.error}'>󰂚</span>";
-            inhibited-none = "󰂚";
-            dnd-inhibited-notification = "<span foreground='#${style.colors.error}'>󰂛</span>";
-            dnd-inhibited-none = "󰂛";
+            inhibited-notification = "<span foreground='#${style.colors.error}'>󰂜</span>";
+            inhibited-none = "󰂜";
+            dnd-inhibited-notification = "<span foreground='#${style.colors.error}'>󰪑</span>";
+            dnd-inhibited-none = "󰪑";
           };
           return-type = "json";
           exec-if = "which swaync-client";
@@ -221,8 +222,8 @@ in
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
+          format-charging = "󱐋 {capacity}%";
+          format-plugged = "󰚥 {capacity}%";
           format-icons = [
             ""
             ""
@@ -230,6 +231,17 @@ in
             ""
             ""
           ];
+        };
+        power-profiles-daemon = {
+          format = "{icon}";
+          tooltip-format = "Power profile: {profile}\nDriver: {driver}";
+          tooltip = true;
+          format-icons = {
+            default = "󱐋 UNK";
+            performance = "󱓞 PER";
+            balanced = "󰗑 BAL";
+            power-saver = "󰌪 ECO";
+          };
         };
         bluetooth = {
           format = "󰂯 UNK";
@@ -278,8 +290,10 @@ in
         };
         gamemode = {
           format = "{glyph} GAM";
-          glyph = "G";
+          glyph = " ";
           use-icon = false;
+          icon-size = 0;
+          icon-spacing = 0;
         };
         "custom/lock" = {
           tooltip = false;
@@ -330,7 +344,8 @@ in
       #workspaces, #window, #tray, #custom-notification,
       #pulseaudio, #wireplumber, #backlight, #battery,
       #bluetooth, #network, #language, #custom-lock,
-      #clock, #custom-power, #custom-music, #custom-weather {
+      #clock, #custom-power, #custom-music, #custom-weather,
+      #gamemode, #power-profiles-daemon  {
         background-color: #${style.colors.waybar};
         padding: 0.6rem 1rem 0.5rem;
         margin-top: 5px;
@@ -352,7 +367,7 @@ in
 
       /* Section - Middle */
       #pulseaudio, #wireplumber, #backlight, #battery,
-      #bluetooth, #clock {
+      #bluetooth, #clock, #gamemode, #power-profiles-daemon {
         padding-left: 0.4rem;
         padding-right: 0.4rem;
       }
@@ -456,6 +471,14 @@ in
         color: #${style.colors.error};
       }
 
+      #gamemode {
+        color: #${style.colors.gamemode};
+      }
+
+      #power-profiles-daemon {
+        color: #${style.colors.powermode};
+      }
+
       /* Section - Bluetooth */
       #bluetooth {
         color: #${style.colors.bluetooth};
@@ -475,7 +498,8 @@ in
       #workspaces button:hover, #pulseaudio:hover, #backlight:hover,
       #battery:hover, #bluetooth:hover, #network:hover, #clock:hover,
       #custom-power:hover, #custom-notification:hover, #language:hover,
-      #custom-lock:hover, #wireplumber:hover {
+      #custom-lock:hover, #wireplumber:hover, #gamemode:hover,
+      #power-profiles-daemon:hover {
         background-color: #${style.colors.activeSurface};
       }
 
