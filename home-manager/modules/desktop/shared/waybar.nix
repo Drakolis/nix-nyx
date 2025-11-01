@@ -186,10 +186,10 @@ in
         };
         pulseaudio = {
           scroll-step = 5;
-          format = "{icon} {volume}%   {format_source}";
+          format = "{icon} {volume}%  {format_source}";
           format-source = "󰍬 {volume}%";
           format-source-muted = "󰍭  OFF";
-          format-muted = "󰝟 OFF   {format_source}";
+          format-muted = "󰝟 OFF  {format_source}";
           format-icons = {
             default = [
               "󰕿 "
@@ -237,34 +237,34 @@ in
           tooltip-format = "Power profile: {profile}\nDriver: {driver}";
           tooltip = true;
           format-icons = {
-            default = "󱐋 UNK";
-            performance = "󱓞 PER";
-            balanced = "󰗑 BAL";
-            power-saver = "󰌪 ECO";
+            default = "󱐋";
+            performance = "󱓞";
+            balanced = "󰗑";
+            power-saver = "󰌪";
           };
         };
         bluetooth = {
-          format = "󰂯 UNK";
-          format-off = "󰂲 OFF";
-          format-on = "󰂯 RDY";
-          format-disabled = "󰂲 OFF";
-          format-connected = "󰂯 CON";
-          format-no-controller = "󰂲 N/A";
-          tooltip-format = "{controller_alias} - {status} - {num_connections}";
-          tooltip-format-disabled = "{controller_alias} - Disabled";
-          tooltip-format-off = "{controller_alias} - Turned Off";
+          format = "󰂯";
+          format-off = "󰂲";
+          format-on = "󰂯";
+          format-disabled = "󰂲";
+          format-connected = "󰂯";
+          format-no-controller = "󱜡";
+          tooltip-format = "Controller: {controller_alias}\nStatus: {status}\nConnections: {num_connections}";
+          tooltip-format-disabled = "Controller: {controller_alias}\nDisabled";
+          tooltip-format-off = "Controller: {controller_alias}\nTurned Off";
           on-click = "kitty bluetui";
         };
         network = {
           interface = "*s0";
-          format = "󱘖 N/A";
+          format = "󱘖";
           format-wifi = "{icon} {signalStrength}%";
-          format-ethernet = "󰌘 ETH";
-          format-disconnected = "󰤭 NON";
-          tooltip-format-wifi = "{ifname} - {essid} - {ipaddr}";
-          tooltip-format-ethernet = "{ifname} - {ipaddr}";
-          tooltip-format-disconnected = "{ifname} - Disconnected";
-          tooltip-format = "{ifname} - Disconnected";
+          format-ethernet = "󰌘";
+          format-disconnected = "󰤭";
+          tooltip-format-wifi = "Interface: {ifname}\nId: {essid}\nIP: {ipaddr}";
+          tooltip-format-ethernet = "Interface: {ifname}\nIP: {ipaddr}";
+          tooltip-format-disconnected = "Interface: {ifname}\nDisconnected";
+          tooltip-format = "Interface: {ifname}\nDisconnected";
           format-icons = [
             "󰤯"
             "󰤟"
@@ -289,7 +289,7 @@ in
           spacing = style.fontSizeLarger;
         };
         gamemode = {
-          format = "{glyph} GAM";
+          format = "{glyph}";
           glyph = " ";
           use-icon = false;
           icon-size = 0;
