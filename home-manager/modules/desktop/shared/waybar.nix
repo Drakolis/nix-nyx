@@ -237,19 +237,19 @@ in
           tooltip-format = "Power profile: {profile}\nDriver: {driver}";
           tooltip = true;
           format-icons = {
-            default = "󱐋";
-            performance = "󱓞";
-            balanced = "󰗑";
-            power-saver = "󰌪";
+            default = "󱐋 PWR";
+            performance = "󱓞 PER";
+            balanced = "󰗑 BAL";
+            power-saver = "󰌪 ECO";
           };
         };
         bluetooth = {
-          format = "󰂯";
-          format-off = "󰂲";
-          format-on = "󰂯";
-          format-disabled = "󰂲";
-          format-connected = "󰂯";
-          format-no-controller = "󱜡";
+          format = "󰂯 BLT";
+          format-off = "󰂲 OFF";
+          format-on = "󰂯 ACT";
+          format-disabled = "󰂲 DIS";
+          format-connected = "󰂯 CON";
+          format-no-controller = "󱜡 N/A";
           tooltip-format = "Controller: {controller_alias}\nStatus: {status}\nConnections: {num_connections}";
           tooltip-format-disabled = "Controller: {controller_alias}\nDisabled";
           tooltip-format-off = "Controller: {controller_alias}\nTurned Off";
@@ -257,10 +257,10 @@ in
         };
         network = {
           interface = "*s0";
-          format = "󱘖";
+          format = "󱘖 UNK";
           format-wifi = "{icon} {signalStrength}%";
-          format-ethernet = "󰌘";
-          format-disconnected = "󰤭";
+          format-ethernet = "󰌘 ETH";
+          format-disconnected = "󰤭 DIS";
           tooltip-format-wifi = "Interface: {ifname}\nId: {essid}\nIP: {ipaddr}";
           tooltip-format-ethernet = "Interface: {ifname}\nIP: {ipaddr}";
           tooltip-format-disconnected = "Interface: {ifname}\nDisconnected";
@@ -290,7 +290,7 @@ in
         };
         gamemode = {
           format = "{glyph}";
-          glyph = " ";
+          glyph = "  GAM";
           use-icon = false;
           icon-size = 0;
           icon-spacing = 0;
@@ -361,21 +361,21 @@ in
       /* Section - Left */
       #language, #custom-lock, #custom-notification {
         border-radius: 2rem 0 0 2rem;
-        padding-right: 0.4rem;
+        padding-right: 0.5rem;
         margin-left: 5px;
       }
 
       /* Section - Middle */
       #pulseaudio, #wireplumber, #backlight, #battery,
       #bluetooth, #clock, #gamemode, #power-profiles-daemon {
-        padding-left: 0.4rem;
-        padding-right: 0.4rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
       }
 
       /* Section - Right */
       #custom-power, #custom-music, #network, #custom-weather {
         border-radius: 0 2rem 2rem 0;
-        padding-left: 0.4rem;
+        padding-left: 0.5rem;
         margin-right: 5px;
       }
 

@@ -9,6 +9,7 @@ let
 in
 {
   home.packages = [
+    pkgs.xwayland-satellite
     inputs.niri-screen-time.packages.${pkgs.system}.default
   ];
 
