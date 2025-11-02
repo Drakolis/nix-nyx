@@ -243,7 +243,7 @@ in
             }
           ];
           open-floating = true;
-          default-window-height.proportion = 0.3;
+          default-window-height.fixed = 600;
           default-column-width.proportion = 0.45;
         }
         {

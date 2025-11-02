@@ -1,4 +1,8 @@
+{ pkgs, ... }:
 {
+  home.packages = [
+    pkgs.kdePackages.xdg-desktop-portal-kde
+  ];
   xdg.terminal-exec = {
     enable = true;
     settings = {
@@ -15,7 +19,7 @@
     config = {
       common = {
         default = [
-          "lxqt"
+          "kde"
           "gtk"
         ];
       };
