@@ -2,28 +2,36 @@
 
 ## Nix Store commands
 
-### `cd /nix/store`
+#### `cd /nix/store`
 
-### `nix-store --optimize`
+#### `nix-store --optimize`
 
-### `nix-tree` *
+#### `nix-tree` *
 
-### `nix-collect-garbage`
+#### `nix-collect-garbage`
 
-### `nix-collect-garbage -d`
+#### `nix-collect-garbage -d`
 
-### `nix-shell -p <package-name>`
+#### `nix-shell -p <package-name>`
 
-## Classic configuration file commands
+## Configuration vs Flakes
 
-### `nix-channel --add https://nixos.org/channels/nixos-unstable nixos`
+### Classic configuration file commands
 
-### `nix-channel --list`
+#### `nix-channel --add https://nixos.org/channels/nixos-unstable nixos`
 
-### `nixos-rebuild switch`
+#### `nix-channel --list`
 
-## Flake commands
+#### `nixos-rebuild switch`
 
-### `nix flake update`
+### Flake commands
 
-### `nixos-rebuild switch --flake ~/nix-nyx`
+#### `nix flake update`
+
+#### `nixos-rebuild switch --flake ~/nix-nyx`
+
+### Package managers (home-manager)
+
+#### `home-manager switch --flake ~/nix-nyx`
+
+#### [Current home-manager configuration options](https://home-manager.dev/manual/unstable/options.xhtml)
