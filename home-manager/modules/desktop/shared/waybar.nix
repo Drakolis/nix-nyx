@@ -97,7 +97,6 @@ in
           "pulseaudio"
           "backlight"
           "battery"
-          "power-profiles-daemon"
           "gamemode"
           "bluetooth"
           "network"
