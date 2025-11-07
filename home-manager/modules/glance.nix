@@ -1,4 +1,10 @@
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   config = mkIf (!pkgs.stdenv.hostPlatform.isDarwin) {
     services.glance = {
       enable = true;
