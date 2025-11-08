@@ -36,6 +36,21 @@ with lib;
       # custom settings, run `zed: open default settings` from the
       # command palette (cmd-shift-p / ctrl-shift-p)
       userSettings = {
+        "language_models" = {
+          "openai_compatible" = {
+            "Scaleway" = {
+              "api_url" = "https://api.scaleway.ai/v1";
+              "available_models" = [
+                {
+                  "name" = "qwen3-coder-30b-a3b-instruct";
+                  "display_name" = "Qwen3 Coder - Scaleway";
+                  "max_tokens" = 128000;
+                }
+              ];
+              "version" = "1";
+            };
+          };
+        };
         "terminal" = {
           "dock" = "bottom";
         };
@@ -44,10 +59,6 @@ with lib;
         };
         "agent" = {
           "dock" = "left";
-          "default_model" = {
-            "provider" = "zed.dev";
-            "model" = "claude-sonnet-4-latest";
-          };
         };
         "icon_theme" = "Symbols Icon Theme";
         "tab_size" = 2;
