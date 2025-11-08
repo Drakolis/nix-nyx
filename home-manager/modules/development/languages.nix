@@ -37,6 +37,7 @@ let
 
   rustPackages = with pkgs; [
     rustc
+    rustfmt
     cargo
     rust-analyzer
   ];
