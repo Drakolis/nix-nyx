@@ -129,8 +129,6 @@
       enable = true;
       types = [
         "kde"
-        "hyprland"
-        "niri"
       ];
     };
     gaming.enable = true;
