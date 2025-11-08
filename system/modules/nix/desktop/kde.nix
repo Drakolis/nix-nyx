@@ -45,6 +45,7 @@ with lib;
       # File management
       kdePackages.filelight
       kdePackages.kompare
+      kdePackages.kfind
       krename
 
       # Configuration
