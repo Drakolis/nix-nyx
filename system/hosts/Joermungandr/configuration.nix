@@ -49,10 +49,6 @@
 
     # Nix Specific
     home-manager
-
-    # Downloading
-    kdePackages.kget
-    kdePackages.ktorrent
   ];
 
   services = {

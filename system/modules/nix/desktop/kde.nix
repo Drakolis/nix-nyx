@@ -51,6 +51,10 @@ with lib;
       # Configuration
       qpwgraph
 
+      # Downloading
+      kdePackages.kget
+      kdePackages.ktorrent
+
       # Utilities
       kdePackages.kcalc
       kdePackages.kcharselect
