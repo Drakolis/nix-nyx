@@ -6,8 +6,6 @@
 {
   home.packages = with pkgs; [
     walker
-    inputs.iwmenu.packages.${pkgs.system}.default
-    inputs.bzmenu.packages.${pkgs.system}.default
     rink
   ];
 

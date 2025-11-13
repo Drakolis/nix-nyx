@@ -16,8 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
-
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,9 +37,6 @@
       url = "github:ignis-sh/ignis";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    bzmenu.url = "github:e-tho/bzmenu";
-    iwmenu.url = "github:e-tho/iwmenu";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -103,6 +98,17 @@
     }:
     {
       nixosConfigurations = {
+        Joermungandr = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            sops-nix.nixosModules.sops
+            ./system/nixos.nix
+            ./system/hosts/Joermungandr/configuration.nix
+            ./system/hosts/Joermungandr/hardware-configuration.nix
+            ./system/users/drakolis.nix
+          ];
+        };
+
         YDdraigGoch = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
@@ -150,6 +156,7 @@
             ./system/hosts/WorkerBee/configuration.nix
           ];
         };
+
         "SilverWing" = nix-darwin.lib.darwinSystem {
           modules = [
             mac-app-util.darwinModules.default
@@ -175,6 +182,23 @@
       };
 
       homeConfigurations = {
+        "drakolis@Joermungandr" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            sops-nix.homeManagerModules.sops
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            plasma-manager.homeModules.plasma-manager
+            niri-flake.homeModules.niri
+            inputs.ignis.homeManagerModules.default
+            ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/YDdraigGoch.nix
+          ];
+        };
+
         "drakolis@YDdraigGoch" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
@@ -206,6 +230,21 @@
             inputs.ignis.homeManagerModules.default
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/WinterDragon.nix
+          ];
+        };
+
+        "drakolis@VaporSerpent" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            sops-nix.homeManagerModules.sops
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            plasma-manager.homeModules.plasma-manager
+            ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/VaporSerpent.nix
           ];
         };
 

@@ -10,7 +10,6 @@ let
     ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.kdePackages.plasma-browser-integration ];
 in
 {
-  home.packages = [ inputs.zen-browser.packages.${pkgs.system}.default ];
   nixpkgs.config.librewolf.enablePlasmaBrowserIntegration = pkgs.stdenv.hostPlatform.isLinux;
   programs.librewolf = {
     enable = true;
@@ -119,12 +118,12 @@ in
             definedAliases = [ "@e" ];
           };
 
-          # startpage = {
-          #   name = "StartPage";
-          #   urls = [ { template = "https://www.startpage.com/sp/search?query={searchTerms}"; } ];
-          #   icon = "https://www.startpage.com/favicon.ico";
-          #   definedAliases = [ "@s" ];
-          # };
+          startpage = {
+            name = "StartPage";
+            urls = [ { template = "https://www.startpage.com/sp/search?query={searchTerms}"; } ];
+            icon = "https://www.startpage.com/favicon.ico";
+            definedAliases = [ "@s" ];
+          };
 
           nixpackages = {
             name = "Nix Packages";
@@ -208,71 +207,71 @@ in
       };
 
       settings = {
-        "widget.use-xdg-desktop-portal.file-picker" = 1;
-        "extensions.pocket.enabled" = false;
-        "extensions.experiments.enabled" = true;
-        "privacy.resistFingerprinting" = false;
-        "privacy.resistFingerprinting.letterboxing" = false;
-        "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
-        "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
-        "privacy.trackingprotection.enabled" = true;
-        "privacy.fingerprintingProtection" = true;
-        "privacy.fingerprintingProtection.overrides" = "+AllTargets";
-        "privacy.fingerprintingProtection.granularOverrides" = [
-          # Local
-          {
-            "firstPartyDomain" = "localhost";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          {
-            "firstPartyDomain" = "nanowyrm";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          # Safe
-          {
-            "firstPartyDomain" = "element.io";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          {
-            "firstPartyDomain" = "startpage.com";
-            "overrides" = "-CSSPrefersColorScheme";
-          }
-          {
-            "firstPartyDomain" = "proton.me";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          # Gits
-          {
-            "firstPartyDomain" = "github.io";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          {
-            "firstPartyDomain" = "gitlab.io";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          # Already knows a lot about me
-          {
-            "firstPartyDomain" = "perplexity.ai";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          {
-            "firstPartyDomain" = "microsoft.com";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          {
-            "firstPartyDomain" = "google.com";
-            "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
-          }
-          # Just for the sake of time
-          {
-            "firstPartyDomain" = "calendly.com";
-            "overrides" = "-JSDateTimeUTC";
-          }
-        ];
-        "dom.security.https_only_mode" = true;
-        "webgl.disabled" = true;
-        "browser.search.defaultenginename" = "StartPage";
-        "browser.search.selectedEngine" = "startpage";
+        # "widget.use-xdg-desktop-portal.file-picker" = 1;
+        # "extensions.pocket.enabled" = false;
+        # "extensions.experiments.enabled" = true;
+        # "privacy.resistFingerprinting" = false;
+        # "privacy.resistFingerprinting.letterboxing" = false;
+        # "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
+        # "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
+        # "privacy.trackingprotection.enabled" = true;
+        # "privacy.fingerprintingProtection" = true;
+        # "privacy.fingerprintingProtection.overrides" = "+AllTargets";
+        # "privacy.fingerprintingProtection.granularOverrides" = [
+        #   # Local
+        #   {
+        #     "firstPartyDomain" = "localhost";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   {
+        #     "firstPartyDomain" = "nanowyrm";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   # Safe
+        #   {
+        #     "firstPartyDomain" = "element.io";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   {
+        #     "firstPartyDomain" = "startpage.com";
+        #     "overrides" = "-CSSPrefersColorScheme";
+        #   }
+        #   {
+        #     "firstPartyDomain" = "proton.me";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   # Gits
+        #   {
+        #     "firstPartyDomain" = "github.io";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   {
+        #     "firstPartyDomain" = "gitlab.io";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   # Already knows a lot about me
+        #   {
+        #     "firstPartyDomain" = "perplexity.ai";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   {
+        #     "firstPartyDomain" = "microsoft.com";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   {
+        #     "firstPartyDomain" = "google.com";
+        #     "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme";
+        #   }
+        #   # Just for the sake of time
+        #   {
+        #     "firstPartyDomain" = "calendly.com";
+        #     "overrides" = "-JSDateTimeUTC";
+        #   }
+        # ];
+        # "dom.security.https_only_mode" = true;
+        # "webgl.disabled" = true;
+        # "browser.search.defaultenginename" = "StartPage";
+        # "browser.search.selectedEngine" = "startpage";
       };
     };
   };

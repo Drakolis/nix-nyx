@@ -3,14 +3,13 @@
   ...
 }:
 {
-  networking.hostName = "YDdraigGoch";
+  networking.hostName = "Joermungandr";
 
-  # ROCM...?
-  nixpkgs.config.rocmSupport = true;
-  hardware.graphics.extraPackages = with pkgs; [
-    pocl
-    rocmPackages.clr.icd
-  ];
+  # nixpkgs.config.rocmSupport = true;
+  # hardware.graphics.extraPackages = with pkgs; [
+  #   pocl
+  #   rocmPackages.clr.icd
+  # ];
 
   # Bootloader.
   boot.loader = {
@@ -133,7 +132,7 @@
     };
     gaming.enable = true;
     geolocation.enable = true;
-    ki.enable = false;
+    ki.enable = true;
     virtualization = {
       enable = true;
       type = "amd";
@@ -146,5 +145,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
