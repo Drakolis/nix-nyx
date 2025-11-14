@@ -116,6 +116,8 @@
     };
   };
 
+  services.hardware.openrgb.enable = true;
+
   # Mobile SSH
   programs.mosh.enable = true;
 
