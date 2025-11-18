@@ -10,6 +10,7 @@ in
 {
   home.packages = [
     pkgs.xwayland-satellite
+    pkgs.wl-mirror
     inputs.niri-screen-time.packages.${pkgs.system}.default
   ];
 
@@ -493,19 +494,19 @@ in
         "Mod+Page_Up".action.focus-workspace-up = [ ];
         "Mod+U".action.focus-workspace-down = [ ];
         "Mod+I".action.focus-workspace-up = [ ];
-        "Mod+Ctrl+Page_Down".action.move-column-to-workspace-down = [ ];
-        "Mod+Ctrl+Page_Up".action.move-column-to-workspace-up = [ ];
-        "Mod+Ctrl+U".action.move-column-to-workspace-down = [ ];
-        "Mod+Ctrl+I".action.move-column-to-workspace-up = [ ];
+        "Mod+Shift+Page_Down".action.move-column-to-workspace-down = [ ];
+        "Mod+Shift+Page_Up".action.move-column-to-workspace-up = [ ];
+        "Mod+Shift+U".action.move-column-to-workspace-down = [ ];
+        "Mod+Shift+I".action.move-column-to-workspace-up = [ ];
 
         # // Alternatively, there are commands to move just a single window:
         # // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
         # // ...
 
-        "Mod+Shift+Page_Down".action.move-workspace-down = [ ];
-        "Mod+Shift+Page_Up".action.move-workspace-up = [ ];
-        "Mod+Shift+U".action.move-workspace-down = [ ];
-        "Mod+Shift+I".action.move-workspace-up = [ ];
+        "Mod+Ctrl+Page_Down".action.move-workspace-down = [ ];
+        "Mod+Ctrl+Page_Up".action.move-workspace-up = [ ];
+        "Mod+Ctrl+U".action.move-workspace-down = [ ];
+        "Mod+Ctrl+I".action.move-workspace-up = [ ];
 
         # // You can bind mouse wheel scroll ticks using the following syntax.
         # // These binds will change direction based on the natural-scroll setting.
@@ -598,6 +599,10 @@ in
         # "Mod+Shift+E".action.quit = [ ];
         "Ctrl+Alt+Delete".action.quit = [ ];
         "Mod+Shift+P".action.power-off-monitors = [ ];
+        "Mod+P" = {
+          action.spawn-sh = "wl-mirror $(niri msg --json focused-output | jq -r .name)";
+          repeat = false;
+        };
       };
     };
   };
