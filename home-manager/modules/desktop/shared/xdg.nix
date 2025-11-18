@@ -22,12 +22,14 @@
           "kde"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
       };
       kde = {
         default = [
           "kde"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
       };
     };
   };
