@@ -516,6 +516,7 @@ in
       }
 
       menu {
+        opacity: 0.99;
         color: #${style.colors.text};
         font-weight: normal;
         background-color: #${style.colors.background};
