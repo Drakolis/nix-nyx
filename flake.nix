@@ -9,12 +9,25 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+    };
+
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     zjstatus.url = "github:dj95/zjstatus";
 
     nix-yazi-plugins = {
       url = "github:lordkekz/nix-yazi-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Linux stuff
 
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -36,15 +49,6 @@
     ignis = {
       url = "github:ignis-sh/ignis";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
     };
 
     # MacOS/Darwin Stuff
@@ -191,6 +195,7 @@
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
             plasma-manager.homeModules.plasma-manager
             niri-flake.homeModules.niri
             inputs.ignis.homeManagerModules.default
@@ -208,6 +213,7 @@
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
             plasma-manager.homeModules.plasma-manager
             niri-flake.homeModules.niri
             inputs.ignis.homeManagerModules.default
@@ -225,6 +231,7 @@
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
             plasma-manager.homeModules.plasma-manager
             niri-flake.homeModules.niri
             inputs.ignis.homeManagerModules.default
@@ -242,6 +249,7 @@
           modules = [
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
             plasma-manager.homeModules.plasma-manager
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/VaporSerpent.nix
@@ -257,6 +265,7 @@
             mac-app-util.homeManagerModules.default
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
             ./home-manager/users/mikaz.nix
             ./home-manager/hosts/WorkerBee.nix
           ];
@@ -271,6 +280,7 @@
             mac-app-util.homeManagerModules.default
             sops-nix.homeManagerModules.sops
             nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/SilverWing.nix
           ];
