@@ -4,6 +4,10 @@
 
 #### `cd /nix/store`
 
+#### `cd ~/.nix-profile/bin`
+
+#### `cd /etc/`
+
 #### `nix-store --optimize`
 
 #### `nix-tree` *
@@ -30,7 +34,7 @@
 
 #### `nixos-rebuild switch --flake ~/nix-nyx`
 
-### Package managers (home-manager)
+## Package managers (home-manager)
 
 #### `home-manager switch --flake ~/nix-nyx`
 
