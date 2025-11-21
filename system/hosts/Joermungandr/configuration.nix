@@ -49,7 +49,24 @@
 
     # Nix Specific
     home-manager
+
+    # RGB
+    openrgb-with-all-plugins
+    i2c-tools
+    liquidctl
   ];
+  boot = {
+    kernelParams = [ "acpi_enforce_resources=lax" ];
+    kernelModules = [
+      "i2c-dev"
+      "i2c-piix4"
+    ];
+  };
+  hardware.i2c.enable = true;
+  services.hardware.openrgb = {
+    enable = true;
+    motherboard = "amd";
+  };
 
   services = {
     # Enable CUPS to print documents.
@@ -115,8 +132,6 @@
       Protocol = 2;
     };
   };
-
-  services.hardware.openrgb.enable = true;
 
   # Mobile SSH
   programs.mosh.enable = true;
