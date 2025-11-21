@@ -4,8 +4,8 @@
   ...
 }:
 let
-  style = import ../../../../constants/style.nix;
-  commands = import ../../../../constants/commands.nix;
+  style = import ../../../../share/constants/style.nix;
+  commands = import ../../../../share/constants/commands.nix;
 in
 {
   home.packages = [

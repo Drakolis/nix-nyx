@@ -5,7 +5,7 @@
   ...
 }:
 let
-  style = import ../../constants/style.nix;
+  style = import ../../share/constants/style.nix;
   cfg = config.drakolis.showoff;
 in
 with lib;

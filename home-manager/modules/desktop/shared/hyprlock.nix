@@ -1,5 +1,5 @@
 let
-  style = import ../../../../constants/style.nix;
+  style = import ../../../../share/constants/style.nix;
 in
 {
   programs.hyprlock = {

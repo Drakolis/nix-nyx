@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
-  style = import ../../constants/style.nix;
-  commands = import ../../constants/commands.nix;
-  paths = import ../../constants/paths.nix;
+  style = import ../../share/constants/style.nix;
+  commands = import ../../share/constants/commands.nix;
+  paths = import ../../share/constants/paths.nix;
 
   shellAliasesEza = {
     lsl = "eza -1la --icons=always --group-directories-first";
