@@ -26,7 +26,7 @@
 
       # other:
       "vial"
-      "caffeine"
+      "domzilla-caffeine"
       "balenaetcher"
     ];
   };
