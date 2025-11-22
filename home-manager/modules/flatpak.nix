@@ -29,10 +29,9 @@ let
 
   gamingFlatpaks = [
     "org.freedesktop.Platform.VulkanLayer.MangoHud"
-    "io.github.radiolamp.mangojuice"
     "com.valvesoftware.Steam"
+    "net.lutris.Lutris"
     "com.discordapp.Discord"
-    "org.lutris.Lutris"
     # "com.heroicgameslauncher.hgl"
   ];
 
