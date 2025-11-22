@@ -19,9 +19,10 @@
       pull = {
         rebase = true;
       };
-    };
-    aliases = {
-      review = "push origin HEAD:refs/for/master";
+      alias = {
+        review = "push origin HEAD:refs/for/master";
+      };
     };
   };
 }
+# : The option `programs.git.aliases'  has been renamed to `programs.git.settings.alias'
