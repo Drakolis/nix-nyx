@@ -270,7 +270,7 @@ in
 
   programs.zen-browser = {
     enable = true;
-    nativeMessagingHosts.packages = [ pkgs.kdePackages.plasma-browser-integration ];
+    nativeMessagingHosts = nativeMessagingHostsForPlatform;
 
     policies = firefoxPolicies;
 
