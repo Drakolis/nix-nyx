@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
@@ -62,10 +63,42 @@
       "i2c-piix4"
     ];
   };
+
   hardware.i2c.enable = true;
+
   services.hardware.openrgb = {
     enable = true;
+    package = pkgs.openrgb.overrideAttrs (old: {
+      src = pkgs.fetchFromGitLab {
+        owner = "CalcProgrammer1";
+        repo = "OpenRGB";
+        rev = "release_candidate_1.0rc2";
+        sha256 = "sha256-";
+      };
+      patches = [
+        ./remove_systemd_service.patch
+      ];
+      postPatch = ''
+        patchShebangs scripts/build-udev-rules.sh
+        substituteInPlace scripts/build-udev-rules.sh \
+         --replace-fail /usr/bin/env "${pkgs.coreutils}/bin/env"
+      '';
+    });
     motherboard = "amd";
+  };
+
+  systemd.services.openrgb = lib.mkDefault {
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "network.target"
+      "lm_sensors.service"
+    ];
+    description = "OpenRGB SDK Server";
+    serviceConfig = {
+      RemainAfterExit = "yes";
+      ExecStart = ''${pkgs.openrgb}/bin/openrgb --server'';
+      Restart = "always";
+    };
   };
 
   services = {
