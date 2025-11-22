@@ -28,8 +28,11 @@ let
   ];
 
   gamingFlatpaks = [
+    "org.freedesktop.Platform.VulkanLayer.MangoHud"
+    "io.github.radiolamp.mangojuice"
     "com.valvesoftware.Steam"
     "com.discordapp.Discord"
+    "org.lutris.Lutris"
     # "com.heroicgameslauncher.hgl"
   ];
 

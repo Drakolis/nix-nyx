@@ -32,6 +32,7 @@ with lib;
     ./development
     ./flatpak.nix
     # ./glance.nix
+    ./gaming.nix
     ./internet.nix
     ./media.nix
     ./neovim

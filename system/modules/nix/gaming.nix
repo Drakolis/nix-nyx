@@ -26,7 +26,6 @@ with lib;
 
     environment.systemPackages = with pkgs; [
       dosbox
-      mangohud
       piper
     ];
 
