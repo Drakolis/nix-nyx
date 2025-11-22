@@ -73,7 +73,7 @@
         owner = "CalcProgrammer1";
         repo = "OpenRGB";
         rev = "release_candidate_1.0rc2";
-        sha256 = "sha256-";
+        sha256 = "sha256-vdIA9i1ewcrfX5U7FkcRR+ISdH5uRi9fz9YU5IkPKJQ=";
       };
       patches = [
         ./remove_systemd_service.patch
