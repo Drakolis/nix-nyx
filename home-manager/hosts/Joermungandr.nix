@@ -41,6 +41,7 @@
       enable3DPrinting = true;
     };
     showoff.enable = true;
+    gaming.enable = true;
   };
 
   nixpkgs.config.permittedInsecurePackages = [
