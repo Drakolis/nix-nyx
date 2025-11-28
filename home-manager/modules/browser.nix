@@ -237,18 +237,23 @@ let
     "widget.use-xdg-desktop-portal.file-picker" = 1;
     "extensions.pocket.enabled" = false;
     "extensions.experiments.enabled" = true;
-    "privacy.resistFingerprinting" = true;
+    "privacy.resistFingerprinting" = false;
     "privacy.resistFingerprinting.letterboxing" = false;
-    "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
-    "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
     "privacy.trackingprotection.enabled" = true;
     "privacy.fingerprintingProtection" = true;
     "privacy.fingerprintingProtection.overrides" = "+AllTargets";
     "privacy.fingerprintingProtection.granularOverrides" = firefoxFingerprintingOverrides;
     "dom.security.https_only_mode" = true;
-    "webgl.disabled" = true;
     "browser.search.defaultenginename" = "StartPage";
     "browser.search.selectedEngine" = "startpage";
+  };
+
+  firefoxProfileAboutConfigHardcore = {
+    "privacy.resistFingerprinting" = true;
+    "privacy.resistFingerprinting.letterboxing" = true;
+    "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
+    "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
+    "webgl.disabled" = true;
   };
 in
 {

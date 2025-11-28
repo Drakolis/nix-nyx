@@ -38,7 +38,6 @@
                 "applications:org.kde.kmail2.desktop"
                 "applications:systemsettings.desktop"
                 "applications:org.kde.konsole.desktop"
-                "applications:codium.desktop"
                 "applications:dev.zed.Zed.desktop"
                 "applications:obsidian.desktop"
               ];
