@@ -200,7 +200,7 @@
             niri-flake.homeModules.niri
             inputs.ignis.homeManagerModules.default
             ./home-manager/users/drakolis.nix
-            ./home-manager/hosts/YDdraigGoch.nix
+            ./home-manager/hosts/Joermungandr.nix
           ];
         };
 
