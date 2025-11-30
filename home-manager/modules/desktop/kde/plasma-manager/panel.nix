@@ -63,6 +63,7 @@
                   "Yakuake"
                 ];
                 extra = [
+                  "org.kde.merkuro.contact.applet"
                   "org.kde.plasma.cameraindicator"
                   "org.kde.plasma.clipboard"
                   "org.kde.plasma.devicenotifier"

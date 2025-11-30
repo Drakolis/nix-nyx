@@ -47,6 +47,7 @@ with lib;
       kdePackages.kompare
       kdePackages.kfind
       krename
+      quota
 
       # Configuration
       qpwgraph
@@ -61,6 +62,7 @@ with lib;
       kdePackages.kcolorchooser
       kdePackages.sweeper
       crow-translate
+      maliit-keyboard
 
       # Security
       kdePackages.kleopatra
