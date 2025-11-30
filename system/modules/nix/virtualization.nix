@@ -22,9 +22,6 @@ with lib;
           Enable virtualization.
         '';
       };
-    };
-
-    drakolis.virtualization = {
       type = mkOption {
         type = archTypes;
         description = ''
@@ -44,6 +41,5 @@ with lib;
 
     # Optionally, enable Virt-Manager for a GUI management experience
     programs.virt-manager.enable = true;
-
   };
 }
