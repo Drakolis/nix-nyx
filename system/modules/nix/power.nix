@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.drakolis.ssh;
+  cfg = config.drakolis.power;
 in
 with lib;
 {
   options = {
-    drakolis.ssh = {
+    drakolis.power = {
       enable = mkOption {
         default = false;
         type = types.bool;
