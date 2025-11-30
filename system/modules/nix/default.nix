@@ -13,6 +13,7 @@
     ./power.nix
     ./security.nix
     ./shell.nix
+    ./ssh.nix
     ./virtualization.nix
   ];
 }
