@@ -5,31 +5,24 @@
   ...
 }:
 let
-  cfg = config.drakolis.gaming;
+  cfg = config.drakolis.dos;
 in
 with lib;
 {
   options = {
-    drakolis.gaming = {
+    drakolis.dos = {
       enable = mkOption {
-        default = false;
+        default = true;
         type = types.bool;
         description = ''
-          Enable gaming setup on this machine.
+          Install dosbox.
         '';
       };
     };
   };
-
   config = mkIf cfg.enable {
-    hardware.xpadneo.enable = true;
-
     environment.systemPackages = with pkgs; [
       dosbox
-      piper
     ];
-
-    services.ratbagd.enable = true; # Gaming mouse configuration
-    programs.gamemode.enable = true;
   };
 }

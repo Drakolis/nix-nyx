@@ -127,9 +127,12 @@
         "kde"
       ];
     };
-    gaming.enable = true;
+    input = {
+      enable = true;
+      hasGamepad = true;
+      hasLogitech = true;
+    };
     geolocation.enable = true;
-    ki.enable = false;
     virtualization = {
       enable = true;
       type = "amd";

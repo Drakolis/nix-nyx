@@ -128,6 +128,10 @@
         "niri"
       ];
     };
+    input = {
+      enable = true;
+      hasVial = true;
+    };
     geolocation.enable = true;
   };
 

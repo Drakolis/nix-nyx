@@ -176,7 +176,12 @@
         "kde"
       ];
     };
-    gaming.enable = true;
+    input = {
+      enable = true;
+      hasGamepad = true;
+      hasLogitech = true;
+      hasVial = true;
+    };
     geolocation.enable = true;
     ki.enable = true;
     virtualization = {
