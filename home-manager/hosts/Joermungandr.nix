@@ -21,7 +21,10 @@
         sqlClient = true;
         mongoClient = true;
         apiClient = true;
+        aws = true;
+        googleCloud = true;
         scaleway = true;
+        kubernetes = true;
       };
       languages = {
         nodeExtended = true;
