@@ -4,6 +4,10 @@
     ../modules/desktop/kde
   ];
 
+  programs.kodi = {
+    enable = true;
+  };
+
   drakolis = {
     deviceSettings = {
       formFactor = "desktop";
@@ -17,10 +21,10 @@
     development = {
       enable = true;
       tools = {
-        aiEditors = true;
-        sqlClient = true;
-        mongoClient = true;
-        apiClient = true;
+        aiEditors = false;
+        sqlClient = false;
+        mongoClient = false;
+        apiClient = false;
         scaleway = true;
       };
       languages = {
@@ -34,11 +38,12 @@
         extraLanguageServers = true;
       };
     };
+    gaming.enable = true;
     media = {
       enable = true;
       enablePhoto = true;
-      enableVideoRecording = true;
-      enable3DPrinting = true;
+      enableVideoRecording = false;
+      enable3DPrinting = false;
     };
     showoff.enable = true;
   };
