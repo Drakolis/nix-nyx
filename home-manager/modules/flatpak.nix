@@ -36,7 +36,7 @@ let
 
   gamingBPFlatpaks = [
     "com.heroicgameslauncher.hgl"
-    "et.retrodeck.retrodeck"
+    "net.retrodeck.retrodeck"
     "org.libretro.RetroArch"
   ];
 
