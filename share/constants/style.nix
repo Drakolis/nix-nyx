@@ -59,7 +59,7 @@ in
 
   colors = {
     primary = catppuccinMocha.mauve;
-    secondary = catppuccinMocha.flamingo;
+    secondary = catppuccinMocha.lavender;
     highlight = catppuccinMocha.sky;
 
     error = catppuccinMocha.red;
@@ -67,11 +67,11 @@ in
     warning = catppuccinMocha.yellow;
     info = catppuccinMocha.teal;
 
-    locked = catppuccinMocha.peach;
-    path = catppuccinMocha.blue;
-
     text = catppuccinMocha.text;
     textInverted = catppuccinMocha.crust;
+
+    locked = catppuccinMocha.peach;
+    path = catppuccinMocha.blue;
 
     selection = catppuccinMocha.rosewater;
 
@@ -101,7 +101,7 @@ in
     terminalBlack = catppuccinMocha.surface1;
     terminalRed = catppuccinMocha.red;
     terminalGreen = catppuccinMocha.green;
-    terminalYellow = catppuccinMocha.peach;
+    terminalYellow = catppuccinMocha.yellow;
     terminalBlue = catppuccinMocha.blue;
     terminalMagenta = catppuccinMocha.pink;
     terminalCyan = catppuccinMocha.teal;
@@ -109,7 +109,7 @@ in
     terminalBlack2 = catppuccinMocha.surface2;
     terminalRed2 = catppuccinMocha.maroon;
     terminalGreen2 = catppuccinMocha.green;
-    terminalYellow2 = catppuccinMocha.yellow;
+    terminalYellow2 = catppuccinMocha.peach;
     terminalBlue2 = catppuccinMocha.sapphire;
     terminalMagenta2 = catppuccinMocha.flamingo;
     terminalCyan2 = catppuccinMocha.sky;
@@ -123,9 +123,9 @@ in
 
     gitAdded = catppuccinMocha.green;
     gitRemoved = catppuccinMocha.red;
-    gitMoved = catppuccinMocha.pink;
-    gitModified = catppuccinMocha.yellow;
-    gitCommit = catppuccinMocha.maroon;
+    gitMoved = catppuccinMocha.maroon;
+    gitModified = catppuccinMocha.blue;
+    gitCommit = catppuccinMocha.mauve;
     gitTime = catppuccinMocha.sapphire;
     gitAuthor = catppuccinMocha.teal;
     gitTag = catppuccinMocha.lavender;
