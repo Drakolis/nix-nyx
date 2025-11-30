@@ -6,12 +6,6 @@
 {
   networking.hostName = "Joermungandr";
 
-  # nixpkgs.config.rocmSupport = true;
-  # hardware.graphics.extraPackages = with pkgs; [
-  #   pocl
-  #   rocmPackages.clr.icd
-  # ];
-
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
@@ -40,8 +34,6 @@
     flake = "gitlab:Drakolis/nix-nyx";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # File system support
     exfatprogs
@@ -140,35 +132,6 @@
     logRefusedConnections = false; # Reduce log noise (set to true if debugging)
   };
 
-  # SSH Access
-  services.openssh = {
-    enable = true;
-    ports = [ 22 ];
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-      X11Forwarding = false;
-      AllowTcpForwarding = false;
-      AllowAgentForwarding = false;
-      PermitEmptyPasswords = false;
-      MaxAuthTries = 3;
-      MaxSessions = 2;
-      LoginGraceTime = 30;
-      ClientAliveInterval = 300;
-      ClientAliveCountMax = 2;
-      UseDns = false;
-      TCPKeepAlive = false;
-      Compression = false;
-      LogLevel = "VERBOSE";
-      StrictModes = true;
-      Protocol = 2;
-    };
-  };
-
-  # Mobile SSH
-  programs.mosh.enable = true;
-
   drakolis = {
     desktop = {
       enable = true;
@@ -176,14 +139,17 @@
         "kde"
       ];
     };
+    dos.enable = true;
     input = {
       enable = true;
       hasGamepad = true;
       hasLogitech = true;
       hasVial = true;
     };
+    gaming.enable = true;
     geolocation.enable = true;
     ki.enable = true;
+    ssh.enable = true;
     virtualization = {
       enable = true;
       type = "amd";

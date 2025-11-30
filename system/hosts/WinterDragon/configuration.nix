@@ -14,9 +14,6 @@
     rtkit.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   system.autoUpgrade = {
     enable = true;
     dates = "monthly";
@@ -35,43 +32,13 @@
 
   boot.supportedFilesystems = [ "exfat" ];
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # File system support
     exfatprogs
 
     # Nix Specific
     home-manager
-
-    # Power management
-    acpi
-    powertop
   ];
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
-
-      # Optional helps save long term battery health
-      START_CHARGE_THRESH_BAT0 = 0; # 40 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT0 = 100; # 80 and above it stops charging
-      START_CHARGE_THRESH_BAT1 = 0; # 40 and below it starts to charge
-      STOP_CHARGE_THRESH_BAT1 = 100; # 80 and above it stops charging
-
-      TPSMAPI_ENABLE = 1;
-    };
-  };
 
   services = {
     # Enable CUPS to print documents.
@@ -112,14 +79,6 @@
     logRefusedConnections = false; # Reduce log noise (set to true if debugging)
   };
 
-  # SSH Access
-  services.openssh = {
-    enable = false; # Should not be accessible on SSH
-  };
-
-  # Mobile SSH
-  programs.mosh.enable = true;
-
   drakolis = {
     desktop = {
       enable = true;
@@ -133,7 +92,11 @@
       hasVial = true;
     };
     geolocation.enable = true;
+    power.enable = true;
   };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
