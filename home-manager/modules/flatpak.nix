@@ -20,19 +20,24 @@ let
   ];
 
   developmentFlatpaks = [
-    "it.fabiodistasio.AntaresSQL"
+    # "it.fabiodistasio.AntaresSQL"
   ];
 
   entertainmentFlatpaks = [
-    "org.js.nuclear.Nuclear"
+    # "org.js.nuclear.Nuclear"
   ];
 
   gamingFlatpaks = [
-    "org.freedesktop.Platform.VulkanLayer.MangoHud"
+    # "org.freedesktop.Platform.VulkanLayer.MangoHud"
     "com.valvesoftware.Steam"
     "net.lutris.Lutris"
     "com.discordapp.Discord"
-    # "com.heroicgameslauncher.hgl"
+  ];
+
+  gamingBPFlatpaks = [
+    "com.heroicgameslauncher.hgl"
+    "et.retrodeck.retrodeck"
+    "org.libretro.RetroArch"
   ];
 
   serviceFlatpaks = [
@@ -45,6 +50,7 @@ let
     ++ lib.optionals cfg.enableDevelopment developmentFlatpaks
     ++ lib.optionals cfg.enableEntertainment entertainmentFlatpaks
     ++ lib.optionals cfg.enableGaming gamingFlatpaks
+    ++ lib.optionals cfg.enableBPGaming gamingBPFlatpaks
     ++ lib.optionals cfg.enableService serviceFlatpaks;
 in
 with lib;
@@ -80,6 +86,13 @@ with lib;
         '';
       };
       enableGaming = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Install extra gaming software.
+        '';
+      };
+      enableBPGaming = mkOption {
         default = false;
         type = types.bool;
         description = ''
