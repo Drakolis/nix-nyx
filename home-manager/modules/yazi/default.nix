@@ -40,7 +40,7 @@ in
       };
     };
     settings = {
-      manager = {
+      mgr = {
         ratio = [
           1
           4
@@ -571,7 +571,7 @@ in
       };
     };
     theme = {
-      manager = {
+      mgr = {
         cwd = {
           fg = "#${style.colors.path}";
         };

@@ -25,4 +25,3 @@
     };
   };
 }
-# : The option `programs.git.aliases'  has been renamed to `programs.git.settings.alias'
