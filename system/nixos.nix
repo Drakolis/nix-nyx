@@ -1,4 +1,14 @@
 { pkgs, ... }:
+let
+  myHunspell = pkgs.hunspell.withDicts (
+    ps: with ps; [
+      ru-ru
+      en-us
+      pt-br
+      de-de
+    ]
+  );
+in
 {
   imports = [
     ./modules/nix
@@ -47,13 +57,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # Spell Checking
-    aspell
-    aspellDicts.de
-    aspellDicts.ru
-    aspellDicts.pt_BR
-    aspellDicts.en
-    aspellDicts.en-computers
+    myHunspell
 
     podman-compose
   ];
