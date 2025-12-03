@@ -125,6 +125,17 @@
           ];
         };
 
+        Quetzalcoatl = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            sops-nix.nixosModules.sops
+            ./system/nixos.nix
+            ./system/hosts/Quetzalcoatl/configuration.nix
+            ./system/hosts/Quetzalcoatl/hardware-configuration.nix
+            ./system/users/drakolis.nix
+          ];
+        };
+
         WinterDragon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [

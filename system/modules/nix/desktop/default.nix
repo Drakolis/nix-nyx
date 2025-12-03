@@ -10,6 +10,15 @@ let
     "hyprland"
     "niri"
   ];
+
+  desktopProfiles = lib.types.enum [
+    "advanced"
+    "downloads"
+    "media"
+    "office"
+    "security"
+    "remoteDesktop"
+  ];
 in
 with lib;
 {
@@ -27,6 +36,13 @@ with lib;
         type = types.listOf desktopTypes;
         description = ''
           Select the desktop to use.
+        '';
+      };
+      profiles = mkOption {
+        default = [ ];
+        type = types.listOf desktopProfiles;
+        description = ''
+          Select the profiles (lists of apps) to install.
         '';
       };
     };
