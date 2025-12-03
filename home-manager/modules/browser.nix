@@ -255,9 +255,28 @@ let
     "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
     "webgl.disabled" = true;
   };
+
+  firefoxContainers = {
+    "Personal" = {
+      color = "green";
+      icon = "fingerprint";
+      id = 1;
+    };
+    "Work" = {
+      color = "red";
+      icon = "briefcase";
+      id = 2;
+    };
+    "Shopping" = {
+      color = "yellow";
+      icon = "dollar";
+      id = 3;
+    };
+  };
 in
 {
   nixpkgs.config.librewolf.enablePlasmaBrowserIntegration = pkgs.stdenv.hostPlatform.isLinux;
+
   programs.librewolf = {
     enable = true;
     nativeMessagingHosts = nativeMessagingHostsForPlatform;
@@ -268,6 +287,9 @@ in
       name = "drakolis";
       isDefault = true;
       search = firefoxProfileSearchEngines;
+
+      containersForce = true;
+      containers = firefoxContainers;
 
       settings = firefoxProfileAboutConfig;
     };
@@ -284,6 +306,80 @@ in
       isDefault = true;
       search = firefoxProfileSearchEngines;
 
+      containersForce = true;
+      containers = firefoxContainers;
+
+      spacesForce = true;
+      spaces = {
+        "MikaMikaMika" = {
+          id = "85ecc9b9-f49b-42f1-bf3f-f11f32fb9857";
+          position = 1000;
+          icon = "chrome://browser/skin/zen-icons/selectable/rocket.svg";
+          container = firefoxContainers."Personal".id;
+        };
+        "Work" = {
+          id = "3d21e142-6ff5-4c54-98e8-7b5ec46b81b1";
+          position = 2000;
+          icon = "chrome://browser/skin/zen-icons/selectable/briefcase.svg";
+          container = firefoxContainers."Work".id;
+        };
+        "Shopping" = {
+          id = "3eebd003-1ada-4fc9-b9da-e6744cd6bfc4";
+          position = 3000;
+          icon = "chrome://browser/skin/zen-icons/selectable/logo-usd.svg";
+          container = firefoxContainers."Shopping".id;
+        };
+      };
+      pinsForce = true;
+      pins = {
+        Perplexity = {
+          id = "6e40c030-e5ce-4045-bd85-a8b8ee13d63f";
+          url = "https://perplexity.ai/";
+          position = 1000;
+          isEssential = true;
+          editedTitle = true;
+        };
+        Proton = {
+          id = "0dd2129e-6ea5-4eab-a1cd-2efca87d4eae";
+          url = "https://mail.proton.me/";
+          position = 2000;
+          isEssential = true;
+          editedTitle = true;
+        };
+      };
+      #   type = attrsOf (
+      #     submodule (
+      #       {name, ...}: {
+      #         options = {
+      #           workspace = mkOption {
+      #             type = nullOr str;
+      #             default = null;
+      #             description = "Workspace ID to be used in pin";
+      #           };
+      #           isGroup = mkOption {
+      #             type = bool;
+      #             default = false;
+      #             description = "Required boolean flag for group items, defaults to false";
+      #           };
+      #           isFolderCollapsed = mkOption {
+      #             type = bool;
+      #             default = false;
+      #             description = "Required boolean flag for folder collapse state, defaults to false";
+      #           };
+      #           folderIcon = mkOption {
+      #             type = nullOr str;
+      #             description = "Emoji or icon URI to be used as pin folder icon.";
+      #             default = null;
+      #           };
+      #           folderParentId = mkOption {
+      #             type = nullOr str;
+      #             default = null;
+      #             description = "Optional folder parent UUID text field";
+      #           };
+      #         };
+      #       }
+      #     )
+      #   );
       settings = firefoxProfileAboutConfig;
     };
   };
