@@ -87,6 +87,9 @@ with lib;
         "git_panel" = {
           "dock" = "right";
         };
+        "notification_panel" = {
+          "dock" = "left";
+        };
         "languages" = {
           "Nix" = {
             "language_servers" = [
