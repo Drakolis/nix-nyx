@@ -138,6 +138,14 @@
       types = [
         "kde"
       ];
+      profiles = [
+        "advanced"
+        "downloads"
+        "media"
+        "office"
+        "security"
+        "remoteDesktop"
+      ];
     };
     dos.enable = true;
     input = {

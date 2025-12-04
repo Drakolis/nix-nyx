@@ -38,6 +38,8 @@
 
     # Nix Specific
     home-manager
+
+    acpi
   ];
 
   services = {
@@ -86,6 +88,7 @@
         "kde"
       ];
       profiles = [
+        "office"
         "security"
       ];
     };
@@ -94,7 +97,6 @@
       hasVial = true;
     };
     geolocation.enable = true;
-#     power.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

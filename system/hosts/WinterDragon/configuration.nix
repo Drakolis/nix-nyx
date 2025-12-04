@@ -38,6 +38,8 @@
 
     # Nix Specific
     home-manager
+
+    apci
   ];
 
   services = {
@@ -83,8 +85,14 @@
     desktop = {
       enable = true;
       types = [
-        "hyprland"
-        "niri"
+        "kde"
+      ];
+      profiles = [
+        "advanced"
+        "downloads"
+        "office"
+        "security"
+
       ];
     };
     input = {
@@ -92,7 +100,6 @@
       hasVial = true;
     };
     geolocation.enable = true;
-    power.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
