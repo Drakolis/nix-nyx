@@ -1,33 +1,80 @@
 {
-  homebrew = {
-    enable = true;
-    casks = [
-      # dev:
-      "beekeeper-studio"
+  config,
+  lib,
+  ...
+}:
+let
+  cfg = config.drakolis.desktop;
 
-      # inet:
-      "proton-mail"
-      "protonvpn"
-      "slack"
-      "zoom"
-      "element"
+  desktopProfiles = lib.types.enum [
+    "advanced"
+    "downloads"
+    "media"
+    "office"
+    "security"
+    "remoteDesktop"
+    "work"
+  ];
 
-      # security:
-      "1password" # Work only?
-      "proton-pass"
-      "cryptomator"
-      "proton-drive"
-      # "micro-snitch"
-      # "little-snitch"
+  hasAdvanced = builtins.elem "advanced" cfg.profiles;
+  hasDownloads = builtins.elem "downloads" cfg.profiles;
+  hasMedia = builtins.elem "media" cfg.profiles;
+  hasOffice = builtins.elem "office" cfg.profiles;
+  hasSecurity = builtins.elem "security" cfg.profiles;
+  hasRemoteDesktop = builtins.elem "remoteDesktop" cfg.profiles;
+  hasWork = builtins.elem "work" cfg.profiles;
 
-      # media:
-      "vlc"
-      "krita"
+in
+with lib;
+{
+  options = {
+    profiles = mkOption {
+      default = [ ];
+      type = types.listOf desktopProfiles;
+      description = ''
+        Select the profiles (lists of apps) to install.
+      '';
+    };
+  };
 
-      # other:
-      "vial"
-      "domzilla-caffeine"
-      "balenaetcher"
-    ];
+  config = {
+    homebrew = {
+      enable = true;
+      casks = [
+        # dev:
+        "beekeeper-studio"
+
+        # inet:
+        "proton-mail"
+        "protonvpn"
+        "slack"
+        "zoom"
+        "element"
+
+        # security:
+        "proton-pass"
+        "proton-drive"
+        # "micro-snitch"
+        # "little-snitch"
+
+        # other:
+        "domzilla-caffeine"
+      ]
+      # Profile: Advanced
+      ++ lib.optionals hasAdvanced [
+        "cryptomator"
+        "balenaetcher"
+        "vial"
+      ]
+      # Profile: Media
+      ++ lib.optionals hasMedia [
+        "vlc"
+        "krita"
+      ]
+      # Profile: Work
+      ++ lib.optionals hasWork [
+        "1password"
+      ];
+    };
   };
 }

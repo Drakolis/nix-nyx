@@ -6,9 +6,12 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    vim
     home-manager
   ];
+
+  drakolis.desktop = {
+    profile = [ ];
+  };
 
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;

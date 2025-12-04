@@ -6,10 +6,20 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    vim
     home-manager
-    qemu
   ];
+
+  drakolis.desktop = {
+    profile = [
+      "advanced"
+      "downloads"
+      "media"
+      "office"
+      "security"
+      "remoteDesktop"
+      "work"
+    ];
+  };
 
   # TEMP ALL
   services.yabai.enable = false;
