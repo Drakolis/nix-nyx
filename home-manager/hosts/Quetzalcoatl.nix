@@ -10,7 +10,7 @@
       formFactor = "laptop";
     };
     flatpak = {
-      enable = true;
+      enable = false;
       enableCommunication = true;
     };
     development = {

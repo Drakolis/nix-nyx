@@ -29,6 +29,9 @@ with lib;
         "Joermungandr" = {
           id = "FLWAKCR-RDRCUZD-4JLCEX4-T2FJVNI-VVFAW33-3NEYJKT-S3DKMU7-NSI44A3";
         };
+        "Quetzalcoatl" = {
+          id = "4W7HQHM-RSS6JIO-DZS4S55-PPHKK4A-55XFM5F-TFUH2AK-4JMKX3G-YZ7GDAJ"
+        };
       };
       folders = {
         "Drakolis Files" = {
@@ -39,6 +42,7 @@ with lib;
             "SilverWing"
             "mb-H02L4YFQ6P"
             "Joermungandr"
+            "Quetzalcoatl"
           ];
         };
       };

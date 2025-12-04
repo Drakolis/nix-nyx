@@ -251,6 +251,24 @@
           ];
         };
 
+        "drakolis@Quetzalcoatl" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            sops-nix.homeManagerModules.sops
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
+            plasma-manager.homeModules.plasma-manager
+            niri-flake.homeModules.niri
+            inputs.ignis.homeManagerModules.default
+            ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/Quetzalcoatl.nix
+          ];
+        };
+
         "drakolis@VaporSerpent" = home-manager.lib.homeManagerConfiguration {
           pkgs = import nixpkgs {
             system = "x86_64-linux";
