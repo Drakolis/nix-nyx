@@ -2,8 +2,7 @@
 {
   imports = [
     ../modules
-    ../modules/desktop/hyprland
-    ../modules/desktop/niri
+    ../modules/desktop/kde
   ];
 
   drakolis = {
@@ -17,14 +16,12 @@
     development = {
       enable = true;
       tools = {
-        aiEditors = true;
         sqlClient = true;
         apiClient = true;
         scaleway = true;
       };
       languages = {
         nodeExtended = true;
-        goExtended = true;
         pythonExtended = true;
         rust = true;
         lua = true;
