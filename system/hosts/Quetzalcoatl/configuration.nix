@@ -39,7 +39,9 @@
     # Nix Specific
     home-manager
 
+    # Power management
     acpi
+    powertop
   ];
 
   services = {
