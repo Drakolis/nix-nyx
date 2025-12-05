@@ -48,6 +48,7 @@
     i2c-tools
     liquidctl
   ];
+
   boot = {
     kernelParams = [ "acpi_enforce_resources=lax" ];
     kernelModules = [

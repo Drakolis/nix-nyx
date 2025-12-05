@@ -102,6 +102,7 @@
       hasVial = true;
     };
     geolocation.enable = true;
+    thunderbolt.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).

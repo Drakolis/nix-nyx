@@ -14,6 +14,7 @@
     ./security.nix
     ./shell.nix
     ./ssh.nix
+    ./thunderbolt.nix
     ./virtualization.nix
   ];
 }
