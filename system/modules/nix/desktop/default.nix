@@ -14,10 +14,12 @@ let
   desktopProfiles = lib.types.enum [
     "advanced"
     "downloads"
+    "entertainment"
     "media"
     "office"
     "security"
     "remoteDesktop"
+    "work"
   ];
 in
 with lib;

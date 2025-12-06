@@ -142,6 +142,7 @@
       profiles = [
         "advanced"
         "downloads"
+        "entertainment"
         "media"
         "office"
         "security"

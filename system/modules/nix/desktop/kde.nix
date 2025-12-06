@@ -10,10 +10,12 @@ let
 
   hasAdvanced = builtins.elem "advanced" cfg.profiles;
   hasDownloads = builtins.elem "downloads" cfg.profiles;
+  hasEntertainment = builtins.elem "entertainment" cfg.profiles;
   hasMedia = builtins.elem "media" cfg.profiles;
   hasOffice = builtins.elem "office" cfg.profiles;
   hasSecurity = builtins.elem "security" cfg.profiles;
   hasRemoteDesktop = builtins.elem "remoteDesktop" cfg.profiles;
+  hasWork = builtins.elem "work" cfg.profiles;
 in
 with lib;
 {
@@ -23,76 +25,89 @@ with lib;
   config = mkIf (cfg.enable && hasKde) {
     services.desktopManager.plasma6.enable = true;
 
-    environment.systemPackages = with pkgs; [
-      # Wayland utils
-      wev
-      wl-clipboard
+    environment.systemPackages =
+      with pkgs;
+      [
+        # Wayland utils
+        wev
+        wl-clipboard
 
-      # Media
-      haruna
+        # Media
+        haruna
 
-      # Communication
-      kdePackages.falkon
-      kdePackages.konversation
-      kdePackages.krdc
-      kdePackages.neochat
+        # Communication
+        kdePackages.falkon
+        kdePackages.konversation
+        kdePackages.krdc
+        kdePackages.neochat
 
-      # Tech tools
-      kdePackages.kate
+        # Tech tools
+        kdePackages.kate
 
-      # File management
-      kdePackages.filelight
-      kdePackages.kfind
-      quota
+        kdePackages.kolourpaint
 
-      # Configuration
-      qpwgraph
+        # File management
+        kdePackages.filelight
+        kdePackages.kfind
+        quota
 
-      # Utilities
-      kdePackages.kcalc
-      kdePackages.kcharselect
-      kdePackages.kcolorchooser
-      kdePackages.sweeper
-      crow-translate
-      maliit-keyboard
+        # Configuration
+        qpwgraph
 
-      # Security
-      keepassxc
+        # Utilities
+        kdePackages.kcalc
+        kdePackages.kcharselect
+        kdePackages.kcolorchooser
+        kdePackages.sweeper
+        crow-translate
+        maliit-keyboard
 
-      # Backups
-      backintime-qt
-    ]
-    # Profile: Advanced
-    ++ lib.optionals hasAdvanced [
-      kdePackages.yakuake
-      kdePackages.kompare
-      krename
-    ]
-    # Profile: Downloads
-    ++ lib.optionals hasDownloads [
-      kdePackages.kget
-      kdePackages.ktorrent
-    ]
-    # Profile: Media
-    ++ lib.optionals hasMedia [
-      kdePackages.kasts
-    ]
-    # Profile: Office
-    ++ lib.optionals hasOffice [
-      kdePackages.akregator
-      kdePackages.kdepim-addons
-      libreoffice
-    ]
-    # Profile: Security
-    ++ lib.optionals hasSecurity [
-      kdePackages.kleopatra
-      wireshark
-    ]
-    # Profile: Remote Desktop
-    ++ lib.optionals hasRemoteDesktop [
-      kdePackages.krfb
-      wayvnc
-    ];
+        # Security
+        keepassxc
+
+        # Backups
+        backintime-qt
+      ]
+      # Profile: Advanced
+      ++ lib.optionals hasAdvanced [
+        kdePackages.yakuake
+        kdePackages.kompare
+        krename
+      ]
+      # Profile: Downloads
+      ++ lib.optionals hasDownloads [
+        kdePackages.kget
+        kdePackages.ktorrent
+      ]
+      # Profile: Entertainment
+      ++ lib.optionals hasEntertainment [
+        kdePackages.kmahjongg
+        kdePackages.kpat
+        kdePackages.knights
+        kdePackages.kbreakout
+        kdePackages.minuet
+      ]
+      # Profile: Media
+      ++ lib.optionals hasMedia [
+        kdePackages.kasts
+        kid3
+      ]
+      # Profile: Office
+      ++ lib.optionals hasOffice [
+        kdePackages.akregator
+        kdePackages.kdepim-addons
+        libreoffice
+      ]
+      # Profile: Security
+      ++ lib.optionals hasSecurity [
+        kdePackages.kleopatra
+        wireshark
+      ]
+      # Profile: Remote Desktop
+      ++ lib.optionals hasRemoteDesktop [
+        kdePackages.krfb
+        wayvnc
+      ];
 
     nixpkgs.config.permittedInsecurePackages = [
       "olm-3.2.16"
