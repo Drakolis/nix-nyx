@@ -2,8 +2,7 @@
 {
   imports = [
     ../modules
-    ../modules/desktop/hyprland
-    ../modules/desktop/niri
+    ../modules/desktop/kde
   ];
 
   drakolis = {
