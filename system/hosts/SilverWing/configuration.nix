@@ -10,7 +10,14 @@
   ];
 
   drakolis.desktop = {
-    profile = [ ];
+    profile = [
+      "advanced"
+      "downloads"
+      "media"
+      "office"
+      "security"
+      "remoteDesktop"
+    ];
   };
 
   # Enable alternative shell support in nix-darwin.

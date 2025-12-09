@@ -28,12 +28,14 @@ in
 with lib;
 {
   options = {
-    profiles = mkOption {
-      default = [ ];
-      type = types.listOf desktopProfiles;
-      description = ''
-        Select the profiles (lists of apps) to install.
-      '';
+    drakolis.desktop = {
+      profiles = mkOption {
+        default = [ ];
+        type = types.listOf desktopProfiles;
+        description = ''
+          Select the profiles (lists of apps) to install.
+        '';
+      };
     };
   };
 
