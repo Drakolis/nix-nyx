@@ -12,6 +12,7 @@
       enable = true;
       enableCommunication = true;
       enableEntertainment = true;
+      enableGameDevelopment = true;
       enableGaming = true;
     };
     development = {
