@@ -45,6 +45,7 @@ with lib;
         kdePackages.kate
 
         kdePackages.kolourpaint
+        kdePackages.qrca
 
         # File management
         kdePackages.filelight

@@ -89,6 +89,7 @@ with lib;
           pkgs.vscode-marketplace.zokugun.cron-tasks
           # pkgs.vscode-extensions.vscodevim.vim
           pkgs.vscode-extensions.editorconfig.editorconfig
+          pkgs.vscode-marketplace.lilyoliveira.catppuccin-palette-picker
 
           pkgs.vscode-marketplace.tabbyml.vscode-tabby
         ];
