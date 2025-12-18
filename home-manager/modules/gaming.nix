@@ -5,8 +5,7 @@
   ...
 }:
 let
-  style = import ../../share/constants/style.nix;
-  cfg = config.drakolis.showoff;
+  cfg = config.drakolis.gaming;
 in
 with lib;
 {

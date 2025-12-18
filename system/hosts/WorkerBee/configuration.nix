@@ -10,7 +10,7 @@
   ];
 
   drakolis.desktop = {
-    profile = [
+    profiles = [
       "advanced"
       "downloads"
       "media"
