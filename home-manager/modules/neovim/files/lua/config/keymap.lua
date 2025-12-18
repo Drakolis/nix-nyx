@@ -1,4 +1,4 @@
-vim.g.mapleader = " "
+vim.g.mapleader = "\\"
 vim.g.maplocalleader = "\\"
 
 -- makes current file executable
@@ -43,3 +43,9 @@ vim.keymap.set('n', '<c-up>', ':wincmd k<CR>')
 vim.keymap.set('n', '<c-down>', ':wincmd j<CR>')
 vim.keymap.set('n', '<c-left>', ':wincmd h<CR>')
 vim.keymap.set('n', '<c-right>', ':wincmd l<CR>')
+
+vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
+vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
+vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
+vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
+

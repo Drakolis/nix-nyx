@@ -1,7 +1,11 @@
 ## my-binds @regex
-Show Cheatsheet                     | F1
-Neotree: GitStatus                  | <leader>bg
-Neotree: Filesystem                 | <leader>bf
-Neotree: Buffers                    | <leader>bb
-Replace the word in the entire file | <leader>s
+Show Cheatsheet                      | F1
+Neotree: GitStatus                   | <leader>bg
+Neotree: Filesystem                  | <leader>bf
+Neotree: Buffers                     | <leader>bb
+Replace the word in the entire file  | <leader>s
+Surround: Change bracket {} with []  | cs}]
+Surround: Change bracket {} with <p> | cs}<p>
+Surround: Change tags with {}        | cst}
+Surround: Remove brackets {}         | ds}
 

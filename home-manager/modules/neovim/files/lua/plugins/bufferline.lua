@@ -30,5 +30,12 @@ return {
         }
       }
     })
+
+    -- Navigate tabs in BufferLine
+    vim.keymap.set('n', '<leader><left>', ':BufferLineCyclePrev<CR>')
+    vim.keymap.set('n', '<leader><right>', ':BufferLineCycleNext<CR>')
+    vim.keymap.set('n', '<leader>h', ':BufferLineCyclePrev<CR>')
+    vim.keymap.set('n', '<leader>l', ':BufferLineCycleNext<CR>')
+    vim.keymap.set('n', '<leader>w', ':bd<CR>')
   end
 }
