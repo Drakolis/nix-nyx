@@ -2,7 +2,8 @@
 {
   imports = [
     ../modules
-    ../modules/desktop/kde
+    #../modules/desktop/kde
+    ../modules/desktop/niri
   ];
 
   drakolis = {

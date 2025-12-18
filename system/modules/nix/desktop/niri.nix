@@ -65,7 +65,7 @@ with lib;
       kdePackages.kcharselect
       kdePackages.kcolorchooser
       crow-translate
-      caffeine-ng
+      # caffeine-ng
 
       # Security
       kdePackages.kgpg

@@ -44,6 +44,14 @@
     powertop
   ];
 
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openconnect
+      networkmanager-fortisslvpn
+    ];
+  };
+
   services = {
     # Enable CUPS to print documents.
     printing = {
@@ -83,11 +91,15 @@
     logRefusedConnections = false; # Reduce log noise (set to true if debugging)
   };
 
+  services.power-profiles-daemon.enable = true; 
+  services.upower.enable = true;
+
   drakolis = {
     desktop = {
       enable = true;
       types = [
-        "kde"
+        # "kde"
+        "niri"
       ];
       profiles = [
         "office"
