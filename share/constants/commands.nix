@@ -7,7 +7,7 @@
   };
 
   gui = {
-    browser = "librewolf";
+    browser = "zen";
     editor = "codium";
     fileManager = "pcmanfm-qt";
     passwords = "proton-pass";

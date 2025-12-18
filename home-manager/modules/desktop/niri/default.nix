@@ -8,7 +8,7 @@ in
     ../shared/hypridle.nix
     ../shared/hyprlock.nix
 
-    ../shared/swaync.nix
+    # ../shared/swaync.nix
     ../shared/themes.nix
     ../shared/terminals.nix
 
