@@ -1,6 +1,7 @@
 { pkgs, ... }:
 let
   style = import ../../share/constants/style.nix;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
 {
   programs.bat = {
@@ -95,7 +96,7 @@ in
   };
 
   programs.gitui = {
-    enable = true;
+    enable = !isDarwin;
     keyConfig = ''
       (
         move_left: Some(( code: Char('h'), modifiers: "")),

@@ -7,6 +7,7 @@
 let
   style = import ../../share/constants/style.nix;
   cfg = config.drakolis.showoff;
+  isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
 with lib;
 {
@@ -46,7 +47,7 @@ with lib;
     };
 
     programs.cava = {
-      enable = true;
+      enable = !isDarwin;
       settings = {
         general.framerate = 60;
         input.method = "alsa";
