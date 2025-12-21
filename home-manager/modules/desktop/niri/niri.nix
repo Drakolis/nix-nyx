@@ -614,26 +614,4 @@ in
     };
   };
 
-  programs.noctalia-shell = {
-    enable = true;
-    colors = {
-      # you must set ALL of these
-      mError = "#${style.colors.error}";
-      mOnError = "#${style.colors.textInverted}";
-      mPrimary = "#${style.colors.primary}";
-      mOnPrimary = "#${style.colors.textInverted}";
-      mSecondary = "#${style.colors.secondary}";
-      mOnSecondary = "#${style.colors.textInverted}";
-      mTertiary = "#${style.colors.highlight}";
-      mOnTertiary = "#${style.colors.textInverted}";
-      mHover = "#${style.colors.activeSurface}";
-      mOnHover = "#${style.colors.text}";
-      mSurface = "#${style.colors.background}";
-      mOnSurface = "#${style.colors.text}";
-      mSurfaceVariant = "#${style.colors.background}";
-      mOnSurfaceVariant = "#${style.colors.text}";
-      mOutline = "#${style.colors.activeSurface}";
-      mShadow = "#${style.colors.shadow}";
-    };
-  };
 }
