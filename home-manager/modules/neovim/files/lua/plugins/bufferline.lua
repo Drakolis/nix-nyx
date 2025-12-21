@@ -37,5 +37,7 @@ return {
     vim.keymap.set('n', '<leader>h', ':BufferLineCyclePrev<CR>')
     vim.keymap.set('n', '<leader>l', ':BufferLineCycleNext<CR>')
     vim.keymap.set('n', '<leader>w', ':bd<CR>')
+    vim.keymap.set('n', '<c-[>', ':BufferLineCyclePrev<CR>')
+    vim.keymap.set('n', '<c-]>', ':BufferLineCycleNext<CR>')
   end
 }
