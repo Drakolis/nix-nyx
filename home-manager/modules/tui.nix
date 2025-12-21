@@ -95,6 +95,11 @@ in
     };
   };
 
+  programs.lazygit = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.gitui = {
     enable = !isDarwin;
     keyConfig = ''
