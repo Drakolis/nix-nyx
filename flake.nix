@@ -268,7 +268,6 @@
             inputs.zen-browser.homeModules.beta
             plasma-manager.homeModules.plasma-manager
             niri-flake.homeModules.niri
-            inputs.noctalia.homeModules.default
             inputs.ignis.homeManagerModules.default
             ./home-manager/users/drakolis.nix
             ./home-manager/hosts/Quetzalcoatl.nix
