@@ -25,7 +25,6 @@ let
     python3Packages.jupyter
     python3Packages.numpy
     python3Packages.pandas
-    jetbrains.pycharm-community
   ];
 
   goExtendedPackages = [ ];
