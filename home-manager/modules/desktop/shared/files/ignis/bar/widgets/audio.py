@@ -25,7 +25,7 @@ def audio_render_widgets(volume, is_muted, is_output):
             pixel_size=16,
         ),
         widgets.Label(
-            css_classes=["audio-label"],
+            css_classes=["audio-label", "label-bar"],
             label=f"{volume}%" if not is_muted else "Muted",
         ),
     ]

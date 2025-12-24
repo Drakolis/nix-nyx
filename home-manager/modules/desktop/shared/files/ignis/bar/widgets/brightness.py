@@ -3,8 +3,57 @@ from ignis.services.backlight import BacklightService
 from utils import (
     get_brightness_status_icon,
 )
+from widgets import Popover
 
 backlight = BacklightService.get_default()
+
+menu = Popover(
+    child=widgets.Box(
+        css_classes=["popup", "elevation2"],
+        child=[
+            widgets.Label(
+                halign="start",
+                css_classes=["title-medium"],
+                label="Screen settings",
+            ),
+            widgets.Box(hexpand=True, css_classes=["control"]),
+            widgets.Box(
+                hexpand=True,
+                css_classes=["control"],
+                spacing=8,
+                child=[
+                    widgets.Button(
+                        css_classes=["control-button", "elevation1"],
+                        child=widgets.Icon(
+                            image="accessories-screenshot-symbolic", pixel_size=28
+                        ),
+                    ),
+                    widgets.Button(
+                        css_classes=["control-button", "elevation1"],
+                        child=widgets.Icon(
+                            image="user-desktop-symbolic", pixel_size=28
+                        ),
+                    ),
+                    widgets.Button(
+                        css_classes=["control-button", "elevation1"],
+                        child=widgets.Icon(
+                            image="screen-shared-symbolic", pixel_size=28
+                        ),
+                    ),
+                    widgets.Button(
+                        css_classes=["control-button", "elevation1"],
+                        child=widgets.Icon(
+                            image="redshift-status-on-symbolic", pixel_size=28
+                        ),
+                    ),
+                ],
+            ),
+        ],
+        vertical=True,
+        width_request=256,
+        spacing=8,
+    )
+)
 
 
 def brightness_render_widgets(brightness, brightness_max):
@@ -16,9 +65,10 @@ def brightness_render_widgets(brightness, brightness_max):
             pixel_size=16,
         ),
         widgets.Label(
-            css_classes=["brightness-label"],
+            css_classes=["brightness-label", "label-bar"],
             label=f"{brightness_percent}%",
         ),
+        menu,
     ]
 
 
@@ -29,9 +79,6 @@ def brightness_status() -> widgets.Button:
     )
 
     return widgets.Button(
-        # on_click=on_click_handler,
-        child=widgets.Box(
-            spacing=2,
-            child=brightness_widgets,
-        ),
+        on_click=lambda x: menu.popup(),
+        child=widgets.Box(spacing=2, child=brightness_widgets),
     )

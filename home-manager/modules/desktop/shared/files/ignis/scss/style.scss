@@ -36,9 +36,6 @@ $bluetooth: #89b4fa;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   margin: 0px 3px;
-
-  font-weight: bolder;
-  font-size: 14px;
 }
 
 .workspace-button {
@@ -189,6 +186,16 @@ $bluetooth: #89b4fa;
   label {
     margin-top: 1rem;
   }
+}
+
+.control-button {
+  background: $bg-input;
+  border: 1px solid $bg-input;
+  padding: 8px;
+  color: $primary;
+  border-radius: 36px;
+  min-width: 36px;
+  min-height: 36px;
 }
 
 // Dock

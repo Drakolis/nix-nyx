@@ -53,7 +53,7 @@ def clock() -> widgets.Box:
                 pixel_size=16,
             ),
             widgets.Label(
-                css_classes=["clock-label"],
+                css_classes=["clock-label", "label-bar"],
                 label=utils.Poll(
                     1_000,
                     lambda self: datetime.datetime.now().strftime("%H:%M:%S, %a %d.%b"),
@@ -83,7 +83,7 @@ def control_center_button(monitor_id: int) -> widgets.Box:
 
 def hyprland_workspace_button(workspace: HyprlandWorkspace) -> widgets.Button:
     widget = widgets.Button(
-        css_classes=["workspace-button"],
+        css_classes=["workspace-button", "label-bar"],
         on_click=lambda x: workspace.switch_to(),
         child=widgets.Label(label=str(workspace.id)),
     )
@@ -95,7 +95,7 @@ def hyprland_workspace_button(workspace: HyprlandWorkspace) -> widgets.Button:
 
 def niri_workspace_button(workspace: NiriWorkspace) -> widgets.Button:
     widget = widgets.Button(
-        css_classes=["workspace-button"],
+        css_classes=["workspace-button", "label-bar"],
         on_click=lambda x: workspace.switch_to(),
         child=widgets.Label(label=str(workspace.idx)),
     )
@@ -203,7 +203,7 @@ class WindowTitle:
         )
 
         self.label_widget = widgets.Label(
-            css_classes=["window-label"],
+            css_classes=["window-label", "label-bar"],
             ellipsize="end",
             max_width_chars=40,
             # visible=niri.bind("active_output", lambda output: output == monitor_name),
@@ -473,7 +473,7 @@ class LauncherWindow:
 
 # this will display bar on all monitors
 for i in range(utils.get_n_monitors()):
-    this_bar = Bar(i)
+    Bar(i)
     # Notifications
     OSD(i)
     Dock(i)
@@ -483,4 +483,4 @@ for i in range(utils.get_n_monitors()):
     # LauncherWindow().widget(i)
     # CalendarCenter?Window
     # NotificationCenterWindow
-    this_control_center = ControlCenterWindow(i)
+    ControlCenterWindow(i)

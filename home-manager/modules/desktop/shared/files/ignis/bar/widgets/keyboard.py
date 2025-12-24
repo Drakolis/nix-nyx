@@ -38,7 +38,7 @@ def keyboard_status() -> widgets.Button:
                     pixel_size=16,
                 ),
                 widgets.Label(
-                    css_classes=["layout-label"],
+                    css_classes=["layout-label", "label-bar"],
                     label=layout_label,
                 ),
             ],
