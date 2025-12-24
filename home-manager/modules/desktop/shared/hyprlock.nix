@@ -77,7 +77,7 @@ in
       ];
       image = {
         path = style.avatar;
-        size = 100;
+        size = 175;
         border_color = "rgb(${style.colors.primary})";
         position = "0, 75";
         halign = "center";
