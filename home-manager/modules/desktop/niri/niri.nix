@@ -107,7 +107,8 @@ in
 
       outputs = {
         "eDP-1" = {
-          name = "1";
+          name = "eDP-1";
+          focus-at-startup = true;
           enable = true;
           mode = {
             width = 1920;
@@ -121,22 +122,38 @@ in
           scale = 1.2;
           transform.rotation = 0;
         };
-        "DP-2" = {
-          name = "0";
-          focus-at-startup = true;
+        "HDMI-A-2" = {
+          name = "HDMI-A-2";
           enable = true;
           mode = {
             width = 2560;
             height = 1440;
-            refresh = 144.;
+            refresh = 59.951;
           };
           position = {
-            x = 0;
+            x = -1920;
             y = 0;
           };
           scale = 1;
           transform.rotation = 0;
         };
+        # YDdraigGoch
+        # "DP-2" = {
+        #   name = "0";
+        #   focus-at-startup = true;
+        #   enable = true;
+        #   mode = {
+        #     width = 2560;
+        #     height = 1440;
+        #     refresh = 144.;
+        #   };
+        #   position = {
+        #     x = 0;
+        #     y = 0;
+        #   };
+        #   scale = 1;
+        #   transform.rotation = 0;
+        # };
       };
 
       overview = {
@@ -217,12 +234,12 @@ in
 
         empty-workspace-above-first = false;
         gaps = style.gaps.outer;
-        # struts = {
-        #   bottom = 64;
-        #   left = 64;
-        #   right = 64;
-        #   top = 64;
-        # }
+        struts = {
+          # bottom = 64;
+          # left = 64;
+          # right = 64;
+          # top = 64;
+        };
       };
 
       workspaces = {
@@ -232,7 +249,7 @@ in
         {
           matches = [
             {
-              app-id = "(firefox|librewolf)$";
+              app-id = "(firefox|librewolf|zen-beta)$";
               title = "Picture-in-Picture";
             }
           ];
@@ -311,13 +328,7 @@ in
         };
 
         "Mod+Space" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "launcher"
-            "toggle"
-          ];
+          action.spawn = [ "walker" ];
           hotkey-overlay.title = "Run an Application";
         };
 
@@ -576,8 +587,14 @@ in
         # "Mod+R".action.switch-preset-column-width-back = [ ];
         "Mod+Shift+R".action.switch-preset-window-height = [ ];
         "Mod+Ctrl+R".action.reset-window-height = [ ];
-        "Mod+F".action.maximize-column = [ ];
-        "Mod+Shift+F".action.fullscreen-window = [ ];
+        "Mod+F" = {
+          action.maximize-column = [ ];
+          hotkey-overlay.title = "Maximize Column";
+        };
+        "Mod+Shift+F" = {
+          action.fullscreen-window = [ ];
+          hotkey-overlay.title = "Make window Fullscreen";
+        };
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
         "Mod+Shift+Minus".action.set-window-height = "-10%";
@@ -605,10 +622,14 @@ in
 
         # "Mod+Shift+E".action.quit = [ ];
         "Ctrl+Alt+Delete".action.quit = [ ];
-        "Mod+Shift+P".action.power-off-monitors = [ ];
+        "Mod+Shift+P" = {
+          action.power-off-monitors = [ ];
+          hotkey-overlay.title = "Blackout";
+        };
         "Mod+P" = {
           action.spawn-sh = "wl-mirror $(niri msg --json focused-output | jq -r .name)";
           repeat = false;
+          hotkey-overlay.title = "So called Screen Mirroring";
         };
       };
     };

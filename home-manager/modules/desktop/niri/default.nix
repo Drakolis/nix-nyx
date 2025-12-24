@@ -31,6 +31,7 @@ in
       wallpaper = [
         ", ${style.background}"
         "DP-2, ${style.background}"
+        "HDMI-A-2, ${style.background}"
       ];
     };
   };

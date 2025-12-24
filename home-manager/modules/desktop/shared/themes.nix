@@ -4,10 +4,10 @@ let
 in
 {
   home.packages = with pkgs; [
-    # (catppuccin-kde.override {
-    #   accents = [ "mauve" ];
-    #   flavour = [ "mocha" ];
-    # })
+    (catppuccin-kde.override {
+      accents = [ "mauve" ];
+      flavour = [ "mocha" ];
+    })
     catppuccinifier-cli
     catppuccin-whiskers
 
