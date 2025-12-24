@@ -79,7 +79,7 @@ in
         path = style.avatar;
         size = 175;
         border_color = "rgb(${style.colors.primary})";
-        position = "0, 75";
+        position = "0, 125";
         halign = "center";
         valign = "center";
 
