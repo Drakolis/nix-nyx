@@ -2,7 +2,7 @@ let
   catppuccinMocha = import ./catppuccinMocha.nix;
 in
 {
-  background = "~/nix-nyx/share/images/nix_trans_light.png";
+  background = "~/Projects/nix-nyx/share/images/wallpapers/nix_trans_light.png";
   avatar = "$HOME/.face";
 
   fontGui = "Ubuntu Sans";
