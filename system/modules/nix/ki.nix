@@ -31,18 +31,15 @@ with lib;
       enable = false;
       port = 50000;
       usageCollection = false;
-      acceleration = "rocm";
       model = "TabbyML/Qwen2.5-Coder-0.5B";
     };
 
     services.ollama = {
-      acceleration = false;
       enable = true;
       loadModels = [
         "mistral"
       ];
       openFirewall = true;
-      rocmOverrideGfx = "10.3.0";
     };
   };
 }
