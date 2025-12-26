@@ -1,12 +1,9 @@
+{ pkgs, ... }:
 {
   imports = [
     ../modules
     ../modules/desktop/kde
   ];
-
-  programs.kodi = {
-    enable = true;
-  };
 
   drakolis = {
     deviceSettings = {
