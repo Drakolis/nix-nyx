@@ -15,11 +15,13 @@ let
     "element.io"
     "startpage.com"
     "proton.me"
-    "github.io"
+    "github.com"
     "gitlab.io"
     "perplexity.ai"
     "microsoft.com"
     "google.com"
+    "youtube.com"
+    "apple.com"
   ];
 
   timezoneDomains = [
