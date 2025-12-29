@@ -10,6 +10,7 @@ let
   groupsRegular = [
     "networkmanager"
     "wheel"
+    "dialout"
   ];
 
   groupsVirtual = [
