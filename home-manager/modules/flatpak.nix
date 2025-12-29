@@ -15,6 +15,7 @@ let
 
   communicationFlatpaks = [
     "com.slack.Slack"
+    "org.signal.Signal"
     "org.telegram.desktop"
     "us.zoom.Zoom"
   ];
