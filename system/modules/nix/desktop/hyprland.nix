@@ -19,16 +19,13 @@ with lib;
       xwayland.enable = true;
     };
 
-    environment.sessionVariables = {
-      TERMINAL = "kitty";
-    };
-
     environment.systemPackages = with pkgs; [
       # Wayland utils
-      wev
-      wl-clipboard
       wl-mirror
-      wayvnc
+
+      brightnessctl
+      playerctl
+      libnotify
 
       # Hyprland
       hyprland
@@ -41,53 +38,8 @@ with lib;
       hyprshot
       hyprsunset
 
-      brightnessctl
-      playerctl
-      libnotify
-
-      # Media
-      imv
-      mpv
-
-      # Office
-      libreoffice
-
-      # Tech tools
-      kitty
-
-      # File management
-      pcmanfm-qt
-      lxqt.lxqt-archiver
-      kdePackages.filelight
-      kdePackages.kompare
-      krename
-
-      # System
-      lxqt.qps
-      lxqt.pavucontrol-qt
-      qpwgraph
-
-      # Utilities
-      kdePackages.kcalc
-      kdePackages.kcharselect
-      kdePackages.kcolorchooser
-      crow-translate
-      caffeine-ng
-
-      # Security
-      kdePackages.kgpg
-      keepassxc
       kdePackages.kwallet
       kdePackages.kwalletmanager
-
-      # Backups
-      backintime-qt
     ];
-
-    programs.partition-manager.enable = true;
-    programs.kde-pim.enable = true;
-    programs.kde-pim.kmail = true;
-    programs.kde-pim.kontact = false;
-    programs.kde-pim.merkuro = true;
   };
 }

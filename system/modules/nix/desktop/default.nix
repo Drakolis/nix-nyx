@@ -11,6 +11,11 @@ let
     "niri"
   ];
 
+  desktopTerminals = lib.types.enum [
+    "undefined"
+    "kitty"
+  ];
+
   desktopProfiles = lib.types.enum [
     "advanced"
     "downloads"
@@ -47,12 +52,21 @@ with lib;
           Select the profiles (lists of apps) to install.
         '';
       };
+      terminal = mkOption {
+        default = "undefined";
+        type = desktopTerminals;
+        description = ''
+          Select the terminal type to use as default.
+        '';
+      };
     };
   };
   imports = [
     ./niri.nix
     ./hyprland.nix
     ./kde.nix
+    ./applications/mandatory.nix
+    ./applications/terminal.nix
   ];
   config = mkIf (cfg.enable) {
     # Things we assume are necessary for any desktop session
