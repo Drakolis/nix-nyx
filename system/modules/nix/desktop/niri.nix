@@ -19,6 +19,7 @@ with lib;
 
     environment.systemPackages = with pkgs; [
       # Wayland utils
+      xwayland-satellite
       wl-mirror
 
       brightnessctl
