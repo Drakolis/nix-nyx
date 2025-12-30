@@ -30,7 +30,6 @@ with lib;
       # protonmail-bridge-gui
       protonvpn-gui
       proton-pass
-      element-desktop
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
