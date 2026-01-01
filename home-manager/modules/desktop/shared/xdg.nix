@@ -25,17 +25,23 @@
           "gnome"
           "gtk"
         ];
-        "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
-        "org.freedesktop.impl.portal.Access" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.impl.portal.Access" = [
+          "kde"
+          "gtk"
+        ];
         "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
       };
       kde = {
         default = [
           "kde"
-          "gnome"
-          "gtk"
         ];
         "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
+        "org.freedesktop.impl.portal.Settings" = [
+          "kde"
+          "gtk"
+        ];
+
       };
     };
   };

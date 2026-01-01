@@ -18,6 +18,7 @@ in
 
     settings = {
       environment = {
+        QT_QPA_PLATFORMTHEME = "qt6ct";
       };
 
       spawn-at-startup = [
@@ -135,23 +136,22 @@ in
           scale = 1;
           transform.rotation = 0;
         };
-        # YDdraigGoch
-        # "DP-2" = {
-        #   name = "0";
-        #   focus-at-startup = true;
-        #   enable = true;
-        #   mode = {
-        #     width = 2560;
-        #     height = 1440;
-        #     refresh = 144.;
-        #   };
-        #   position = {
-        #     x = 0;
-        #     y = 0;
-        #   };
-        #   scale = 1;
-        #   transform.rotation = 0;
-        # };
+        "DP-2" = {
+          name = "0";
+          focus-at-startup = true;
+          enable = true;
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 143.999;
+          };
+          position = {
+            x = 0;
+            y = 0;
+          };
+          scale = 1;
+          transform.rotation = 0;
+        };
       };
 
       overview = {

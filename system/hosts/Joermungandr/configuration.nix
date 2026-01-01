@@ -137,7 +137,8 @@
     desktop = {
       enable = true;
       types = [
-        "kde"
+        # "kde"
+        "niri"
       ];
       profiles = [
         "advanced"
@@ -148,6 +149,7 @@
         "security"
         "remoteDesktop"
       ];
+      terminal = "kitty";
     };
     dos.enable = true;
     input = {

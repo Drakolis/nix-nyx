@@ -15,7 +15,6 @@ with lib;
   ];
   config = mkIf (cfg.enable && hasNiri) {
     programs.niri.enable = true;
-    services.gnome.gnome-keyring.enable = false; # I like KWallet
 
     environment.systemPackages = with pkgs; [
       # Wayland utils
@@ -30,9 +29,6 @@ with lib;
       hyprlock
       hyprpaper
       hyprpicker
-
-      kdePackages.kwallet
-      kdePackages.kwalletmanager
     ];
   };
 }

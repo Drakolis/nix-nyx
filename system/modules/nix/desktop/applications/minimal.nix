@@ -21,6 +21,10 @@ with lib;
   environment.systemPackages =
     with pkgs;
     [
+      grim
+
+      bluetui
+
       pcmanfm-qt
       lxqt.lxqt-archiver
 

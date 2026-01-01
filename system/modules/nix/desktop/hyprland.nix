@@ -37,9 +37,6 @@ with lib;
       hyprshade
       hyprshot
       hyprsunset
-
-      kdePackages.kwallet
-      kdePackages.kwalletmanager
     ];
   };
 }

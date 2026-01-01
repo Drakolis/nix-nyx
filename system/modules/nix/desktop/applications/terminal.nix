@@ -13,7 +13,6 @@ in
 with lib;
 {
   config = mkIf (hasKitty) {
-
     environment.sessionVariables = {
       TERMINAL = "kitty";
     };

@@ -32,7 +32,6 @@
     # Extra packages available at runtime
     # These can be regular packages or Python packages
     extraPackages = with pkgs; [
-      hello
       python3Packages.jinja2
       python3Packages.materialyoucolor
       python3Packages.pillow
