@@ -26,6 +26,16 @@ $shape-corner-xlarge: 16px;
   // border: 1px solid $fg-disabled;
 }
 
+.dock {
+  background-color: rgba($bg, 0.85);
+  border-radius: $shape-corner-xlarge $shape-corner-xlarge 0 0;
+  padding: $shape-corner-xlarge;
+  // border: 1px solid $fg-disabled;
+}
+
+.margin-auto {
+}
+
 .sheet {
   background-color: $bg;
 }
@@ -42,8 +52,8 @@ $shape-corner-xlarge: 16px;
 }
 
 .elevation2 {
-  margin: $shadow-blur*2;
-  box-shadow: 0px $shadow-y $shadow-blur*2 0px $shadow;
+  margin: $shadow-blur * 2;
+  box-shadow: 0px $shadow-y $shadow-blur * 2 0px $shadow;
 }
 
 .corner-small {

@@ -8,8 +8,7 @@ from ignis.services.niri import NiriService, NiriWindow
 
 from ignis.window_manager import WindowManager
 
-DEFAULT_WINDOW_ICON = "application-default-icon"
-
+from utils import get_extended_app_icon
 
 def sort_niri_windows(windows: [NiriWindow]):
     return sorted(
@@ -51,9 +50,7 @@ class DockItem(widgets.Button):
             child=widgets.Overlay(
                 child=widgets.Icon(
                     image=(
-                        utils.get_app_icon_name(app_id)
-                        if app_id
-                        else DEFAULT_WINDOW_ICON
+                      get_extended_app_icon(app_id)
                     ),
                     pixel_size=64,
                 ),
@@ -94,7 +91,7 @@ class Dock(widgets.RevealerWindow):
         revealer = widgets.Revealer(
             transition_type="slide_up",
             child=widgets.Box(
-                css_classes=["dock", "popup"],
+                css_classes=["dock"],
                 spacing=24,
                 child=dock_items,
             ),

@@ -8,7 +8,7 @@ from widgets import Popover
 backlight = BacklightService.get_default()
 
 menu = Popover(
-    child=widgets.Box(
+    child=widgets.EventBox(
         css_classes=["popup", "elevation2"],
         child=[
             widgets.Label(
