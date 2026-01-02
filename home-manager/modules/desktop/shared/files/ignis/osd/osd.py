@@ -40,7 +40,7 @@ class OSD(widgets.RevealerWindow):
             label=self.label,
         )
         scale_widget = widgets.Scale(
-            css_classes=["osd-slider", "slider-small"],
+            css_classes=["osd-slider", "slider-medium"],
             draw_value=False,
             vertical=False,
             value_pos="top",
@@ -48,12 +48,13 @@ class OSD(widgets.RevealerWindow):
             max=100,
             value=self.scale_value,
             visible=self.show_scale,
+            sensitive=False
         )
 
         revealer = widgets.Revealer(
             transition_type="crossfade",
             child=widgets.Box(
-                css_classes=["osd-container", "sheet", "elevation2", "corner-large"],
+                css_classes=["osd-container", "sheet", "elevation3", "corner-large"],
                 child=[icon_widget, label_widget, scale_widget],
                 vertical=True,
                 hexpand=True,

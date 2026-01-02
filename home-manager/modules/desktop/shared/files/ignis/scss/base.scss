@@ -1,0 +1,98 @@
+@use "sheets";
+@use "variables";
+
+.slider-small trough {
+  background-color: variables.$fg-disabled;
+  min-height: 5px;
+  border-radius: 3px;
+  margin: 4px 0;
+
+  highlight {
+    background-color: variables.$primary;
+  }
+
+  slider {
+    background-color: variables.$bg;
+    min-width: 12px;
+    min-height: 12px;
+    margin: -6px;
+    border-radius: 12px;
+    border: 2px solid variables.$primary;
+  }
+}
+
+.slider-medium trough {
+  background-color: variables.$fg-disabled;
+  min-height: 8px;
+  border-radius: 4px;
+  margin: 4px 0;
+
+  highlight {
+    background-color: variables.$primary;
+  }
+
+  slider {
+    background-color: variables.$bg;
+    min-width: 16px;
+    min-height: 16px;
+    margin: -8px;
+    border-radius: 16px;
+    border: 2px solid variables.$primary;
+  }
+}
+
+tooltip {
+  background-color: variables.$bg;
+  padding: 0.55rem 1rem;
+  border-radius: variables.$shape-corner-large;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.menu-fix {
+  margin-top: -5px;
+}
+
+popover.menu {
+  contents {
+    background-color: variables.$bg;
+    padding: 0.35rem;
+    border-radius: variables.$shape-corner-xlarge;
+    font-weight: 500;
+
+    modelbutton {
+      transition: 0.3s;
+      border-radius: variables.$shape-corner-large;
+      padding: 0.35rem 1rem;
+    }
+    modelbutton:hover,
+    modelbutton:focus {
+      background-color: variables.$bg-control;
+    }
+    separator {
+      background-color: variables.$fg-disabled;
+      min-height: 1px;
+      margin: 0.5rem 0;
+    }
+
+    label:disabled {
+      color: variables.$fg-disabled;
+    }
+
+    arrow {
+      opacity: 0.5;
+
+      &:hover {
+        background: none;
+      }
+
+      &.left {
+        -gtk-icon-source: -gtk-icontheme("go-previous-symbolic");
+      }
+
+      &.right {
+        -gtk-icon-source: -gtk-icontheme("go-next-symbolic");
+      }
+    }
+  }
+}

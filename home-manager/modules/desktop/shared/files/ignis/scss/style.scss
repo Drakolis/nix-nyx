@@ -1,28 +1,6 @@
-$bg: #181825;
-$bg-input: #1e1e2e;
-$bg-control: #313244;
-$fg: #cdd6f4;
-$fg-sub: #a6adc8;
-$fg-disabled: #585b70;
-$shadow: #11111b;
-
-$transparent: rgba($bg, 0.01);
-
-$primary: #cba6f7;
-$primary-hover: rgba($primary, 0.3);
-
-$clock: #74c7ec;
-$layout: #89dceb;
-$audio: #fab387;
-$brightness: #f9e2af;
-$power: #94e2d5;
-$power-critical: #f38ba8;
-$power-warning: #f38ba8;
-$power-normal: #a6e3a1;
-$network: #b4befe;
-$bluetooth: #89b4fa;
-
-@use "./sheets.scss";
+@use "variables";
+@use "base";
+@use "sheets";
 
 * {
   all: unset;
@@ -30,11 +8,11 @@ $bluetooth: #89b4fa;
 
 .bar-container {
   margin: 5px 2px;
-  color: $fg;
+  color: variables.$fg;
 }
 
 .bar-pill {
-  background-color: $bg;
+  background-color: variables.$bg;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   margin: 0px 3px;
@@ -48,60 +26,60 @@ $bluetooth: #89b4fa;
 }
 
 .workspace-button:hover {
-  background-color: $primary-hover;
+  background-color: variables.$primary-hover;
 }
 
 .workspace-button.active {
-  background-color: $primary;
-  color: $bg;
+  background-color: variables.$primary;
+  color: variables.$bg;
 }
 
 .window-label {
-  color: $primary;
+  color: variables.$primary;
 }
 
 .clock-label {
-  color: $clock;
+  color: variables.$clock;
 }
 
 .layout-label {
-  color: $layout;
+  color: variables.$layout;
 }
 
 .audio-label {
-  color: $audio;
+  color: variables.$audio;
 }
 
 .brightness-label {
-  color: $brightness;
+  color: variables.$brightness;
 }
 
 .power-label {
-  color: $power;
+  color: variables.$power;
 }
 
 .power-critical-label {
-  color: $power-critical;
+  color: variables.$power-critical;
 }
 
 .power-warning-label {
-  color: $power-warning;
+  color: variables.$power-warning;
 }
 
 .power-normal-label {
-  color: $power-normal;
+  color: variables.$power-normal;
 }
 
 .network-label {
-  color: $network;
+  color: variables.$network;
 }
 
 .bluetooth-label {
-  color: $bluetooth;
+  color: variables.$bluetooth;
 }
 
 .launcher-container {
-  background-color: rgba($bg, 0.95);
+  background-color: rgba(variables.$bg, 0.95);
   padding: 3px;
   border-radius: 1rem;
 
@@ -110,14 +88,14 @@ $bluetooth: #89b4fa;
 }
 
 .launcher-input {
-  background-color: $bg-input;
+  background-color: variables.$bg-input;
   border-radius: 1rem 1rem 0 0;
-  border-bottom: solid 1px $primary;
+  border-bottom: solid 1px variables.$primary;
   padding: 0.75rem;
 }
 
 .launcher-input placeholder {
-  color: $fg-disabled;
+  color: variables.$fg-disabled;
 }
 
 .launcher-input image {
@@ -131,11 +109,11 @@ $bluetooth: #89b4fa;
 }
 
 .launcher-item:hover {
-  background-color: $primary-hover;
+  background-color: variables.$primary-hover;
 }
 
 .launcher-item:focus {
-  background-color: $primary-hover;
+  background-color: variables.$primary-hover;
 }
 
 .launcher-item-label {
@@ -146,13 +124,13 @@ $bluetooth: #89b4fa;
 }
 
 .launcher-item-label-description {
-  color: $fg-sub;
+  color: variables.$fg-sub;
 }
 
 .launcher-footer {
-  background-color: $bg-input;
+  background-color: variables.$bg-input;
   border-radius: 0 0 1rem 1rem;
-  border-top: solid 1px $primary;
+  border-top: solid 1px variables.$primary;
   padding: 0.5rem;
 }
 
@@ -163,14 +141,15 @@ $bluetooth: #89b4fa;
 }
 
 .launcher-footer button:hover {
-  background-color: $primary-hover;
+  background-color: variables.$primary-hover;
 }
 
 // OSD
 
 .osd-container {
+  margin: 5px;
   padding: 1.5rem;
-  border: 1px solid $primary;
+  border: 1px solid variables.$primary;
   min-width: 128px;
 
   .osd-slider {
@@ -191,10 +170,10 @@ $bluetooth: #89b4fa;
 }
 
 .control-button {
-  background: $bg-input;
-  border: 1px solid $bg-input;
+  background: variables.$bg-input;
+  border: 1px solid variables.$bg-input;
   padding: 8px;
-  color: $primary;
+  color: variables.$primary;
   border-radius: 36px;
   min-width: 36px;
   min-height: 36px;
@@ -203,7 +182,7 @@ $bluetooth: #89b4fa;
 // Dock
 
 .dock-trigger {
-  background-color: $bg-control;
+  background-color: variables.$bg-control;
   opacity: 0.001;
 }
 
@@ -222,7 +201,7 @@ $bluetooth: #89b4fa;
   }
 
   .running-indicator {
-    background-color: $primary;
+    background-color: variables.$primary;
     min-width: 6px;
     min-height: 6px;
     border-radius: 3px;
@@ -230,107 +209,56 @@ $bluetooth: #89b4fa;
 }
 
 .app-icon-button:hover {
-  border-bottom: 0.4rem solid rgba($primary, 1);
+  border-bottom: 0.4rem solid rgba(variables.$primary, 1);
 }
 
 // Launcher
 
+.launcher-grid {
+  margin: 0 10px;
+}
+
 .tile {
-  min-height: 128px;
-  min-width: 128px;
-  padding: 36px;
-  background-color: $layout;
+  background-color: variables.$fg-disabled;
   margin: 16px;
+
+  .tile-container {
+    min-height: 160px;
+    min-width: 160px;
+
+    .tile-icon {
+      margin-top: 48px;
+    }
+
+    .tile-title {
+      margin-top: 29px;
+      margin-left: 5px;
+      font-size: 14px;
+    }
+  }
 }
 
 .tile:hover {
   box-shadow:
-    0 0 20px 0 $primary inset,
-    0 0 0 4px $primary inset;
+    0 0 20px 0 variables.$primary inset,
+    0 0 0 4px variables.$primary inset;
 }
 
 .tile:focus {
-  box-shadow:
-    0 0 0 4px $transparent,
-    0 0 0 4px $fg-sub;
+  box-shadow: 0 0 0 4px variables.$primary inset;
 }
 
-// Common
+// Setup Menu
 
-.slider-small trough {
-  background-color: $fg-disabled;
-  min-height: 8px;
-  border-radius: 4px;
-  margin: 4px 0;
-
-  highlight {
-    background-color: $primary;
+.setup-menu {
+  .setup-menu-title {
+    margin-bottom: 2px;
   }
 
-  slider {
-    background-color: $bg;
-    min-width: 16px;
-    min-height: 16px;
-    margin: -8px;
-    border-radius: 16px;
-    border: 2px solid $primary;
+  .setup-menu-subtitle {
   }
-}
 
-// Other
-
-tooltip {
-  background-color: $bg;
-  padding: 0.55rem 1rem;
-  border-radius: 1rem;
-  font-weight: normal;
-  font-size: 14px;
-}
-
-.menu-fix {
-  margin-top: -5px;
-}
-
-popover.menu {
-  contents {
-    background-color: $bg;
-    padding: 0.35rem;
-    border-radius: 1rem;
-    font-weight: normal;
-
-    modelbutton {
-      transition: 0.3s;
-      border-radius: 0.5rem;
-      padding: 0.35rem 1rem;
-    }
-    modelbutton:hover,
-    modelbutton:focus {
-      background-color: $bg-control;
-    }
-    separator {
-      background-color: $fg-disabled;
-      min-height: 1px;
-      margin: 0.5rem 0;
-    }
-
-    label:disabled {
-      color: $fg-disabled;
-    }
-
-    arrow {
-      opacity: 0.5;
-
-      &:hover {
-        background: none;
-      }
-
-      &.left {
-        -gtk-icon-source: -gtk-icontheme("go-previous-symbolic");
-      }
-
-      &.right {
-        -gtk-icon-source: -gtk-icontheme("go-next-symbolic");
-      }
-    }
+  .setup-menu-item {
+    margin-top: 12px;
   }
 }

@@ -34,7 +34,7 @@ let
   ];
 
   gamingFlatpaks = [
-    "org.freedesktop.Platform.VulkanLayer.MangoHud"
+    "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"
     "com.valvesoftware.Steam"
     "net.lutris.Lutris"
     "com.discordapp.Discord"

@@ -4,17 +4,17 @@ from ignis import utils
 from ignis.menu_model import IgnisMenuModel, IgnisMenuItem, IgnisMenuSeparator
 
 from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
-from ignis.services.niri import NiriService, NiriWindow
+from ignis.services.niri import NiriService, NiriWindow, NiriWindowLayout
 
 from ignis.window_manager import WindowManager
 
 from utils import get_extended_app_icon
 
 def sort_niri_windows(windows: [NiriWindow]):
-    return sorted(
-        windows,
-        key=lambda window: window.layout.pos_in_scrolling_layout[0],
-    )
+  return  sorted(
+    windows,
+    key=lambda window: window.layout.pos_in_scrolling_layout[0] if window.layout.pos_in_scrolling_layout else 1000, # TODO: this line basically means that any floating windows go last
+  )
 
 
 class DockItem(widgets.Button):

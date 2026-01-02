@@ -1,14 +1,19 @@
 from ignis import utils
 
+from ignis.services.applications import ApplicationsService, Application
+
+applications = ApplicationsService.get_default()
+
 DEFAULT_WINDOW_ICON = "application-default-icon"
 
 def get_extended_app_icon(app_id) -> str:
- if app_id == "steam":
-  return "com.valvesoftware.Steam"
- elif app_id:
-  return utils.get_app_icon_name(app_id)
- else:
-  return DEFAULT_WINDOW_ICON
+
+  if app_id == "steam":
+    return "com.valvesoftware.Steam"
+  elif app_id:
+    return utils.get_app_icon_name(app_id)
+  else:
+    return DEFAULT_WINDOW_ICON
 
 # def get_extended_app_icon_color(name) -> str:
 
