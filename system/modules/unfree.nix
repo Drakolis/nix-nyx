@@ -6,5 +6,6 @@
       "daisydisk"
       "via"
       "wootility"
+      "rar"
     ];
 }

@@ -2,6 +2,15 @@ let
   style = import ../../../../share/constants/style.nix;
 in
 {
+  programs.wezterm = {
+    enable = true;
+  };
+
+  programs.rio = {
+    enable = true;
+    settings = { };
+  };
+
   programs.ghostty = {
     enable = false;
     enableBashIntegration = true;

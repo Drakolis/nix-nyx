@@ -22,16 +22,16 @@ in
       };
 
       spawn-at-startup = [
-        { argv = [ "kwalletd6" ]; }
         { argv = [ "tailscale-systray" ]; }
-        { argv = [ "niriswitcher" ]; }
         {
           argv = [
             "niri-screen-time"
             "-daemon"
           ];
         }
-        { command = [ "noctalia-shell" ]; }
+        { command = [ "hyprpaper" ]; }
+        { command = [ "syncthingtray" ]; }
+        { command = [ "flameshot" ]; }
       ];
 
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -184,10 +184,10 @@ in
           inactive-color = "#${style.colors.shadow}";
           offset = {
             x = 0;
-            y = 5;
+            y = 0;
           };
-          softness = 30;
-          spread = 5;
+          softness = 5;
+          spread = 2;
         };
 
         insert-hint = {
@@ -203,7 +203,7 @@ in
           gaps-between-tabs = 0;
           place-within-column = true;
           # total-proportion = 0.5;
-          width = 4;
+          width = 8;
 
           active.color = "#${style.colors.primary}"; # Too hard to see
           inactive.color = "#${style.colors.panel}";
@@ -308,7 +308,7 @@ in
 
         # Programs
         "Mod+Return" = {
-          action.spawn = "kitty";
+          action.spawn = "rio";
           hotkey-overlay.title = "Open a Terminal";
         };
 
@@ -326,7 +326,7 @@ in
         };
 
         "Mod+Space" = {
-          action.spawn = [ "walker" ];
+          action.spawn = [ "anyrun" ];
           hotkey-overlay.title = "Run an Application";
         };
 

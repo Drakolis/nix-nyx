@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  services.cliphist.enable = true;
+
   programs.ignis = {
     enable = true;
 

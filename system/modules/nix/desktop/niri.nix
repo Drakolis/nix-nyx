@@ -12,6 +12,7 @@ with lib;
 {
   imports = [
     ./dm/sddm.nix
+    ./applications/minimal.nix
   ];
   config = mkIf (cfg.enable && hasNiri) {
     programs.niri.enable = true;

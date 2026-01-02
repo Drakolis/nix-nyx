@@ -11,7 +11,7 @@
         "org.kde.Konsole"
       ];
       default = [
-        "kitty.desktop"
+        "kitty"
       ];
     };
   };
@@ -27,7 +27,6 @@
         ];
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         "org.freedesktop.impl.portal.Access" = [
-          "kde"
           "gtk"
         ];
         "org.freedesktop.impl.portal.Notification" = [ "gtk" ];

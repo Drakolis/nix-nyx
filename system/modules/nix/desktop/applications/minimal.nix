@@ -26,7 +26,16 @@ with lib;
       bluetui
 
       pcmanfm-qt
+      nemo
+
       lxqt.lxqt-archiver
+      mate.engrampa
+      # Supported archives
+      zip
+      gnutar
+      rar
+      p7zip
+      unzip
 
       element-desktop
 
@@ -36,6 +45,8 @@ with lib;
       lxqt.qps
       lxqt.pavucontrol-qt
       qpwgraph
+
+      caffeine-ng
     ]
     ++ lib.optionals hasSecurity [
       kdePackages.kgpg

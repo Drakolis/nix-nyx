@@ -17,7 +17,10 @@ in
     kdePackages.breeze-gtk
     kdePackages.breeze-icons
     vanilla-dmz
-    catppuccin-papirus-folders
+    (catppuccin-papirus-folders.override {
+      accent = "mauve";
+      flavor = "mocha";
+    })
 
     qt6Packages.qt6ct
     libsForQt5.qt5ct
@@ -75,9 +78,9 @@ in
     platformTheme = {
       name = "qtct";
     };
-    style = {
-      name = "breeze";
-    };
+    # style = {
+    #   name = "breeze";
+    # };
 
   };
 

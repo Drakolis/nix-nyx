@@ -19,7 +19,7 @@ in
 
     ../shared/walker.nix
     ../shared/flameshot.nix
-    # ../shared/anyrun.nix
+    ../shared/anyrun.nix
     # ../shared/fuzzel.nix
     # ../shared/wofi.nix
     # ../shared/yofi.nix
