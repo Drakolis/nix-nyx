@@ -1,6 +1,7 @@
 @use "sheets";
 @use "variables";
 
+
 .slider-small trough {
   background-color: variables.$fg-disabled;
   min-height: 5px;
@@ -38,6 +39,33 @@
     margin: -8px;
     border-radius: 16px;
     border: 2px solid variables.$primary;
+  }
+}
+
+.audio-slider trough {
+  highlight {
+    background-color: variables.$audio;
+  }
+  slider {
+    border-color: variables.$audio;
+  }
+}
+
+.brightness-slider trough {
+  highlight {
+    background-color: variables.$brightness;
+  }
+  slider {
+    border-color: variables.$brightness;
+  }
+}
+
+.power-slider trough {
+  highlight {
+    background-color: variables.$power;
+  }
+  slider {
+    border-color: variables.$power;
   }
 }
 

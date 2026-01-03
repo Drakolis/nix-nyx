@@ -144,6 +144,11 @@
   background-color: variables.$primary-hover;
 }
 
+// Notifications
+.notification-popup {
+  border: 1px solid variables.$primary;
+}
+
 // OSD
 
 .osd-container {
