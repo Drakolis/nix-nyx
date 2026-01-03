@@ -22,16 +22,28 @@ in
       };
 
       spawn-at-startup = [
-        { argv = [ "tailscale-systray" ]; }
+        { command = [ "tailscale-systray" ]; }
+        { command = [ "flameshot" ]; }
+        { command = [ "caffeine" ]; }
+        { command = [ "hyprpaper" ]; }
         {
           argv = [
             "niri-screen-time"
             "-daemon"
           ];
         }
-        { command = [ "hyprpaper" ]; }
-        { command = [ "syncthingtray" ]; }
-        { command = [ "flameshot" ]; }
+        {
+          argv = [
+            "syncthingtray"
+            "--wait"
+          ];
+        }
+        {
+          argv = [
+            "ignis"
+            "init"
+          ];
+        }
       ];
 
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
@@ -247,6 +259,20 @@ in
         {
           matches = [
             {
+              app-id = "(steam)$";
+              title = "Friends List";
+            }
+          ];
+          open-floating = true;
+          default-floating-position = {
+            relative-to = "bottom-right";
+            x = 0;
+            y = 0;
+          };
+        }
+        {
+          matches = [
+            {
               app-id = "(firefox|librewolf|zen-beta)$";
               title = "Picture-in-Picture";
             }
@@ -308,29 +334,41 @@ in
 
         # Programs
         "Mod+Return" = {
-          action.spawn = "rio";
-          hotkey-overlay.title = "Open a Terminal";
+          action.spawn = commands.terminal;
+          hotkey-overlay.title = "Launch Terminal";
         };
 
         "Mod+B" = {
           action.spawn = commands.gui.browser;
-          hotkey-overlay.title = "Open a Browser";
+          hotkey-overlay.title = "Launch Browser";
         };
 
         "Mod+E" = {
-          action.spawn = [
-            commands.terminal
-            commands.tui.editor
-          ];
-          hotkey-overlay.title = "Open an Editor";
+          action.spawn-sh = "${commands.terminalExec} ${commands.tui.editor}";
+          hotkey-overlay.title = "Launch Editor";
+        };
+
+        "Mod+Shift+E" = {
+          action.spawn = commands.gui.editor;
+          hotkey-overlay.title = "Launch GUI Editor";
+        };
+
+        "Mod+A" = {
+          action.spawn-sh = "${commands.terminalExec} ${commands.tui.fileManager}";
+          hotkey-overlay.title = "Launch Editor";
+        };
+
+        "Mod+Shift+A" = {
+          action.spawn = commands.gui.fileManager;
+          hotkey-overlay.title = "Launch Editor";
         };
 
         "Mod+Space" = {
-          action.spawn = [ "anyrun" ];
-          hotkey-overlay.title = "Run an Application";
+          action.spawn = commands.runner;
+          hotkey-overlay.title = "Application Launcher";
         };
 
-        "Super+Ctrl+Q" = {
+        "Mod+Ctrl+Q" = {
           action.spawn = [
             "loginctl"
             "lock-session"
@@ -338,8 +376,8 @@ in
           hotkey-overlay.title = "Lock the Screen";
         };
 
-        "Super+Shift+Q" = {
-          action.spawn = "wlogout";
+        "Mod+Shift+Q" = {
+          action.spawn = commands.shutdown;
           hotkey-overlay.title = "Shutdown menu";
         };
 
@@ -347,20 +385,28 @@ in
           action.spawn-sh = ''${commands.notifyHyprpicker} & hyprpicker -a'';
           hotkey-overlay.title = "Color picker";
         };
+
+        "Mod+Y" = {
+          action.spawn = commands.gui.passwords;
+          hotkey-overlay.title = "Launch Password Manager";
+        };
+
+        "Mod+M" = {
+          action.spawn = "${commands.terminalExec} zsh -c 'wl-paste | ${commands.previewText}'";
+          hotkey-overlay.title = "Show Clipboard Preview";
+        };
+
         # "$mainMod, K, exec, "
         # "$mainMod, N, exec, swaync-client -t"
         # "$mainMod SHIFT, N, exec, swaync-client -d"
-        # "$mainMod SHIFT, E, exec, ${commands.gui.editor}"
-        # "$mainMod, M, exec, ${commands.terminal} (wl-paste | xargs ${commands.previewText})"
-        # "$mainMod, Y, exec, ${commands.gui.passwords}"
 
         # Media keys
         "XF86AudioRaiseVolume" = {
-          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
+          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ --limit 1";
           allow-when-locked = true;
         };
         "XF86AudioLowerVolume" = {
-          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1- --limit 1";
           allow-when-locked = true;
         };
         "XF86AudioMute" = {
@@ -372,11 +418,11 @@ in
           allow-when-locked = true;
         };
         "Shift+XF86AudioRaiseVolume" = {
-          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1+";
+          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1+ --limit 1";
           allow-when-locked = true;
         };
         "Shift+XF86AudioLowerVolume" = {
-          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1-";
+          action.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.1- --limit 1";
           allow-when-locked = true;
         };
         "Shift+XF86AudioMute" = {

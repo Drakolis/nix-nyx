@@ -21,8 +21,6 @@
     config = {
       common = {
         default = [
-          "kde"
-          "gnome"
           "gtk"
         ];
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
@@ -30,6 +28,12 @@
           "gtk"
         ];
         "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Screenshot" = [
+          "wlr"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [
+          "wlr"
+        ];
       };
       kde = {
         default = [
@@ -40,7 +44,6 @@
           "kde"
           "gtk"
         ];
-
       };
     };
   };

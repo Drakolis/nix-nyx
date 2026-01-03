@@ -23,7 +23,7 @@ in
     })
 
     qt6Packages.qt6ct
-    libsForQt5.qt5ct
+    # libsForQt5.qt5ct
     nwg-look
 
     # Kvantum support
@@ -69,7 +69,7 @@ in
     };
     gtk3.extraConfig = {
       gtk-menu-images = 1;
-      gtk-button-images = 1;
+      gtk-button-images = 0;
     };
   };
 
@@ -84,13 +84,13 @@ in
 
   };
 
-  # home.file = {
-  #   # This should be fixed in https://github.com/NixOS/nixpkgs/issues/355277
-  #   ".config/Kvantum/catppuccin-mocha-mauve".source = "${
-  #     (pkgs.catppuccin-kvantum.override {
-  #       accent = "mauve";
-  #       variant = "mocha";
-  #     })
-  #   }/share/Kvantum/catppuccin-mocha-mauve";
-  # };
+  home.file = {
+    # This should be fixed in https://github.com/NixOS/nixpkgs/issues/355277
+    ".config/Kvantum/catppuccin-mocha-mauve".source = "${
+      (pkgs.catppuccin-kvantum.override {
+        accent = "mauve";
+        variant = "mocha";
+      })
+    }/share/Kvantum/catppuccin-mocha-mauve";
+  };
 }

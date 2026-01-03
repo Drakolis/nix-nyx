@@ -1,5 +1,6 @@
 {
-  terminal = "kitty";
+  terminal = "rio";
+  terminalExec = "rio -e";
 
   tui = {
     editor = "nvim";
@@ -8,7 +9,7 @@
 
   gui = {
     browser = "zen";
-    editor = "codium";
+    editor = "zeditor";
     fileManager = "pcmanfm-qt";
     passwords = "proton-pass";
   };
@@ -22,23 +23,27 @@
 
   notifyHyprpicker = ''notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
-  dialogues = {
-    runner = "walker";
-    runnerShift = "walker -m runner";
-    runnerClipboard = "walker -m clipboard";
-    shutdown = "wlogout -s";
-  };
+  runner = "anyrun";
+  runnerShift = "walker -m runner";
+  runnerClipboard = "walker -m clipboard";
+  shutdown = "wlogout -s";
 
   autostart = [
-    "kwalletd6"
-    "element-desktop --hidden"
-    # "keepassxc"
-    "proton-pass"
-    "protonvpn-app"
-    # "colima start &"
-    "systemctl --user start hyprpolkitagent.service"
-    "caffeine"
-    "syncthingtray"
-    "tailscale-systray"
+    [ "tailscale-systray" ]
+    [
+      "niri-screen-time"
+      "-daemon"
+    ]
+    [ "hyprpaper" ]
+    [
+      "syncthingtray"
+      "--wait"
+    ]
+    [ "flameshot" ]
+    [ "caffeine" ]
+    [
+      "ignis"
+      "init"
+    ]
   ];
 }

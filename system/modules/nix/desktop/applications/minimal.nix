@@ -21,14 +21,14 @@ with lib;
   environment.systemPackages =
     with pkgs;
     [
+      hyprpolkitagent
+      pinentry-gnome3
+      pinentry-qt
       grim
 
       bluetui
 
-      pcmanfm-qt
-      nemo
-
-      lxqt.lxqt-archiver
+      thunar-volman
       mate.engrampa
       # Supported archives
       zip
@@ -37,19 +37,45 @@ with lib;
       p7zip
       unzip
 
+      rhythmbox
+      transmission_4-gtk
+
       element-desktop
 
       imv
       mpv
 
       lxqt.qps
-      lxqt.pavucontrol-qt
+      pavucontrol
       qpwgraph
 
       caffeine-ng
+
+      gparted
     ]
     ++ lib.optionals hasSecurity [
       kdePackages.kgpg
     ];
+
+  services.tumbler.enable = true;
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs; [
+      thunar-archive-plugin
+      thunar-vcs-plugin
+      thunar-media-tags-plugin
+    ];
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-wlr
+    ];
+    xdgOpenUsePortal = true;
+  };
 
 }

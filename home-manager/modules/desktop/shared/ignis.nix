@@ -1,6 +1,19 @@
 { pkgs, ... }:
 {
+  # These have to move
+  home.packages = with pkgs; [
+    wvkbd
+  ];
+
   services.cliphist.enable = true;
+
+  services.gammastep = {
+    enable = true;
+    tray = true;
+    provider = "geoclue2";
+    # latitude = 52.461078;
+    # longitude = 13.364068;
+  };
 
   programs.ignis = {
     enable = true;

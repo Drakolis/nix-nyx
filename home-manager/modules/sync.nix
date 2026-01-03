@@ -4,12 +4,13 @@ with lib;
   home.packages = with pkgs; [
     vdirsyncer
     rclone
+    syncthingtray
   ];
 
   services.syncthing = {
     enable = true;
     tray = {
-      enable = true;
+      # enable = true;
       package = pkgs.syncthingtray;
     };
     settings = {
