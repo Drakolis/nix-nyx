@@ -51,6 +51,10 @@ with lib;
             };
           };
         };
+
+        "use_system_prompts" = false;
+        "use_system_path_prompts" = false;
+
         "terminal" = {
           "dock" = "bottom";
         };
