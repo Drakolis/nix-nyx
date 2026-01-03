@@ -10,12 +10,13 @@ class ScaleSetupMenuItem(widgets.Box):
     icon_min=None,
     icon_max=None,
     icon_css_classes=[],
+    scale_css_class=None,
     **kwargs
   ):
 
     scale = widgets.Scale(
       hexpand=True,
-      css_classes=["slider-small"],
+      css_classes=["slider-small", scale_css_class],
       value=value,
       min=min,
       max=max,

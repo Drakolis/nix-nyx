@@ -1,5 +1,5 @@
 from .brightness import brightness_status
-from .audio import audio_input_status, audio_output_status
+from .audio import AudioStatusWidget
 from .keyboard import keyboard_status
 from .power import PowerStatusWidget
 from .network import NetworkStatusWidget
@@ -14,8 +14,7 @@ from .window_title import WindowTitleWidget
 
 all = [
   "brightness_status",
-  "audio_input_status",
-  "audio_output_status",
+  "AudioStatusWidget",
   "keyboard_status",
   "PowerStatusWidget",
   "NetworkStatusWidget",

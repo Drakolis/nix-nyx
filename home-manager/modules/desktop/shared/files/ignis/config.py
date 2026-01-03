@@ -7,6 +7,7 @@ from bar import Bar
 from osd import OSD
 from dock import Dock, DockTrigger
 from launcher import LauncherTouch
+from notifications import NotificationPopup
 
 css_manager = CssManager.get_default()
 
@@ -20,16 +21,16 @@ css_manager.apply_css(
 )
 
 # this will display bar on all monitors
-for i in range(utils.get_n_monitors()):
-  Bar(i)
-  # Notifications
-  OSD(i)
-  Dock(i)
-  DockTrigger(i)
+for monitor in range(utils.get_n_monitors()):
+  Bar(monitor)
+  OSD(monitor)
+  Dock(monitor)
+  DockTrigger(monitor)
+  NotificationPopup(monitor)
 
   # SessionMenuWindow
+
   # LauncherWindow().widget(i)
-  LauncherTouch(i)
-  # CalendarCenter?Window
-  # NotificationCenterWindow
+  LauncherTouch(monitor)
+
   # ControlCenterWindow(i)

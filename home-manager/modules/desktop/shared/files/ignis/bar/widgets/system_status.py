@@ -1,7 +1,7 @@
 from ignis import widgets
 
 from .brightness import brightness_status
-from .audio import audio_input_status, audio_output_status
+from .audio import AudioStatusWidget
 from .keyboard import keyboard_status
 from .network import NetworkStatusWidget
 from .bluetooth import bluetooth_status
@@ -16,8 +16,8 @@ def system_status_widget(monitor_id: int) -> widgets.Box:
     spacing=TRAY_ITEM_SPACING,
     child=[
       keyboard_status(),
-      audio_output_status(),
-      audio_input_status(),
+      AudioStatusWidget(True),
+      AudioStatusWidget(False),
       brightness_status(monitor_id),
       PowerStatusWidget(),
       NetworkStatusWidget(),

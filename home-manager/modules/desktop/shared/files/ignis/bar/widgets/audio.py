@@ -1,4 +1,5 @@
 from ignis import widgets
+from ignis import utils
 
 from ignis.services.audio import AudioService
 
@@ -10,93 +11,85 @@ from widgets.setup_menu import SetupMenuPopover, SetupMenuHeader, ScaleSetupMenu
 
 audio_service = AudioService.get_default()
 
-output_header = SetupMenuHeader(
-  title="Speaker",
-  subtitle="Name",
-)
+DEFAULT_LABEL = "AUD"
+DEFAULT_ICON = "speaker-symbolic"
 
-input_header = SetupMenuHeader(
-  title="Microphone",
-  subtitle="Name",
-)
+MENU_LABEL_OUTPUT = "Speakers"
+MENU_LABEL_INPUT = "Microphone"
 
-output_scale = ScaleSetupMenuItem(
-  icon_css_classes=["audio-label"],
-  icon_max="audio-volume-high-symbolic",
-  icon_min="audio-volume-low-symbolic",
-)
+class AudioStatusWidget(widgets.EventBox):
+  def __init__(self, is_output):
+    self.audio_service = AudioService.get_default()
+    self.audio_device = audio_service.speaker if is_output else self.audio_service.microphone
+    self.audio_devices = audio_service.speakers if is_output else self.audio_service.microphones
+    self.is_output = is_output
 
-input_scale = ScaleSetupMenuItem(
-  icon_css_classes=["audio-label"],
-  icon_max="audio-volume-high-symbolic",
-  icon_min="audio-volume-low-symbolic",
-)
+    audio_setup_menu_header = SetupMenuHeader(
+      title=MENU_LABEL_OUTPUT if is_output else MENU_LABEL_INPUT,
+      subtitle="Device Name",
+    )
 
-menu_output = SetupMenuPopover(
-  child=[
-    output_header,
-    output_scale,
-  ],
-)
+    audio_setup_menu_scale = ScaleSetupMenuItem(
+      icon_css_classes=["audio-label"],
+      scale_css_class="audio-slider",
+      icon_max="audio-volume-high-symbolic",
+      icon_min="audio-volume-low-symbolic",
+    )
 
-menu_input = SetupMenuPopover(
-  child=[
-    input_header,
-    input_scale,
-  ],
-)
+    audio_setup_menu = SetupMenuPopover(
+      child=[
+        audio_setup_menu_header,
+        audio_setup_menu_scale,
+      ],
+    )
 
-def audio_render_contents(volume, is_muted, name, is_output):
-  icon = ""
+    audio_status_contents = [
+      widgets.Icon(
+        css_classes=["audio-label"],
+        image=DEFAULT_ICON,
+        pixel_size=16,
+      ),
+      widgets.Label(
+        css_classes=["audio-label", "label-bar"],
+        label=DEFAULT_LABEL,
+      ),
+      audio_setup_menu,
+    ]
 
-  if is_output:
-    icon = get_audio_output_status_icon(volume, is_muted)
-    output_header.set_subtitle(name)
-    output_scale.set_value(volume)
-    output_scale.set_on_change(lambda v: audio_service.speaker.set_volume(v.value))
-  else:
-    icon = get_audio_input_status_icon(volume, is_muted)
-    input_header.set_subtitle(name)
-    input_scale.set_value(volume)
-    input_scale.set_on_change(lambda v: audio_service.microphone.set_volume(v.value))
+    super().__init__(
+      on_click=lambda x: audio_setup_menu.popup(),
+      spacing=5,
+      child=audio_status_contents,
+      on_right_click= lambda _ : self.audio_device.set_is_muted(not self.audio_device.is_muted)
+    )
 
-  return [
-    widgets.Icon(
-      css_classes=["audio-label"],
-      image=icon,
-      pixel_size=16,
-    ),
-    widgets.Label(
-      css_classes=["audio-label", "label-bar"],
-      label=f"{volume}%" if not is_muted else "Muted",
-    ),
-    menu_output if is_output else menu_input,
-  ]
+    self.audio_device.connect("notify::volume", lambda x, y: self.update_audio_status(x))
+    self.audio_device.connect("notify::is_muted", lambda x, y: self.update_audio_status(x))
+    self.audio_device.connect("notify::name", lambda x, y: self.update_audio_status(x))
 
+    self.audio_status_contents = audio_status_contents
+    self.audio_setup_menu = audio_setup_menu
+    self.audio_setup_menu_header = audio_setup_menu_header
+    self.audio_setup_menu_scale = audio_setup_menu_scale
+    self.update_audio_status(self.audio_device)
 
-def audio_output_status() -> widgets.EventBox:
-  audio_output_contents = audio_service.speaker.bind_many(
-    ["volume", "is_muted", "description"],
-    lambda v, m, n: audio_render_contents(v, m, n, True),
-  )
-  return widgets.Button(
-    on_click=lambda x: menu_output.popup(),
-    child=widgets.Box(spacing=5, child=audio_output_contents),
-    on_right_click= lambda _ : audio_service.speaker.set_is_muted(not audio_service.speaker.is_muted)
-    # on_scroll_up=audio_service.speaker
-    # on_scroll_down=audio_service.speaker
-  )
+  def update_audio_status(self, device):
+    volume = device.volume
+    is_muted = device.is_muted
+    name = device.description
 
+    if self.is_output:
+      icon = get_audio_output_status_icon(volume, is_muted)
+    else:
+      icon = get_audio_input_status_icon(volume, is_muted)
 
-def audio_input_status() -> widgets.EventBox:
-  audio_input_contents = audio_service.microphone.bind_many(
-    ["volume", "is_muted", "description"],
-    lambda v, m, n: audio_render_contents(v, m, n, False),
-  )
-  return widgets.Button(
-    on_click=lambda x: menu_input.popup(),
-    child=widgets.Box(spacing=5, child=audio_input_contents),
-    on_right_click= lambda _ : audio_service.microphone.set_is_muted(not audio_service.microphone.is_muted)
-    # on_scroll_up=audio_service.microphone
-    # on_scroll_down=audio_service.microphone
-  )
+    self.audio_status_contents[0].image = icon
+    self.audio_status_contents[1].label = f"{volume}%" if not is_muted else "MUT"
+
+    self.audio_setup_menu_header.set_subtitle(name)
+    self.audio_setup_menu_scale.set_value(volume)
+    self.audio_setup_menu_scale.set_on_change(lambda v: self.change_audio_debounced(device, v.value))
+
+  @utils.debounce(100)
+  def change_audio_debounced(self, device, value):
+    device.set_volume(value)
