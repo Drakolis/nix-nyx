@@ -37,6 +37,7 @@
       python3Packages.jinja2
       python3Packages.materialyoucolor
       python3Packages.pillow
+      python3Packages.simpleaudio
     ];
   };
 }

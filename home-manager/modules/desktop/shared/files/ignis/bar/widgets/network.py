@@ -2,43 +2,53 @@ from ignis import widgets
 
 from ignis.services.network import NetworkService
 
-network = NetworkService.get_default()
-
 # TODO: Subscribe OSD for new_device/remove_device events
+DEFAULT_ICON = "network-disconnected-symbolic"
+DEFAULT_LABEL = "N/A"
 
-def network_render_contents(ethernet, wifi, vpn):
+class NetworkStatusWidget(widgets.Button):
+  def __init__(self):
+    self.network = NetworkService.get_default()
+    self.show_wifi = False
 
-  show_wifi = wifi.enabled and wifi.is_connected
-  ethernet_icon = ethernet.icon_name
-  ethernet_label = "ON" if ethernet.is_connected else "OFF"
+    network_status_label = [
+      widgets.Icon(
+        css_classes=["network-label"],
+        image=DEFAULT_ICON,
+        pixel_size=16,
+      ),
+      widgets.Label(
+        css_classes=["network-label", "label-bar"],
+        label=DEFAULT_LABEL,
+      ),
+    ]
 
-  wifi_icon = wifi.icon_name
-  wifi_connected_devices = [device for device in wifi.devices if device.is_connected]
-  wifi_label = f"{wifi_connected_devices[0].ap.strength}%" if (len(wifi_connected_devices)>0) else "ON"
-  wifi_label = wifi_label if wifi.enabled else "OFF"
+    super().__init__(
+      on_right_click=lambda self: True,
+      child=widgets.Box(child=network_status_label, spacing=5),
+    )
 
-  return [
-    widgets.Icon(
-      css_classes=["network-label"],
-      image=wifi_icon if show_wifi else ethernet_icon,
-      pixel_size=16,
-    ),
-    widgets.Label(
-      css_classes=["network-label", "label-bar"],
-      label=wifi_label if show_wifi else ethernet_label,
-    ),
-  ]
+    self.network_status_label = network_status_label
+    self.network.ethernet.connect("notify::is-connected", lambda x,_: self.update_ethernet(x))
+    self.network.wifi.connect("notify::is-connected", lambda x,_: self.update_wifi(x))
+    self.network.wifi.connect("notify::enabled", lambda x,_: self.update_wifi(x))
+    self.update_ethernet(self.network.ethernet)
+    self.update_wifi(self.network.wifi)
 
-def network_status() -> widgets.EventBox:
-  on_click_handler = lambda self: True
+  def update_ethernet(self, ethernet):
+    ethernet_icon = ethernet.icon_name
+    ethernet_label = "ON" if ethernet.is_connected else "OFF"
 
-  network_widgets = network.bind_many(
-    ["ethernet", "wifi", "vpn"],
-    network_render_contents
-  )
+    if not self.show_wifi:
+      self.network_status_label[0].set_image(ethernet_icon)
+      self.network_status_label[1].set_label(ethernet_label)
 
-  return widgets.EventBox(
-    on_right_click=on_click_handler,
-    spacing=5,
-    child=network_widgets,
-  )
+  def update_wifi(self, wifi):
+    if self.show_wifi:
+      wifi_icon = wifi.icon_name if wifi.enabled else "network-wireless-hardware-disabled-symbolic"
+      wifi_connected_devices = [device for device in wifi.devices if device.is_connected]
+      wifi_label_con = f"{wifi_connected_devices[0].ap.strength}%" if (len(wifi_connected_devices) > 0 and wifi.is_connected) else "ON"
+      wifi_label = wifi_label_con if wifi.enabled else "OFF"
+      self.network_status_label[0].set_image(wifi_icon)
+      self.network_status_label[1].set_label(wifi_label)
+    self.show_wifi = wifi.enabled

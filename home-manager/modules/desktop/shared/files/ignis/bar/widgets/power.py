@@ -1,83 +1,73 @@
 import math
+from pty import spawn
 
 from ignis import widgets
 
 from ignis.services.upower import UPowerService
 
-upower = UPowerService.get_default()
-
 # TODO: Subscribe OSD for power/battery connected/switch events
 
-css_class_critical = "power-critical-label"
-css_class_warning = "power-warning-label"
-css_class_normal = "power-normal-label"
+CSS_CLASS_CRITICAL = "power-critical-label"
+CSS_CLASS_WARNING = "power-warning-label"
+CSS_CLASS_NORMAL = "power-normal-label"
+CSS_CLASS_AC = "power-label"
+DEFAULT_LABEL = "PWR"
+DEFAULT_ICON = "battery-ac-adapter-symbolic"
 
-def power_render_contents(display_device):
-  label = "PWR"
-  icon = "battery-ac-adapter-symbolic"
-  css_class = "power-label"
+class PowerStatusWidget(widgets.Button):
+  def __init__(self):
+    self.upower = UPowerService.get_default()
 
-  if display_device.kind == "battery":
-    label = f"{math.floor(display_device.percent)}%"
-    if display_device.percent < 5:
-      icon = f"battery-000{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_critical
-    elif display_device.percent < 10:
-      icon = f"battery-010{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_critical
-    elif display_device.percent < 20:
+    power_status_label = [
+      widgets.Icon(
+        css_classes=[CSS_CLASS_AC],
+        image=DEFAULT_ICON,
+        pixel_size=16,
+      ),
+      widgets.Label(
+        css_classes=[CSS_CLASS_AC, "label-bar"],
+        label=DEFAULT_LABEL,
+      ),
+    ]
+
+    super().__init__(
+      on_right_click=lambda self: True,
+      child=widgets.Box(child=power_status_label, spacing=5),
+    )
+
+    self.power_status_label = power_status_label
+
+    if self.upower.display_device.kind == "battery":
+      self.upower.display_device.connect("notify::percent", lambda x, y: self.update_battery_status(x))
+      self.upower.display_device.connect("notify::charging", lambda x, y: self.update_battery_status(x))
+      self.update_battery_status(self.upower.display_device)
+
+  def update_battery_status(self, display_device):
+    battery_percentage = math.floor(display_device.percent)
+
+    if battery_percentage < 20:
       icon = f"battery-020{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_critical
-    elif display_device.percent < 30:
-      icon = f"battery-030{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_warning
-    elif display_device.percent < 40:
+      css_class = CSS_CLASS_CRITICAL
+    elif battery_percentage < 40:
       icon = f"battery-040{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_warning
-    elif display_device.percent < 50:
-      icon = f"battery-050{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_warning
-    elif display_device.percent < 60:
+      css_class = CSS_CLASS_WARNING
+    elif battery_percentage < 60:
       icon = f"battery-060{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_normal
-    elif display_device.percent < 70:
-      icon = f"battery-070{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_normal
-    elif display_device.percent < 80:
+      css_class = CSS_CLASS_WARNING
+    elif battery_percentage < 80:
       icon = f"battery-080{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_normal
-    elif display_device.percent < 90:
+      css_class = CSS_CLASS_NORMAL
+    elif battery_percentage < 90:
       icon = f"battery-090{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_normal
-    elif display_device.percent < 100:
+      css_class = CSS_CLASS_NORMAL
+    elif battery_percentage < 100:
       icon = f"battery-100{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_normal
+      css_class = CSS_CLASS_NORMAL
     else:
       icon = f"battery-100{'-charging' if display_device.charging else ''}-symbolic"
-      css_class = css_class_normal
+      css_class = CSS_CLASS_NORMAL
 
-  return [
-    widgets.Icon(
-      css_classes=[css_class],
-      image=icon,
-      pixel_size=16,
-    ),
-    widgets.Label(
-      css_classes=[css_class, "label-bar"],
-      label=label,
-    ),
-  ]
-
-def power_status() -> widgets.EventBox:
-  on_click_handler = lambda self: True
-
-  network_widgets = upower.bind_many(
-    ["display_device"],
-    power_render_contents
-  )
-
-  return widgets.EventBox(
-    on_right_click=on_click_handler,
-    spacing=5,
-    child=network_widgets,
-  )
+    self.power_status_label[0].image = icon
+    self.power_status_label[0].css_classes = [css_class]
+    self.power_status_label[1].label = f"{battery_percentage}%"
+    self.power_status_label[1].css_classes = [css_class, "label-bar"]

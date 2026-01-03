@@ -1,8 +1,8 @@
 from .brightness import brightness_status
 from .audio import audio_input_status, audio_output_status
 from .keyboard import keyboard_status
-from .network import network_status
-from .power import power_status
+from .power import PowerStatusWidget
+from .network import NetworkStatusWidget
 from .bluetooth import bluetooth_status
 
 from .system_tray import system_tray_widget
@@ -17,9 +17,9 @@ all = [
   "audio_input_status",
   "audio_output_status",
   "keyboard_status",
-  "network_status",
+  "PowerStatusWidget",
+  "NetworkStatusWidget",
   "bluetooth_status",
-  "power_status",
 
   "system_tray_widget",
   "system_status_widget",

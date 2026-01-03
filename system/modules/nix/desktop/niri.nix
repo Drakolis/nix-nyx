@@ -16,6 +16,7 @@ with lib;
   ];
   config = mkIf (cfg.enable && hasNiri) {
     programs.niri.enable = true;
+    services.gnome-keyring.enable = true;
 
     environment.systemPackages = with pkgs; [
       # Wayland utils
