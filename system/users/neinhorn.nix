@@ -3,7 +3,7 @@
   ...
 }:
 {
-  users.users.lilyo = {
+  users.users.neinhorn = {
     isNormalUser = true;
     description = "Lily Oliveira";
     extraGroups = [
@@ -12,6 +12,8 @@
     ];
     packages = with pkgs; [
       element-desktop
+      firefox
+      _1password-gui
     ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [ ];
