@@ -1,25 +1,14 @@
 { pkgs, ... }:
 {
-  home.packages = [
-    pkgs.kdePackages.xdg-desktop-portal-kde
-  ];
-
-  xdg.terminal-exec = {
-    enable = true;
-    settings = {
-      kde = [
-        "org.kde.Konsole"
-      ];
-      default = [
-        "kitty"
-      ];
-    };
-  };
-
   xdg.portal = {
     enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
     config = {
-      common = {
+      niri = {
         default = [
           "gtk"
         ];
@@ -29,21 +18,13 @@
         ];
         "org.freedesktop.impl.portal.Notification" = [ "gtk" ];
         "org.freedesktop.impl.portal.Screenshot" = [
+          "gnome"
           "wlr"
         ];
         "org.freedesktop.impl.portal.ScreenCast" = [
+          "gnome"
           "wlr"
-        ];
-      };
-      kde = {
-        default = [
-          "kde"
-        ];
-        "org.freedesktop.impl.portal.Secret" = [ "kwallet" ];
-        "org.freedesktop.impl.portal.Settings" = [
-          "kde"
-          "gtk"
-        ];
+         ];
       };
     };
   };
