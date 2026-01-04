@@ -25,14 +25,16 @@ in
     # ../shared/yofi.nix
   ];
 
+  service.swww.enable = true;
+
   services.hyprpaper = {
     enable = true;
     settings = {
       preload = style.background;
       wallpaper = [
         ", ${style.background}"
-        "DP-2, ${style.background}"
-        "HDMI-A-2, ${style.background}"
+        # "DP-2, ${style.background}"
+        # "HDMI-A-2, ${style.background}"
       ];
     };
   };

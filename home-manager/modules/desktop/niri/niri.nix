@@ -149,7 +149,7 @@ in
           transform.rotation = 0;
         };
         "DP-2" = {
-          name = "0";
+          name = "DP-2";
           focus-at-startup = true;
           enable = true;
           mode = {
