@@ -86,6 +86,7 @@ with lib;
       seahorse
     ];
 
+  security.soteria.enable = true;
   services.tumbler.enable = true;
 
   programs.thunar = {
