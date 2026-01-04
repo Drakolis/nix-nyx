@@ -31,7 +31,7 @@ in
 with lib;
 {
   config = mkIf (cfg.enable) {
-    services.displayManager = if (hasKde) then sddmKde else debugDM;
+    services.displayManager = if (hasKde) then sddmKde else sddmCatppuccin;
 
     environment.systemPackages =
       if (hasKde) then
