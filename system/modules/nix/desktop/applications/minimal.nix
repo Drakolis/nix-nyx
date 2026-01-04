@@ -23,12 +23,14 @@ with lib;
     [
       hyprpolkitagent
       pinentry-gnome3
-      pinentry-qt
+
       grim
+      slurp
 
       bluetui
 
       thunar-volman
+
       mate.engrampa
       # Supported archives
       zip
@@ -45,7 +47,6 @@ with lib;
       imv
       mpv
 
-      lxqt.qps
       pavucontrol
       qpwgraph
 
@@ -55,6 +56,7 @@ with lib;
     ]
     ++ lib.optionals hasSecurity [
       kdePackages.kgpg
+      seahorse
     ];
 
   services.tumbler.enable = true;
@@ -67,15 +69,4 @@ with lib;
       thunar-media-tags-plugin
     ];
   };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-wlr
-    ];
-    xdgOpenUsePortal = true;
-  };
-
 }
