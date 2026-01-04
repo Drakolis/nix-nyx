@@ -66,6 +66,9 @@ class PowerStatusWidget(widgets.Button):
     else:
       icon = f"battery-100{'-charging' if display_device.charging else ''}-symbolic"
       css_class = CSS_CLASS_NORMAL
+    
+    if display_device.charging:
+      css_classes = CSS_CLASS_NORMAL
 
     self.power_status_label[0].image = icon
     self.power_status_label[0].css_classes = [css_class]
