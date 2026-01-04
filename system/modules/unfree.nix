@@ -7,6 +7,6 @@
       "via"
       "wootility"
       "rar"
-      "_1password-gui"
+      "1password"
     ];
 }
