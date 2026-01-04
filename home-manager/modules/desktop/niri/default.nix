@@ -25,7 +25,7 @@ in
     # ../shared/yofi.nix
   ];
 
-  service.swww.enable = true;
+  services.swww.enable = true;
 
   services.hyprpaper = {
     enable = true;
