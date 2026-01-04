@@ -83,4 +83,6 @@ in
     daemon.enable = false;
     updater.enable = false;
   };
+
+  services.dbus.implementation = "broker";
 }
