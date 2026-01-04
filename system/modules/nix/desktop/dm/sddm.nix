@@ -8,17 +8,15 @@ let
   cfg = config.drakolis.desktop;
   hasKde = builtins.elem "kde" cfg.types;
 
-  debugDM = {
-    ly = {
-      enable = true;
-    };
-  };
-
   sddmCatppuccin = {
     sddm = {
+      package = pkgs.kdePackages.sddm;
       enable = true;
       theme = "catppuccin-mocha-mauve";
-      wayland.enable = true;
+      wayland = {
+        enable = true;
+        compositor = "kwin";
+      };
     };
   };
 
