@@ -9,7 +9,7 @@ let
 in
 {
   home.packages = [
-    inputs.niri-screen-time.packages.${pkgs.system}.default
+    inputs.niri-screen-time.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.niri = {

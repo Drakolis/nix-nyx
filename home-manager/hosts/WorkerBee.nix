@@ -17,6 +17,7 @@
         nodeExtended = true;
         pythonExtended = true;
         java = true;
+        rust = true;
         noIdea = true;
         terraform = true;
         extraLanguageServers = true;
