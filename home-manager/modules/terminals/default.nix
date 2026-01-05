@@ -1,5 +1,5 @@
 let
-  style = import ../../../../share/constants/style.nix;
+  style = import ../../../share/constants/style.nix;
 in
 {
   programs.rio = {
@@ -24,7 +24,7 @@ in
         use-drawable-chars = true;
       };
       navigation = {
-        mode = "Bookmark";
+        mode = "BottomTab";
         use-split = true;
         color-automation = [ ];
         hide-if-single = true;
