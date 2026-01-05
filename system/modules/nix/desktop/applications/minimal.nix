@@ -21,15 +21,16 @@ with lib;
   environment.systemPackages =
     with pkgs;
     [
-      hyprpolkitagent
       pinentry-gnome3
 
       grim
       slurp
+      quota
 
       bluetui
 
       thunar-volman
+      baobab
 
       mate.engrampa
       # Supported archives
@@ -39,8 +40,10 @@ with lib;
       p7zip
       unzip
 
-      rhythmbox
-      transmission_4-gtk
+      gnome-maps
+
+      decibels
+      snapshot
 
       element-desktop
 
@@ -48,11 +51,35 @@ with lib;
       mpv
 
       pavucontrol
+      helvum
       qpwgraph
 
       caffeine-ng
-
-      gparted
+    ]
+    ++ lib.optionals hasAdvanced [
+      gnome-characters
+      textpieces
+      dconf-editor
+    ]
+    ++ lib.optionals hasDownloads [
+      transmission_4-gtk
+    ]
+    ++ lib.optionals hasEntertainment [
+      aisleriot
+      gnome-mahjongg
+      gnome-mines
+      gnome-sudoku
+      gnome-2048
+    ]
+    ++ lib.optionals hasMedia [
+      gnome-podcasts
+      rhythmbox
+      blanket
+    ]
+    ++ lib.optionals hasOffice [
+      libreoffice
+      geary
+      evince
     ]
     ++ lib.optionals hasSecurity [
       kdePackages.kgpg
