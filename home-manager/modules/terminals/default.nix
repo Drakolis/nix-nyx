@@ -2,13 +2,9 @@ let
   style = import ../../../../share/constants/style.nix;
 in
 {
-  programs.wezterm = {
-    enable = true;
-  };
-
   programs.rio = {
     enable = true;
-    settings = { 
+    settings = {
       theme = "catppuccin-mocha";
       confirm-before-quit = true;
       cursor = {
@@ -33,9 +29,12 @@ in
         color-automation = [ ];
         hide-if-single = true;
       };
-      option-as-alt = "both";
+      option-as-alt = "left";
       padding-x = 5;
-      padding-y = [10 10];
+      padding-y = [
+        10
+        10
+      ];
       title = {
         content = "{{ PROGRAM }} - {{ ABSOLUTE_PATH }}";
         placeholder = "rio";
@@ -45,7 +44,7 @@ in
         opacity = 0.97;
         blur = true;
         windows-corner-preference = "round";
-      }; 
+      };
     };
   };
 
@@ -127,7 +126,7 @@ in
   };
 
   programs.kitty = {
-    enable = true;
+    enable = false;
     font = {
       name = style.fontMonospace;
       size = style.fontMonospaceSize;

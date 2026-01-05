@@ -61,12 +61,14 @@ with lib;
 
         # other:
         "domzilla-caffeine"
+
+        "hammerspoon"
+        "vial"
       ]
       # Profile: Advanced
       ++ lib.optionals hasAdvanced [
         "cryptomator"
         "balenaetcher"
-        "vial"
       ]
       # Profile: Media
       ++ lib.optionals hasMedia [

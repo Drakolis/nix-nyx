@@ -41,6 +41,7 @@ with lib;
     ./shell.nix
     ./showoff.nix
     ./sync.nix
+    ./terminals
     ./tui.nix
     ./unfree.nix
     ./yazi
