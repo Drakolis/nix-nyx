@@ -10,7 +10,10 @@ in
 with lib;
 {
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.vscodium, pkgs.vscode ];
+    home.packages = [
+      pkgs.vscodium
+      pkgs.vscode
+    ];
     programs.vscode = {
       enable = false;
       package = pkgs.vscodium;

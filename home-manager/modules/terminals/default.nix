@@ -11,6 +11,7 @@ in
         shape = "block";
         blinking = true;
         blinking-interval = 800;
+        weight = 500;
       };
       bell = {
         visual = false;
@@ -30,7 +31,7 @@ in
         hide-if-single = true;
       };
       option-as-alt = "left";
-      padding-x = 5;
+      padding-x = 7;
       padding-y = [
         10
         10
@@ -43,7 +44,6 @@ in
         decorations = "enabled";
         opacity = 0.97;
         blur = true;
-        windows-corner-preference = "round";
       };
     };
   };
