@@ -24,7 +24,6 @@ in
       spawn-at-startup = [
         { command = [ "tailscale-systray" ]; }
         { command = [ "flameshot" ]; }
-        { command = [ "caffeine" ]; }
         { command = [ "hyprpaper" ]; }
         {
           argv = [

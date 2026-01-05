@@ -7,7 +7,7 @@ return {
       local colors = require '../colors'
 
       vim.cmd.colorscheme "catppuccin-mocha"
-      vim.cmd('hi guibg='..colors.background)
+      -- vim.cmd('hi guibg='..colors.background)
     end
   }
 }

@@ -71,6 +71,11 @@ in
       gtk-menu-images = 1;
       gtk-button-images = 0;
     };
+    gtk3.extraCss = ''
+      .thunar .standard-view.frame .view :selected {
+        color: #11111b;
+      }
+    '';
   };
 
   qt = {
