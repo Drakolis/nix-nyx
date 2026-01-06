@@ -7,6 +7,7 @@ from ignis.services.applications import ApplicationsService, Application
 
 from utils import get_extended_app_icon
 
+
 class LauncherTouchItem(widgets.Button):
   def __init__(self, application: Application, close_launcher):
     app_id = application.id
@@ -21,7 +22,7 @@ class LauncherTouchItem(widgets.Button):
         child=[
           widgets.Icon(
             css_classes=["tile-icon"],
-            image=(icon+"-symbolic"),
+            image=(icon + "-symbolic"),
             pixel_size=64,
           ),
           widgets.Label(
@@ -29,10 +30,10 @@ class LauncherTouchItem(widgets.Button):
             halign="start",
             css_classes=["tile-title"],
             label=name,
-            ellipsize='end',
-            max_width_chars=52
+            ellipsize="end",
+            max_width_chars=52,
           ),
-        ]
+        ],
       ),
       tooltip_text=name,
       on_click=lambda x: self.launch(),
@@ -65,18 +66,20 @@ class LauncherTouch(widgets.RevealerWindow):
       child=widgets.Grid(
         css_classes=["launcher-grid"],
         valign="center",
-        child=[LauncherTouchItem(x, lambda: self.set_visible(False)) for x in self.applications_list],
+        child=[
+          LauncherTouchItem(x, lambda: self.set_visible(False))
+          for x in self.applications_list
+        ],
         row_num=4,
-        vexpand=True
-      )
-    );
-
+        vexpand=True,
+      ),
+    )
     revealer = widgets.Revealer(
       transition_type="crossfade",
       transition_duration=300,
       reveal_child=True,
       hexpand=True,
-      vexpand=True
+      vexpand=True,
     )
 
     container = widgets.EventBox(
@@ -95,7 +98,7 @@ class LauncherTouch(widgets.RevealerWindow):
       anchor=["bottom", "top", "left", "right"],
       child=container,
       revealer=revealer,
-      kb_mode="on_demand", # TODO: Keyboard navigation
+      kb_mode="on_demand",  # TODO: Keyboard navigation
       popup=True,
     )
     self.container = container

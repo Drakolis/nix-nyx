@@ -22,9 +22,7 @@ class ScreenshotLayout(widgets.Box):
               style="border-radius: 1rem; background-color: black;",
             ),
             widgets.Button(
-              child=widgets.Icon(
-                image="window-close-symbolic", pixel_size=20
-              ),
+              child=widgets.Icon(image="window-close-symbolic", pixel_size=20),
               halign="end",
               valign="start",
               hexpand=True,
@@ -58,6 +56,7 @@ class ScreenshotLayout(widgets.Box):
         ),
       ],
     )
+
 
 class NormalLayout(widgets.Box):
   def __init__(self, notification: Notification) -> None:
@@ -96,9 +95,7 @@ class NormalLayout(widgets.Box):
               ],
             ),
             widgets.Button(
-              child=widgets.Icon(
-                image="window-close-symbolic", pixel_size=20
-              ),
+              child=widgets.Icon(image="window-close-symbolic", pixel_size=20),
               halign="end",
               valign="start",
               hexpand=True,
@@ -123,6 +120,7 @@ class NormalLayout(widgets.Box):
       ],
     )
 
+
 class NotificationWidget(widgets.Box):
   def __init__(self, notification: Notification) -> None:
     layout: NormalLayout | ScreenshotLayout
@@ -137,6 +135,7 @@ class NotificationWidget(widgets.Box):
       child=[layout],
     )
 
+
 class Popup(widgets.Box):
   def __init__(
     self, box: "PopupBox", window: "NotificationPopup", notification: Notification
@@ -145,7 +144,7 @@ class Popup(widgets.Box):
     self._window = window
 
     widget = NotificationWidget(notification)
-    widget.css_classes = ["notification-popup","popup"]
+    widget.css_classes = ["notification-popup", "popup"]
     self._outer = widgets.Revealer(transition_type="slide_down", child=widget)
     super().__init__(child=[self._outer], halign="center")
 
@@ -165,6 +164,7 @@ class Popup(widgets.Box):
     self._outer.reveal_child = False
     utils.Timeout(self._outer.transition_duration, outer_close)
 
+
 class PopupBox(widgets.Box):
   def __init__(self, window: "NotificationPopup", monitor: int):
     self._window = window
@@ -183,9 +183,8 @@ class PopupBox(widgets.Box):
     self._window.visible = True
     popup = Popup(box=self, window=self._window, notification=notification)
     self.prepend(popup)
-    utils.Timeout(
-      popup._outer.transition_duration, popup._outer.set_reveal_child, True
-    )
+    utils.Timeout(popup._outer.transition_duration, popup._outer.set_reveal_child, True)
+
 
 class NotificationPopup(widgets.Window):
   def __init__(self, monitor: int):

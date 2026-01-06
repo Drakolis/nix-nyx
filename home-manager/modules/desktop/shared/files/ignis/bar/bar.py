@@ -1,4 +1,3 @@
-
 from ignis import widgets
 
 from bar.widgets import (
@@ -6,8 +5,9 @@ from bar.widgets import (
   WindowTitleWidget,
   system_tray_widget,
   system_status_widget,
-  date_time_widget
+  date_time_widget,
 )
+
 
 class Bar(widgets.Window):
   def __init__(self, monitor_id):
@@ -22,10 +22,7 @@ class Bar(widgets.Window):
       child=widgets.CenterBox(
         css_classes=["bar-container"],
         start_widget=widgets.Box(
-          child=[
-            workspaces_widget(monitor_id),
-            WindowTitleWidget(monitor_id)
-          ]
+          child=[workspaces_widget(monitor_id), WindowTitleWidget(monitor_id)]
         ),
         center_widget=widgets.Box(
           child=[

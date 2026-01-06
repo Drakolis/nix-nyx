@@ -1,4 +1,3 @@
-
 def map_applications_to_action_list(app):
   return {
     "title": app.name,
@@ -6,6 +5,7 @@ def map_applications_to_action_list(app):
     "icon-name": app.icon,
     "action": lambda x: app.launch(terminal_format="kitty %command%"),
   }
+
 
 class LauncherWindow:
   def __init__(self):
@@ -16,14 +16,12 @@ class LauncherWindow:
     # icon,
     # action
     self.applications = applications.apps
-    self.action_list = [
-      map_applications_to_action_list(a) for a in self.applications
-    ]
+    self.action_list = [map_applications_to_action_list(a) for a in self.applications]
     self.always_shown = []
 
     self.window = widgets.Window(
       namespace=f"eggshell_launcher_{self.monitor_id}",
-      anchor=["bottom"], # DELETE ME
+      anchor=["bottom"],  # DELETE ME
       monitor=self.monitor_id,
       kb_mode="on_demand",
       child=widgets.Box(
@@ -52,8 +50,7 @@ class LauncherWindow:
                 child=widgets.Box(
                   vertical=True,
                   child=[
-                    self.launcher_item(action_item)
-                    for action_item in self.action_list
+                    self.launcher_item(action_item) for action_item in self.action_list
                   ],
                 ),
                 height_request=250,
@@ -65,9 +62,7 @@ class LauncherWindow:
                 child=[
                   widgets.Button(
                     on_click=lambda x: self.launch_app(),
-                    child=widgets.Icon(
-                      image="settings", pixel_size=16
-                    ),
+                    child=widgets.Icon(image="settings", pixel_size=16),
                   ),
                 ],
               ),

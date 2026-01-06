@@ -1,5 +1,6 @@
 notifications = NotificationService.get_default()
 
+
 class ControlCenterWindow(widgets.RevealerWindow):
   def __init__(self, monitor_id: int):
     self.monitor_id = monitor_id

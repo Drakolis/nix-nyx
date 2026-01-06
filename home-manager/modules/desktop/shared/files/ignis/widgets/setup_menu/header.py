@@ -1,5 +1,6 @@
 from ignis import widgets
 
+
 class SetupMenuHeader(widgets.Box):
   def __init__(self, title="Title", subtitle="Subtitle", **kwargs):
     super().__init__(
@@ -16,7 +17,7 @@ class SetupMenuHeader(widgets.Box):
           css_classes=["label-large", "setup-menu-subtitle"],
           label=subtitle,
         ),
-      ]
+      ],
     )
 
   def set_title(self, title):

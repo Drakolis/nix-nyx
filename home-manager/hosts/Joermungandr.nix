@@ -29,7 +29,7 @@
       };
       languages = {
         nodeExtended = true;
-        pythonExtended = false;
+        pythonExtended = true;
         goExtended = true;
         lua = true;
         rust = true;

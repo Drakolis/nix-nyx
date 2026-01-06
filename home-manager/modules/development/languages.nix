@@ -22,6 +22,7 @@ let
   ];
 
   pythonExtendedPackages = with pkgs; [
+    ruff
     python3Packages.pip
     python3Packages.jupyter
     python3Packages.numpy

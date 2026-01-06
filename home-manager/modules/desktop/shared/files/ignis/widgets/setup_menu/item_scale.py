@@ -1,7 +1,9 @@
 from ignis import widgets
 
+
 class ScaleSetupMenuItem(widgets.Box):
-  def __init__(self,
+  def __init__(
+    self,
     min=0,
     max=100,
     step=1,
@@ -11,9 +13,8 @@ class ScaleSetupMenuItem(widgets.Box):
     icon_max=None,
     icon_css_classes=[],
     scale_css_class=None,
-    **kwargs
+    **kwargs,
   ):
-
     scale = widgets.Scale(
       hexpand=True,
       css_classes=["slider-small", scale_css_class],
@@ -31,12 +32,16 @@ class ScaleSetupMenuItem(widgets.Box):
         widgets.Icon(
           css_classes=icon_css_classes,
           image=icon_min,
-        ) if icon_min else None,
+        )
+        if icon_min
+        else None,
         scale,
         widgets.Icon(
           css_classes=icon_css_classes,
           image=icon_max,
-        ) if icon_max else None,
+        )
+        if icon_max
+        else None,
       ],
     )
     self.scale = scale

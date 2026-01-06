@@ -26,14 +26,14 @@
         scaleway = true;
       };
       languages = {
-        nodeExtended = true;
+        nodeExtended = false;
         pythonExtended = false;
-        goExtended = true;
-        lua = true;
-        rust = true;
+        goExtended = false;
+        lua = false;
+        rust = false;
         java = false;
         terraform = false;
-        extraLanguageServers = true;
+        extraLanguageServers = false;
       };
     };
     gaming.enable = true;

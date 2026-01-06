@@ -55,7 +55,7 @@ class OSD(widgets.RevealerWindow):
       max=100,
       value=self.scale_value,
       visible=self.show_scale,
-      sensitive=False
+      sensitive=False,
     )
 
     revealer = widgets.Revealer(

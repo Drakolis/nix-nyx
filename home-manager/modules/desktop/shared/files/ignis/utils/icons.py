@@ -6,8 +6,8 @@ applications = ApplicationsService.get_default()
 
 DEFAULT_WINDOW_ICON = "application-default-icon"
 
-def get_extended_app_icon(app_id) -> str:
 
+def get_extended_app_icon(app_id) -> str:
   if app_id == "steam":
     return "com.valvesoftware.Steam"
   elif app_id:
@@ -15,7 +15,9 @@ def get_extended_app_icon(app_id) -> str:
   else:
     return DEFAULT_WINDOW_ICON
 
+
 # def get_extended_app_icon_color(name) -> str:
+
 
 def get_audio_output_status_icon(volume, is_muted) -> str:
   if is_muted:
