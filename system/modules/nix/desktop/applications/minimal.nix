@@ -52,7 +52,7 @@ with lib;
 
       pavucontrol
       helvum
-      qpwgraph
+      # qpwgraph
 
       caffeine-ng
     ]
@@ -77,12 +77,11 @@ with lib;
       blanket
     ]
     ++ lib.optionals hasOffice [
-      libreoffice
       geary
       evince
     ]
     ++ lib.optionals hasSecurity [
-      kdePackages.kgpg
+      # kdePackages.kgpg
       seahorse
     ];
 

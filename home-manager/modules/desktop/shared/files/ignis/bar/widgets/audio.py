@@ -104,3 +104,9 @@ class AudioStatusWidget(widgets.Button):
   @utils.debounce(100)
   def change_audio_debounced(self, device, value):
     device.set_volume(value)
+# audio-card-symbolic.svg
+# audio-card-usb-symbolic.svg
+# audio-headphones-symbolic.svg
+# audio-headset-symbolic.svg
+# audio-input-microphone-symbolic.svg
+# audio-speakers-symbolic.svg

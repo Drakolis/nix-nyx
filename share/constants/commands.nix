@@ -10,7 +10,7 @@
   gui = {
     browser = "zen";
     editor = "zeditor";
-    fileManager = "pcmanfm-qt";
+    fileManager = "thunar";
     passwords = "proton-pass";
   };
 
