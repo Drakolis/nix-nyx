@@ -7,7 +7,7 @@
 {
   services.espanso = {
     waylandSupport = true;
-    enable = true;
+    enable = false;
     package = pkgs.espanso-wayland;
     matches = {
       base = {
