@@ -8,6 +8,7 @@
   services.espanso = {
     waylandSupport = true;
     enable = true;
+    package = pkgs.espanso-wayland;
     matches = {
       base = {
         matches = [

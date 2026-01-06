@@ -7,10 +7,10 @@ from .network import NetworkStatusWidget
 from .bluetooth import bluetooth_status
 from .power import PowerStatusWidget
 
-TRAY_ITEM_SPACING = 10
+TRAY_ITEM_SPACING = 5
+
 
 def system_status_widget(monitor_id: int) -> widgets.Box:
-
   return widgets.Box(
     css_classes=["bar-pill", "elevation1"],
     spacing=TRAY_ITEM_SPACING,

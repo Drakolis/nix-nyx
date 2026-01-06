@@ -1,4 +1,3 @@
-
 from ignis import widgets
 from ignis import utils
 
@@ -8,9 +7,10 @@ from ignis.services.niri import NiriService, NiriWorkspace
 hyprland = HyprlandService.get_default()
 niri = NiriService.get_default()
 
+
 def hyprland_workspace_button(workspace: HyprlandWorkspace) -> widgets.Button:
   widget = widgets.Button(
-    css_classes=["workspace-button", "label-bar"],
+    css_classes=["pill-button", "label-bar"],
     on_click=lambda x: workspace.switch_to(),
     child=widgets.Label(label=str(workspace.id)),
   )
@@ -19,9 +19,10 @@ def hyprland_workspace_button(workspace: HyprlandWorkspace) -> widgets.Button:
 
   return widget
 
+
 def niri_workspace_button(workspace: NiriWorkspace) -> widgets.Button:
   widget = widgets.Button(
-    css_classes=["workspace-button", "label-bar"],
+    css_classes=["pill-button", "workspace", "label-bar"],
     on_click=lambda x: workspace.switch_to(),
     child=widgets.Label(label=str(workspace.idx)),
   )
@@ -30,6 +31,7 @@ def niri_workspace_button(workspace: NiriWorkspace) -> widgets.Button:
 
   return widget
 
+
 def workspace_button(workspace) -> widgets.Button:
   if hyprland.is_available:
     return hyprland_workspace_button(workspace)
@@ -37,6 +39,7 @@ def workspace_button(workspace) -> widgets.Button:
     return niri_workspace_button(workspace)
   else:
     return widgets.Button()
+
 
 def hyprland_scroll_workspaces(direction: str) -> None:
   current = hyprland.active_workspace["id"]
@@ -61,6 +64,7 @@ def niri_scroll_workspaces(monitor_name: str, direction: str) -> None:
     target = current - 1
     niri.switch_to_workspace(target)
 
+
 def scroll_workspaces(direction: str, monitor_name: str = "") -> None:
   if hyprland.is_available:
     hyprland_scroll_workspaces(direction)
@@ -69,19 +73,21 @@ def scroll_workspaces(direction: str, monitor_name: str = "") -> None:
   else:
     pass
 
+
 def hyprland_workspaces() -> widgets.EventBox:
   return widgets.EventBox(
     on_scroll_up=lambda x: scroll_workspaces("up"),
     on_scroll_down=lambda x: scroll_workspaces("down"),
     css_classes=["bar-pill", "elevation1"],
     spacing=5,
-    child=hyprland.bind_many( # bind also to active_workspace to regenerate workspaces list when active workspace changes
+    child=hyprland.bind_many(  # bind also to active_workspace to regenerate workspaces list when active workspace changes
       ["workspaces", "active_workspace"],
       transform=lambda workspaces, active_workspace: [
         workspace_button(i) for i in workspaces
       ],
     ),
   )
+
 
 def niri_workspaces(monitor_name: str) -> widgets.EventBox:
   return widgets.EventBox(
@@ -96,6 +102,7 @@ def niri_workspaces(monitor_name: str) -> widgets.EventBox:
       ],
     ),
   )
+
 
 def workspaces_widget(monitor_id: int) -> widgets.EventBox:
   monitor_name = utils.get_monitor(monitor_id).get_connector()

@@ -1,4 +1,3 @@
-
 from ignis import widgets
 from ignis import utils
 
@@ -10,7 +9,7 @@ from ignis.services.niri import NiriService, NiriWorkspace
 DEFAULT_WINDOW_TITLE = "Desktop"
 DEFAULT_WINDOW_ICON = "show-desktop"
 
-from ignis.services.backlight import BacklightService
+
 class WindowTitleWidget(widgets.Box):
   def __init__(self, monitor_id: int):
     self.title = DEFAULT_WINDOW_TITLE
@@ -22,7 +21,7 @@ class WindowTitleWidget(widgets.Box):
 
     icon_widget = widgets.Icon(
       css_classes=["window-icon"],
-      pixel_size=16,
+      pixel_size=18,
       # visible=niri.bind("active_output", lambda output: output == monitor_name),
     )
 
@@ -53,19 +52,22 @@ class WindowTitleWidget(widgets.Box):
     )
 
     super().__init__(
+      css_classes=["bar-pill", "elevation1"],
       child=[
-        widgets.EventBox(
-          spacing=5,
-          css_classes=["bar-pill", "elevation1"],
-          child=[
-            icon_widget,
-            label_widget,
-          ],
+        widgets.Button(
+          css_classes=["pill-button"],
+          child=widgets.Box(
+            spacing=5,
+            child=[
+              icon_widget,
+              label_widget,
+            ],
+          ),
           on_click=lambda x: self.menu_widget.popup(),
           on_right_click=lambda x: self.menu_widget.popup(),
         ),
         menu_widget,
-      ]
+      ],
     )
 
     self.menu_widget = menu_widget
@@ -82,7 +84,7 @@ class WindowTitleWidget(widgets.Box):
       self.title = self.hyprland.active_window.title or DEFAULT_WINDOW_TITLE
       self.app_id = self.hyprland.active_window.app_id
 
-    self.menu_widget.popdown() # Close the menu if the window changed to avoid confusion
+    self.menu_widget.popdown()  # Close the menu if the window changed to avoid confusion
     if self.app_id == "":
       self.icon_widget.set_image(DEFAULT_WINDOW_ICON)
     else:

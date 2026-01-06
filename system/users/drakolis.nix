@@ -27,7 +27,7 @@ with lib;
     description = "Mika Drakolis";
     extraGroups = desiredGroups;
     packages = with pkgs; [
-      # protonmail-bridge-gui
+      protonmail-bridge-gui
       protonvpn-gui
       proton-pass
     ];

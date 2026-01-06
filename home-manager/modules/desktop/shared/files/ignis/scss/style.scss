@@ -10,12 +10,37 @@
   margin: 5px 2px;
   color: variables.$fg;
 }
-
 .bar-pill {
   background-color: variables.$bg;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.25rem;
   border-radius: 2rem;
   margin: 0px 3px;
+
+  label {
+    margin-top: 1px;
+  }
+
+  .pill-button {
+    border-radius: 1rem;
+    padding: 0.25rem 0.5rem;
+    transition: 0.3s;
+    min-width: 1rem;
+  }
+
+  .pill-button.workspace {
+    padding-left: 0.5rem;
+  }
+
+  .pill-button:hover {
+    background-color: variables.$bg-control;
+  }
+
+  .pill-button:focus {}
+
+  .pill-button.active {
+    background-color: variables.$primary;
+    color: variables.$bg;
+  }
 }
 
 .workspace-button {

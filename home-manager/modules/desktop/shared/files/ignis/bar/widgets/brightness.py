@@ -4,7 +4,7 @@ from ignis import utils
 from ignis.services.backlight import BacklightService
 
 from utils import (
-    get_brightness_status_icon,
+  get_brightness_status_icon,
 )
 from widgets.setup_menu import SetupMenuPopover, SetupMenuHeader, ScaleSetupMenuItem
 
@@ -21,6 +21,7 @@ scale_menu_item = ScaleSetupMenuItem(
   icon_css_classes=["brightness-label"],
   icon_max="display-brightness-high-symbolic",
   icon_min="display-brightness-low-symbolic",
+  scale_css_class="brightness-slider",
 )
 
 menu = SetupMenuPopover(
@@ -30,13 +31,20 @@ menu = SetupMenuPopover(
   ],
 )
 
+
 def brightness_render_contents(available, brightness, brightness_max):
   brightness_percentage = round(100 * (brightness / brightness_max))
-  brightness_percent = brightness_max / 100;
-  brightness_icon = get_brightness_status_icon(brightness_percentage) if available else "display-brightness-symbolic"
+  brightness_percent = brightness_max / 100
+  brightness_icon = (
+    get_brightness_status_icon(brightness_percentage)
+    if available
+    else "display-brightness-symbolic"
+  )
 
   scale_menu_item.set_value(brightness_percentage)
-  scale_menu_item.set_on_change(lambda x: backlight.set_brightness_async(x.get_value() * brightness_percent))
+  scale_menu_item.set_on_change(
+    lambda x: backlight.set_brightness_async(x.get_value() * brightness_percent)
+  )
 
   scale_menu_item.set_visible(available)
 
@@ -44,14 +52,11 @@ def brightness_render_contents(available, brightness, brightness_max):
     widgets.Icon(
       css_classes=["brightness-label"],
       image=brightness_icon,
-      pixel_size=16,
-    ),
-    widgets.Label(
-      css_classes=["brightness-label", "label-bar"],
-      label=f"{brightness_percentage}%" if available else "N/A",
+      pixel_size=18,
     ),
     menu,
   ]
+
 
 def brightness_status(monitor_id: int) -> widgets.Button:
   brightness_widgets = backlight.bind_many(
@@ -59,10 +64,15 @@ def brightness_status(monitor_id: int) -> widgets.Button:
     brightness_render_contents,
   )
   current_monitor = utils.get_monitor(monitor_id)
-  menu_header.set_title(f"{current_monitor.get_model()} ({current_monitor.get_connector()})")
-  menu_header.set_subtitle(f"{current_monitor.get_geometry().width} x {current_monitor.get_geometry().height} px ({current_monitor.get_refresh_rate() / 1000} Hz)")
+  menu_header.set_title(
+    f"{current_monitor.get_model()} ({current_monitor.get_connector()})"
+  )
+  menu_header.set_subtitle(
+    f"{current_monitor.get_geometry().width} x {current_monitor.get_geometry().height} px ({current_monitor.get_refresh_rate() / 1000} Hz)"
+  )
 
   return widgets.Button(
+    css_classes=["pill-button"],
     on_click=lambda x: menu.popup(),
     child=widgets.Box(spacing=5, child=brightness_widgets),
   )

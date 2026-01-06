@@ -10,6 +10,8 @@ DEFAULT_WINDOW_ICON = "application-default-icon"
 def get_extended_app_icon(app_id) -> str:
   if app_id == "steam":
     return "com.valvesoftware.Steam"
+  if app_id == "Element":
+    return "element-desktop"
   elif app_id:
     return utils.get_app_icon_name(app_id)
   else:
