@@ -17,14 +17,17 @@
   margin: 0px 3px;
 
   label {
-    margin-top: 1px;
+    margin-top: 0.2rem;
   }
 
   .pill-button {
     border-radius: 1rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.25rem;
     transition: 0.3s;
     min-width: 1rem;
+  }
+  .pill-button label {
+    margin-right: 0.35rem;
   }
 
   .pill-button.workspace {

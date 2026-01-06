@@ -52,7 +52,7 @@ class AudioStatusWidget(widgets.Button):
       widgets.Icon(
         css_classes=["audio-label"],
         image=DEFAULT_ICON,
-        pixel_size=18,
+        pixel_size=24,
       ),
       audio_setup_menu,
     ]

@@ -23,7 +23,7 @@ class PowerStatusWidget(widgets.Button):
       widgets.Icon(
         css_classes=[CSS_CLASS_AC],
         image=DEFAULT_ICON,
-        pixel_size=16,
+        pixel_size=24,
       ),
       widgets.Label(
         css_classes=[CSS_CLASS_AC, "label-bar"],

@@ -6,8 +6,7 @@ from ignis.window_manager import WindowManager
 system_tray_service = SystemTrayService.get_default()
 window_manager = WindowManager.get_default()
 
-TRAY_ITEM_SPACING = 5
-TRAY_TEXT_SPACING = 5
+TRAY_ITEM_SPACING = 3
 
 
 def system_tray_item(item: SystemTrayItem) -> widgets.Button:
@@ -20,7 +19,7 @@ def system_tray_item(item: SystemTrayItem) -> widgets.Button:
     css_classes=["pill-button"],
     child=widgets.Box(
       child=[
-        widgets.Icon(image=item.bind("icon"), pixel_size=18),
+        widgets.Icon(image=item.bind("icon"), pixel_size=24),
         menu,
       ],
     ),

@@ -52,7 +52,7 @@ def brightness_render_contents(available, brightness, brightness_max):
     widgets.Icon(
       css_classes=["brightness-label"],
       image=brightness_icon,
-      pixel_size=18,
+      pixel_size=24,
     ),
     menu,
   ]

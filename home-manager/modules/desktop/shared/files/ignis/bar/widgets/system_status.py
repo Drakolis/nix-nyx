@@ -7,7 +7,7 @@ from .network import NetworkStatusWidget
 from .bluetooth import bluetooth_status
 from .power import PowerStatusWidget
 
-TRAY_ITEM_SPACING = 5
+TRAY_ITEM_SPACING = 3
 
 
 def system_status_widget(monitor_id: int) -> widgets.Box:

@@ -1,5 +1,6 @@
 DEFAULT_OSD_ICON = "distributor-logo-nixos"
 
+
 from ignis import widgets
 from ignis import utils
 from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
@@ -43,7 +44,7 @@ class OSD(widgets.RevealerWindow):
       pixel_size=64,
     )
     label_widget = widgets.Label(
-      css_classes=["title-medium"],
+      css_classes=["title-small"],
       label=self.label,
     )
     scale_widget = widgets.Scale(

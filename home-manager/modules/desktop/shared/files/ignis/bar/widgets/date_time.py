@@ -12,12 +12,12 @@ def date_time_widget() -> widgets.Box:
       widgets.Button(
         css_classes=["pill-button"],
         child=widgets.Box(
-          spacing=5,
+          spacing=3,
           child=[
             widgets.Icon(
               css_classes=["clock-label"],
               image="clock-applet-symbolic",
-              pixel_size=18,
+              pixel_size=24,
             ),
             widgets.Label(
               css_classes=["clock-label", "label-bar"],

@@ -9,12 +9,12 @@ class SetupMenuHeader(widgets.Box):
       child=[
         widgets.Label(
           halign="start",
-          css_classes=["title-medium", "setup-menu-title"],
+          css_classes=["title-small", "setup-menu-title"],
           label=title,
         ),
         widgets.Label(
           halign="start",
-          css_classes=["label-large", "setup-menu-subtitle"],
+          css_classes=["label-small", "setup-menu-subtitle"],
           label=subtitle,
         ),
       ],
