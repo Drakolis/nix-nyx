@@ -2,12 +2,12 @@
   imports = [
     ./desktop
     ./dos.nix
+    ./espanso.nix
     ./flatpak.nix
     ./fonts.nix
     ./gaming.nix
     ./geolocation.nix
     ./input.nix
-    ./internet.nix
     ./ki.nix
     ./nix.nix
     ./power.nix
