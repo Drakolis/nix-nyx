@@ -15,6 +15,7 @@ let
 
   nodeExtendedPackages = with pkgs; [
     yarn
+    pnpm
     typescript
     typescript-language-server
     vue-language-server
