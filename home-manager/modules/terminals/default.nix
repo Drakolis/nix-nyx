@@ -20,7 +20,7 @@ in
         program = "nvim";
       };
       fonts = {
-        size = style.fontMonospaceSize + 2;
+        size = style.fontMonospaceSize + 3;
         family = style.fontMonospace;
         use-drawable-chars = true;
       };

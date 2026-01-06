@@ -11,11 +11,9 @@ in
     catppuccinifier-cli
     catppuccin-whiskers
 
-    # Other DEs
     catppuccin-qt5ct
     kdePackages.breeze
     kdePackages.breeze-gtk
-    kdePackages.breeze-icons
     vanilla-dmz
     (catppuccin-papirus-folders.override {
       accent = "mauve";
@@ -23,17 +21,14 @@ in
     })
 
     qt6Packages.qt6ct
-    # libsForQt5.qt5ct
     nwg-look
 
-    # Kvantum support
     qt6Packages.qtstyleplugin-kvantum
     (catppuccin-kvantum.override {
       accent = "mauve";
       variant = "mocha";
     })
 
-    # # GTK (Deprecated)
     (catppuccin-gtk.override {
       accents = [ "mauve" ];
       variant = "mocha";

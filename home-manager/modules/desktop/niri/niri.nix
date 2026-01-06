@@ -128,7 +128,7 @@ in
             x = 0;
             y = 0;
           };
-          scale = 1.2;
+          scale = 1;
           transform.rotation = 0;
         };
         "HDMI-A-2" = {
