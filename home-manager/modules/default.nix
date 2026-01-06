@@ -30,6 +30,7 @@ with lib;
   imports = [
     ./browser.nix
     ./development
+    ./espanso.nix
     ./flatpak.nix
     # ./glance.nix
     ./gaming.nix
