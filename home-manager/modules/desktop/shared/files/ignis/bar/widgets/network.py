@@ -17,6 +17,7 @@ class NetworkStatusWidget(widgets.Button):
         css_classes=["network-label"],
         image=DEFAULT_ICON,
         pixel_size=24,
+        hexpand=True,
       ),
     ]
 

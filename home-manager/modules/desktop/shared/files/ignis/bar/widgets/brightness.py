@@ -53,6 +53,7 @@ def brightness_render_contents(available, brightness, brightness_max):
       css_classes=["brightness-label"],
       image=brightness_icon,
       pixel_size=24,
+      hexpand=True,
     ),
     menu,
   ]

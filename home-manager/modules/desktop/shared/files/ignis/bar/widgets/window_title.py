@@ -22,6 +22,7 @@ class WindowTitleWidget(widgets.Box):
     icon_widget = widgets.Icon(
       css_classes=["window-icon"],
       pixel_size=24,
+      hexpand=True,
       # visible=niri.bind("active_output", lambda output: output == monitor_name),
     )
 

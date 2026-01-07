@@ -1,109 +1,10 @@
 @use "variables";
 @use "base";
 @use "sheets";
+@use "bar";
 
 * {
   all: unset;
-}
-
-.bar-container {
-  margin: 5px 2px;
-  color: variables.$fg;
-}
-.bar-pill {
-  background-color: variables.$bg;
-  padding: 0.25rem 0.25rem;
-  border-radius: 2rem;
-  margin: 0px 3px;
-
-  label {
-    margin-top: 0.2rem;
-  }
-
-  .pill-button {
-    border-radius: 1rem;
-    padding: 0.25rem 0.25rem;
-    transition: 0.3s;
-    min-width: 1rem;
-  }
-  .pill-button label {
-    margin-right: 0.25rem;
-  }
-
-  .pill-button.workspace {
-    padding-left: 0.5rem;
-  }
-
-  .pill-button:hover {
-    background-color: variables.$bg-control;
-  }
-
-  .pill-button:focus {}
-
-  .pill-button.active {
-    background-color: variables.$primary;
-    color: variables.$bg;
-  }
-}
-
-.workspace-button {
-  border-radius: 1.2rem;
-  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
-  min-width: 1rem;
-  transition: 0.3s;
-}
-
-.workspace-button:hover {
-  background-color: variables.$primary-hover;
-}
-
-.workspace-button.active {
-  background-color: variables.$primary;
-  color: variables.$bg;
-}
-
-.window-label {
-  color: variables.$primary;
-}
-
-.clock-label {
-  color: variables.$clock;
-}
-
-.layout-label {
-  color: variables.$layout;
-}
-
-.audio-label {
-  color: variables.$audio;
-}
-
-.brightness-label {
-  color: variables.$brightness;
-}
-
-.power-label {
-  color: variables.$power;
-}
-
-.power-critical-label {
-  color: variables.$power-critical;
-}
-
-.power-warning-label {
-  color: variables.$power-warning;
-}
-
-.power-normal-label {
-  color: variables.$power-normal;
-}
-
-.network-label {
-  color: variables.$network;
-}
-
-.bluetooth-label {
-  color: variables.$bluetooth;
 }
 
 .launcher-container {
@@ -152,7 +53,7 @@
 }
 
 .launcher-item-label-description {
-  color: variables.$fg-sub;
+  color: variables.$fg-subtext;
 }
 
 .launcher-footer {
@@ -279,19 +180,4 @@
 
 .tile:focus {
   box-shadow: 0 0 0 4px variables.$primary inset;
-}
-
-// Setup Menu
-
-.setup-menu {
-  .setup-menu-title {
-    margin-bottom: 2px;
-  }
-
-  .setup-menu-subtitle {
-  }
-
-  .setup-menu-item {
-    margin-top: 12px;
-  }
 }

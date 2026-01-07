@@ -1,3 +1,5 @@
+import asyncio
+
 from ignis import widgets
 from ignis import utils
 
@@ -14,8 +16,60 @@ audio_service = AudioService.get_default()
 DEFAULT_LABEL = "AUD"
 DEFAULT_ICON = "speaker-symbolic"
 
-MENU_LABEL_OUTPUT = "Speakers"
+MENU_LABEL_OUTPUT = "Speaker"
 MENU_LABEL_INPUT = "Microphone"
+
+
+# audio-headphones-symbolic.svg
+# audio-headset-symbolic.svg
+# audio-input-microphone-symbolic.svg
+# audio-speakers-symbolic.svg
+def get_device_item_icon(id):
+  if "alsa_output.pci" in id:
+    return "audio-card-symbolic"
+  elif "alsa_output.usb" in id:
+    return "audio-card-usb-symbolic"
+
+  if "alsa_input.pci" in id:
+    return "audio-card-symbolic"
+  elif "alsa_input.usb" in id:
+    return "audio-card-usb-symbolic"
+
+
+def devices_item(device, default_device, on_click):
+  description = device.description
+  name = device.name
+
+  return widgets.Button(
+    on_click=on_click,
+    setup=lambda self: device.connect("removed", lambda x: self.unparent()),
+    css_classes=["popover-item"],
+    child=widgets.Box(
+      child=[
+        widgets.Box(
+          setup=lambda self: default_device.connect(
+            "notify::name",
+            lambda x, y: self.set_css_classes(
+              ["popover-item-fab", "audio-active" if x.name == name else None]
+            ),
+          ),
+          css_classes=["popover-item-fab"],
+          child=[
+            widgets.Icon(
+              css_classes=["popover-item-icon"],
+              image=get_device_item_icon(name),
+              pixel_size=24,
+            )
+          ],
+        ),
+        widgets.Label(
+          label=description,
+          max_width_chars=40,
+          ellipsize="end",
+        ),
+      ]
+    ),
+  )
 
 
 class AudioStatusWidget(widgets.Button):
@@ -27,6 +81,8 @@ class AudioStatusWidget(widgets.Button):
     self.audio_devices = (
       audio_service.speakers if is_output else self.audio_service.microphones
     )
+    self.audio_devices_target = "speakers" if is_output else "microphones"
+    self.audio_device_target = "speaker" if is_output else "microphone"
     self.is_output = is_output
 
     audio_setup_menu_header = SetupMenuHeader(
@@ -41,10 +97,20 @@ class AudioStatusWidget(widgets.Button):
       icon_min="audio-volume-low-symbolic",
     )
 
+    audio_setup_devices = widgets.Box(vertical=True)
+
     audio_setup_menu = SetupMenuPopover(
       child=[
         audio_setup_menu_header,
         audio_setup_menu_scale,
+        widgets.Box(css_classes=["popover-separator"]),
+        audio_setup_devices,
+        widgets.Box(css_classes=["popover-separator"]),
+        widgets.Button(
+          on_click=lambda x: self.open_settings_app(),
+          css_classes=["popover-item"],
+          child=widgets.Label(halign="start", label="Sound Settings..."),
+        ),
       ],
     )
 
@@ -53,6 +119,7 @@ class AudioStatusWidget(widgets.Button):
         css_classes=["audio-label"],
         image=DEFAULT_ICON,
         pixel_size=24,
+        hexpand=True,
       ),
       audio_setup_menu,
     ]
@@ -77,11 +144,20 @@ class AudioStatusWidget(widgets.Button):
     )
     self.audio_device.connect("notify::name", lambda x, y: self.update_audio_status(x))
 
+    self.audio_service.connect(
+      f"{self.audio_device_target}-added", lambda x, y: self.append_audio_device(y)
+    )
+
     self.audio_status_contents = audio_status_contents
     self.audio_setup_menu = audio_setup_menu
     self.audio_setup_menu_header = audio_setup_menu_header
     self.audio_setup_menu_scale = audio_setup_menu_scale
+    self.audio_setup_devices = audio_setup_devices
     self.update_audio_status(self.audio_device)
+
+  def open_settings_app(self):
+    asyncio.create_task(utils.exec_sh_async("pavucontrol"))
+    self.audio_setup_menu.popdown()
 
   def update_audio_status(self, device):
     volume = device.volume
@@ -101,12 +177,18 @@ class AudioStatusWidget(widgets.Button):
       lambda v: self.change_audio_debounced(device, v.value)
     )
 
+  def assign_default_device(self, device):
+    setattr(self.audio_service, self.audio_device_target, device)
+
+  def append_audio_device(self, audio_device):
+    self.audio_setup_devices.append(
+      devices_item(
+        audio_device,
+        self.audio_device,
+        lambda _: self.assign_default_device(audio_device),
+      )
+    )
+
   @utils.debounce(100)
   def change_audio_debounced(self, device, value):
     device.set_volume(value)
-# audio-card-symbolic.svg
-# audio-card-usb-symbolic.svg
-# audio-headphones-symbolic.svg
-# audio-headset-symbolic.svg
-# audio-input-microphone-symbolic.svg
-# audio-speakers-symbolic.svg

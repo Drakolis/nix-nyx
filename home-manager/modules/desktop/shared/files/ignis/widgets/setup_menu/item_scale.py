@@ -29,17 +29,11 @@ class ScaleSetupMenuItem(widgets.Box):
       css_classes=["setup-menu-item"],
       spacing=10,
       child=[
-        widgets.Icon(
-          css_classes=icon_css_classes,
-          image=icon_min,
-        )
+        widgets.Icon(css_classes=icon_css_classes, image=icon_min, pixel_size=22)
         if icon_min
         else None,
         scale,
-        widgets.Icon(
-          css_classes=icon_css_classes,
-          image=icon_max,
-        )
+        widgets.Icon(css_classes=icon_css_classes, image=icon_max, pixel_size=22)
         if icon_max
         else None,
       ],

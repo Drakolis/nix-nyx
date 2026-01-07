@@ -19,7 +19,12 @@ def system_tray_item(item: SystemTrayItem) -> widgets.Button:
     css_classes=["pill-button"],
     child=widgets.Box(
       child=[
-        widgets.Icon(image=item.bind("icon"), pixel_size=24),
+        widgets.Icon(
+          css_classes=["tray-label"],
+          image=item.bind("icon"),
+          pixel_size=24,
+          hexpand=True,
+        ),
         menu,
       ],
     ),
@@ -27,7 +32,6 @@ def system_tray_item(item: SystemTrayItem) -> widgets.Button:
     tooltip_text=item.bind("tooltip"),
     on_click=lambda x: menu.popup() if menu else None,
     on_right_click=lambda x: menu.popup() if menu else None,
-    # css_classes=["tray-item"],
   )
 
 

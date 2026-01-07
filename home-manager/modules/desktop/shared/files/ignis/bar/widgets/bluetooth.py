@@ -45,6 +45,7 @@ def bluetooth_render_contents(connected_devices, powered, state, setup_mode):
       css_classes=["bluetooth-label"],
       image=icon,
       pixel_size=24,
+      hexpand=True,
     ),
   ]
 

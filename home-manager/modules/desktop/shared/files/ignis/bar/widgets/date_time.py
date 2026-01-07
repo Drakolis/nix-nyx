@@ -18,6 +18,7 @@ def date_time_widget() -> widgets.Box:
               css_classes=["clock-label"],
               image="clock-applet-symbolic",
               pixel_size=24,
+              hexpand=True,
             ),
             widgets.Label(
               css_classes=["clock-label", "label-bar"],
