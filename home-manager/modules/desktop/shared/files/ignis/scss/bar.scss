@@ -146,9 +146,9 @@
   }
 
   .popover-item-fab {
-    background-color: variables.$bg-control;
+    background-color: variables.$bg-control-hover;
     padding: 5px;
-    border-radius: 16px;
+    border-radius: 20px;
     margin-right: 0.5rem;
 
     & {
@@ -172,7 +172,7 @@
     }
 
     .popover-item-icon {
-      color: variables.$fg-subtext;
+      color: variables.$fg;
     }
   }
 }
