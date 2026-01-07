@@ -6,7 +6,7 @@ from ignis.services.backlight import BacklightService
 from utils import (
   get_brightness_status_icon,
 )
-from widgets.setup_menu import SetupMenuPopover, SetupMenuHeader, ScaleSetupMenuItem
+from widgets.setup_menu import SetupMenuPopover, SetupMenuHeader, SetupMenuItemScale
 
 # TODO: Should know which display is being controlled
 
@@ -17,7 +17,7 @@ menu_header = SetupMenuHeader(
   subtitle="Resolution",
 )
 
-scale_menu_item = ScaleSetupMenuItem(
+scale_menu_item = SetupMenuItemScale(
   icon_css_classes=["brightness-label"],
   icon_max="display-brightness-high-symbolic",
   icon_min="display-brightness-low-symbolic",

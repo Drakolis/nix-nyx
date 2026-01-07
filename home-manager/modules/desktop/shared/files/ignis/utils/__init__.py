@@ -3,6 +3,7 @@ from .icons import (
   get_audio_input_status_icon,
   get_audio_output_status_icon,
   get_brightness_status_icon,
+  get_audio_device_icon,
 )
 # from .sounds import (
 #   play_sound,
@@ -13,7 +14,9 @@ from .icons import (
 
 
 all = [
-  "get_extended_app_iconget_audio_input_status_icon",
+  "get_extended_app_icon",
+  "get_audio_device_icon",
   "get_audio_output_status_icon",
+  "get_audio_input_status_icon",
   "get_brightness_status_icon",
 ]

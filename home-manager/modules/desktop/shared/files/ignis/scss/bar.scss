@@ -124,55 +124,56 @@
     padding: 0 0.35rem;
   }
 
-  .setup-menu-item {
+  .setup-menu-scale {
     padding: 0 0.35rem;
     margin: 0.7rem 0;
   }
-}
 
-.popover-separator {
-  background-color: variables.$fg-disabled;
-  min-height: 1px;
-  margin: 0.5rem 0;
-}
-
-.popover-item {
-  transition: 0.3s;
-  border-radius: variables.$shape-corner-large;
-  padding: 0.35rem 0.5rem;
-
-  &:hover {
-    background-color: variables.$bg-control;
+  .setup-menu-separator {
+    background-color: variables.$fg-disabled;
+    min-height: 1px;
+    margin: 0.5rem 0;
   }
 
-  .popover-item-fab {
-    background-color: variables.$bg-control-hover;
-    padding: 5px;
-    border-radius: 20px;
-    margin-right: 0.5rem;
 
-    & {
-      padding: 0.35rem 0.35rem;
+  .setup-menu-button {
+    transition: 0.3s;
+    border-radius: variables.$shape-corner-large;
+    padding: 0.35rem 0.5rem;
+
+    &:hover {
+      background-color: variables.$bg-control;
     }
 
-    &.active {
-      background-color: variables.$primary;
+    .setup-menu-button-icon {
+      background-color: variables.$bg-control-hover;
+      padding: 5px;
+      border-radius: 20px;
+      margin-right: 0.5rem;
 
-      .popover-item-icon {
-        color: variables.$bg;
+      & {
+        padding: 0.35rem 0.35rem;
       }
-    }
 
-    &.audio-active {
-      background-color: variables.$audio;
+      &.active {
+        background-color: variables.$primary;
 
-      .popover-item-icon {
-        color: variables.$bg;
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
       }
-    }
 
-    .popover-item-icon {
-      color: variables.$fg;
+      &.audio-active {
+        background-color: variables.$audio;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      .setup-menu-button-icon {
+        color: variables.$fg;
+      }
     }
   }
 }

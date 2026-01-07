@@ -21,6 +21,22 @@ def get_extended_app_icon(app_id) -> str:
 # def get_extended_app_icon_color(name) -> str:
 
 
+def get_audio_device_icon(id) -> str:
+  # audio-headphones-symbolic.svg
+  # audio-headset-symbolic.svg
+  # audio-input-microphone-symbolic.svg
+  # audio-speakers-symbolic.svg
+  if "alsa_output.pci" in id:
+    return "audio-card-symbolic"
+  elif "alsa_output.usb" in id:
+    return "audio-card-usb-symbolic"
+
+  if "alsa_input.pci" in id:
+    return "audio-card-symbolic"
+  elif "alsa_input.usb" in id:
+    return "audio-card-usb-symbolic"
+
+
 def get_audio_output_status_icon(volume, is_muted) -> str:
   if is_muted:
     return "audio-volume-muted-symbolic"

@@ -6,10 +6,18 @@ from ignis import utils
 from ignis.services.audio import AudioService
 
 from utils import (
+  get_audio_device_icon,
   get_audio_input_status_icon,
   get_audio_output_status_icon,
 )
-from widgets.setup_menu import SetupMenuPopover, SetupMenuHeader, ScaleSetupMenuItem
+from widgets.setup_menu import (
+  SetupMenuPopover,
+  SetupMenuHeader,
+  SetupMenuItemScale,
+  SetupMenuItemSeparator,
+  SetupMenuItemButton,
+  SetupMenuItemIconButton,
+)
 
 audio_service = AudioService.get_default()
 
@@ -20,55 +28,24 @@ MENU_LABEL_OUTPUT = "Speaker"
 MENU_LABEL_INPUT = "Microphone"
 
 
-# audio-headphones-symbolic.svg
-# audio-headset-symbolic.svg
-# audio-input-microphone-symbolic.svg
-# audio-speakers-symbolic.svg
-def get_device_item_icon(id):
-  if "alsa_output.pci" in id:
-    return "audio-card-symbolic"
-  elif "alsa_output.usb" in id:
-    return "audio-card-usb-symbolic"
-
-  if "alsa_input.pci" in id:
-    return "audio-card-symbolic"
-  elif "alsa_input.usb" in id:
-    return "audio-card-usb-symbolic"
-
-
 def devices_item(device, default_device, on_click):
   description = device.description
   name = device.name
-
-  return widgets.Button(
-    on_click=on_click,
-    setup=lambda self: device.connect("removed", lambda x: self.unparent()),
-    css_classes=["popover-item"],
-    child=widgets.Box(
-      child=[
-        widgets.Box(
-          setup=lambda self: default_device.connect(
-            "notify::name",
-            lambda x, y: self.set_css_classes(
-              ["popover-item-fab", "audio-active" if x.name == name else None]
-            ),
-          ),
-          css_classes=["popover-item-fab"],
-          child=[
-            widgets.Icon(
-              css_classes=["popover-item-icon"],
-              image=get_device_item_icon(name),
-              pixel_size=24,
-            )
-          ],
-        ),
-        widgets.Label(
-          label=description,
-          max_width_chars=40,
-          ellipsize="end",
-        ),
-      ]
+  icon = get_audio_device_icon(name)
+  setup_button = lambda self: device.connect("removed", lambda x: self.unparent())
+  setup_icon = lambda self: default_device.connect(
+    "notify::name",
+    lambda x, y: self.set_css_classes(
+      ["setup-menu-button-icon", "audio-active" if x.name == name else None]
     ),
+  )
+
+  return SetupMenuItemIconButton(
+    setup_button=setup_button,
+    setup_icon=setup_icon,
+    on_click=on_click,
+    label=description,
+    icon=icon,
   )
 
 
@@ -90,7 +67,7 @@ class AudioStatusWidget(widgets.Button):
       subtitle="Device Name",
     )
 
-    audio_setup_menu_scale = ScaleSetupMenuItem(
+    audio_setup_menu_scale = SetupMenuItemScale(
       icon_css_classes=["audio-label"],
       scale_css_class="audio-slider",
       icon_max="audio-volume-high-symbolic",
@@ -103,13 +80,11 @@ class AudioStatusWidget(widgets.Button):
       child=[
         audio_setup_menu_header,
         audio_setup_menu_scale,
-        widgets.Box(css_classes=["popover-separator"]),
+        SetupMenuItemSeparator(),
         audio_setup_devices,
-        widgets.Box(css_classes=["popover-separator"]),
-        widgets.Button(
-          on_click=lambda x: self.open_settings_app(),
-          css_classes=["popover-item"],
-          child=widgets.Label(halign="start", label="Sound Settings..."),
+        SetupMenuItemSeparator(),
+        SetupMenuItemButton(
+          on_click=lambda x: self.open_settings_app(), label="Sound Settings..."
         ),
       ],
     )

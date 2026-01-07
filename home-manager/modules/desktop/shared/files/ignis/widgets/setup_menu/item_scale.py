@@ -1,7 +1,7 @@
 from ignis import widgets
 
 
-class ScaleSetupMenuItem(widgets.Box):
+class SetupMenuItemScale(widgets.Box):
   def __init__(
     self,
     min=0,
@@ -26,7 +26,7 @@ class ScaleSetupMenuItem(widgets.Box):
 
     super().__init__(
       **kwargs,
-      css_classes=["setup-menu-item"],
+      css_classes=["setup-menu-scale"],
       spacing=10,
       child=[
         widgets.Icon(css_classes=icon_css_classes, image=icon_min, pixel_size=22)
