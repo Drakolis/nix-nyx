@@ -109,6 +109,7 @@ class OSD(widgets.RevealerWindow):
     self.icon_widget = icon_widget
     self.label_widget = label_widget
     self.scale_widget = scale_widget
+    self.battery_previous_charging = False
 
   def trigger(self):
     if self.timeout:
@@ -152,14 +153,16 @@ class OSD(widgets.RevealerWindow):
     self.trigger()
 
   def trigger_upower_device(self, device):
-    if device.charging:
+    if device.charging and not self.battery_previous_charging:
       self.label = "Power Connected"
       self.icon = "battery-ac-adapter-symbolic"
-      audio_file_path = "/home/drakolis/Projects/nix-nyx/home-manager/modules/desktop/shared/files/ignis/assets/sounds/charging.wav"
+      audio_file_path = "assets/sounds/charging.wav"
       wave_obj = sa.WaveObject.from_wave_file(audio_file_path)
       wave_obj.play()
       self.show_scale = False
       self.trigger()
+    print(device.charging)
+    self.battery_previous_charging = device.charging
 
   # MPRIS
   # Power/Battery
