@@ -41,7 +41,7 @@ with lib;
           (pkgs.catppuccin-sddm.override {
             flavor = "mocha";
             font = "Ubuntu Nerd Font";
-            fontSize = "14";
+            fontSize = "12";
             # background = "${~/.background}";
             loginBackground = true;
           })
