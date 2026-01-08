@@ -9,6 +9,16 @@ let
     }
   );
 
+  gtkThemeColloid = (
+    pkgs.colloid-gtk-theme.override {
+      themeVariants = [ "purple" ];
+      tweaks = [
+        "catppuccin"
+        "rimless"
+      ];
+    }
+  );
+
 in
 {
   home.packages = with pkgs; [
