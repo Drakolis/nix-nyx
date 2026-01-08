@@ -91,7 +91,7 @@
     logRefusedConnections = false; # Reduce log noise (set to true if debugging)
   };
 
-  services.power-profiles-daemon.enable = true; 
+  services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
   drakolis = {

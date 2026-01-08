@@ -149,7 +149,6 @@
         "security"
         "remoteDesktop"
       ];
-      terminal = "kitty";
     };
     dos.enable = true;
     input = {
