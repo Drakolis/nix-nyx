@@ -9,7 +9,6 @@ from ignis.services.upower import UPowerService
 CSS_CLASS_CRITICAL = "power-critical-label"
 CSS_CLASS_WARNING = "power-warning-label"
 CSS_CLASS_NORMAL = "power-normal-label"
-DEFAULT_LABEL = "PWR"
 DEFAULT_ICON = "battery-ac-adapter-symbolic"
 
 
@@ -20,13 +19,11 @@ class PowerStatusWidget(widgets.Button):
     power_status_label = [
       widgets.Icon(
         css_classes=[CSS_CLASS_NORMAL],
-        image=DEFAULT_ICON,
         pixel_size=24,
         hexpand=True,
       ),
       widgets.Label(
         css_classes=[CSS_CLASS_NORMAL, "label-bar"],
-        label=DEFAULT_LABEL,
       ),
     ]
 

@@ -12,33 +12,25 @@ icon_disconnected = "bluetooth-disconnected-symbolic"
 icon_hardware_disabled = "bluetooth-hardware-disabled-symbolic"
 icon_paired = "bluetooth-paired-symbolic"
 
-
 def bluetooth_render_contents(connected_devices, powered, state, setup_mode):
-  label = "BTH"
   icon = "bluetooth-symbolic"
 
   match state:
     case "absent":
-      label = "N/A"
       icon = icon_hardware_disabled
     case "on":
-      label = "ON"
       icon = icon_active
       if setup_mode:
-        label = "RDY"
         icon = icon_active
       if len(connected_devices) > 0:
-        label = f"{len(connected_devices)} DEV"
         icon = icon_paired
     case "turning-on":
-      label = "BOOT"
       icon = icon_disconnected
     case "turning-off" | "off":
-      label = "OFF"
       icon = icon_disabled
 
   if not powered:
-    label = "OFF"
+    icon = icon_disabled
 
   return [
     widgets.Icon(

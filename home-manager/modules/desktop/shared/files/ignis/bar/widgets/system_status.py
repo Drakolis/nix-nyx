@@ -7,6 +7,10 @@ from .network import NetworkStatusWidget
 from .bluetooth import bluetooth_status
 from .power import PowerStatusWidget
 
+from ignis.services.upower import UPowerService
+
+upower = UPowerService.get_default()
+
 TRAY_ITEM_SPACING = 3
 
 
@@ -19,7 +23,7 @@ def system_status_widget(monitor_id: int) -> widgets.Box:
       AudioStatusWidget(True),
       AudioStatusWidget(False),
       brightness_status(monitor_id),
-      PowerStatusWidget(),
+      PowerStatusWidget() if upower.is_available and len(upower.devices) > 0 else None,
       NetworkStatusWidget(),
       bluetooth_status(),
     ],

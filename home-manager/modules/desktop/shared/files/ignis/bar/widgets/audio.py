@@ -55,10 +55,6 @@ class AudioStatusWidget(widgets.Button):
     self.audio_device = (
       audio_service.speaker if is_output else self.audio_service.microphone
     )
-    self.audio_devices = (
-      audio_service.speakers if is_output else self.audio_service.microphones
-    )
-    self.audio_devices_target = "speakers" if is_output else "microphones"
     self.audio_device_target = "speaker" if is_output else "microphone"
     self.is_output = is_output
 
@@ -85,6 +81,9 @@ class AudioStatusWidget(widgets.Button):
         SetupMenuItemSeparator(),
         SetupMenuItemButton(
           on_click=lambda x: self.open_settings_app(), label="Sound Settings..."
+        ),
+        SetupMenuItemButton(
+          on_click=lambda x: self.open_patchbay_app(), label="Patchbay Control..."
         ),
       ],
     )
@@ -132,6 +131,10 @@ class AudioStatusWidget(widgets.Button):
 
   def open_settings_app(self):
     asyncio.create_task(utils.exec_sh_async("pavucontrol"))
+    self.audio_setup_menu.popdown()
+
+  def open_patchbay_app(self):
+    asyncio.create_task(utils.exec_sh_async("helvum"))
     self.audio_setup_menu.popdown()
 
   def update_audio_status(self, device):
