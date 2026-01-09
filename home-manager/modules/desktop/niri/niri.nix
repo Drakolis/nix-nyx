@@ -362,7 +362,7 @@ in
         };
 
         "Mod+Space" = {
-          action.spawn = commands.runner;
+          action.spawn-sh = commands.runner;
           hotkey-overlay.title = "Application Launcher";
         };
 

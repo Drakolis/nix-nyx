@@ -6,8 +6,9 @@ from ignis.css_manager import CssInfoPath, CssManager
 from bar import Bar
 from osd import OSD
 from dock import Dock, DockTrigger
-from launcher import LauncherTouch
+from launcher import LauncherWindow
 from notifications import NotificationPopup
+from session import SessionMenu
 
 css_manager = CssManager.get_default()
 
@@ -28,9 +29,9 @@ for monitor in range(utils.get_n_monitors()):
   DockTrigger(monitor)
   NotificationPopup(monitor)
 
-  # SessionMenuWindow
+  SessionMenu(monitor)
 
-  # LauncherWindow().widget(i)
-  LauncherTouch(monitor)
+LauncherWindow()
+# LauncherTouch(monitor)
 
-  # ControlCenterWindow(i)
+# ControlCenterWindow(i)
