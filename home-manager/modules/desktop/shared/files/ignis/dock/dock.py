@@ -92,7 +92,7 @@ class Dock(widgets.RevealerWindow):
     revealer = widgets.Revealer(
       transition_type="slide_up",
       child=widgets.Box(
-        css_classes=["dock"],
+        css_classes=["dock", "elevation3"],
         spacing=24,
         child=dock_items,
       ),

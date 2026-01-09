@@ -8,11 +8,16 @@
 }
 
 .dock {
+  margin: 5px 5px 0  5px;
   background-color: rgba(variables.$bg, 0.85);
   border-radius: variables.$shape-corner-xlarge variables.$shape-corner-xlarge 0
     0;
   padding: variables.$shape-corner-xlarge;
   // border: 1px solid variables.$fg-disabled;
+}
+
+.fade {
+  background-color: rgba(variables.$shadow, 0.9);
 }
 
 .margin-auto {
@@ -29,15 +34,23 @@
 }
 
 .elevation1 {
-  box-shadow: 0 0 2px 0 variables.$shadow;
+  box-shadow: 0 0 2px 0 rgba(variables.$shadow, 0.8);
 }
 
 .elevation2 {
-  box-shadow: 0 0 2px 1px variables.$shadow;
+  box-shadow: 0 0 2px 1px rgba(variables.$shadow, 0.8);
 }
 
 .elevation3 {
-  box-shadow: 0 0 3px 2px variables.$shadow;
+  box-shadow: 0 0 3px 2px rgba(variables.$shadow, 0.8);
+}
+
+.elevation4 {
+  box-shadow: 0 0 4px 2px rgba(variables.$shadow, 0.8);
+}
+
+.elevation5 {
+  box-shadow: 0 0 5px 3px rgba(variables.$shadow, 0.8);
 }
 
 .corner-small {

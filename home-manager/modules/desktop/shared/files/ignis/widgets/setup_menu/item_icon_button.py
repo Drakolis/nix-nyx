@@ -31,7 +31,7 @@ class SetupMenuItemIconButton(widgets.Button):
           ),
           widgets.Label(
             label=label,
-            max_width_chars=40,
+            max_width_chars=30,
             ellipsize="end",
           ),
         ]

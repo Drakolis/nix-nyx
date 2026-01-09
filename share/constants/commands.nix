@@ -23,10 +23,10 @@
 
   notifyHyprpicker = ''notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
-  runner = "walker";
+  runner = "ignis open-window eggshell_launcher";
   runnerShift = "walker -m runner";
   runnerClipboard = "walker -m clipboard";
-  shutdown = "wlogout -s";
+  shutdown = "ignis open-window eggshell_session_menu";
 
   autostart = [
     [ "tailscale-systray" ]
