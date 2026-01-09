@@ -7,6 +7,8 @@
 let
   cfg = config.drakolis.desktop;
 
+  hasNiri = builtins.elem "niri" cfg.types;
+  hasHyprland = builtins.elem "hyprland" cfg.types;
   hasAdvanced = builtins.elem "advanced" cfg.profiles;
   hasDownloads = builtins.elem "downloads" cfg.profiles;
   hasEntertainment = builtins.elem "entertainment" cfg.profiles;
@@ -43,7 +45,6 @@ with lib;
 
         gnome-maps
 
-        decibels
         snapshot
 
         element-desktop
