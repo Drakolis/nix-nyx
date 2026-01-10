@@ -1,6 +1,3 @@
-DEFAULT_OSD_ICON = "distributor-logo-nixos"
-
-
 from ignis import widgets
 from ignis import utils
 from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
@@ -10,6 +7,7 @@ from ignis.services.audio import AudioService
 from ignis.services.backlight import BacklightService
 from ignis.services.upower import UPowerService
 from ignis.services.network import NetworkService
+from ignis.services.bluetooth import BluetoothService
 
 from utils import (
   get_audio_input_status_icon,
@@ -18,6 +16,8 @@ from utils import (
 )
 
 import simpleaudio as sa
+
+DEFAULT_OSD_ICON = "distributor-logo-nixos"
 
 
 # from ignis.services.bluetooth import AudioService
@@ -38,6 +38,7 @@ class OSD(widgets.RevealerWindow):
     self.backlight = BacklightService.get_default()
     self.upower = UPowerService.get_default()
     self.network = NetworkService.get_default()
+    self.bluetooth = BluetoothService.get_default()
 
     icon_widget = widgets.Icon(
       image=self.icon,
@@ -105,6 +106,7 @@ class OSD(widgets.RevealerWindow):
     self.upower.display_device.connect(
       "notify::charging", lambda x, y: self.trigger_upower_device(x)
     )
+    self.bluetooth.connect("notify::powered", lambda x, y: self.trigger_bluetooth(x))
 
     self.icon_widget = icon_widget
     self.label_widget = label_widget
@@ -128,6 +130,16 @@ class OSD(widgets.RevealerWindow):
   def trigger_layout(self, layout):
     self.label = f"Layout: {layout.current_name}"
     self.icon = "input-keyboard-symbolic"
+    self.show_scale = False
+    self.trigger()
+
+  def trigger_bluetooth(self, bluetooth):
+    self.label = "Bluetooth On" if bluetooth.powered else "Bluetooth Off"
+    self.icon = (
+      "bluetooth-active-symbolic"
+      if bluetooth.powered
+      else "bluetooth-disabled-symbolic"
+    )
     self.show_scale = False
     self.trigger()
 
