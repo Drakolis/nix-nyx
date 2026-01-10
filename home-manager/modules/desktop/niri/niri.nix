@@ -196,8 +196,8 @@ in
             x = 0;
             y = 0;
           };
-          softness = 5;
-          spread = 2;
+          softness = 6;
+          spread = 3;
         };
 
         insert-hint = {
@@ -653,9 +653,24 @@ in
         "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = [ ];
         "Mod+T".action.toggle-column-tabbed-display = [ ];
 
-        "Print".action.screenshot = [ ];
-        "Shift+Print".action.screenshot-screen = [ ];
-        "Mod+Print".action.screenshot-window = [ ];
+        "Print" = {
+          action.screenshot = [ ];
+          hotkey-overlay.title = "Screenshot of the selection";
+        };
+        "Shift+Print" = {
+          action.screenshot-screen = [ ];
+          hotkey-overlay.title = "Screenshot of the entire screen";
+        };
+        "Mod+Print" = {
+          action.screenshot-window = [ ];
+          hotkey-overlay.title = "Screenshot of the active window";
+        };
+        "Ctrl+Print" = {
+          action.spawn-sh = [
+            "wl-paste --type image/png | satty -f -"
+          ];
+          hotkey-overlay.title = "Edit clipboard image contents";
+        };
 
         "Mod+Escape" = {
           allow-inhibiting = false;

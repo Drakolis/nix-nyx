@@ -131,7 +131,7 @@ class LauncherWindow(widgets.RevealerWindow):
                   widgets.Icon(
                     css_classes=["launcher-input-icon"],
                     image="search-symbolic",
-                    pixel_size=25,
+                    pixel_size=24,
                   ),
                   self.entry,
                 ],
