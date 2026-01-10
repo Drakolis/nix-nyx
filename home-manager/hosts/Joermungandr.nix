@@ -14,6 +14,7 @@
       enableEntertainment = true;
       enableGameDevelopment = true;
       enableGaming = true;
+      enableService = true;
     };
     development = {
       enable = true;
