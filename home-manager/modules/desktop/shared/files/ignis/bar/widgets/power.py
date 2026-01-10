@@ -59,7 +59,7 @@ class PowerStatusWidget(widgets.Button):
     elif battery_percentage < 75:
       icon = f"battery-good{'-charging' if display_device.charging else ''}-symbolic"
       css_class = CSS_CLASS_NORMAL
-    elif battery_percentage < 100:
+    elif battery_percentage <= 100:
       icon = f"battery-full{'-charging' if display_device.charging else ''}-symbolic"
       css_class = CSS_CLASS_NORMAL
     else:
