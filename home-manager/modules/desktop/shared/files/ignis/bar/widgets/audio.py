@@ -114,7 +114,7 @@ class AudioStatusWidget(widgets.Button):
       "notify::volume", lambda x, y: self.update_audio_status(x)
     )
     self.audio_device.connect(
-      "notify::is_muted", lambda x, y: self.update_audio_status(x)
+      "notify::is-muted", lambda x, y: self.update_audio_status(x)
     )
     self.audio_device.connect("notify::name", lambda x, y: self.update_audio_status(x))
 
