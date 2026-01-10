@@ -283,6 +283,15 @@ in
         }
         {
           matches = [
+            { app-id = "^Proton Pass$"; }
+          ];
+          open-floating = true;
+          block-out-from = "screen-capture";
+          default-window-height.fixed = 600;
+          default-column-width.proportion = 0.45;
+        }
+        {
+          matches = [
             {
               app-id = "(steam)$";
               title = "Friends List";
