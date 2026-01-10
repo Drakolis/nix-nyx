@@ -177,6 +177,15 @@ in
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    settings = {
+      theme = "catppuccin-macchiato";
+
+      ui = {
+        pane_frames = {
+          rounded_corners = true;
+        };
+      };
+    };
   };
 
   programs.navi = {
