@@ -18,7 +18,7 @@ class Bar(widgets.Window):
       monitor=monitor_id,
       anchor=["left", "top", "right"],
       exclusivity="exclusive",
-      layer="overlay",
+      layer="top",
       child=widgets.CenterBox(
         css_classes=["bar-container"],
         start_widget=widgets.Box(
