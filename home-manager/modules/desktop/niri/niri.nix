@@ -362,12 +362,12 @@ in
 
         "Mod+A" = {
           action.spawn-sh = "${commands.terminalExec} ${commands.tui.fileManager}";
-          hotkey-overlay.title = "Launch Editor";
+          hotkey-overlay.title = "Launch File Manager";
         };
 
         "Mod+Shift+A" = {
           action.spawn = commands.gui.fileManager;
-          hotkey-overlay.title = "Launch Editor";
+          hotkey-overlay.title = "Launch GUI File Manager";
         };
 
         "Mod+Space" = {
@@ -388,10 +388,10 @@ in
           hotkey-overlay.title = "Shutdown menu";
         };
 
-        "Mod+G" = {
-          action.spawn-sh = ''${commands.notifyHyprpicker} & hyprpicker -a'';
-          hotkey-overlay.title = "Color picker";
-        };
+        # "Mod+G" = {
+        #   action.spawn-sh = ''${commands.notifyHyprpicker} & hyprpicker -a'';
+        #   hotkey-overlay.title = "Color picker";
+        # };
 
         "Mod+Y" = {
           action.spawn = commands.gui.passwords;
@@ -399,7 +399,7 @@ in
         };
 
         "Mod+M" = {
-          action.spawn = "${commands.terminalExec} zsh -c 'wl-paste | ${commands.previewText}'";
+          action.spawn-sh = "${commands.terminalExec} zsh -c 'wl-paste | ${commands.previewText}'";
           hotkey-overlay.title = "Show Clipboard Preview";
         };
 
@@ -500,36 +500,51 @@ in
           action.close-window = [ ];
         };
 
+        # Focus
         "Mod+Left".action.focus-column-left = [ ];
-        "Mod+Down".action.focus-window-down = [ ];
-        "Mod+Up".action.focus-window-up = [ ];
         "Mod+Right".action.focus-column-right = [ ];
         "Mod+H".action.focus-column-left = [ ];
-        "Mod+J".action.focus-window-down = [ ];
-        "Mod+K".action.focus-window-up = [ ];
         "Mod+L".action.focus-column-right = [ ];
+
+        # Only focus on the same workspace
+        # "Mod+Down".action.focus-window-down = [ ];
+        # "Mod+Up".action.focus-window-up = [ ];
+        # "Mod+J".action.focus-window-down = [ ];
+        # "Mod+K".action.focus-window-up = [ ];
+
+        "Mod+Down".action.focus-window-or-workspace-down = [ ];
+        "Mod+Up".action.focus-window-or-workspace-up = [ ];
+        "Mod+J".action.focus-window-or-workspace-down = [ ];
+        "Mod+K".action.focus-window-or-workspace-up = [ ];
+
         "Mod+Z".action.focus-window-previous = [ ];
 
+        # Position
         "Mod+Shift+Left".action.move-column-left = [ ];
-        "Mod+Shift+Down".action.move-window-down = [ ];
-        "Mod+Shift+Up".action.move-window-up = [ ];
         "Mod+Shift+Right".action.move-column-right = [ ];
         "Mod+Shift+H".action.move-column-left = [ ];
-        "Mod+Shift+J".action.move-window-down = [ ];
-        "Mod+Shift+K".action.move-window-up = [ ];
         "Mod+Shift+L".action.move-column-right = [ ];
-        # // Alternative commands that move across workspaces when reaching
-        # // the first or last window in a column.
-        # // Mod+J     { focus-window-or-workspace-down; }
-        # // Mod+K     { focus-window-or-workspace-up; }
-        # // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-        # // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+
+        "Mod+Shift+Down".action.move-window-down-or-to-workspace-down = [ ];
+        "Mod+Shift+Up".action.move-window-up-or-to-workspace-up = [ ];
+        "Mod+Shift+J".action.move-window-down-or-to-workspace-down = [ ];
+        "Mod+Shift+K".action.move-window-up-or-to-workspace-up = [ ];
+
+        # Only focus on the same workspace
+        # "Mod+Shift+Down".action.move-window-down = [ ];
+        # "Mod+Shift+Up".action.move-window-up = [ ];
+        # "Mod+Shift+J".action.move-window-down = [ ];
+        # "Mod+Shift+K".action.move-window-up = [ ];
 
         # Column actions
         "Mod+Home".action.focus-column-first = [ ];
         "Mod+End".action.focus-column-last = [ ];
-        "Mod+Ctrl+Home".action.move-column-to-first = [ ];
-        "Mod+Ctrl+End".action.move-column-to-last = [ ];
+        "Mod+Ctrl+H".action.focus-column-first = [ ];
+        "Mod+Ctrl+L".action.focus-column-last = [ ];
+        "Mod+Shift+Home".action.move-column-to-first = [ ];
+        "Mod+Shift+End".action.move-column-to-last = [ ];
+        "Mod+Ctrl+Shift+H".action.move-column-to-first = [ ];
+        "Mod+Ctrl+Shift+L".action.move-column-to-last = [ ];
 
         # Monitor actions (needs review)
         # Mod+Shift+Left  { focus-monitor-left; }
@@ -635,9 +650,11 @@ in
 
         # Sizing
         "Mod+R".action.switch-preset-column-width = [ ];
-        # "Mod+R".action.switch-preset-column-width-back = [ ];
-        "Mod+Shift+R".action.switch-preset-window-height = [ ];
-        "Mod+Ctrl+R".action.reset-window-height = [ ];
+        "Mod+Shift+R".action.switch-preset-column-width-back = [ ];
+
+        "Mod+Ctrl+R".action.switch-preset-window-height = [ ];
+        "Mod+Ctrl+Alt+R".action.reset-window-height = [ ];
+
         "Mod+F" = {
           action.maximize-column = [ ];
           hotkey-overlay.title = "Maximize Column";
@@ -648,8 +665,8 @@ in
         };
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
-        "Mod+Shift+Minus".action.set-window-height = "-10%";
-        "Mod+Shift+Equal".action.set-window-height = "+10%";
+        "Mod+Ctrl+Minus".action.set-window-height = "-10%";
+        "Mod+Ctrl+Equal".action.set-window-height = "+10%";
 
         "Mod+Ctrl+F".action.expand-column-to-available-width = [ ];
 
@@ -686,7 +703,6 @@ in
           action.toggle-keyboard-shortcuts-inhibit = [ ];
         };
 
-        # "Mod+Shift+E".action.quit = [ ];
         "Ctrl+Alt+Delete".action.quit = [ ];
         "Mod+Shift+P" = {
           action.power-off-monitors = [ ];
