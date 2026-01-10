@@ -22,7 +22,7 @@ def get_extended_app_icon(app_id) -> str:
 
 
 def get_audio_device_icon(name_id) -> str:
-  if "bluetooth" in name_id:
+  if "bluez_output" in name_id:
     return "bluetooth-symbolic"
   elif "hdmi" in name_id:
     return "video-display-symbolic"
@@ -37,7 +37,7 @@ def get_audio_device_icon(name_id) -> str:
   elif "alsa_output.usb" in name_id:
     return "audio-card-usb-symbolic"
 
-  if "bluetooth" in name_id:
+  if "bluez_input" in name_id:
     return "bluetooth-symbolic"
   if "alsa_input.pci" in name_id:
     return "audio-card-symbolic"
