@@ -255,6 +255,33 @@ in
 
       window-rules = [
         {
+          # Rules for windows that should clearly float, but don't
+          matches = [
+            {
+              app-id = "engrampa";
+              title = "Compress";
+            }
+            {
+              app-id = "tvp-git-helper";
+            }
+            {
+              app-id = "(firefox|librewolf|zen-beta)$";
+              title = "Picture-in-Picture";
+            }
+          ];
+          open-floating = true;
+        }
+        {
+          # Rules for windows that should not be shared
+          matches = [
+            { app-id = "^org\.keepassxc\.KeePassXC$"; }
+            { app-id = "^org\.gnome\.World\.Secrets$"; }
+            { app-id = "^org\.kde\.kwalletmanager$"; }
+            { app-id = "^Proton Pass$"; }
+          ];
+          block-out-from = "screen-capture";
+        }
+        {
           matches = [
             {
               app-id = "(steam)$";
@@ -271,30 +298,12 @@ in
         {
           matches = [
             {
-              app-id = "(firefox|librewolf|zen-beta)$";
-              title = "Picture-in-Picture";
-            }
-          ];
-          open-floating = true;
-        }
-        {
-          matches = [
-            {
               title = "^((Open|Save).*)$";
             }
           ];
           open-floating = true;
           default-window-height.fixed = 600;
           default-column-width.proportion = 0.45;
-        }
-        {
-          matches = [
-            { app-id = "^org\.keepassxc\.KeePassXC$"; }
-            { app-id = "^org\.gnome\.World\.Secrets$"; }
-            { app-id = "^org\.kde\.kwalletmanager$"; }
-            { app-id = "^Proton Pass$"; }
-          ];
-          block-out-from = "screen-capture";
         }
         # GLOBAL
         {
