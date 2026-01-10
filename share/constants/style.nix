@@ -7,7 +7,7 @@ in
 
   fontGui = "Ubuntu Sans";
   fontGuiNerd = "Ubuntu Nerd Font";
-  fontMonospace = "JetBrainsMono Nerd Font";
+  fontMonospace = "JetBrainsMono Nerd Font Mono";
   fontSize = 12;
   fontMonospaceSize = 12;
   fontSizeLarger = 14;
