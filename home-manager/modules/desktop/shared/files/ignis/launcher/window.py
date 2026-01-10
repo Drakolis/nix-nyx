@@ -171,7 +171,7 @@ class LauncherWindow(widgets.RevealerWindow):
 
   def __on_accept(self, *args) -> None:
     if len(self._app_list.child) > 0:
-      self.actions[0].child[0].action()
+      self._app_list.child[0].action()
 
   def __search(self, *args) -> None:
     query = self.entry.text
