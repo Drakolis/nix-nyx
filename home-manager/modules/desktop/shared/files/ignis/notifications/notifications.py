@@ -1,4 +1,6 @@
 import asyncio
+import re
+
 from ignis import widgets
 from ignis import utils
 from ignis.services.notifications import Notification, NotificationService
@@ -15,7 +17,7 @@ class ScreenshotLayout(widgets.Box):
         widgets.Box(
           child=[
             widgets.Picture(
-              image=notification.icon,
+              image=re.sub("file://", "", re.sub("%20", " ", notification.icon)),
               content_fit="cover",
               width=1920 // 7,
               height=1080 // 7,
@@ -32,8 +34,12 @@ class ScreenshotLayout(widgets.Box):
           ],
         ),
         widgets.Label(
-          label="Screenshot saved",
-          css_classes=["notification-screenshot-label"],
+          label=notification.summary,
+          css_classes=["notification-screenshot-label", "notification-summary"],
+        ),
+        widgets.Label(
+          label=notification.body,
+          css_classes=["notification-screenshot-label", "notification-body"],
         ),
         widgets.Box(
           homogeneous=True,
@@ -125,7 +131,7 @@ class NotificationWidget(widgets.Box):
   def __init__(self, notification: Notification) -> None:
     layout: NormalLayout | ScreenshotLayout
 
-    if notification.app_name == "grimblast":
+    if re.match(".*\.(png|jpg|jpeg|bmp)$", notification.icon):
       layout = ScreenshotLayout(notification)
     else:
       layout = NormalLayout(notification)

@@ -11,7 +11,6 @@ from widgets.setup_menu import (
   SetupMenuItemIconButton,
 )
 
-# TODO: Subscribe OSD for device_added/remove_device events
 
 icon_active = "bluetooth-active-symbolic"
 icon_disabled = "bluetooth-disabled-symbolic"
@@ -26,8 +25,8 @@ class BluetoothSetupDeviceItem(SetupMenuItemIconButton):
     self.connected = device.connected
 
     description = device.alias
-    address = device.address
     icon = f"{device.icon_name}-symbolic"
+    # TODO: Add battery level
 
     on_click = lambda x: asyncio.create_task(self.sync_connect())
     setup_button = lambda self: device.connect("removed", lambda x: self.unparent())
