@@ -22,6 +22,20 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    programs.gamemode.enable = true;
+    programs.steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
+    };
+
+    programs.gamemode = {
+      settings = {
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send -i gamepad 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send -i gamepad 'GameMode ended'";
+        };
+      };
+      enable = true;
+    };
   };
 }

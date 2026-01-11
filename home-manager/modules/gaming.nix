@@ -23,6 +23,11 @@ with lib;
 
   config = mkIf cfg.enable {
     programs.mangohud = {
+      settingsPerApplication = {
+        mpv = {
+          no_display = true;
+        };
+      };
       enable = true;
     };
   };
