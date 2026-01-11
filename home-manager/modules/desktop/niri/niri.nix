@@ -23,7 +23,6 @@ in
 
       spawn-at-startup = [
         { command = [ "tailscale-systray" ]; }
-        { command = [ "flameshot" ]; }
         {
           argv = [
             "niri-screen-time"
@@ -263,7 +262,7 @@ in
             }
             {
               app-id = "thunar";
-              title = "File Operation Progress";
+              title = "^(File Operation Progress|Rename \".*\")$";
             }
             {
               app-id = "tvp-git-helper";
@@ -683,9 +682,17 @@ in
           action.maximize-column = [ ];
           hotkey-overlay.title = "Maximize Column";
         };
+        "Mod+Alt+F" = {
+          action.maximize-window-to-edges = [ ];
+          hotkey-overlay.title = "Make window Maximized";
+        };
         "Mod+Shift+F" = {
           action.fullscreen-window = [ ];
-          hotkey-overlay.title = "Make window Fullscreen";
+          hotkey-overlay.title = "Make window Full screen";
+        };
+        "Mod+Shift+Alt+F" = {
+          action.toggle-windowed-fullscreen = [ ];
+          hotkey-overlay.title = "Trick window into thinking it's Full screen";
         };
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
