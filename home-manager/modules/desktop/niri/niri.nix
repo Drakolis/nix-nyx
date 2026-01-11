@@ -262,6 +262,10 @@ in
               title = "Compress";
             }
             {
+              app-id = "thunar";
+              title = "File Operation Progress";
+            }
+            {
               app-id = "tvp-git-helper";
             }
             {
@@ -277,13 +281,13 @@ in
             { app-id = "^org\.keepassxc\.KeePassXC$"; }
             { app-id = "^org\.gnome\.World\.Secrets$"; }
             { app-id = "^org\.kde\.kwalletmanager$"; }
-            { app-id = "^Proton Pass$"; }
+            { app-id = "Proton Pass"; }
           ];
           block-out-from = "screen-capture";
         }
         {
           matches = [
-            { app-id = "^Proton Pass$"; }
+            { app-id = "Proton Pass"; }
           ];
           open-floating = true;
           block-out-from = "screen-capture";
@@ -291,9 +295,10 @@ in
           default-column-width.proportion = 0.45;
         }
         {
+          # Rules for steam friend list to get out of the way
           matches = [
             {
-              app-id = "(steam)$";
+              app-id = "steam";
               title = "Friends List";
             }
           ];
@@ -305,9 +310,14 @@ in
           };
         }
         {
+          # Rules for windows that should clearly float and also be limited in size
           matches = [
             {
               title = "^((Open|Save).*)$";
+            }
+            {
+              app-id = "kitty";
+              title = "Clipboard preview";
             }
           ];
           open-floating = true;
@@ -384,6 +394,11 @@ in
           hotkey-overlay.title = "Application Launcher";
         };
 
+        "Mod+F5" = {
+          action.spawn-sh = "ignis reload";
+          hotkey-overlay.title = "Reload Shell";
+        };
+
         "Mod+Ctrl+Q" = {
           action.spawn = [
             "loginctl"
@@ -408,7 +423,7 @@ in
         };
 
         "Mod+M" = {
-          action.spawn-sh = "${commands.terminalExec} zsh -c 'wl-paste | ${commands.previewText}'";
+          action.spawn-sh = "${commands.terminal} -T=\"Clipboard preview\" -e zsh -c 'wl-paste | ${commands.previewText}'";
           hotkey-overlay.title = "Show Clipboard Preview";
         };
 
