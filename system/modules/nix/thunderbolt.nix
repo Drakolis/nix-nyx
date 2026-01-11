@@ -20,13 +20,7 @@ with lib;
       };
     };
   };
-
   config = mkIf cfg.enable {
-
     services.hardware.bolt.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      kdePackages.plasma-thunderbolt
-    ];
   };
 }

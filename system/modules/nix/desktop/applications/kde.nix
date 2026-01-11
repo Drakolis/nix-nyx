@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.drakolis.desktop;
+  cfgBolt = config.drakolis.thunderbolt;
 
   hasKde = builtins.elem "kde" cfg.types;
   hasAdvanced = builtins.elem "advanced" cfg.profiles;
@@ -76,6 +77,9 @@ with lib;
       ]
       ++ lib.optionals hasRemoteDesktop [
         kdePackages.krfb
+      ]
+      ++ lib.optionals [
+        kdePackages.plasma-thunderbolt
       ];
 
     programs.kdeconnect.enable = true;
