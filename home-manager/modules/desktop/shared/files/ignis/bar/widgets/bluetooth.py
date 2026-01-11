@@ -27,6 +27,7 @@ class BluetoothSetupDeviceItem(SetupMenuItemIconButton):
     description = device.alias
     icon = f"{device.icon_name}-symbolic"
     # TODO: Add battery level
+    # TODO: Should sometimes reset the items in the list, otherwise gets overwhelming
 
     on_click = lambda x: asyncio.create_task(self.sync_connect())
     setup_button = lambda self: device.connect("removed", lambda x: self.unparent())
