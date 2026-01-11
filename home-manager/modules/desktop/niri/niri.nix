@@ -265,6 +265,10 @@ in
               title = "^(File Operation Progress|Rename \".*\")$";
             }
             {
+              title = "Select a process name...";
+              app-id = "caffeine";
+            }
+            {
               app-id = "tvp-git-helper";
             }
             {
