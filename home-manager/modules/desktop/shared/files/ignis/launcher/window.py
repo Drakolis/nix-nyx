@@ -28,7 +28,7 @@ def map_application_to_action(app):
     title=app.name,
     description=app.description,
     icon=app.icon,
-    action=lambda: app.launch(terminal_format="rio -e %command%"),
+    action=lambda: app.launch(terminal_format="kitty -e %command%"),
   )
 
 

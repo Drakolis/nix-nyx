@@ -15,7 +15,7 @@ with lib;
 {
   config = mkIf cfg.enable {
     programs.zed-editor = {
-      enable = true;
+      enable = false;
       extensions = [
         "catppuccin"
         "symbols"
@@ -52,9 +52,13 @@ with lib;
           };
         };
 
+        "relative_line_numbers" = "enabled";
+        "vim_mode" = true;
         "use_system_prompts" = false;
         "use_system_path_prompts" = false;
 
+        "disable_ai" = false;
+        "base_keymap" = "VSCode";
         "terminal" = {
           "dock" = "bottom";
         };

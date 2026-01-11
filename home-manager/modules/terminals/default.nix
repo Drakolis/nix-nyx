@@ -3,7 +3,7 @@ let
 in
 {
   programs.rio = {
-    enable = true;
+    enable = false;
     settings = {
       theme = "catppuccin-mocha";
       confirm-before-quit = true;
@@ -68,7 +68,6 @@ in
       cursor-style = "block";
 
       gtk-titlebar = true;
-      gtk-adwaita = false;
       window-theme = "ghostty";
       confirm-close-surface = false;
 
@@ -126,7 +125,7 @@ in
   };
 
   programs.kitty = {
-    enable = false;
+    enable = true;
     font = {
       name = style.fontMonospace;
       size = style.fontMonospaceSize;

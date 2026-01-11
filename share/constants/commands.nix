@@ -1,6 +1,6 @@
 {
-  terminal = "rio";
-  terminalExec = "rio -e";
+  terminal = "kitty";
+  terminalExec = "kitty -e";
 
   tui = {
     editor = "nvim";
