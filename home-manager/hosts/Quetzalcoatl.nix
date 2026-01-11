@@ -32,6 +32,9 @@
     media = {
       enable = false;
     };
+    showoff = {
+      enable = true;
+    };
   };
 
   # Has no other image editing tools
