@@ -28,6 +28,7 @@ with lib;
     };
   };
   imports = [
+    ./desktop/aerospace.nix
     ./browser.nix
     ./development
     ./espanso.nix
