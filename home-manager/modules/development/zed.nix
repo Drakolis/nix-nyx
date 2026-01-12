@@ -5,11 +5,12 @@
   ...
 }:
 let
+  style = import ../../../share/constants/style.nix;
   cfg = config.drakolis.development;
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
-  bufferFontSize = if isDarwin then 13 else 13;
-  uiFontSize = if isDarwin then 15 else 15;
+  bufferFontSize = style.fontMonospaceSizeLarger;
+  uiFontSize = style.fontSizeLarger;
 in
 with lib;
 {
