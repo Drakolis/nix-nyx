@@ -8,5 +8,7 @@
       "wootility"
       "rar"
       "1password"
+      "steam"
+      "steam-unwrapped"
     ];
 }

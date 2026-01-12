@@ -26,7 +26,6 @@ let
 
   developmentGameFlatpaks = [
     "org.godotengine.Godot"
-    "org.godotengine.GodotSharp"
   ];
 
   entertainmentFlatpaks = [
@@ -34,8 +33,6 @@ let
   ];
 
   gamingFlatpaks = [
-    "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/25.08"
-    "com.valvesoftware.Steam"
     "net.lutris.Lutris"
     "com.discordapp.Discord"
   ];

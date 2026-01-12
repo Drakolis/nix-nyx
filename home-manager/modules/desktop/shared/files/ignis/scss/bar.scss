@@ -110,7 +110,6 @@
   color: variables.$bluetooth;
 }
 
-
 .setup-menu {
   padding: 0.5rem;
 
@@ -155,6 +154,7 @@
         padding: 0.35rem 0.35rem;
       }
 
+
       &.active {
         background-color: variables.$primary;
 
@@ -165,6 +165,14 @@
 
       &.audio-active {
         background-color: variables.$audio;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      &.bluetooth-active {
+        background-color: variables.$bluetooth;
 
         .setup-menu-button-icon-image {
           color: variables.$bg;

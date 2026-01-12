@@ -1,11 +1,11 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.flameshot
+    pkgs.satty
   ];
 
   services.flameshot = {
-    enable = true;
+    enable = false;
     settings = {
       General = {
 

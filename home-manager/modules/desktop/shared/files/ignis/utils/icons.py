@@ -21,19 +21,33 @@ def get_extended_app_icon(app_id) -> str:
 # def get_extended_app_icon_color(name) -> str:
 
 
-def get_audio_device_icon(id) -> str:
-  # audio-headphones-symbolic.svg
-  # audio-headset-symbolic.svg
-  # audio-input-microphone-symbolic.svg
-  # audio-speakers-symbolic.svg
-  if "alsa_output.pci" in id:
+def get_audio_device_icon(name_id) -> str:
+  if "bluez_output" in name_id:
+    return "bluetooth-symbolic"
+  elif "hdmi" in name_id:
+    return "video-display-symbolic"
+  elif "alsa_output.pci" in name_id:
     return "audio-card-symbolic"
-  elif "alsa_output.usb" in id:
+  elif "SPDIF" in name_id:
+    return "audio-card-symbolic"
+  elif "Headphones" in name_id:
+    return "audio-headphones-symbolic"
+  elif "Speaker" in name_id:
+    return "audio-speakers-symbolic"
+  elif "alsa_output.usb" in name_id:
     return "audio-card-usb-symbolic"
 
-  if "alsa_input.pci" in id:
+  if "bluez_input" in name_id:
+    return "bluetooth-symbolic"
+  if "alsa_input.pci" in name_id:
     return "audio-card-symbolic"
-  elif "alsa_input.usb" in id:
+  elif "Mic" in name_id:
+    return "audio-input-microphone-symbolic"
+  elif "Line" in name_id:
+    return "audio-input-microphone-symbolic"
+  elif "Webcam" in name_id:
+    return "camera-web-symbolic"
+  elif "alsa_input.usb" in name_id:
     return "audio-card-usb-symbolic"
 
 

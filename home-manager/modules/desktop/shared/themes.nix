@@ -1,6 +1,24 @@
 { pkgs, ... }:
 let
   style = import ../../../../share/constants/style.nix;
+
+  gtkTheme = (
+    pkgs.catppuccin-gtk.override {
+      accents = [ "mauve" ];
+      variant = "mocha";
+    }
+  );
+
+  gtkThemeColloid = (
+    pkgs.colloid-gtk-theme.override {
+      themeVariants = [ "purple" ];
+      tweaks = [
+        "catppuccin"
+        "rimless"
+      ];
+    }
+  );
+
 in
 {
   home.packages = with pkgs; [
@@ -26,11 +44,6 @@ in
     qt6Packages.qtstyleplugin-kvantum
     (catppuccin-kvantum.override {
       accent = "mauve";
-      variant = "mocha";
-    })
-
-    (catppuccin-gtk.override {
-      accents = [ "mauve" ];
       variant = "mocha";
     })
   ];
@@ -60,6 +73,7 @@ in
     };
     theme = {
       name = "catppuccin-mocha-mauve-standard";
+      package = gtkTheme;
       # name = "Breeze";
     };
     gtk3.extraConfig = {

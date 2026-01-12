@@ -24,7 +24,6 @@ class DockItem(widgets.Button):
   def __init__(self, window: NiriWindow):
     app_id = window.app_id
 
-    # TODO: Menu widget should somehow prevent the dock from closing
     menu_widget = widgets.PopoverMenu(
       css_classes=["menu"],
       model=IgnisMenuModel(
@@ -59,25 +58,28 @@ class DockItem(widgets.Button):
           widgets.Box(
             valign="start",
             halign="center",
-            css_classes=[
-              "running-indicator" if window.is_focused else None
-            ],  # TODO: Indicator for floating
-          )
+            css_classes=["running-indicator" if window.is_focused else None],
+          ),
+          menu_widget,
         ],
       ),
       tooltip_text=window.title,  # TODO: Tooltip is not the beest
       on_click=lambda x: window.focus(),
-      on_right_click=lambda x: menu_widget.popup(),
+      on_right_click=lambda x: self._popup_menu_and_block_autohide(),
     )
 
     self.window = window
     self.menu_widget = menu_widget
+
+  def _popup_menu_and_block_autohide(self, *args):
+    self.menu_widget.popup()
 
 
 class Dock(widgets.RevealerWindow):
   def __init__(self, monitor_id: int):
     self.monitor_id = 0
     self.timeout = False
+    self._has_popup = False
 
     self.hyprland = HyprlandService.get_default()
     self.niri = NiriService.get_default()
@@ -92,7 +94,7 @@ class Dock(widgets.RevealerWindow):
     revealer = widgets.Revealer(
       transition_type="slide_up",
       child=widgets.Box(
-        css_classes=["dock"],
+        css_classes=["dock", "elevation3"],
         spacing=24,
         child=dock_items,
       ),
@@ -141,7 +143,8 @@ class Dock(widgets.RevealerWindow):
     self.show_dock()
 
   def on_hover_lost_handler(self, *args):
-    self.timeout_dock()
+    if not self._has_popup:
+      self.timeout_dock()
 
 
 class DockTrigger(widgets.Window):

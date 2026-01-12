@@ -14,6 +14,7 @@
       enableEntertainment = true;
       enableGameDevelopment = true;
       enableGaming = true;
+      enableService = true;
     };
     development = {
       enable = true;
@@ -49,7 +50,7 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.3.4"
+    "beekeeper-studio-5.5.3"
   ];
 
   # Nicely reload system units when changing configs

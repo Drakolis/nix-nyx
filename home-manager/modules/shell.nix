@@ -175,16 +175,17 @@ in
 
   programs.zellij = {
     enable = true;
-    # enableBashIntegration = true;
-    # enableZshIntegration = true;
-    # enableNushellIntegration = true;
+    enableBashIntegration = true;
+    enableZshIntegration = true;
     settings = {
-      theme = "catppuccin-mocha";
-      pane_frames = {
-        rounded_corners = true;
+      theme = "catppuccin-macchiato";
+
+      ui = {
+        pane_frames = {
+          rounded_corners = true;
+        };
       };
     };
-
   };
 
   programs.navi = {
@@ -282,4 +283,11 @@ in
   };
 
   programs.aichat.enable = true;
+
+  programs.carapace = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+  };
 }

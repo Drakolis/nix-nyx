@@ -3,7 +3,7 @@ from .audio import AudioStatusWidget
 from .keyboard import keyboard_status
 from .power import PowerStatusWidget
 from .network import NetworkStatusWidget
-from .bluetooth import bluetooth_status
+from .bluetooth import BluetoothStatusWidget
 
 from .system_tray import system_tray_widget
 from .system_status import system_status_widget
@@ -18,8 +18,7 @@ all = [
   "keyboard_status",
   "PowerStatusWidget",
   "NetworkStatusWidget",
-  "bluetooth_status",
-
+  "BluetoothStatusWidget",
   "system_tray_widget",
   "system_status_widget",
   "date_time_widget",

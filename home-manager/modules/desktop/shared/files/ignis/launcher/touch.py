@@ -1,4 +1,3 @@
-from ast import Lambda
 from ignis import widgets
 from ignis import utils
 
@@ -50,7 +49,7 @@ class LauncherTouchItem(widgets.Button):
 
 class LauncherTouch(widgets.RevealerWindow):
   def __init__(self, monitor_id: int):
-    self.monitor_id = 0
+    self.monitor_id = monitor_id
     self.timeout = False
     self.applications = ApplicationsService.get_default()
     self.applications_list = self.applications.apps
@@ -74,18 +73,20 @@ class LauncherTouch(widgets.RevealerWindow):
         vexpand=True,
       ),
     )
+
+
     revealer = widgets.Revealer(
       transition_type="crossfade",
       transition_duration=300,
       reveal_child=True,
       hexpand=True,
       vexpand=True,
+      child=widgets.Box(css_classes=["popup"],)
     )
 
     container = widgets.EventBox(
-      child=[revealer],
-      css_classes=["popup"],
       vexpand=True,
+      child=revealer,
       # on_hover=self.on_hover_handler,
       # on_hover_lost=self.on_hover_lost_handler,
     )
@@ -96,7 +97,6 @@ class LauncherTouch(widgets.RevealerWindow):
       layer="top",
       exclusivity="ignore",
       anchor=["bottom", "top", "left", "right"],
-      child=container,
       revealer=revealer,
       kb_mode="on_demand",  # TODO: Keyboard navigation
       popup=True,

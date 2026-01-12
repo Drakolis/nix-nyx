@@ -1,5 +1,4 @@
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = " "
 
 -- makes current file executable
 vim.keymap.set("n", "<leader>x", ":silent !chmod +x % >/dev/null 2>&1<CR>:lua print('File is now executable.')<CR>", { noremap = true, silent = true })

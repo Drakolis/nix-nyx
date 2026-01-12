@@ -38,7 +38,7 @@ def brightness_render_contents(available, brightness, brightness_max):
   brightness_icon = (
     get_brightness_status_icon(brightness_percentage)
     if available
-    else "display-brightness-symbolic"
+    else "video-display-symbolic"
   )
 
   scale_menu_item.set_value(brightness_percentage)
