@@ -28,6 +28,7 @@ let
     "google.com"
     "youtube.com"
     "apple.com"
+    "structured.app"
   ];
 
   timezoneDomains = [
