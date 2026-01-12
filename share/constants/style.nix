@@ -10,8 +10,8 @@ in
   fontMonospace = "JetBrainsMono Nerd Font";
   fontSize = 12;
   fontMonospaceSize = 12;
-  fontSizeLarger = 14;
-  fontSizeLargest = 16;
+  fontSizeLarger = 13;
+  fontMonospaceSizeLarger = 14;
 
   opacity = {
     background = {
