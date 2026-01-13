@@ -69,16 +69,20 @@ class BluetoothStatusWidget(widgets.Box):
 
     self.bluetooth_setup_devices = widgets.Box(vertical=True)
 
+    self.bluetooth_setup_hideable = [
+      SetupMenuItemSeparator(),
+      widgets.Scroll(
+        child=self.bluetooth_setup_devices,
+        min_content_height=50,
+        max_content_height=250,
+        propagate_natural_height=True,
+      ),
+    ]
+
     self.bluetooth_setup_menu = SetupMenuPopover(
       child=[
         self.bluetooth_setup_menu_header,
-        SetupMenuItemSeparator(),
-        widgets.Scroll(
-          child=self.bluetooth_setup_devices,
-          min_content_height=50,
-          max_content_height=250,
-          propagate_natural_height=True,
-        ),
+        *self.bluetooth_setup_hideable,
         SetupMenuItemSeparator(),
         SetupMenuItemButton(
           on_click=lambda x: self.__start_discovery(), label="Start discovery..."
@@ -132,8 +136,11 @@ class BluetoothStatusWidget(widgets.Box):
       case "absent":
         icon = icon_hardware_disabled
         label = "Turned Off"
+        self.bluetooth_setup_devices.child = [] # This is quite non-obvious, but when device goes to sleep -- device is absent. When it goes back, the events with devices start coming back again.
       case "on":
         icon = icon_active
+        self.bluetooth_setup_hideable[1].visible = True
+        self.bluetooth_setup_hideable[0].visible = True
         if bluetooth_service.setup_mode:
           label = "Discovering..."
         elif len(bluetooth_service.connected_devices) > 0:
@@ -149,6 +156,8 @@ class BluetoothStatusWidget(widgets.Box):
     if not bluetooth_service.powered:
       icon = icon_disabled
       label = "Turned Off"
+      self.bluetooth_setup_hideable[1].visible = False
+      self.bluetooth_setup_hideable[0].visible = False
 
     self.bluetooth_icon.image = icon
     self.bluetooth_setup_menu_header.set_subtitle(label)
