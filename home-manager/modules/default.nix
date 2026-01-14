@@ -29,6 +29,7 @@ with lib;
   };
   imports = [
     ./desktop/aerospace.nix
+    ./linux-scripts
     ./browser.nix
     ./development
     ./espanso.nix
