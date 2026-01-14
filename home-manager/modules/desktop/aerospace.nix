@@ -141,7 +141,7 @@ in
     };
   };
   services.jankyborders = {
-    enable = true;
+    enable = isDarwin;
     settings = {
       style = "round";
       width = style.border.outer.width;
