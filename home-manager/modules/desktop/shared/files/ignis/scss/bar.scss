@@ -1,7 +1,7 @@
 @use "variables";
 
 .bar-container {
-  margin: 5px 2px;
+  margin: 5px 2px 0;
   color: variables.$fg;
   font-size: 12pt;
 }

@@ -9,6 +9,7 @@ from dock import Dock, DockTrigger
 from launcher import LauncherWindow
 from notifications import NotificationPopup
 from session import SessionMenu
+from chat_center import ChatCenter
 
 css_manager = CssManager.get_default()
 
@@ -28,7 +29,7 @@ for monitor in range(utils.get_n_monitors()):
   Dock(monitor)
   DockTrigger(monitor)
   NotificationPopup(monitor)
-
+  ChatCenter(monitor)
   SessionMenu(monitor)
 
 LauncherWindow()

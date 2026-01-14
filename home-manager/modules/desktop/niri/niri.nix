@@ -397,6 +397,11 @@ in
           hotkey-overlay.title = "Application Launcher";
         };
 
+        "Mod+F2" = {
+          action.spawn-sh = "ignis toggle-window eggshell_chat_center_0";
+          hotkey-overlay.title = "Reload Shell";
+        };
+
         "Mod+F5" = {
           action.spawn-sh = "ignis reload";
           hotkey-overlay.title = "Reload Shell";

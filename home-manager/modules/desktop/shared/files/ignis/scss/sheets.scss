@@ -7,6 +7,29 @@
   // border: 1px solid variables.$fg-disabled;
 }
 
+.flyout-left {
+  margin: 10px 5px 10px 0;
+  border-radius: 0 variables.$shape-corner-xlarge variables.$shape-corner-xlarge 0; 
+  padding: variables.$shape-corner-xlarge;
+  background-color: variables.$bg;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.flyout-right {
+  margin: 10px 0 10px 5px;
+  border-radius: variables.$shape-corner-xlarge 0 0 variables.$shape-corner-xlarge; 
+  padding: variables.$shape-corner-xlarge;
+  background-color: variables.$bg;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.input {
+  background-color: variables.$bg-input;
+  border-radius: variables.$shape-corner-large;
+  padding: variables.$shape-corner-large;
+  font-size: 13pt;
+}
+
 .dock {
   margin: 5px 5px 0  5px;
   background-color: rgba(variables.$bg, 0.85);
