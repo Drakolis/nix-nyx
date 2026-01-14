@@ -17,6 +17,7 @@ def sort_niri_windows(windows: [NiriWindow]):
     key=lambda window: window.layout.pos_in_scrolling_layout[0]
     if window.layout.pos_in_scrolling_layout
     else 1000,  # TODO: this line basically means that any floating windows go last
+    # TODO: Now it shows everything on the same dock, but we should take workspace_id into an account
   )
 
 

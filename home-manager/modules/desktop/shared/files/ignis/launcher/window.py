@@ -151,7 +151,7 @@ class LauncherWindow(widgets.RevealerWindow):
     super().__init__(
       namespace="eggshell_launcher",
       # monitor=niri.bind("active_output", lambda output: output == monitor_name),
-      kb_mode="on_demand",
+      kb_mode="exclusive",
       popup=True,
       visible=False,
       layer="top",
