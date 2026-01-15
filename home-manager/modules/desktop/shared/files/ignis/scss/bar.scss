@@ -18,9 +18,8 @@
 
   .pill-button {
     border-radius: 1rem;
-    padding: 0.25rem 0.25rem;
+    padding: 0.25rem 0.3rem;
     transition: 0.3s;
-    min-width: 1.8rem;
   }
 
   .pill-button label {
@@ -29,8 +28,8 @@
   }
 
   .pill-button.workspace {
-    padding-left: 0.8rem;
-    padding-right: 0.4rem;
+    padding-left: 0.7rem;
+    padding-right: 0.3rem;
     min-width: 1rem;
   }
 

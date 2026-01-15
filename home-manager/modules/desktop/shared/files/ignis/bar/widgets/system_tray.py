@@ -15,23 +15,23 @@ def system_tray_item(item: SystemTrayItem) -> widgets.Button:
   else:
     menu = None
 
-  return widgets.Button(
-    css_classes=["pill-button"],
-    child=widgets.Box(
-      child=[
-        widgets.Icon(
+  return widgets.Box(
+    setup=lambda self: item.connect("removed", lambda x: self.unparent()),
+    child=[
+      widgets.Button(
+        tooltip_text=item.bind("tooltip"),
+        on_click=lambda x: menu.popup() if menu else None,
+        on_right_click=lambda x: menu.popup() if menu else None,
+        css_classes=["pill-button"],
+        child=widgets.Icon(
           css_classes=["tray-label"],
           image=item.bind("icon"),
           pixel_size=24,
           hexpand=True,
         ),
-        menu,
-      ],
-    ),
-    setup=lambda self: item.connect("removed", lambda x: self.unparent()),
-    tooltip_text=item.bind("tooltip"),
-    on_click=lambda x: menu.popup() if menu else None,
-    on_right_click=lambda x: menu.popup() if menu else None,
+      ),
+      menu,
+    ],
   )
 
 

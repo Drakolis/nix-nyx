@@ -18,7 +18,7 @@ class UserOptions(OptionsManager):
     notepad_file: str = DEFAULT_NOTEPAD_FILE
 
   class Dock(OptionsGroup):
-    filter_current_workspace: bool = True
+    filter_current_workspace: bool = False
     sort_floating_last: bool = True
 
   chat_center = ChatCenter()
