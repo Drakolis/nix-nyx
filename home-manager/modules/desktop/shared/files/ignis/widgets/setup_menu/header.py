@@ -16,6 +16,8 @@ class SetupMenuHeader(widgets.Box):
           halign="start",
           css_classes=["label-small", "setup-menu-subtitle"],
           label=subtitle,
+          max_width_chars=30,
+          ellipsize="end",
         ),
       ],
     )

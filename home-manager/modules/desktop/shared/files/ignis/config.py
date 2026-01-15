@@ -8,8 +8,9 @@ from osd import OSD
 from dock import Dock, DockTrigger
 from launcher import LauncherWindow
 from notifications import NotificationPopup
-from session import SessionMenu
 from chat_center import ChatCenter
+from control_center import ControlCenter
+from settings import SettingsWindow
 
 css_manager = CssManager.get_default()
 
@@ -30,9 +31,8 @@ for monitor in range(utils.get_n_monitors()):
   DockTrigger(monitor)
   NotificationPopup(monitor)
   ChatCenter(monitor)
-  SessionMenu(monitor)
+  ControlCenter(monitor)
 
 LauncherWindow()
+# SettingsWindow()
 # LauncherTouch(monitor)
-
-# ControlCenterWindow(i)

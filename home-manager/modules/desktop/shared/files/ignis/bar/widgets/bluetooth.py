@@ -137,7 +137,7 @@ class BluetoothStatusWidget(widgets.Box):
       case "absent":
         icon = icon_hardware_disabled
         label = "Turned Off"
-        self.bluetooth_setup_devices.child = [] # This is quite non-obvious, but when device goes to sleep -- device is absent. When it goes back, the events with devices start coming back again.
+        self.bluetooth_setup_devices.child = []  # This is quite non-obvious, but when device goes to sleep -- device is absent. When it goes back, the events with devices start coming back again.
       case "on":
         icon = icon_active
         self.bluetooth_setup_hideable[1].visible = True

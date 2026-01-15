@@ -4,21 +4,43 @@ from ignis import utils
 from ignis.menu_model import IgnisMenuModel, IgnisMenuItem, IgnisMenuSeparator
 
 from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
-from ignis.services.niri import NiriService, NiriWindow, NiriWindowLayout
+from ignis.services.niri import NiriService, NiriWindow, NiriWindowLayout, NiriWorkspace
 
 from ignis.window_manager import WindowManager
 
 from utils import get_extended_app_icon
 
+from user_options import user_options
 
-def sort_niri_windows(windows: [NiriWindow]):
-  return sorted(
-    windows,
-    key=lambda window: window.layout.pos_in_scrolling_layout[0]
+
+def filtering_function(window: NiriWindow, current_workspace_id: int):
+  filter_current_workspace = user_options.dock.filter_current_workspace
+  return not filter_current_workspace or window.workspace_id == current_workspace_id
+
+
+def sorting_function(window: NiriWindow):
+  sort_floating_last = user_options.dock.sort_floating_last
+
+  dock_floating_position = window.id + 1000 if sort_floating_last else -1000
+
+  dock_position = window.workspace_id * 100 + (
+    window.layout.pos_in_scrolling_layout[0]
     if window.layout.pos_in_scrolling_layout
-    else 1000,  # TODO: this line basically means that any floating windows go last
-    # TODO: Now it shows everything on the same dock, but we should take workspace_id into an account
+    else dock_floating_position
   )
+
+  return dock_position
+
+
+def sort_niri_windows(windows: [NiriWindow], current_workspace_id: int):
+  return sorted(
+    [w for w in windows if filtering_function(w, current_workspace_id)],
+    key=sorting_function,
+  )
+
+
+def find_active_niri_workspace_id(workspaces: [NiriWorkspace]):
+  return [ws.id for ws in workspaces if ws.is_active][0]
 
 
 class DockItem(widgets.Button):
@@ -85,9 +107,12 @@ class Dock(widgets.RevealerWindow):
     self.hyprland = HyprlandService.get_default()
     self.niri = NiriService.get_default()
     # self.workspace_id = niri;
-    dock_items = self.niri.bind(
-      "windows",
-      lambda windows: [DockItem(x) for x in sort_niri_windows(windows)],
+    dock_items = self.niri.bind_many(
+      ["windows", "workspaces"],
+      lambda windows, workspaces: [
+        DockItem(x)
+        for x in sort_niri_windows(windows, find_active_niri_workspace_id(workspaces))
+      ],
     )
 
     self.current_applications = []

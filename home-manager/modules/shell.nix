@@ -177,9 +177,10 @@ in
     enable = true;
     enableBashIntegration = true;
     enableZshIntegration = true;
+    attachExistingSession = true;
     settings = {
       theme = "catppuccin-macchiato";
-
+      show_startup_tips = false;
       ui = {
         pane_frames = {
           rounded_corners = true;

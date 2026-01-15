@@ -399,7 +399,17 @@ in
 
         "Mod+F2" = {
           action.spawn-sh = "ignis toggle-window eggshell_chat_center_0";
-          hotkey-overlay.title = "Reload Shell";
+          hotkey-overlay.title = "Shell: Notepad";
+        };
+
+        "Mod+F3" = {
+          action.spawn-sh = "ignis toggle-window eggshell_information_center_0";
+          hotkey-overlay.title = "Shell: Information Center";
+        };
+
+        "Mod+F4" = {
+          action.spawn-sh = "ignis toggle-window eggshell_control_center_0";
+          hotkey-overlay.title = "Shell: Control Center";
         };
 
         "Mod+F5" = {

@@ -6,6 +6,8 @@ from ignis.menu_model import IgnisMenuModel, IgnisMenuItem, IgnisMenuSeparator
 from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
 from ignis.services.niri import NiriService, NiriWorkspace
 
+from utils import get_extended_app_icon
+
 DEFAULT_WINDOW_TITLE = "Desktop"
 DEFAULT_WINDOW_ICON = "show-desktop"
 
@@ -89,5 +91,5 @@ class WindowTitleWidget(widgets.Box):
     if self.app_id == "":
       self.icon_widget.set_image(DEFAULT_WINDOW_ICON)
     else:
-      self.icon_widget.set_image(utils.get_app_icon_name(self.app_id))
+      self.icon_widget.set_image(get_extended_app_icon(self.app_id))
     self.label_widget.set_label(self.title)

@@ -71,6 +71,7 @@ class OSD(widgets.RevealerWindow):
       transition_duration=300,
       reveal_child=True,
       hexpand=True,
+      margin_bottom=250,
     )
 
     container = widgets.Box(child=[revealer])
@@ -78,9 +79,8 @@ class OSD(widgets.RevealerWindow):
     super().__init__(
       visible=False,
       popup=True,
-      layer="top",
+      anchor=["bottom"],
       namespace=f"eggshell_osd_{monitor_id}",
-      css_classes=["bar"],
       child=container,
       revealer=revealer,
     )

@@ -23,7 +23,9 @@ def system_status_widget(monitor_id: int) -> widgets.Box:
       AudioStatusWidget(True),
       AudioStatusWidget(False),
       brightness_status(monitor_id),
-      PowerStatusWidget() if upower.is_available and len(upower.devices) > 0 else None,
+      PowerStatusWidget()
+      if upower.is_available and len(upower.batteries) > 0
+      else None,
       NetworkStatusWidget(),
       BluetoothStatusWidget(),
     ],
