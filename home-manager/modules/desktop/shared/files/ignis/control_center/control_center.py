@@ -88,6 +88,7 @@ class ControlCenter(widgets.RevealerWindow):
 
     super().__init__(
       namespace=f"eggshell_control_center_{monitor_id}",
+      css_classes=["unset-window"],
       visible=False,
       layer="top",
       anchor=["right", "top", "bottom"],

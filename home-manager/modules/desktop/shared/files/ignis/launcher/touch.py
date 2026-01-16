@@ -74,14 +74,15 @@ class LauncherTouch(widgets.RevealerWindow):
       ),
     )
 
-
     revealer = widgets.Revealer(
       transition_type="crossfade",
       transition_duration=300,
       reveal_child=True,
       hexpand=True,
       vexpand=True,
-      child=widgets.Box(css_classes=["popup"],)
+      child=widgets.Box(
+        css_classes=["popup"],
+      ),
     )
 
     container = widgets.EventBox(
@@ -93,6 +94,7 @@ class LauncherTouch(widgets.RevealerWindow):
 
     super().__init__(
       namespace=f"eggshell_launcher_touch_{monitor_id}",
+      css_classes=["unset-window"],
       visible=False,
       layer="top",
       exclusivity="ignore",

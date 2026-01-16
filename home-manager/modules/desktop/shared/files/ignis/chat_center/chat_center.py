@@ -59,6 +59,7 @@ class ChatCenter(widgets.RevealerWindow):
 
     super().__init__(
       namespace=f"eggshell_chat_center_{monitor_id}",
+      css_classes=["unset-window"],
       visible=False,
       layer="top",
       anchor=["left", "top", "bottom"],

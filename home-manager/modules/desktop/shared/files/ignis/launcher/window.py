@@ -150,6 +150,7 @@ class LauncherWindow(widgets.RevealerWindow):
 
     super().__init__(
       namespace="eggshell_launcher",
+      css_classes=["unset-window"],
       # monitor=niri.bind("active_output", lambda output: output == monitor_name),
       kb_mode="exclusive",
       popup=True,

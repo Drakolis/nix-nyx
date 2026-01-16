@@ -137,6 +137,7 @@ class Dock(widgets.RevealerWindow):
 
     super().__init__(
       namespace=f"eggshell_dock_{monitor_id}",
+      css_classes=["unset-window"],
       visible=False,
       layer="top",
       anchor=["bottom"],
@@ -186,6 +187,7 @@ class DockTrigger(widgets.Window):
 
     super().__init__(
       namespace=f"eggshell_dock_trigger_{monitor_id}",
+      css_classes=["unset-window"],
       layer="top",
       anchor=["left", "bottom", "right"],
       child=event_box,

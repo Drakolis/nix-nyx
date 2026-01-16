@@ -78,6 +78,7 @@ class OSD(widgets.RevealerWindow):
 
     super().__init__(
       visible=False,
+      css_classes=["unset-window"],
       popup=True,
       anchor=["bottom"],
       namespace=f"eggshell_osd_{monitor_id}",
