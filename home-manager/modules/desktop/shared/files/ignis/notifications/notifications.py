@@ -131,10 +131,10 @@ class NotificationWidget(widgets.Box):
   def __init__(self, notification: Notification) -> None:
     layout: NormalLayout | ScreenshotLayout
 
-    # if re.match(".*\.(png|jpg|jpeg|bmp)$", notification.icon):
-    #   layout = ScreenshotLayout(notification)
-    # else:
-    layout = NormalLayout(notification)
+    if "Screenshot" in notification.summary:
+      layout = ScreenshotLayout(notification)
+    else:
+      layout = NormalLayout(notification)
 
     super().__init__(
       css_classes=["notification"],

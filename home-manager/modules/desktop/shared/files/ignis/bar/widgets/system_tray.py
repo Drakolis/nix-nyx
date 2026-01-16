@@ -18,17 +18,19 @@ def system_tray_item(item: SystemTrayItem) -> widgets.Button:
   return widgets.Box(
     setup=lambda self: item.connect("removed", lambda x: self.unparent()),
     child=[
-      widgets.Button(
+      widgets.EventBox(
         tooltip_text=item.bind("tooltip"),
         on_click=lambda x: menu.popup() if menu else None,
         on_right_click=lambda x: menu.popup() if menu else None,
         css_classes=["pill-button"],
-        child=widgets.Icon(
-          css_classes=["tray-label"],
-          image=item.bind("icon"),
-          pixel_size=24,
-          hexpand=True,
-        ),
+        child=[
+          widgets.Icon(
+            css_classes=["tray-label"],
+            image=item.bind("icon"),
+            pixel_size=24,
+            hexpand=True,
+          ),
+        ],
       ),
       menu,
     ],

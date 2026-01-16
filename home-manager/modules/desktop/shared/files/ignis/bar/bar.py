@@ -19,6 +19,7 @@ class Bar(widgets.Window):
       anchor=["left", "top", "right"],
       exclusivity="exclusive",
       layer="top",
+      css_classes=["unset-window"],
       child=widgets.CenterBox(
         css_classes=["bar-container"],
         start_widget=widgets.Box(

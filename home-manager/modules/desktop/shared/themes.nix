@@ -46,6 +46,9 @@ in
       accent = "mauve";
       variant = "mocha";
     })
+
+    gtkTheme
+    gtkThemeColloid
   ];
 
   home.pointerCursor = {

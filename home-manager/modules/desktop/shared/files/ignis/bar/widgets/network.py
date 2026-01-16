@@ -1,64 +1,159 @@
+import asyncio
+
 from ignis import widgets
 
 from ignis.services.network import NetworkService
+
+from widgets.setup_menu import (
+  SetupMenuPopover,
+  SetupMenuHeader,
+  SetupMenuItemSeparator,
+  SetupMenuItemButton,
+  SetupMenuItemIconButton,
+)
 
 # TODO: Subscribe OSD for new_device/remove_device events
 DEFAULT_ICON = "network-disconnected-symbolic"
 DEFAULT_LABEL = "N/A"
 
 
-class NetworkStatusWidget(widgets.Button):
+class NetworkSetupAccessPointItem(SetupMenuItemIconButton):
+  def __init__(self, access_point):
+    self.access_point = access_point
+    self.connected = access_point.is_connected
+    description_raw = access_point.ssid if access_point.ssid else access_point.bssid
+
+    description = f"{description_raw} {access_point.frequency / 1000}GHz"
+
+    on_click = lambda x: asyncio.create_task(self.sync_connect())
+    setup_button = lambda self: self.access_point.connect(
+      "removed", lambda x: self.unparent()
+    )
+
+    super().__init__(
+      setup_button=setup_button,
+      on_click=on_click,
+      label=description,
+      icon=self.access_point.icon_name,
+      is_active=self.connected,
+      active_css_class="network-active",
+    )
+
+    self.access_point.connect(
+      "notify::is-connected", lambda x, y: self.update_connected(x)
+    )
+    self.update_connected(self.access_point)
+
+  def update_connected(self, access_point):
+    self.connected = access_point.is_connected
+    self.set_active(access_point.is_connected)
+
+  async def sync_connect(self):
+    self.set_icon("process-working-symbolic")
+    self.add_icon_class("animation-spin")
+    if self.connected:
+      await self.access_point.disconnect_from()
+    else:
+      await self.access_point.connect_to_graphical()
+    self.reset_icon()
+    self.reset_icon_class()
+
+
+class NetworkStatusWidget(widgets.Box):
   def __init__(self):
     self.network = NetworkService.get_default()
     self.show_wifi = False
 
-    network_status_label = [
-      widgets.Icon(
-        css_classes=["network-label"],
-        image=DEFAULT_ICON,
-        pixel_size=24,
-        hexpand=True,
+    self.network_setup_menu_header = SetupMenuHeader(
+      title="Network",
+      subtitle="Network Name",
+    )
+
+    self.network_setup_networks = widgets.Box(vertical=True)
+
+    self.network_setup_hideable = [
+      SetupMenuItemSeparator(),
+      widgets.Scroll(
+        child=self.network_setup_networks,
+        min_content_height=50,
+        max_content_height=250,
+        propagate_natural_height=True,
       ),
     ]
 
-    super().__init__(
+    self.network_setup_menu = SetupMenuPopover(
+      child=[
+        self.network_setup_menu_header,
+        *self.network_setup_hideable,
+        SetupMenuItemSeparator(),
+        SetupMenuItemButton(
+          on_click=lambda x: self.__start_discovery(), label="Search for Networks..."
+        ),
+        # SetupMenuItemButton(
+        #   on_click=lambda x: self.__start_discovery(), label="Network Settings..."
+        # ),
+      ],
+    )
+
+    self.network_status_icon = widgets.Icon(
+      css_classes=["network-label"],
+      image=DEFAULT_ICON,
+      pixel_size=24,
+      hexpand=True,
+    )
+
+    self.network_bar_item = widgets.Button(
       css_classes=["pill-button"],
-      on_right_click=lambda self: True,
-      child=widgets.Box(child=network_status_label, spacing=5),
+      on_click=lambda x: self.network_setup_menu.popup(),
+      on_right_click=self.__toggle_wifi,
+      child=self.network_status_icon,
     )
 
-    self.network_status_label = network_status_label
+    super().__init__(child=[self.network_bar_item, self.network_setup_menu])
+
     self.network.ethernet.connect(
-      "notify::is-connected", lambda x, _: self.update_ethernet(x)
+      "notify::is-connected", lambda x, _: self.__update_ethernet(x)
     )
-    self.network.wifi.connect("notify::is-connected", lambda x, _: self.update_wifi(x))
-    self.network.wifi.connect("notify::enabled", lambda x, _: self.update_wifi(x))
-    self.network.vpn.connect("notify::is-connected", lambda x, _: self.update_vpn(x))
-    self.update_ethernet(self.network.ethernet)
-    self.update_wifi(self.network.wifi)
+    self.network.wifi.connect(
+      "notify::is-connected", lambda x, _: self.__update_wifi(x)
+    )
+    self.network.wifi.connect("notify::enabled", lambda x, _: self.__update_wifi(x))
+    self.network.wifi.devices[0].connect(
+      "notify::access_points", lambda x, _: self.__append_networks(x)
+    )
+    self.__update_ethernet(self.network.ethernet)
+    self.__update_wifi(self.network.wifi)
+    self.__append_networks(self.network.wifi.devices[0])
 
-  def update_ethernet(self, ethernet):
+  def __update_ethernet(self, ethernet):
     ethernet_icon = ethernet.icon_name
-    ethernet_label = "ON" if ethernet.is_connected else "OFF"
 
     if not self.show_wifi:
-      self.network_status_label[0].set_image(ethernet_icon)
+      self.network_status_icon.set_image(ethernet_icon)
 
-  def update_wifi(self, wifi):
+  def __update_wifi(self, wifi):
     if self.show_wifi:
       wifi_icon = (
         wifi.icon_name
         if wifi.enabled
         else "network-wireless-hardware-disabled-symbolic"
       )
-      wifi_connected_devices = [
-        device for device in wifi.devices if device.is_connected
-      ]
-      wifi_label_con = (
-        f"{wifi_connected_devices[0].ap.strength}%"
-        if (len(wifi_connected_devices) > 0 and wifi.is_connected)
-        else "ON"
-      )
-      wifi_label = wifi_label_con if wifi.enabled else "OFF"
-      self.network_status_label[0].set_image(wifi_icon)
+
+      self.network_status_icon.set_image(wifi_icon)
     self.show_wifi = wifi.enabled
+
+  def __toggle_wifi(self, wifi):
+    self.network.wifi.enabled = not self.network.wifi.enabled
+
+  def __start_discovery(self, *args):
+    self.network.wifi.devices[0].scan()
+
+  def __append_networks(self, device):
+    [
+      self.network_setup_networks.append(
+        NetworkSetupAccessPointItem(
+          access_point,
+        )
+      )
+      for access_point in device.access_points
+    ]

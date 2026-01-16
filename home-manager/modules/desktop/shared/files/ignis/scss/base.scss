@@ -1,6 +1,23 @@
 @use "sheets";
 @use "variables";
 
+.unset {
+  all: unset;
+}
+
+.unsetc {
+  * {
+    all: unset;
+  }
+}
+
+.unset-window {
+  all: unset;
+
+  * {
+    all: unset;
+  }
+}
 
 .slider-small trough {
   background-color: variables.$fg-disabled;
@@ -70,6 +87,7 @@
 }
 
 tooltip {
+  all: unset;
   background-color: variables.$bg;
   padding: 0.55rem 1rem;
   border-radius: variables.$shape-corner-large;
@@ -82,6 +100,12 @@ tooltip {
 }
 
 popover.menu {
+  all: unset;
+
+  * {
+    all: unset;
+  }
+
   contents {
     background-color: variables.$bg;
     padding: 0.35rem;

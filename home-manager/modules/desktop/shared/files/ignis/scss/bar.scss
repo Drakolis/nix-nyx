@@ -4,6 +4,7 @@
   margin: 5px 2px 0;
   color: variables.$fg;
   font-size: 12pt;
+  font-weight: 600;
 }
 
 .bar-pill {
@@ -172,6 +173,14 @@
 
       &.bluetooth-active {
         background-color: variables.$bluetooth;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      &.network-active {
+        background-color: variables.$network;
 
         .setup-menu-button-icon-image {
           color: variables.$bg;

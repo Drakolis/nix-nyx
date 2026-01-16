@@ -107,6 +107,7 @@ class OSD(widgets.RevealerWindow):
       "notify::charging", lambda x, y: self.trigger_upower_device(x)
     )
     self.bluetooth.connect("notify::powered", lambda x, y: self.trigger_bluetooth(x))
+    self.network.wifi.connect("notify::enabled", lambda x, y: self.trigger_wifi(x))
 
     self.icon_widget = icon_widget
     self.label_widget = label_widget
@@ -139,6 +140,16 @@ class OSD(widgets.RevealerWindow):
       "bluetooth-active-symbolic"
       if bluetooth.powered
       else "bluetooth-disabled-symbolic"
+    )
+    self.show_scale = False
+    self.trigger()
+
+  def trigger_wifi(self, wifi):
+    self.label = "Wi-Fi On" if wifi.enabled else "Wi-Fi Off"
+    self.icon = (
+      "network-wireless-on-symbolic"
+      if wifi.enabled
+      else "network-wireless-offline-symbolic"
     )
     self.show_scale = False
     self.trigger()
