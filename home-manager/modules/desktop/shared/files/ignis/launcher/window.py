@@ -10,6 +10,43 @@ window_manager = WindowManager.get_default()
 
 applications = ApplicationsService.get_default()
 
+launcher_modes = [
+  {"name": "Programs", "shortcut": "app:", "search_function": None, "enabled": True},
+  {"name": "Commands", "shortcut": "cmd:", "search_function": None, "enabled": True},
+  {"name": "Calculator", "shortcut": "=", "search_function": None, "enabled": True},
+  {
+    "name": "Niri Windows",
+    "shortcut": "win:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Hyprland Windows",
+    "shortcut": "win:",
+    "search_function": None,
+    "enabled": False,
+  },
+  {
+    "name": "Search in Startpage",
+    "shortcut": "s:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Kill Process",
+    "shortcut": "kill:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Clipboard History",
+    "shortcut": "clip:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {"name": "Open Folder", "shortcut": "op:", "search_function": None, "enabled": True},
+]
+
 
 class LauncherActionDefinition:
   def __init__(self, title, description, icon, action):
@@ -87,7 +124,6 @@ class LauncherActionItem(widgets.Button):
 
 class LauncherWindow(widgets.RevealerWindow):
   def __init__(self):
-    self.applications = applications.apps
     self.always_shown = []
     self.show_scroll = False
 
@@ -174,18 +210,21 @@ class LauncherWindow(widgets.RevealerWindow):
     if len(self._app_list.child) > 0:
       self._app_list.child[0].action()
 
+  def __abstract_app_search(self, query, *args) -> [LauncherActionDefinition]:
+    applicationsList = applications.apps
+    applicationsListFiltered = (
+      applications.search(applicationsList, query) if query else applicationsList
+    )
+    return [
+      map_application_to_action(application) for application in applicationsListFiltered
+    ]
+
   def __search(self, *args) -> None:
     query = self.entry.text
-
-    apps = applications.search(self.applications, query) if query else self.applications
 
     if query == "":
       self.entry.grab_focus()
 
-    if apps == []:
-      self._app_list.child = []
-    else:
-      self._app_list.child = [
-        LauncherActionItem(map_application_to_action(application))
-        for application in apps
-      ]
+    self._app_list.child = [
+      LauncherActionItem(action) for action in self.__abstract_app_search(query)
+    ]
