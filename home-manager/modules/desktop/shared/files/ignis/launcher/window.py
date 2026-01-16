@@ -10,43 +10,6 @@ window_manager = WindowManager.get_default()
 
 applications = ApplicationsService.get_default()
 
-launcher_modes = [
-  {"name": "Programs", "shortcut": "app:", "search_function": None, "enabled": True},
-  {"name": "Commands", "shortcut": "cmd:", "search_function": None, "enabled": True},
-  {"name": "Calculator", "shortcut": "=", "search_function": None, "enabled": True},
-  {
-    "name": "Niri Windows",
-    "shortcut": "win:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Hyprland Windows",
-    "shortcut": "win:",
-    "search_function": None,
-    "enabled": False,
-  },
-  {
-    "name": "Search in Startpage",
-    "shortcut": "s:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Kill Process",
-    "shortcut": "kill:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Clipboard History",
-    "shortcut": "clip:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {"name": "Open Folder", "shortcut": "op:", "search_function": None, "enabled": True},
-]
-
 
 class LauncherActionDefinition:
   def __init__(self, title, description, icon, action):
@@ -67,6 +30,71 @@ def map_application_to_action(app):
     icon=app.icon,
     action=lambda: app.launch(terminal_format="kitty -e %command%"),
   )
+
+
+def app_search(query) -> [LauncherActionDefinition]:
+  applicationsList = applications.apps
+  applicationsListFiltered = (
+    applications.search(applicationsList, query) if query else applicationsList
+  )
+  return [
+    map_application_to_action(application) for application in applicationsListFiltered
+  ]
+
+
+launcher_modes = [
+  {
+    "name": "Search Programs...",
+    "shortcut": "app:",
+    "search_function": app_search,
+    "enabled": True,
+  },
+  {
+    "name": "Search Commands...",
+    "trigger": "cmd:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {"name": "Calculator...", "trigger": "=", "search_function": None, "enabled": True},
+  {
+    "name": "Select Niri Window...",
+    "trigger": "win:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Select Hyprland Window...",
+    "trigger": "win:",
+    "search_function": None,
+    "enabled": False,
+  },
+  {
+    "name": "Search in Startpage...",
+    "trigger": "s:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Kill Process...",
+    "trigger": "kill:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Clipboard History...",
+    "trigger": "clip:",
+    "search_function": None,
+    "enabled": True,
+  },
+  {
+    "name": "Open Folder...",
+    "trigger": "op:",
+    "search_function": None,
+    "enabled": True,
+  },
+]
+launcher_mode_triggers = [f"{mode.get('trigger')} " for mode in launcher_modes]
+default_launcher_mode = launcher_modes[0]
 
 
 class LauncherActionItem(widgets.Button):
@@ -126,6 +154,7 @@ class LauncherWindow(widgets.RevealerWindow):
   def __init__(self):
     self.always_shown = []
     self.show_scroll = False
+    self.launcher_mode = default_launcher_mode
 
     self._app_list = widgets.Box(
       vertical=True,
@@ -141,7 +170,7 @@ class LauncherWindow(widgets.RevealerWindow):
     self.entry = widgets.Entry(
       vexpand=True,
       hexpand=True,
-      placeholder_text="Search...",
+      placeholder_text=default_launcher_mode.get("name"),
       on_change=self.__search,
       on_accept=self.__on_accept,
     )
@@ -210,21 +239,17 @@ class LauncherWindow(widgets.RevealerWindow):
     if len(self._app_list.child) > 0:
       self._app_list.child[0].action()
 
-  def __abstract_app_search(self, query, *args) -> [LauncherActionDefinition]:
-    applicationsList = applications.apps
-    applicationsListFiltered = (
-      applications.search(applicationsList, query) if query else applicationsList
-    )
-    return [
-      map_application_to_action(application) for application in applicationsListFiltered
-    ]
-
   def __search(self, *args) -> None:
     query = self.entry.text
+
+    if query in launcher_mode_triggers:
+      mode_id = launcher_mode_triggers.index(query)
+      self.launcher_mode = launcher_modes[mode_id]
+      self.entry.placeholder_text = launcher_modes[mode_id].get("name")
 
     if query == "":
       self.entry.grab_focus()
 
     self._app_list.child = [
-      LauncherActionItem(action) for action in self.__abstract_app_search(query)
+      LauncherActionItem(action) for action in self.launcher_mode.get("search_function")
     ]
