@@ -1,100 +1,5 @@
 from ignis import widgets
-from ignis.services.applications import (
-  ApplicationsService,
-  Application,
-  ApplicationAction,
-)
-from ignis.window_manager import WindowManager
-
-window_manager = WindowManager.get_default()
-
-applications = ApplicationsService.get_default()
-
-
-class LauncherActionDefinition:
-  def __init__(self, title, description, icon, action):
-    self.title = title
-    self.description = description
-    self.icon = icon
-    self.raw_action = action
-
-  def action(self, *args):
-    self.raw_action()
-    window_manager.close_window("eggshell_launcher")
-
-
-def map_application_to_action(app):
-  return LauncherActionDefinition(
-    title=app.name,
-    description=app.description,
-    icon=app.icon,
-    action=lambda: app.launch(terminal_format="kitty -e %command%"),
-  )
-
-
-def app_search(query) -> [LauncherActionDefinition]:
-  applicationsList = applications.apps
-  applicationsListFiltered = (
-    applications.search(applicationsList, query) if query else applicationsList
-  )
-  return [
-    map_application_to_action(application) for application in applicationsListFiltered
-  ]
-
-
-launcher_modes = [
-  {
-    "name": "Search Programs...",
-    "shortcut": "app:",
-    "search_function": app_search,
-    "enabled": True,
-  },
-  {
-    "name": "Search Commands...",
-    "trigger": "cmd:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {"name": "Calculator...", "trigger": "=", "search_function": None, "enabled": True},
-  {
-    "name": "Select Niri Window...",
-    "trigger": "win:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Select Hyprland Window...",
-    "trigger": "win:",
-    "search_function": None,
-    "enabled": False,
-  },
-  {
-    "name": "Search in Startpage...",
-    "trigger": "s:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Kill Process...",
-    "trigger": "kill:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Clipboard History...",
-    "trigger": "clip:",
-    "search_function": None,
-    "enabled": True,
-  },
-  {
-    "name": "Open Folder...",
-    "trigger": "op:",
-    "search_function": None,
-    "enabled": True,
-  },
-]
-launcher_mode_triggers = [f"{mode.get('trigger')} " for mode in launcher_modes]
-default_launcher_mode = launcher_modes[0]
+from .modes import LauncherModesManager
 
 
 class LauncherActionItem(widgets.Button):
@@ -154,33 +59,31 @@ class LauncherWindow(widgets.RevealerWindow):
   def __init__(self):
     self.always_shown = []
     self.show_scroll = False
-    self.launcher_mode = default_launcher_mode
+    self.modes_manager = LauncherModesManager()
 
     self._app_list = widgets.Box(
       vertical=True,
-      child=[],
     )
 
     self._app_list_scroll = widgets.Scroll(
-      css_classes=["launcher-scroller"],
+      # css_classes=["launcher-scroller"],
       child=self._app_list,
-      height_request=250,
+      min_content_height=0,
+      max_content_height=500,
+      propagate_natural_height=True,
     )
 
     self.entry = widgets.Entry(
       vexpand=True,
       hexpand=True,
-      placeholder_text=default_launcher_mode.get("name"),
       on_change=self.__search,
       on_accept=self.__on_accept,
     )
 
     revealer = widgets.Revealer(
       transition_type="crossfade",
-      transition_duration=300,
+      transition_duration=150,
       reveal_child=True,
-      hexpand=True,
-      vexpand=True,
       child=widgets.Box(
         css_classes=["launcher-container", "elevation5"],
         child=[
@@ -208,10 +111,7 @@ class LauncherWindow(widgets.RevealerWindow):
       ),
     )
 
-    container = widgets.Box(
-      child=[revealer],
-      vexpand=True,
-    )
+    container = widgets.Box(child=[revealer], valign="start")
 
     super().__init__(
       namespace="eggshell_launcher",
@@ -224,9 +124,9 @@ class LauncherWindow(widgets.RevealerWindow):
       exclusivity="ignore",
       child=container,
       revealer=revealer,
+      height_request=500,
       setup=lambda self: self.connect("notify::visible", self.__on_open),
     )
-    self.__search()
 
   def __on_open(self, *args) -> None:
     if not self.visible:
@@ -235,21 +135,29 @@ class LauncherWindow(widgets.RevealerWindow):
     self.entry.text = ""
     self.entry.grab_focus()
 
+    self.modes_manager.register_modes()
+    self.__switch_mode(self.modes_manager.default_mode)
+
+    self.__search()
+
   def __on_accept(self, *args) -> None:
     if len(self._app_list.child) > 0:
       self._app_list.child[0].action()
 
+  def __switch_mode(self, launcher_mode):
+    self.launcher_mode = launcher_mode
+    self.entry.placeholder_text = self.launcher_mode.placeholder
+    self.entry.text = ""
+
   def __search(self, *args) -> None:
     query = self.entry.text
 
-    if query in launcher_mode_triggers:
-      mode_id = launcher_mode_triggers.index(query)
-      self.launcher_mode = launcher_modes[mode_id]
-      self.entry.placeholder_text = launcher_modes[mode_id].get("name")
+    if query in self.modes_manager.mode_triggers:
+      self.__switch_mode(self.modes_manager.get_mode_by_trigger(query))
 
     if query == "":
       self.entry.grab_focus()
 
     self._app_list.child = [
-      LauncherActionItem(action) for action in self.launcher_mode.get("search_function")
+      LauncherActionItem(action) for action in self.launcher_mode.search_function(query)
     ]
