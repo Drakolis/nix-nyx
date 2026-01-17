@@ -130,7 +130,7 @@ class AudioStatusWidget(widgets.Button):
     self.update_audio_status(self.audio_device)
 
   def open_settings_app(self):
-    asyncio.create_task(utils.exec_sh_async("pavucontrol"))
+    asyncio.create_task(utils.exec_sh_async("pwvucontrol"))
     self.audio_setup_menu.popdown()
 
   def open_patchbay_app(self):

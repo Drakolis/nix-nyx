@@ -33,9 +33,11 @@ with lib;
         bluetui
 
         thunar-volman
+        udiskie
+        nautilus
         baobab
 
-        mate.engrampa
+        file-roller
         # Supported archives
         zip
         gnutar
@@ -52,7 +54,7 @@ with lib;
         imv
         mpv
 
-        pavucontrol
+        pwvucontrol
         helvum
         # qpwgraph
 

@@ -196,8 +196,8 @@ in
               "󰕾"
             ];
           };
-          on-click = "pavucontrol-qt";
-          on-click-right = "qpwgraph";
+          on-click = "pwvucontrol";
+          on-click-right = "helvum";
         };
         backlight = {
           scroll-step = 5;
