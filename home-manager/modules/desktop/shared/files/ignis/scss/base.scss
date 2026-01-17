@@ -1,4 +1,3 @@
-@use "sheets";
 @use "variables";
 
 .unset {
@@ -87,7 +86,6 @@
 }
 
 tooltip {
-  all: unset;
   background-color: variables.$bg;
   padding: 0.55rem 1rem;
   border-radius: variables.$shape-corner-large;
@@ -100,12 +98,6 @@ tooltip {
 }
 
 popover.menu {
-  all: unset;
-
-  * {
-    all: unset;
-  }
-
   contents {
     background-color: variables.$bg;
     padding: 0.35rem;

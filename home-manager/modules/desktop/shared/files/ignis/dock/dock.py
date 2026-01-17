@@ -182,7 +182,7 @@ class DockTrigger(widgets.Window):
       css_classes=["dock-trigger"],
       on_hover=self.on_hover_handler,
       on_hover_lost=self.on_hover_lost_handler,
-      height_request=10,
+      height_request=2,
     )
 
     super().__init__(

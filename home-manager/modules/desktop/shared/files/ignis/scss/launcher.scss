@@ -12,6 +12,7 @@
 .launcher-input {
   padding: 0.75rem;
   font-size: 16pt;
+  border-bottom: solid 1px variables.$primary;
 }
 
 .launcher-input placeholder, .launcher-input-icon {
@@ -19,7 +20,10 @@
 }
 
 .launcher-scroller {
-  border-top: solid 1px variables.$primary;
+  transition: 0.3ms;
+}
+
+.launcher-scroller * {
   transition: 0.3ms;
 }
 
