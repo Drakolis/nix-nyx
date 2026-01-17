@@ -3,6 +3,10 @@ import datetime
 from ignis import widgets
 from ignis import utils
 
+from ignis.window_manager import WindowManager
+
+window_manager = WindowManager.get_default()
+
 
 def date_time_widget() -> widgets.Box:
   # poll for current time every second
@@ -10,6 +14,7 @@ def date_time_widget() -> widgets.Box:
     css_classes=["bar-pill", "elevation1"],
     child=[
       widgets.Button(
+        on_click=lambda x: window_manager.toggle_window("eggshell_info_center"),
         css_classes=["pill-button"],
         child=widgets.Box(
           spacing=3,

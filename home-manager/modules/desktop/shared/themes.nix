@@ -9,6 +9,13 @@ let
     }
   );
 
+  gtkThemeLight = (
+    pkgs.catppuccin-gtk.override {
+      accents = [ "mauve" ];
+      variant = "latte";
+    }
+  );
+
   gtkThemeColloid = (
     pkgs.colloid-gtk-theme.override {
       themeVariants = [ "purple" ];
@@ -48,6 +55,7 @@ in
     })
 
     gtkTheme
+    gtkThemeLight
     gtkThemeColloid
   ];
 

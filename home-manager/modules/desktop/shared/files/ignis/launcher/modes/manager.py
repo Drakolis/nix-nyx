@@ -1,6 +1,7 @@
 from .applications import LauncherModeApplications
 from .niri_windows import LauncherModeNiriWindows
 from .kill import LauncherModePKill
+from .currency import LauncherModeCurrency
 
 
 class LauncherModesManager:
@@ -14,7 +15,7 @@ class LauncherModesManager:
     self.modes.append(applications_mode)
     self.modes.append(LauncherModeNiriWindows())
     self.modes.append(LauncherModePKill())
-    # self.modes.append()
+    self.modes.append(LauncherModeCurrency())
     # self.modes.append()
     # self.modes.append()
     # self.modes.append()

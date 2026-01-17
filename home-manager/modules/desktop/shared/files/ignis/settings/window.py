@@ -34,7 +34,7 @@ class SettingsWindow(widgets.RegularWindow):
     )
 
     super().__init__(
-      title="This is title",
+      title="Eggshell Settings",
       titlebar=widgets.HeaderBar(show_title_buttons=True),
       namespace="eggshell_settings",
       visible=False,

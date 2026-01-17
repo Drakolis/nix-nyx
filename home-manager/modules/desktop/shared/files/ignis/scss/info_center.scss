@@ -1,0 +1,68 @@
+// calendar.view ├── header │ ├── button │ ├── stack.month │ ├── button │ ├── button │ ├── label.year │ ╰── button ╰── grid
+
+//     ╰── label[.day-name][.week-number][.day-number][.other-month][.today]
+@use "variables";
+
+.local-time {
+  padding-bottom: 16px;
+}
+
+.time-section {
+  border-top: 1px solid variables.$fg-disabled;
+  padding: px 0;
+}
+
+
+.colorful-calendar {
+  font-size: larger;
+
+  header {
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  button {
+    padding-top: 1px;
+    color: variables.$clock;
+  }
+
+  .month {
+    font-weight: 600;
+    color: variables.$clock;
+    padding: 0 6px;
+  }
+
+  .year {
+    font-weight: 600;
+    color: variables.$clock;
+    padding: 0 6px;
+  }
+
+  .day-name {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .week-number {
+    font-weight: 200;
+    color: variables.$fg;
+    font-style: italic;
+  }
+
+  .day-number {
+    font-weight: 300;
+    padding: 2px;
+  }
+
+  .other-month {
+    font-weight: 300;
+    color: variables.$fg-subtext
+  }
+
+  .today {
+    font-weight: 600;
+    color: variables.$shadow;
+    background-color: variables.$clock;
+    border-radius: 2rem;
+  }
+}

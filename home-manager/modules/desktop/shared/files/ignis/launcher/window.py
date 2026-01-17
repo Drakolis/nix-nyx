@@ -55,18 +55,21 @@ class LauncherActionItem(widgets.Button):
     self.action = action
 
 
+modes_manager = LauncherModesManager()
+modes_manager.register_modes()
+
+
 class LauncherWindow(widgets.RevealerWindow):
   def __init__(self):
     self.always_shown = []
     self.show_scroll = False
-    self.modes_manager = LauncherModesManager()
 
     self._app_list = widgets.Box(
       vertical=True,
     )
 
     self._app_list_scroll = widgets.Scroll(
-      # css_classes=["launcher-scroller"],
+      css_classes=["launcher-scroller"],
       child=self._app_list,
       min_content_height=0,
       max_content_height=500,
@@ -135,8 +138,7 @@ class LauncherWindow(widgets.RevealerWindow):
     self.entry.text = ""
     self.entry.grab_focus()
 
-    self.modes_manager.register_modes()
-    self.__switch_mode(self.modes_manager.default_mode)
+    self.__switch_mode(modes_manager.default_mode)
 
     self.__search()
 
@@ -152,12 +154,12 @@ class LauncherWindow(widgets.RevealerWindow):
   def __search(self, *args) -> None:
     query = self.entry.text
 
-    if query in self.modes_manager.mode_triggers:
-      self.__switch_mode(self.modes_manager.get_mode_by_trigger(query))
+    if query in modes_manager.mode_triggers:
+      self.__switch_mode(modes_manager.get_mode_by_trigger(query))
 
     if query == "":
       self.entry.grab_focus()
 
     self._app_list.child = [
       LauncherActionItem(action) for action in self.launcher_mode.search_function(query)
-    ]
+    ][:10]

@@ -403,7 +403,7 @@ in
         };
 
         "Mod+F3" = {
-          action.spawn-sh = "ignis toggle-window eggshell_information_center_0";
+          action.spawn-sh = "ignis toggle-window eggshell_info_center";
           hotkey-overlay.title = "Shell: Information Center";
         };
 

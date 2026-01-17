@@ -1,7 +1,5 @@
 import asyncio
-import os
 
-from gi.repository import Gtk  # type: ignore
 from ignis import widgets
 from ignis import utils
 from user_options import user_options
