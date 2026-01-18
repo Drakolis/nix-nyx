@@ -9,5 +9,6 @@
       "terraform"
       "windsurf"
       "cursor"
+      "vscode"
     ];
 }

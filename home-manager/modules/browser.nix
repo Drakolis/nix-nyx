@@ -12,6 +12,12 @@ let
   trustedDomains = [
     "localhost"
     "nanowyrm"
+    "joermungandr"
+    "quetzalcoatl"
+    "silverwing"
+    "vaporserpent"
+    "winterdragon"
+    "yddraighgoch"
     "element.io"
     "startpage.com"
     "proton.me"
@@ -22,6 +28,7 @@ let
     "google.com"
     "youtube.com"
     "apple.com"
+    "web.structured.app"
   ];
 
   timezoneDomains = [

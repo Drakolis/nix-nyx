@@ -1,87 +1,143 @@
-$bg: #181825;
-$bg-input: #1e1e2e;
-$bg-control: #313244;
-$fg: #cdd6f4;
-$fg-sub: #a6adc8;
-$fg-disabled: #585b70;
-$shadow: #11111b;
-
-$primary: #cba6f7;
-$primary-hover: rgba($primary, 0.3);
-$clock: #89b4fa;
-$layout: #89dceb;
-
-$shadow-y: 0px;
-$shadow-blur: 2px;
-
-$shape-corner-small: 4px;
-$shape-corner-medium: 6px;
-$shape-corner-large: 8px;
-$shape-corner-xlarge: 16px;
+@use "variables";
 
 .popup {
-  background-color: rgba($bg, 0.95);
-  border-radius: $shape-corner-xlarge;
-  padding: $shape-corner-xlarge;
-  // border: 1px solid $fg-disabled;
+  background-color: rgba(variables.$bg, 0.95);
+  border-radius: variables.$shape-corner-xlarge;
+  padding: variables.$shape-corner-xlarge;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.flyout-left {
+  margin: 5px 5px 5px 0;
+  border-radius: 0 variables.$shape-corner-xlarge variables.$shape-corner-xlarge 0;
+  padding: variables.$shape-corner-xlarge;
+  background-color: variables.$bg;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.flyout-right {
+  margin: 5px 0 5px 5px;
+  border-radius: variables.$shape-corner-xlarge 0 0 variables.$shape-corner-xlarge;
+  padding: variables.$shape-corner-xlarge;
+  background-color: variables.$bg;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.flyout-down {
+  margin: 5px;
+  border-radius: variables.$shape-corner-xlarge;
+  padding: variables.$shape-corner-xlarge;
+  background-color: variables.$bg;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.button-fab-power-off {
+  border-radius: 24px;
+  background-color: #f38ba8;
+  image {
+    color: variables.$shadow;
+  }
+}
+.button-fab-sleep {
+  border-radius: 24px;
+  background-color: #b4befe;
+  image {
+    color: variables.$shadow;
+  }
+}
+.button-fab-hibernate {
+  border-radius: 24px;
+  background-color: #f2cdcd;
+  image {
+    color: variables.$shadow;
+  }
+}
+.button-fab-restart {
+  border-radius: 24px;
+  background-color: #a6e3a1;
+  image {
+    color: variables.$shadow;
+  }
+}
+.button-fab-log-out {
+  border-radius: 24px;
+  background-color: #f9e2af;
+  image {
+    color: variables.$shadow;
+  }
+}
+
+.input {
+  background-color: variables.$bg-input;
+  border-radius: variables.$shape-corner-large;
+  padding: variables.$shape-corner-large;
+  font-size: 13pt;
+}
+
+.section {
+  background-color: variables.$bg-control;
+  border-radius: variables.$shape-corner-large;
+  padding: 24px;
+  font-size: 13pt;
 }
 
 .dock {
-  background-color: rgba($bg, 0.85);
-  border-radius: $shape-corner-xlarge $shape-corner-xlarge 0 0;
-  padding: $shape-corner-xlarge;
-  // border: 1px solid $fg-disabled;
+  margin: 5px 5px 0  5px;
+  background-color: rgba(variables.$bg, 0.85);
+  border-radius: variables.$shape-corner-xlarge variables.$shape-corner-xlarge 0
+    0;
+  padding: variables.$shape-corner-xlarge;
+  // border: 1px solid variables.$fg-disabled;
+}
+
+.fade {
+  background-color: rgba(variables.$shadow, 0.9);
 }
 
 .margin-auto {
 }
 
 .sheet {
-  background-color: $bg;
+  background-color: variables.$bg;
 }
 
 .control {
-  background-color: $bg-control;
+  background-color: variables.$bg-control;
   padding: 1rem;
-  border-radius: $shape-corner-large;
+  border-radius: variables.$shape-corner-large;
 }
 
 .elevation1 {
-  margin: $shadow-blur;
-  box-shadow: 0px $shadow-y $shadow-blur 0px $shadow;
+  box-shadow: 0 0 2px 0 rgba(variables.$shadow, 0.8);
 }
 
 .elevation2 {
-  margin: $shadow-blur * 2;
-  box-shadow: 0px $shadow-y $shadow-blur * 2 0px $shadow;
+  box-shadow: 0 0 2px 1px rgba(variables.$shadow, 0.8);
+}
+
+.elevation3 {
+  box-shadow: 0 0 3px 2px rgba(variables.$shadow, 0.8);
+}
+
+.elevation4 {
+  box-shadow: 0 0 4px 2px rgba(variables.$shadow, 0.8);
+}
+
+.elevation5 {
+  box-shadow: 0 0 5px 3px rgba(variables.$shadow, 0.8);
 }
 
 .corner-small {
-  border-radius: $shape-corner-small;
+  border-radius: variables.$shape-corner-small;
 }
 
 .corner-medium {
-  border-radius: $shape-corner-medium;
+  border-radius: variables.$shape-corner-medium;
 }
 
 .corner-large {
-  border-radius: $shape-corner-large;
+  border-radius: variables.$shape-corner-large;
 }
-
-// .has-shadow {
-//   margin: 5px;
-//   box-shadow: 0 0 3px 2px $shadow;
-// }
-
-// .has-outline {
-//   box-shadow: inset 0 0 0 2px $primary;
-// }
-
-// .has-shadow.has-outline {
-//   box-shadow:
-//     0 0 3px 2px $shadow,
-//     inset 0 0 0 2px $primary;
-// }
 
 // Typography
 
@@ -90,71 +146,75 @@ $shape-corner-xlarge: 16px;
   font-size: 18px;
 }
 
+.monospace {
+  font-family: monospace;
+}
+
 .emphasized {
   font-weight: bolder;
 }
 
 .display-large {
-  font-size: 57px;
+  font-size: 57pt;
   font-weight: 400;
 }
 .display-medium {
-  font-size: 45px;
+  font-size: 45pt;
   font-weight: 400;
 }
 .display-small {
-  font-size: 36px;
+  font-size: 36pt;
   font-weight: 400;
 }
 .headline-large {
-  font-size: 32px;
+  font-size: 32pt;
   font-weight: 400;
 }
 .headline-medium {
-  font-size: 28px;
+  font-size: 28pt;
   font-weight: 400;
 }
 .headline-small {
-  font-size: 24px;
+  font-size: 24pt;
   font-weight: 400;
 }
 .title-large {
-  font-size: 22px;
+  font-size: 22pt;
   font-weight: 400;
 }
 .title-medium {
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: 500;
 }
 .title-small {
-  font-size: 14px;
+  font-size: 14pt;
   font-weight: 500;
 }
 .body-large {
-  font-size: 16px;
+  font-size: 16pt;
   font-weight: 400;
 }
 .body-medium {
-  font-size: 14px;
+  font-size: 14pt;
   font-weight: 400;
 }
 .body-small {
-  font-size: 12px;
+  font-size: 12pt;
   font-weight: 400;
 }
 .label-bar {
-  font-size: 14px;
+  font-size: 12pt;
   font-weight: bolder;
 }
 .label-large {
-  font-size: 14px;
+  font-size: 14pt;
   font-weight: 500;
 }
 .label-medium {
-  font-size: 12px;
+  font-size: 12pt;
   font-weight: 500;
 }
 .label-small {
-  font-size: 11px;
+  font-size: 11pt;
   font-weight: 500;
 }

@@ -180,6 +180,7 @@
       timeout = 0
       disable_click_to_close = false
       force_keyboard_focus = true
+      terminal = "kitty"
 
       [keys]
       accept_typeahead = ["tab"]

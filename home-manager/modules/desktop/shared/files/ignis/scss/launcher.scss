@@ -1,0 +1,54 @@
+@use "variables";
+
+.launcher-container {
+  margin: 6px;
+  background-color: rgba(variables.$bg, 0.95);
+  padding: variables.$shape-corner-xlarge / 4;
+  border-radius: variables.$shape-corner-xlarge;
+
+  min-width: 700px;
+}
+
+.launcher-input {
+  padding: 0.75rem;
+  font-size: 16pt;
+}
+
+.launcher-input placeholder, .launcher-input-icon {
+  color: variables.$fg-disabled;
+}
+
+.launcher-scroller {
+  border-top: solid 1px variables.$primary;
+  transition: 0.3ms;
+}
+
+.launcher-scroller * {
+  transition: 0.3ms;
+}
+
+.launcher-item {
+  padding: 0.5rem;
+  border-radius: 1rem;
+}
+
+.launcher-item:hover {
+  background-color: variables.$primary-hover;
+}
+
+.launcher-item:focus {
+  background-color: variables.$primary-hover;
+}
+
+.launcher-item-label {
+  margin-left: 10px;
+}
+
+.launcher-item-label-title {
+  font-weight: 600;
+}
+
+.launcher-item-label-description {
+  color: variables.$fg-subtext;
+  font-weight: 400;
+}

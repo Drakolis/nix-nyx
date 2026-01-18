@@ -121,7 +121,7 @@
             ./system/hosts/YDdraigGoch/configuration.nix
             ./system/hosts/YDdraigGoch/hardware-configuration.nix
             ./system/users/drakolis.nix
-            ./system/users/lilyo.nix
+            ./system/users/neinhorn.nix
           ];
         };
 
@@ -229,6 +229,24 @@
             niri-flake.homeModules.niri
             inputs.ignis.homeManagerModules.default
             ./home-manager/users/drakolis.nix
+            ./home-manager/hosts/YDdraigGoch.nix
+          ];
+        };
+
+        "neinhorn@YDdraigGoch" = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ nix-vscode-extensions.overlays.default ];
+          };
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            sops-nix.homeManagerModules.sops
+            nix-yazi-plugins.legacyPackages.x86_64-linux.homeManagerModules.default
+            inputs.zen-browser.homeModules.beta
+            plasma-manager.homeModules.plasma-manager
+            niri-flake.homeModules.niri
+            inputs.ignis.homeManagerModules.default
+            ./home-manager/users/neinhorn.nix
             ./home-manager/hosts/YDdraigGoch.nix
           ];
         };

@@ -1,4 +1,3 @@
-from ast import Lambda
 from ignis import widgets
 from ignis import utils
 
@@ -6,6 +5,7 @@ from ignis.window_manager import WindowManager
 from ignis.services.applications import ApplicationsService, Application
 
 from utils import get_extended_app_icon
+
 
 class LauncherTouchItem(widgets.Button):
   def __init__(self, application: Application, close_launcher):
@@ -15,26 +15,23 @@ class LauncherTouchItem(widgets.Button):
 
     super().__init__(
       css_classes=["tile"],
-      child=widgets.Overlay(
-        child=widgets.Box(
-          hexpand=True,
-          child=[
-            widgets.Icon(
-              hexpand=True,
-              css_classes=["margin-auto"],
-              image=(icon+"-symbolic"),
-              pixel_size=64
-            )
-          ]
-        ),
-        overlays=[
-          widgets.Box(
-            valign="start",
-            halign="center",
-            css_classes=[
-              # "running-indicator" if window.is_focused else None
-            ], # TODO: Indicator for floating
-          )
+      child=widgets.Box(
+        css_classes=["tile-container"],
+        vertical=True,
+        child=[
+          widgets.Icon(
+            css_classes=["tile-icon"],
+            image=(icon + "-symbolic"),
+            pixel_size=64,
+          ),
+          widgets.Label(
+            hexpand=True,
+            halign="start",
+            css_classes=["tile-title"],
+            label=name,
+            ellipsize="end",
+            max_width_chars=52,
+          ),
         ],
       ),
       tooltip_text=name,
@@ -52,7 +49,7 @@ class LauncherTouchItem(widgets.Button):
 
 class LauncherTouch(widgets.RevealerWindow):
   def __init__(self, monitor_id: int):
-    self.monitor_id = 0
+    self.monitor_id = monitor_id
     self.timeout = False
     self.applications = ApplicationsService.get_default()
     self.applications_list = self.applications.apps
@@ -60,41 +57,50 @@ class LauncherTouch(widgets.RevealerWindow):
     # self.action_list = [
     #  map_applications_to_action_list(a) for a in self.applications
     # ]
-    #
+
     self.app_grid = widgets.Scroll(
+      vexpand=True,
       has_frame=True,
+      hscrollbar_policy="always",
       child=widgets.Grid(
-        css_classes=["popup"],
-        # spacing=24,
-        child=[LauncherTouchItem(x, lambda: self.set_visible(False)) for x in self.applications_list],
-        row_num=3,
-        vexpand=True
-      )
-    );
+        css_classes=["launcher-grid"],
+        valign="center",
+        child=[
+          LauncherTouchItem(x, lambda: self.set_visible(False))
+          for x in self.applications_list
+        ],
+        row_num=4,
+        vexpand=True,
+      ),
+    )
 
     revealer = widgets.Revealer(
       transition_type="crossfade",
       transition_duration=300,
       reveal_child=True,
       hexpand=True,
-      vexpand=True
+      vexpand=True,
+      child=widgets.Box(
+        css_classes=["popup"],
+      ),
     )
 
     container = widgets.EventBox(
-      child=[revealer],
-      vexpand=True
+      vexpand=True,
+      child=revealer,
       # on_hover=self.on_hover_handler,
       # on_hover_lost=self.on_hover_lost_handler,
     )
 
     super().__init__(
       namespace=f"eggshell_launcher_touch_{monitor_id}",
-      visible=True,
+      css_classes=["unset-window"],
+      visible=False,
       layer="top",
+      exclusivity="ignore",
       anchor=["bottom", "top", "left", "right"],
-      child=container,
       revealer=revealer,
-      kb_mode="on_demand", # TODO: Keyboard navigation
+      kb_mode="on_demand",  # TODO: Keyboard navigation
       popup=True,
     )
     self.container = container

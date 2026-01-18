@@ -28,8 +28,11 @@ with lib;
     };
   };
   imports = [
+    ./desktop/aerospace.nix
+    ./linux-scripts
     ./browser.nix
     ./development
+    ./espanso.nix
     ./flatpak.nix
     # ./glance.nix
     ./gaming.nix
@@ -41,6 +44,7 @@ with lib;
     ./shell.nix
     ./showoff.nix
     ./sync.nix
+    ./terminals
     ./tui.nix
     ./unfree.nix
     ./yazi

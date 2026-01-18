@@ -14,9 +14,10 @@ def map_layout(layout: str) -> str:
     return "RU"
   elif "German" in layout:
     return "DE"
+  return "??"
 
 
-def keyboard_status() -> widgets.EventBox:
+def keyboard_status() -> widgets.Button:
   on_click_handler = lambda self: True
   layout_label = "N/A"
 
@@ -27,18 +28,16 @@ def keyboard_status() -> widgets.EventBox:
     on_click_handler = lambda self: niri.switch_kb_layout()
     layout_label = niri.keyboard_layouts.bind("current_name", map_layout)
 
-  return widgets.EventBox(
-    on_right_click=on_click_handler,
-    spacing=5,
-    child=[
-      widgets.Icon(
-        css_classes=["layout-label"],
-        image="input-keyboard-symbolic",
-        pixel_size=16,
-      ),
-      widgets.Label(
-        css_classes=["layout-label", "label-bar"],
-        label=layout_label,
-      ),
-    ],
+  return widgets.Button(
+    css_classes=["unset", "pill-button", "workspace"],
+    on_click=on_click_handler,
+    child=widgets.Box(
+      spacing=5,
+      child=[
+        widgets.Label(
+          css_classes=["layout-label", "label-bar"],
+          label=layout_label,
+        ),
+      ],
+    ),
   )

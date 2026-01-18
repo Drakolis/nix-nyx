@@ -12,7 +12,7 @@ with lib;
 {
   imports = [
     ./dm/sddm.nix
-    ./applications/kde.nix
+    # ./applications/kde.nix
   ];
   config = mkIf (cfg.enable && hasKde) {
     services.desktopManager.plasma6.enable = true;

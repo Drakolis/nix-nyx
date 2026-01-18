@@ -46,11 +46,11 @@ in
           4
           3
         ];
-        sort_by = "alphabetical";
+        sort_by = "natural";
         sort_sensitive = false;
         sort_reverse = false;
         sort_dir_first = true;
-        sort_translit = false;
+        sort_translit = true;
         linemode = "none";
         show_hidden = false;
         show_symlink = true;
@@ -608,15 +608,6 @@ in
           fg = "#${style.colors.selection}";
           bg = "#${style.colors.selection}";
         };
-        tab_active = {
-          fg = "#${style.colors.textInverted}";
-          bg = "#${style.colors.primary}";
-        };
-        tab_inactive = {
-          fg = "#${style.colors.textInverted}";
-          bg = "#${style.colors.activeSurface}";
-        };
-        tab_width = 2;
         count_copied = {
           fg = "#${style.colors.textInverted}";
           bg = "#${style.colors.actionCopy}";
@@ -665,21 +656,64 @@ in
           bg = "#${style.colors.modeInactive}";
         };
       };
+      indicator = {
+        parent = {
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.primary}";
+        };
+        current = {
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.primary}";
+        };
+        preview = {
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.primary}";
+        };
+        padding = {
+          open = "█";
+          close = "█";
+        };
+      };
+      tabs = {
+        active = {
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.primary}";
+        };
+        inactive = {
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.activeSurface}";
+        };
+        sep_inner = {
+          open = "[";
+          close = "]";
+        };
+        sep_outer = {
+          open = "";
+          close = "";
+        };
+      };
       status = {
-        separator_open = "";
-        separator_close = "";
-
+        sep_left = {
+          open = "";
+          close = "";
+        };
+        sep_right = {
+          open = "";
+          close = "";
+        };
         progress_label = {
           fg = "#${style.colors.textInverted}";
           bold = true;
         };
+
         progress_normal = {
-          fg = "#${style.colors.secondary}";
-          bg = "#${style.colors.activeOutline}";
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.primary}";
         };
+
         progress_error = {
-          fg = "#${style.colors.error}";
-          bg = "#${style.colors.activeOutline}";
+          fg = "#${style.colors.textInverted}";
+          bg = "#${style.colors.error}";
         };
 
         perm_type = {

@@ -1,5 +1,20 @@
 { pkgs, ... }:
 {
+  # These have to move
+  home.packages = with pkgs; [
+    wvkbd
+  ];
+
+  services.cliphist.enable = true;
+
+  services.gammastep = {
+    enable = true;
+    tray = true;
+    provider = "geoclue2";
+    # latitude = 52.461078;
+    # longitude = 13.364068;
+  };
+
   programs.ignis = {
     enable = true;
 
@@ -32,10 +47,13 @@
     # Extra packages available at runtime
     # These can be regular packages or Python packages
     extraPackages = with pkgs; [
-      hello
       python3Packages.jinja2
       python3Packages.materialyoucolor
       python3Packages.pillow
+
+      python3Packages.simpleaudio
+      python3Packages.pytz
+      python3Packages.requests
     ];
   };
 }

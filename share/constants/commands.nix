@@ -1,5 +1,6 @@
 {
   terminal = "kitty";
+  terminalExec = "kitty -e";
 
   tui = {
     editor = "nvim";
@@ -8,8 +9,8 @@
 
   gui = {
     browser = "zen";
-    editor = "codium";
-    fileManager = "pcmanfm-qt";
+    editor = "zeditor";
+    fileManager = "thunar";
     passwords = "proton-pass";
   };
 
@@ -22,23 +23,27 @@
 
   notifyHyprpicker = ''notify-send -a "hyprpicker" -i "pick-colour-picker" "Color Picker" "Click to copy color"'';
 
-  dialogues = {
-    runner = "walker";
-    runnerShift = "walker -m runner";
-    runnerClipboard = "walker -m clipboard";
-    shutdown = "wlogout -s";
-  };
+  runner = "ignis open-window eggshell_launcher";
+  runnerShift = "walker -m runner";
+  runnerClipboard = "walker -m clipboard";
+  shutdown = "ignis open-window eggshell_session_menu";
 
   autostart = [
-    "kwalletd6"
-    "element-desktop --hidden"
-    # "keepassxc"
-    "proton-pass"
-    "protonvpn-app"
-    # "colima start &"
-    "systemctl --user start hyprpolkitagent.service"
-    "caffeine"
-    "syncthingtray"
-    "tailscale-systray"
+    [ "tailscale-systray" ]
+    [
+      "niri-screen-time"
+      "-daemon"
+    ]
+    [ "hyprpaper" ]
+    [
+      "syncthingtray"
+      "--wait"
+    ]
+    [ "flameshot" ]
+    [ "caffeine" ]
+    [
+      "ignis"
+      "init"
+    ]
   ];
 }

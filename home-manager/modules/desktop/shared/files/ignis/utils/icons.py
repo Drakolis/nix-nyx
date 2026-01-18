@@ -1,16 +1,57 @@
 from ignis import utils
 
+from ignis.services.applications import ApplicationsService, Application
+
+applications = ApplicationsService.get_default()
+
 DEFAULT_WINDOW_ICON = "application-default-icon"
 
+
 def get_extended_app_icon(app_id) -> str:
- if app_id == "steam":
-  return "com.valvesoftware.Steam"
- elif app_id:
-  return utils.get_app_icon_name(app_id)
- else:
-  return DEFAULT_WINDOW_ICON
+  if app_id == "steam":
+    return "com.valvesoftware.Steam"
+  elif app_id == "Slack":
+    return "com.slack.Slack"
+  elif app_id == "Element":
+    return "element-desktop"
+  elif app_id:
+    return utils.get_app_icon_name(app_id)
+  else:
+    return DEFAULT_WINDOW_ICON
+
 
 # def get_extended_app_icon_color(name) -> str:
+
+
+def get_audio_device_icon(name_id) -> str:
+  if "bluez_output" in name_id:
+    return "bluetooth-symbolic"
+  elif "hdmi" in name_id:
+    return "video-display-symbolic"
+  elif "alsa_output.pci" in name_id:
+    return "audio-card-symbolic"
+  elif "SPDIF" in name_id:
+    return "audio-card-symbolic"
+  elif "Headphones" in name_id:
+    return "audio-headphones-symbolic"
+  elif "Speaker" in name_id:
+    return "audio-speakers-symbolic"
+  elif "alsa_output.usb" in name_id:
+    return "audio-card-usb-symbolic"
+
+  if "bluez_input" in name_id:
+    return "bluetooth-symbolic"
+  if "alsa_input.pci" in name_id:
+    return "audio-card-symbolic"
+  elif "Mic" in name_id:
+    return "audio-input-microphone-symbolic"
+  elif "Line" in name_id:
+    return "audio-input-microphone-symbolic"
+  elif "Webcam" in name_id:
+    return "camera-web-symbolic"
+  elif "alsa_input.usb" in name_id:
+    return "audio-card-usb-symbolic"
+
 
 def get_audio_output_status_icon(volume, is_muted) -> str:
   if is_muted:

@@ -7,11 +7,11 @@ in
 
   fontGui = "Ubuntu Sans";
   fontGuiNerd = "Ubuntu Nerd Font";
-  fontMonospace = "JetBrainsMono Nerd Font";
-  fontSize = 10;
-  fontMonospaceSize = 10;
-  fontSizeLarger = 14;
-  fontSizeLargest = 16;
+  fontMonospace = "JetBrainsMono Nerd Font Mono";
+  fontSize = 12;
+  fontMonospaceSize = 12;
+  fontSizeLarger = 13;
+  fontMonospaceSizeLarger = 14;
 
   opacity = {
     background = {

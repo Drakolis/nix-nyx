@@ -1,0 +1,195 @@
+@use "variables";
+
+.bar-container {
+  margin: 5px 2px 0;
+  color: variables.$fg;
+  font-size: 12pt;
+  font-weight: 500;
+}
+
+.bar-pill {
+  background-color: variables.$bg;
+  padding: 0.25rem 0.25rem;
+  border-radius: 2rem;
+  margin: 0px 3px;
+
+  label {
+    margin-top: 0.2rem;
+  }
+
+  .pill-button {
+    border-radius: 1rem;
+    padding: 0.25rem 0.3rem;
+    transition: 0.3s;
+  }
+
+  .pill-button label {
+    margin-right: 0.4rem;
+    transition: 0.3ms;
+  }
+
+  .pill-button.workspace {
+    padding-left: 0.7rem;
+    padding-right: 0.3rem;
+    min-width: 1rem;
+  }
+
+  .pill-button:hover {
+    background-color: variables.$bg-control;
+  }
+
+  .pill-button:focus {}
+
+  .pill-button.active {
+    background-color: variables.$primary;
+    color: variables.$bg;
+  }
+
+  .tray-label {
+    color: variables.$fg;
+  }
+}
+
+.workspace-button {
+  border-radius: 1.2rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+  min-width: 1rem;
+  transition: 0.3s;
+}
+
+.workspace-button:hover {
+  background-color: variables.$primary-hover;
+}
+
+.workspace-button.active {
+  background-color: variables.$primary;
+  color: variables.$bg;
+}
+
+.window-label {
+  color: variables.$primary;
+}
+
+.clock-label {
+  color: variables.$clock;
+}
+
+.layout-label {
+  color: variables.$layout;
+}
+
+.audio-label {
+  color: variables.$audio;
+}
+
+.audio-bg {
+  background-color: variables.$audio;
+}
+
+.brightness-label {
+  color: variables.$brightness;
+}
+
+.power-critical-label {
+  color: variables.$power-critical;
+}
+
+.power-warning-label {
+  color: variables.$power-warning;
+}
+
+.power-normal-label {
+  color: variables.$power-normal;
+}
+
+.network-label {
+  color: variables.$network;
+}
+
+.bluetooth-label {
+  color: variables.$bluetooth;
+}
+
+.setup-menu {
+  padding: 0.5rem;
+
+  min-width: 256px;
+  .setup-menu-title {
+    padding: 0 0.35rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .setup-menu-subtitle {
+    padding: 0 0.35rem;
+  }
+
+  .setup-menu-scale {
+    padding: 0 0.35rem;
+    margin: 0.7rem 0;
+  }
+
+  .setup-menu-separator {
+    background-color: variables.$fg-disabled;
+    min-height: 1px;
+    margin: 0.5rem 0;
+  }
+
+
+  .setup-menu-button {
+    transition: 0.3s;
+    border-radius: variables.$shape-corner-large;
+    padding: 0.35rem 0.5rem;
+
+    &:hover {
+      background-color: variables.$bg-control;
+    }
+
+    .setup-menu-button-icon {
+      background-color: variables.$bg-control-hover;
+      padding: 5px;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+
+      & {
+        padding: 0.35rem 0.35rem;
+      }
+
+
+      &.active {
+        background-color: variables.$primary;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      &.audio-active {
+        background-color: variables.$audio;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      &.bluetooth-active {
+        background-color: variables.$bluetooth;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      &.network-active {
+        background-color: variables.$network;
+
+        .setup-menu-button-icon-image {
+          color: variables.$bg;
+        }
+      }
+
+      .setup-menu-button-icon {
+        color: variables.$fg;
+      }
+    }
+  }
+}

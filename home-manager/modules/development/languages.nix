@@ -15,12 +15,14 @@ let
 
   nodeExtendedPackages = with pkgs; [
     yarn
+    pnpm
     typescript
     typescript-language-server
     vue-language-server
   ];
 
   pythonExtendedPackages = with pkgs; [
+    ruff
     python3Packages.pip
     python3Packages.jupyter
     python3Packages.numpy

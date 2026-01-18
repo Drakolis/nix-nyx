@@ -137,7 +137,8 @@
     desktop = {
       enable = true;
       types = [
-        "kde"
+        # "kde"
+        "niri"
       ];
       profiles = [
         "advanced"

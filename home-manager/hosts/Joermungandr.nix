@@ -1,7 +1,7 @@
 {
   imports = [
     ../modules
-    ../modules/desktop/kde
+    ../modules/desktop/niri
   ];
 
   drakolis = {
@@ -14,6 +14,7 @@
       enableEntertainment = true;
       enableGameDevelopment = true;
       enableGaming = true;
+      enableService = true;
     };
     development = {
       enable = true;
@@ -29,7 +30,7 @@
       };
       languages = {
         nodeExtended = true;
-        pythonExtended = false;
+        pythonExtended = true;
         goExtended = true;
         lua = true;
         rust = true;
@@ -49,7 +50,7 @@
   };
 
   nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.3.4"
+    "beekeeper-studio-5.5.3"
   ];
 
   # Nicely reload system units when changing configs

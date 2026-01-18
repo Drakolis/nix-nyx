@@ -1,7 +1,60 @@
 let
-  style = import ../../../../share/constants/style.nix;
+  style = import ../../../share/constants/style.nix;
 in
 {
+  programs.rio = {
+    enable = false;
+    settings = {
+      theme = "catppuccin-mocha";
+      confirm-before-quit = true;
+      cursor = {
+        shape = "block";
+        blinking = true;
+        blinking-interval = 800;
+        weight = 500;
+      };
+      bell = {
+        visual = false;
+      };
+      editor = {
+        program = "nvim";
+      };
+      fonts = {
+        size = style.fontMonospaceSize + 3;
+        family = style.fontMonospace;
+        use-drawable-chars = true;
+      };
+      navigation = {
+        mode = "BottomTab";
+        use-split = true;
+        color-automation = [ ];
+        hide-if-single = true;
+      };
+      option-as-alt = "left";
+      padding-x = 7;
+      padding-y = [
+        10
+        10
+      ];
+      title = {
+        content = "{{ PROGRAM }} - {{ ABSOLUTE_PATH }}";
+        placeholder = "rio";
+      };
+      window = {
+        decorations = "enabled";
+        opacity = 0.97;
+        blur = true;
+      };
+    };
+  };
+
+  home.file = {
+    ".config/rio/themes/" = {
+      source = ./files/rio/themes;
+      recursive = true;
+    };
+  };
+
   programs.ghostty = {
     enable = false;
     enableBashIntegration = true;
@@ -15,7 +68,6 @@ in
       cursor-style = "block";
 
       gtk-titlebar = true;
-      gtk-adwaita = false;
       window-theme = "ghostty";
       confirm-close-surface = false;
 

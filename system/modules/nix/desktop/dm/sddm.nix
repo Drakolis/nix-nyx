@@ -10,9 +10,13 @@ let
 
   sddmCatppuccin = {
     sddm = {
+      package = pkgs.kdePackages.sddm;
       enable = true;
       theme = "catppuccin-mocha-mauve";
-      wayland.enable = true;
+      wayland = {
+        enable = true;
+        compositor = "kwin";
+      };
     };
   };
 
@@ -37,7 +41,7 @@ with lib;
           (pkgs.catppuccin-sddm.override {
             flavor = "mocha";
             font = "Ubuntu Nerd Font";
-            fontSize = "14";
+            fontSize = "12";
             # background = "${~/.background}";
             loginBackground = true;
           })
