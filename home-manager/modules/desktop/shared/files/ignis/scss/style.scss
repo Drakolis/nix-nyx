@@ -4,13 +4,8 @@
 @use "bar";
 @use "launcher";
 @use "info_center";
+@use "notifications";
 @use "animations";
-
-
-// Notifications
-.notification-popup {
-  border: 1px solid variables.$primary;
-}
 
 // OSD
 

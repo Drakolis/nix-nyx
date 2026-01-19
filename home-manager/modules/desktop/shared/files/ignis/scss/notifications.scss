@@ -1,0 +1,55 @@
+@use "variables";
+
+.notifications-window {
+  min-width: 29rem;
+  margin: 5px;
+}
+
+.notification-popup {
+  background-color: rgba(variables.$bg, 1.95);
+  border-radius: variables.$shape-corner-xlarge;
+  padding: variables.$shape-corner-xlarge;
+  box-shadow: inset 0 0 0 2px variables.$primary;
+
+  margin-bottom: 4px;
+
+  .notification-icon {
+    margin-right: variables.$shape-corner-large;
+  }
+
+  .notification-summary {
+    margin-top: 3px;
+    font-weight: 500;
+    font-size: 14pt;
+  }
+
+  .notification-body {
+    margin-top: 2px;
+  }
+
+  .notification-screenshot {
+    background-color: variables.$shadow;
+    border-radius: variables.$shape-corner-large;
+    margin-bottom: 2px;
+  }
+
+  .notification-action {
+    background-color: variables.$bg-control;
+    border-radius: variables.$shape-corner-large;
+    padding: variables.$shape-corner-large;
+    transition-duration: 150ms;
+    margin-top: 5px;
+  }
+
+  .notification-action:hover {
+    background-color: variables.$bg-control-hover;
+  }
+
+  .notification-close {
+    color: variables.$error;
+    margin-left: variables.$shape-corner-large;
+    image {
+      color: variables.$error;
+    }
+  }
+}
