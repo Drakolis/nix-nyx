@@ -33,4 +33,28 @@ with lib;
       hyprpicker
     ];
   };
+
+  services.niri-session-manager = {
+    enable = true;
+    settings = {
+      save-interval = 30;
+      max-backup-count = 3;
+      single_instance_apps = {
+        apps = [
+          "firefox"
+          "zen"
+          "codium"
+        ];
+      };
+
+      # Applications to skip during startup
+      skip_apps = {
+        apps = [
+          "discord"
+          "slack"
+          "telegram-desktop"
+        ];
+      };
+    };
+  };
 }

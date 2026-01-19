@@ -37,14 +37,11 @@
 
     niri-flake.url = "github:sodiboo/niri-flake";
 
-    niri-switch = {
-      url = "github:Kiki-Bouba-Team/niri-switch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     niri-screen-time = {
       url = "github:probeldev/niri-screen-time";
     };
+
+    niri-session-manager.url = "github:MTeaHead/niri-session-manager";
 
     ignis = {
       url = "github:ignis-sh/ignis";
@@ -89,6 +86,7 @@
       home-manager,
       plasma-manager,
       niri-flake,
+      niri-session-manager,
       nix-yazi-plugins,
       nix-vscode-extensions,
       sops-nix,
@@ -106,6 +104,7 @@
           system = "x86_64-linux";
           modules = [
             sops-nix.nixosModules.sops
+            niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/Joermungandr/configuration.nix
             ./system/hosts/Joermungandr/hardware-configuration.nix
@@ -117,6 +116,7 @@
           system = "x86_64-linux";
           modules = [
             sops-nix.nixosModules.sops
+            niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/YDdraigGoch/configuration.nix
             ./system/hosts/YDdraigGoch/hardware-configuration.nix
@@ -129,6 +129,7 @@
           system = "x86_64-linux";
           modules = [
             sops-nix.nixosModules.sops
+            niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/Quetzalcoatl/configuration.nix
             ./system/hosts/Quetzalcoatl/hardware-configuration.nix
@@ -140,6 +141,7 @@
           system = "x86_64-linux";
           modules = [
             sops-nix.nixosModules.sops
+            niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/WinterDragon/configuration.nix
             ./system/hosts/WinterDragon/hardware-configuration.nix
