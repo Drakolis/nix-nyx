@@ -1,4 +1,4 @@
-from .brightness import brightness_status
+from .brightness import MonitorStatusWidget
 from .audio import AudioStatusWidget
 from .keyboard import keyboard_status
 from .power import PowerStatusWidget
@@ -13,7 +13,7 @@ from .window_title import WindowTitleWidget
 
 
 all = [
-  "brightness_status",
+  "MonitorStatusWidget",
   "AudioStatusWidget",
   "keyboard_status",
   "PowerStatusWidget",

@@ -1,6 +1,6 @@
 from ignis import widgets
 
-from .brightness import brightness_status
+from .brightness import MonitorStatusWidget
 from .audio import AudioStatusWidget
 from .keyboard import keyboard_status
 from .network import NetworkStatusWidget
@@ -22,7 +22,7 @@ def system_status_widget(monitor_id: int) -> widgets.Box:
       keyboard_status(),
       AudioStatusWidget(True),
       AudioStatusWidget(False),
-      brightness_status(monitor_id),
+      MonitorStatusWidget(monitor_id),
       PowerStatusWidget()
       if upower.is_available and len(upower.batteries) > 0
       else None,

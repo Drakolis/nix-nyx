@@ -191,6 +191,7 @@ in
           enable = true;
           draw-behind-window = false;
           inactive-color = "#${style.colors.shadow}";
+          color = "#${style.colors.shadow}";
           offset = {
             x = 0;
             y = 0;
@@ -253,6 +254,28 @@ in
       };
 
       window-rules = [
+        {
+          matches = [ { is-window-cast-target = true; } ];
+
+          focus-ring = {
+            active.color = "#${style.colors.error}";
+            inactive.color = "#7d0d2d";
+          };
+
+          border = {
+            inactive.color = "#7d0d2d";
+          };
+
+          shadow = {
+            color = "#7d0d2d70";
+            inactive-color = "#7d0d2d70";
+          };
+
+          tab-indicator = {
+            active.color = "#${style.colors.error}";
+            inactive.color = "#7d0d2d";
+          };
+        }
         {
           # Rules for windows that should clearly float, but don't
           matches = [

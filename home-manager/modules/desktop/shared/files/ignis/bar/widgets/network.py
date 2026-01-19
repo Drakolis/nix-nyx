@@ -17,13 +17,17 @@ DEFAULT_ICON = "network-disconnected-symbolic"
 DEFAULT_LABEL = "N/A"
 
 
+def get_access_point_title(access_point):
+  name = access_point.ssid if access_point.ssid else access_point.bssid
+  frequency = f"{round(access_point.frequency / 1000, 1)}GHz"
+  return f"{name} ({frequency})"
+
+
 class NetworkSetupAccessPointItem(SetupMenuItemIconButton):
   def __init__(self, access_point):
     self.access_point = access_point
     self.connected = access_point.is_connected
-    description_raw = access_point.ssid if access_point.ssid else access_point.bssid
-
-    description = f"{description_raw} {access_point.frequency / 1000}GHz"
+    description = get_access_point_title(access_point)
 
     on_click = lambda x: asyncio.create_task(self.sync_connect())
     setup_button = lambda self: self.access_point.connect(
@@ -62,6 +66,7 @@ class NetworkSetupAccessPointItem(SetupMenuItemIconButton):
 class NetworkStatusWidget(widgets.Box):
   def __init__(self):
     self.network = NetworkService.get_default()
+    self.wifi_device = self.network.wifi.devices[0]
     self.show_wifi = False
 
     self.network_setup_menu_header = SetupMenuHeader(
@@ -87,7 +92,8 @@ class NetworkStatusWidget(widgets.Box):
         *self.network_setup_hideable,
         SetupMenuItemSeparator(),
         SetupMenuItemButton(
-          on_click=lambda x: self.__start_discovery(), label="Search for Networks..."
+          on_click=lambda x: asyncio.create_task(self.wifi_device.scan()),
+          label="Search for Networks...",
         ),
         # SetupMenuItemButton(
         #   on_click=lambda x: self.__start_discovery(), label="Network Settings..."
@@ -118,12 +124,16 @@ class NetworkStatusWidget(widgets.Box):
       "notify::is-connected", lambda x, _: self.__update_wifi(x)
     )
     self.network.wifi.connect("notify::enabled", lambda x, _: self.__update_wifi(x))
-    self.network.wifi.devices[0].connect(
-      "notify::access_points", lambda x, _: self.__append_networks(x)
+
+    self.wifi_device.connect("notify::ap", lambda x, y: self.__update_wifi_device(x))
+    self.wifi_device.connect(
+      "new-access-point", lambda x, y: self.__append_access_point(y)
     )
+
     self.__update_ethernet(self.network.ethernet)
     self.__update_wifi(self.network.wifi)
-    self.__append_networks(self.network.wifi.devices[0])
+    self.__update_wifi_device(self.wifi_device)
+    [self.__append_access_point(ap) for ap in self.wifi_device.access_points]
 
   def __update_ethernet(self, ethernet):
     ethernet_icon = ethernet.icon_name
@@ -142,18 +152,16 @@ class NetworkStatusWidget(widgets.Box):
       self.network_status_icon.set_image(wifi_icon)
     self.show_wifi = wifi.enabled
 
+  def __update_wifi_device(self, wifi_device):
+    self.network_setup_menu_header.set_subtitle(get_access_point_title(wifi_device.ap))
+    # TODO: Weird behaviour for when network is offline
+
   def __toggle_wifi(self, wifi):
     self.network.wifi.enabled = not self.network.wifi.enabled
 
-  def __start_discovery(self, *args):
-    self.network.wifi.devices[0].scan()
-
-  def __append_networks(self, device):
-    [
-      self.network_setup_networks.append(
-        NetworkSetupAccessPointItem(
-          access_point,
-        )
+  def __append_access_point(self, access_point):
+    self.network_setup_networks.append(
+      NetworkSetupAccessPointItem(
+        access_point,
       )
-      for access_point in device.access_points
-    ]
+    )

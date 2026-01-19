@@ -17,107 +17,116 @@ from utils import (
   get_brightness_status_icon,
 )
 
-# TODO: Should know which display is being controlled
 
-backlight = BacklightService.get_default()
-recorder = RecorderService.get_default()
+class MonitorStatusWidget(widgets.Box):
+  def __init__(self, monitor_id):
+    # TODO: Should know which display is being controlled
+    self.backlight = BacklightService.get_default()
+    self.recorder = RecorderService.get_default()
 
-menu_header = SetupMenuHeader(
-  title="Monitor",
-  subtitle="Resolution",
-)
+    self.monitor_menu_header = SetupMenuHeader(
+      title="Monitor",
+      subtitle="Resolution",
+    )
 
-scale_menu_item = SetupMenuItemScale(
-  icon_css_classes=["brightness-label"],
-  icon_max="display-brightness-high-symbolic",
-  icon_min="display-brightness-low-symbolic",
-  scale_css_class="brightness-slider",
-)
+    current_monitor = utils.get_monitor(monitor_id)
+    self.monitor_menu_header.set_title(
+      f"{current_monitor.get_model()} ({current_monitor.get_connector()})"
+    )
+    self.monitor_menu_header.set_subtitle(
+      f"{current_monitor.get_geometry().width} x {current_monitor.get_geometry().height} px ({current_monitor.get_refresh_rate() / 1000} Hz)"
+    )
 
+    self.monitor_brightness_menu_item = SetupMenuItemScale(
+      icon_css_classes=["brightness-label"],
+      icon_max="display-brightness-high-symbolic",
+      icon_min="display-brightness-low-symbolic",
+      scale_css_class="brightness-slider",
+    )
 
-record_state = False
+    self.monitor_record_button = SetupMenuItemButton(
+      on_click=self.__start_recording,
+      label="Start screen recording...",
+    )
+    self.monitor_record_end_button = SetupMenuItemButton(
+      on_click=self.__stop_recording,
+      label="Stop screen recording",
+    )
 
+    self.monitor_setup_menu = SetupMenuPopover(
+      child=[
+        self.monitor_menu_header,
+        self.monitor_brightness_menu_item,
+        SetupMenuItemSeparator(),
+        self.monitor_record_button,
+        self.monitor_record_end_button,
+      ],
+    )
 
-def start_recording(*args):
-  {
+    self.monitor_bar_icon = (
+      widgets.Icon(
+        css_classes=["brightness-label"],
+        image="video-display-symbolic",
+        pixel_size=24,
+        hexpand=True,
+      ),
+    )
+
+    self.monitor_bar_item = widgets.Button(
+      css_classes=["pill-button"],
+      on_click=lambda x: self.monitor_setup_menu.popup(),
+      child=widgets.Box(spacing=5, child=self.monitor_bar_icon),
+    )
+
+    super().__init__(child=[self.monitor_bar_item, self.monitor_setup_menu])
+
+    self.backlight.connect("notify::available", lambda x, y: self.__update_backlight(x))
+    self.backlight.connect(
+      "notify::brightness", lambda x, y: self.__update_backlight(x)
+    )
+    self.backlight.connect(
+      "notify::max-brightness", lambda x, y: self.__update_backlight(x)
+    )
+    self.recorder.connect("notify::active", lambda x, y: self.__update_recorder(x))
+
+    self.__update_backlight(self.backlight)
+    self.__update_recorder(self.recorder)
+
+  def __start_recording(self, *args):
     asyncio.create_task(
-      recorder.start_recording(
+      self.recorder.start_recording(
         RecorderConfig(
           source="portal",
-          path="~/Videos/rec.mp4",
+          path="Videos/Screen Recordings/Screen Recording from %Y-%m-%d_%H-%M-%S.mp4",
         )
       )
     )
-  }
 
+  def __stop_recording(self, *args):
+    self.recorder.stop_recording()
 
-def stop_recording(*args):
-  {recorder.stop_recording()}
+  def __update_recorder(self, recorder):
+    self.monitor_record_button.visible = not recorder.active
+    self.monitor_record_end_button.visible = recorder.active
 
+  def __update_backlight(self, backlight):
+    available = backlight.available
+    brightness = backlight.brightness
+    max_brightness = backlight.max_brightness
 
-record_button = SetupMenuItemButton(
-  on_click=start_recording,
-  label="Start screen recording...",
-)
-record_end_button = SetupMenuItemButton(
-  on_click=stop_recording,
-  label="Stop screen recording",
-)
+    self.monitor_brightness_menu_item.set_visible(available)
 
+    if available:
+      brightness_percentage = round(100 * (brightness / max_brightness))
+      brightness_percent = max_brightness / 100
+      self.monitor_brightness_menu_item.set_value(brightness_percentage)
+      self.monitor_brightness_menu_item.set_on_change(
+        lambda x: backlight.set_brightness_async(x.get_value() * brightness_percent)
+      )
 
-menu = SetupMenuPopover(
-  child=[
-    menu_header,
-    scale_menu_item,
-    SetupMenuItemSeparator(),
-    record_button,
-    record_end_button,
-  ],
-)
-
-
-def brightness_render_contents(available, brightness, brightness_max):
-  brightness_percentage = round(100 * (brightness / brightness_max))
-  brightness_percent = brightness_max / 100
-  brightness_icon = (
-    get_brightness_status_icon(brightness_percentage)
-    if available
-    else "video-display-symbolic"
-  )
-
-  scale_menu_item.set_value(brightness_percentage)
-  scale_menu_item.set_on_change(
-    lambda x: backlight.set_brightness_async(x.get_value() * brightness_percent)
-  )
-
-  scale_menu_item.set_visible(available)
-
-  return [
-    widgets.Icon(
-      css_classes=["brightness-label"],
-      image=brightness_icon,
-      pixel_size=24,
-      hexpand=True,
-    ),
-    menu,
-  ]
-
-
-def brightness_status(monitor_id: int) -> widgets.Button:
-  brightness_widgets = backlight.bind_many(
-    ["available", "brightness", "max_brightness"],
-    brightness_render_contents,
-  )
-  current_monitor = utils.get_monitor(monitor_id)
-  menu_header.set_title(
-    f"{current_monitor.get_model()} ({current_monitor.get_connector()})"
-  )
-  menu_header.set_subtitle(
-    f"{current_monitor.get_geometry().width} x {current_monitor.get_geometry().height} px ({current_monitor.get_refresh_rate() / 1000} Hz)"
-  )
-
-  return widgets.Button(
-    css_classes=["pill-button"],
-    on_click=lambda x: menu.popup(),
-    child=widgets.Box(spacing=5, child=brightness_widgets),
-  )
+      brightness_icon = (
+        get_brightness_status_icon(brightness_percentage)
+        if available
+        else "video-display-symbolic"
+      )
+      self.monitor_bar_icon.image = brightness_icon
