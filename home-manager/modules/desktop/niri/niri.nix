@@ -367,6 +367,11 @@ in
           hotkey-overlay.title = "Launch Terminal";
         };
 
+        "Mod+Shift+Return" = {
+          action.spawn = "${commands.terminalExec} zellij";
+          hotkey-overlay.title = "Launch Terminal with Zellij";
+        };
+
         "Mod+B" = {
           action.spawn = commands.gui.browser;
           hotkey-overlay.title = "Launch Browser";
