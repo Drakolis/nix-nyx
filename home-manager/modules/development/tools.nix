@@ -13,6 +13,7 @@ let
 
   aiEditorsPackages = with pkgs; [
     windsurf
+    kiro
   ];
 
   sqlClientPackages = with pkgs; [

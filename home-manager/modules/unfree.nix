@@ -10,5 +10,6 @@
       "windsurf"
       "cursor"
       "vscode"
+      "kiro"
     ];
 }
