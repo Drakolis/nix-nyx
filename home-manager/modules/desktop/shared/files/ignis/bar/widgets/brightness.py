@@ -1,16 +1,26 @@
+import asyncio
 from ignis import widgets
 from ignis import utils
 
 from ignis.services.backlight import BacklightService
+from ignis.services.recorder import RecorderService, RecorderConfig
+
+from widgets.setup_menu import (
+  SetupMenuPopover,
+  SetupMenuHeader,
+  SetupMenuItemScale,
+  SetupMenuItemSeparator,
+  SetupMenuItemButton,
+)
 
 from utils import (
   get_brightness_status_icon,
 )
-from widgets.setup_menu import SetupMenuPopover, SetupMenuHeader, SetupMenuItemScale
 
 # TODO: Should know which display is being controlled
 
 backlight = BacklightService.get_default()
+recorder = RecorderService.get_default()
 
 menu_header = SetupMenuHeader(
   title="Monitor",
@@ -24,10 +34,44 @@ scale_menu_item = SetupMenuItemScale(
   scale_css_class="brightness-slider",
 )
 
+
+record_state = False
+
+
+def start_recording(*args):
+  {
+    asyncio.create_task(
+      recorder.start_recording(
+        RecorderConfig(
+          source="portal",
+          path="~/Videos/rec.mp4",
+        )
+      )
+    )
+  }
+
+
+def stop_recording(*args):
+  {recorder.stop_recording()}
+
+
+record_button = SetupMenuItemButton(
+  on_click=start_recording,
+  label="Start screen recording...",
+)
+record_end_button = SetupMenuItemButton(
+  on_click=stop_recording,
+  label="Stop screen recording",
+)
+
+
 menu = SetupMenuPopover(
   child=[
     menu_header,
     scale_menu_item,
+    SetupMenuItemSeparator(),
+    record_button,
+    record_end_button,
   ],
 )
 
