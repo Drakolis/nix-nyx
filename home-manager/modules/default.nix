@@ -29,7 +29,6 @@ with lib;
   };
   imports = [
     ./desktop/aerospace.nix
-    ./linux-scripts
     ./browser.nix
     ./development
     ./espanso.nix
@@ -37,7 +36,9 @@ with lib;
     # ./glance.nix
     ./gaming.nix
     ./internet.nix
+    ./linux-scripts
     ./media.nix
+    ./multiplexing.nix
     ./neovim
     ./office.nix
     ./security
