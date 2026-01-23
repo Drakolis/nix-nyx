@@ -16,7 +16,7 @@ with lib;
 {
   config = mkIf cfg.enable {
     programs.zed-editor = {
-      enable = false;
+      enable = true;
       extensions = [
         "catppuccin"
         "symbols"
