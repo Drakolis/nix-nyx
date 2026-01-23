@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     nil
-    nixfmt-rfc-style
+    nixfmt
     nix-tree
     nixos-generators
     nixos-option
