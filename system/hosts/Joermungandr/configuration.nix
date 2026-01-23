@@ -61,37 +61,6 @@
 
   services.hardware.openrgb = {
     enable = true;
-    package = pkgs.openrgb.overrideAttrs (old: {
-      src = pkgs.fetchFromGitLab {
-        owner = "CalcProgrammer1";
-        repo = "OpenRGB";
-        rev = "release_candidate_1.0rc2";
-        sha256 = "sha256-vdIA9i1ewcrfX5U7FkcRR+ISdH5uRi9fz9YU5IkPKJQ=";
-      };
-      patches = [
-        ./remove_systemd_service.patch
-      ];
-      postPatch = ''
-        patchShebangs scripts/build-udev-rules.sh
-        substituteInPlace scripts/build-udev-rules.sh \
-         --replace-fail /usr/bin/env "${pkgs.coreutils}/bin/env"
-      '';
-    });
-    motherboard = "amd";
-  };
-
-  systemd.services.openrgb = lib.mkDefault {
-    wantedBy = [ "multi-user.target" ];
-    after = [
-      "network.target"
-      "lm_sensors.service"
-    ];
-    description = "OpenRGB SDK Server";
-    serviceConfig = {
-      RemainAfterExit = "yes";
-      ExecStart = ''${pkgs.openrgb}/bin/openrgb --server'';
-      Restart = "always";
-    };
   };
 
   services = {
