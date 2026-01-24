@@ -12,7 +12,7 @@
     gnupg
     httpie # HTTP requests
     jq # JSON parsing
-    lynx # Terminal Browser
+    w3m # Terminal Browser
     ncdu # Disk usage
     ripgrep
     rsync

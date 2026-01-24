@@ -13,7 +13,7 @@
     git
     gnupg
     jq # JSON parsing
-    lynx # Terminal Browser
+    w3m # Terminal Browser
     ncdu
     neovim
     ripgrep
