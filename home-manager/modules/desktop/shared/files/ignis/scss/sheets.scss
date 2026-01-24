@@ -11,8 +11,32 @@
   margin: 6px;
   border-radius: variables.$shape-corner-xlarge;
   padding: variables.$shape-corner-xlarge;
-  background-color: variables.$bg;
+  background-color: variables.$bg-transparent;
   // border: 1px solid variables.$fg-disabled;
+}
+
+.user-profile {
+  .avatar {
+    border-radius: 10rem;
+    margin-right: 1.5rem;
+  }
+
+  .user-name {
+    color: variables.$primary;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .user-address {
+    margin-top: 0.1rem;
+    color: variables.$secondary;
+    font-weight: bold;
+  }
+
+  .user-uptime {
+    margin-top: 0.4rem;
+    color: variables.$fg-subtext;
+  }
 }
 
 .button-fab-power-off {
@@ -24,7 +48,7 @@
 }
 .button-fab-sleep {
   border-radius: 24px;
-  background-color: #b4befe;
+  background-color: #89b4fa;
   image {
     color: variables.$shadow;
   }
@@ -52,13 +76,13 @@
 }
 
 .input {
-  background-color: variables.$bg-input;
+  background-color: lighten(variables.$bg-input, 2%);
   border-radius: variables.$shape-corner-large;
   padding: variables.$shape-corner-large;
 }
 
 .section {
-  background-color: variables.$bg-control;
+  background-color: lighten(variables.$bg-input, 2%);
   border-radius: variables.$shape-corner-large;
   padding: variables.$shape-corner-large;
   padding: 24px;

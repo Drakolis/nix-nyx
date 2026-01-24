@@ -21,8 +21,12 @@ class UserOptions(OptionsManager):
     filter_current_workspace: bool = False
     sort_floating_last: bool = True
 
+  class User(OptionsGroup):
+      avatar: str = f"/var/lib/AccountsService/icons/{os.getenv('USER')}"
+
   chat_center = ChatCenter()
   dock = Dock()
+  user = User()
 
 
 user_options = UserOptions()

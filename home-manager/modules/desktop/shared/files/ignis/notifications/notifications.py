@@ -138,6 +138,7 @@ class NotificationWidget(widgets.Box):
       layout = NormalLayout(notification)
 
     super().__init__(
+      hexpand=True,
       css_classes=["notification"],
       child=[layout],
     )
@@ -149,7 +150,6 @@ class Popup(widgets.Box):
   ):
     self._box = box
     self._window = window
-
     widget = NotificationWidget(notification)
     widget.css_classes = ["notification-popup", "elevation4"]
     self._inner = widgets.Revealer(transition_type="slide_left", child=widget)
@@ -180,6 +180,7 @@ class PopupBox(widgets.Box):
 
     super().__init__(
       vertical=True,
+      hexpand=True,
       valign="start",
       setup=lambda self: notifications.connect(
         "new_popup",
