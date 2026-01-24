@@ -92,6 +92,11 @@ with lib;
     security.soteria.enable = true;
     services.tumbler.enable = true;
 
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.valent;
+    };
+
     programs.thunar = {
       enable = true;
       plugins = with pkgs; [
