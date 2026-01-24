@@ -7,6 +7,29 @@ with lib;
     syncthingtray
   ];
 
+  programs.rclone = {
+    enable = true;
+    remotes = {
+      proton = {
+        mounts = {
+          driveFolder = {
+            enable = true;
+            autoMount = true;
+            mountPoint = "ProtonDrive";
+          };
+        };
+        config = {
+          type = "protondrive";
+          username = "mika.drakolis@pm.me";
+        };
+        secrets = {
+          password = "/run/secrets/proton-password";
+          otp_secret_key = "/run/secrets/proton-otp";
+        };
+      };
+    };
+  };
+
   services.syncthing = {
     enable = true;
     tray = {
