@@ -10,9 +10,10 @@
     ffmpeg
     fzf
     gnupg
+    httpie # HTTP requests
     jq # JSON parsing
     lynx # Terminal Browser
-    ncdu
+    ncdu # Disk usage
     ripgrep
     rsync
     smartmontools
