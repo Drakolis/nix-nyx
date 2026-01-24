@@ -23,7 +23,7 @@ def sorting_function(window: NiriWindow):
 
   dock_floating_position = window.id + 1000 if sort_floating_last else -1000
 
-  dock_position = window.workspace_id * 100 + (
+  dock_position = (window.workspace_id or 0) * 100 + (
     window.layout.pos_in_scrolling_layout[0]
     if window.layout.pos_in_scrolling_layout
     else dock_floating_position
@@ -121,7 +121,7 @@ class Dock(widgets.RevealerWindow):
       transition_type="slide_up",
       child=widgets.Box(
         css_classes=["dock", "elevation3"],
-        spacing=24,
+        spacing=21,
         child=dock_items,
       ),
       transition_duration=300,

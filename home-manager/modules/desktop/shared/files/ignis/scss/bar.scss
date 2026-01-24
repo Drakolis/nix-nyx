@@ -1,9 +1,8 @@
 @use "variables";
 
 .bar-container {
-  margin: 5px 2px 0;
+  margin: 5px 2px;
   color: variables.$fg;
-  font-size: 12pt;
   font-weight: 500;
 }
 
@@ -35,10 +34,11 @@
   }
 
   .pill-button:hover {
-    background-color: variables.$bg-control;
+    background-color: rgba(variables.$bg-control, 0.4);
   }
 
-  .pill-button:focus {}
+  .pill-button:focus {
+  }
 
   .pill-button.active {
     background-color: variables.$primary;
@@ -134,14 +134,13 @@
     margin: 0.5rem 0;
   }
 
-
   .setup-menu-button {
     transition: 0.3s;
     border-radius: variables.$shape-corner-large;
     padding: 0.35rem 0.5rem;
 
     &:hover {
-      background-color: variables.$bg-control;
+      background-color: rgba(variables.$bg-control, 0.9);
     }
 
     .setup-menu-button-icon {
@@ -153,7 +152,6 @@
       & {
         padding: 0.35rem 0.35rem;
       }
-
 
       &.active {
         background-color: variables.$primary;

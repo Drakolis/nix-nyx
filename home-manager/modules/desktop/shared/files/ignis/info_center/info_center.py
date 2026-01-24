@@ -12,7 +12,7 @@ class InfoCenter(widgets.RevealerWindow):
     revealer = widgets.Revealer(
       transition_type="slide_down",
       child=widgets.Box(
-        css_classes=["flyout-down", "elevation3"],
+        css_classes=["flyout", "elevation3"],
         spacing=12,
         vexpand=True,
         vertical=True,

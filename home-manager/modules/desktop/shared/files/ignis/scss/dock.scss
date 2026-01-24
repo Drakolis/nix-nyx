@@ -1,0 +1,37 @@
+@use "variables";
+
+.dock-trigger {
+  background-color: variables.$bg-control;
+  opacity: 0.001;
+}
+
+.dock {
+  background-color: variables.$bg-transparent;
+  border-radius: variables.$shape-corner-xlarge;
+  padding: variables.$shape-corner-xlarge;
+  margin: 6px;
+  padding: 0 1.25rem;
+  border-radius: variables.$shape-corner-xlarge;
+}
+
+.app-icon-button {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 0.4rem solid transparent;
+  transition: 0.2s;
+
+  image {
+    padding-top: 0.55rem;
+  }
+
+  .running-indicator {
+    background-color: variables.$primary;
+    min-width: 0.4rem;
+    min-height: 0.4rem;
+    border-radius: 0.4rem;
+  }
+}
+
+.app-icon-button:hover {
+  border-bottom: 0.4rem solid rgba(variables.$primary, 1);
+}

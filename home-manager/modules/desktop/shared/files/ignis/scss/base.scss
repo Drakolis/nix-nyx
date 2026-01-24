@@ -99,7 +99,7 @@ tooltip {
 
 popover.menu {
   contents {
-    background-color: variables.$bg;
+    background-color: variables.$bg-transparent;
     padding: 0.35rem;
     border-radius: variables.$shape-corner-xlarge;
     font-weight: 500;
@@ -111,7 +111,7 @@ popover.menu {
     }
     modelbutton:hover,
     modelbutton:focus {
-      background-color: variables.$bg-control;
+      background-color: rgba(variables.$bg-control, 0.9);
     }
     separator {
       background-color: variables.$fg-disabled;

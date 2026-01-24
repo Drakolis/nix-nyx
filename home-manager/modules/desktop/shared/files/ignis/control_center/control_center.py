@@ -12,7 +12,7 @@ class ControlCenter(widgets.RevealerWindow):
     revealer = widgets.Revealer(
       transition_type="slide_left",
       child=widgets.Box(
-        css_classes=["flyout-right", "elevation3"],
+        css_classes=["flyout", "elevation3"],
         spacing=12,
         width_request=500,
         vexpand=True,

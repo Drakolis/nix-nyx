@@ -1,0 +1,28 @@
+@use "variables";
+
+.osd-container {
+  background-color: variables.$bg-transparent;
+  border-radius: variables.$shape-corner-xlarge;
+  padding: variables.$shape-corner-xlarge;
+  margin: 6px;
+  background-color: variables.$bg-transparent;
+  padding: 1.5rem;
+
+  min-width: 128px;
+
+  .osd-slider {
+    margin-top: 1rem;
+
+    trough slider {
+      all: unset;
+    }
+  }
+
+  image {
+    margin-left: 0.5rem;
+  }
+
+  label {
+    margin-top: 1rem;
+  }
+}

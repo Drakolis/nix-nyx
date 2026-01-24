@@ -2,23 +2,25 @@
 
 .launcher-container {
   margin: 6px;
-  background-color: rgba(variables.$bg, 0.95);
+  background-color: variables.$bg-transparent;
   padding: variables.$shape-corner-xlarge / 4;
   border-radius: variables.$shape-corner-xlarge;
 
-  min-width: 700px;
+  min-width: 45rem;
 }
 
 .launcher-input {
   padding: 0.75rem;
-  font-size: 16pt;
+  font-size: larger;
 }
 
-.launcher-input placeholder, .launcher-input-icon {
+.launcher-input placeholder,
+.launcher-input-icon {
   color: variables.$fg-disabled;
 }
 
 .launcher-scroller {
+  padding: 0.25rem 0;
   border-top: solid 1px variables.$primary;
   transition: 0.3ms;
 }
@@ -28,8 +30,10 @@
 }
 
 .launcher-item {
-  padding: 0.5rem;
-  border-radius: 1rem;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  border-radius: variables.$shape-corner-medium;
+  transition: 0.3ms;
 }
 
 .launcher-item:hover {
@@ -41,7 +45,7 @@
 }
 
 .launcher-item-label {
-  margin-left: 10px;
+  margin-left: 0.5rem;
 }
 
 .launcher-item-label-title {

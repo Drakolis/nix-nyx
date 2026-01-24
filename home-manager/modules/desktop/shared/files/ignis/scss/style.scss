@@ -2,36 +2,12 @@
 @use "base";
 @use "sheets";
 @use "bar";
+@use "dock";
 @use "launcher";
 @use "info_center";
 @use "notifications";
+@use "osd";
 @use "animations";
-
-// OSD
-
-.osd-container {
-  margin: 6px;
-  background-color: rgba(variables.$bg, 0.95);
-  padding: 1.5rem;
-
-  min-width: 128px;
-
-  .osd-slider {
-    margin-top: 1rem;
-
-    trough slider {
-      all: unset;
-    }
-  }
-
-  image {
-    margin-left: 0.5rem;
-  }
-
-  label {
-    margin-top: 1rem;
-  }
-}
 
 .control-button {
   background: variables.$bg-control;
@@ -41,41 +17,6 @@
   border-radius: 36px;
   min-width: 36px;
   min-height: 36px;
-}
-
-// Dock
-
-.dock-trigger {
-  background-color: variables.$bg-control;
-  opacity: 0.001;
-}
-
-.dock {
-  margin: 6px;
-  margin-bottom: 0;
-  padding: 0 1.25rem;
-}
-
-.app-icon-button {
-  padding-top: 0.35rem;
-  padding-bottom: 0.6rem;
-  border-bottom: 0.4rem solid transparent;
-  transition: 0.2s;
-
-  image {
-    padding-top: 0.55rem;
-  }
-
-  .running-indicator {
-    background-color: variables.$primary;
-    min-width: 6px;
-    min-height: 6px;
-    border-radius: 3px;
-  }
-}
-
-.app-icon-button:hover {
-  border-bottom: 0.4rem solid rgba(variables.$primary, 1);
 }
 
 // Launcher

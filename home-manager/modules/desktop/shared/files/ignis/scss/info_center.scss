@@ -4,21 +4,20 @@
 @use "variables";
 
 .local-time {
-  padding-bottom: 16px;
+  padding-bottom: 1rem;
 }
 
 .time-section {
   border-top: 1px solid variables.$fg-disabled;
-  padding: 8px 0;
+  padding: 0.5rem 0;
 }
-
 
 .colorful-calendar {
   font-size: larger;
 
   header {
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
   }
 
   button {
@@ -29,18 +28,18 @@
   .month {
     font-weight: 600;
     color: variables.$clock;
-    padding: 0 6px;
+    padding: 0 0.4rem;
   }
 
   .year {
     font-weight: 600;
     color: variables.$clock;
-    padding: 0 6px;
+    padding: 0 0.4rem;
   }
 
   .day-name {
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
 
   .week-number {
@@ -51,18 +50,17 @@
 
   .day-number {
     font-weight: 300;
-    padding: 2px;
   }
 
   .other-month {
     font-weight: 300;
-    color: variables.$fg-subtext
+    color: variables.$fg-subtext;
   }
 
   .today {
     font-weight: 600;
     color: variables.$shadow;
-    background-color: variables.$clock;
+    background-color: variables.$primary;
     border-radius: 2rem;
   }
 }

@@ -98,7 +98,6 @@ class NormalLayout(widgets.Box):
                   visible=notification.body != "",
                   wrap=True,
                   wrap_mode="word",
-                  ellipsize="end",
                 ),
               ],
             ),
