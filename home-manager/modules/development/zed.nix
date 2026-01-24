@@ -9,8 +9,8 @@ let
   cfg = config.drakolis.development;
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 
-  bufferFontSize = style.fontMonospaceSizeLarger;
-  uiFontSize = style.fontSizeLarger;
+  bufferFontSize = style.fontSizeZedMono;
+  uiFontSize = style.fontSizeZedUI;
 in
 with lib;
 {

@@ -12,6 +12,8 @@ in
   fontMonospaceSize = 12;
   fontSizeLarger = 13;
   fontMonospaceSizeLarger = 14;
+  fontSizeZedMono = 14;
+  fontSizeZedUI = 17;
 
   opacity = {
     background = {
