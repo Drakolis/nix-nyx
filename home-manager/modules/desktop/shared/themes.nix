@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   style = import ../../../../share/constants/style.nix;
 
@@ -87,15 +87,25 @@ in
       package = gtkTheme;
       # name = "Breeze";
     };
-    gtk3.extraConfig = {
-      gtk-menu-images = 1;
-      gtk-button-images = 0;
+
+    gtk3 = {
+      extraConfig = {
+        gtk-menu-images = 1;
+        gtk-button-images = 0;
+      };
+      extraCss = ''
+        .thunar .standard-view.frame .view :selected {
+          color: #11111b;
+        }
+      '';
+      bookmarks = [
+        "file://${config.xdg.userDirs.documents}"
+        "file://${config.xdg.userDirs.pictures}"
+        "file://${config.xdg.userDirs.videos}"
+        "file://${config.xdg.userDirs.download}"
+        "file://${config.home.homeDirectory}/Projects"
+      ];
     };
-    gtk3.extraCss = ''
-      .thunar .standard-view.frame .view :selected {
-        color: #11111b;
-      }
-    '';
   };
 
   qt = {
