@@ -19,6 +19,7 @@ in
     settings = {
       environment = {
         QT_QPA_PLATFORMTHEME = "qt6ct";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
       };
 
       spawn-at-startup = [
@@ -333,6 +334,19 @@ in
             relative-to = "bottom-right";
             x = 0;
             y = 0;
+          };
+        }
+        {
+          matches = [
+            {
+              app-id = "steam";
+              title = "^notificationtoasts_\d+_desktop$";
+            }
+          ];
+          default-floating-position = {
+            relative-to = "bottom-right";
+            x = 10;
+            y = 10;
           };
         }
         {
