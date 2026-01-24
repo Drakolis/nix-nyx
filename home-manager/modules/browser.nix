@@ -287,7 +287,7 @@ in
   nixpkgs.config.librewolf.enablePlasmaBrowserIntegration = pkgs.stdenv.hostPlatform.isLinux;
 
   programs.librewolf = {
-    enable = true;
+    enable = false;
     nativeMessagingHosts = nativeMessagingHostsForPlatform;
 
     policies = firefoxPolicies;
