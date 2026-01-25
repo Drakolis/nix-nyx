@@ -7,6 +7,38 @@ from ignis import utils
 from user_options import user_options
 
 
+class TimeZoneClock(widgets.Box):
+  def __init__(self, location_name, location_tz):
+    super().__init__(
+      hexpand=True,
+      spacing=5,
+      css_classes=["time-section"],
+      child=[
+        widgets.Label(
+          vexpand=True,
+          hexpand=True,
+          css_classes=["title-small"],
+          label=location_name,
+          halign="start",
+          max_width_chars=15,
+          ellipsize="end",
+        ),
+        widgets.Label(
+          css_classes=["clock-label", "headline-medium"],
+          vexpand=True,
+          hexpand=True,
+          halign="end",
+          label=utils.Poll(
+            1_000,
+            lambda self: datetime.datetime.now(tz=pytz.timezone(location_tz)).strftime(
+              "%H:%M"
+            ),
+          ).bind("output"),
+        ),
+      ],
+    )
+
+
 class InfoCenter(widgets.RevealerWindow):
   def __init__(self):
     revealer = widgets.Revealer(
@@ -35,7 +67,6 @@ class InfoCenter(widgets.RevealerWindow):
                     css_classes=[
                       "clock-label",
                       "display-small",
-                      "monospace",
                       "local-time",
                     ],
                     valign="end",
@@ -45,125 +76,24 @@ class InfoCenter(widgets.RevealerWindow):
                       lambda self: datetime.datetime.now().strftime("%H:%M:%S"),
                     ).bind("output"),
                   ),
-                  widgets.Box(
-                    hexpand=True,
-                    spacing=5,
-                    css_classes=["time-section"],
-                    child=[
-                      widgets.Label(
-                        vexpand=True,
-                        hexpand=True,
-                        css_classes=["title-small"],
-                        label="Berlin",
-                        halign="start",
-                        max_width_chars=15,
-                        ellipsize="end",
-                      ),
-                      widgets.Label(
-                        css_classes=["clock-label", "headline-medium", "monospace"],
-                        vexpand=True,
-                        hexpand=True,
-                        halign="end",
-                        label=utils.Poll(
-                          1_000,
-                          lambda self: datetime.datetime.now(
-                            tz=pytz.timezone("Europe/Berlin")
-                          ).strftime("%H:%M"),
-                        ).bind("output"),
-                      ),
-                    ],
+                  TimeZoneClock(location_name="UTC", location_tz="UTC"),
+                  TimeZoneClock(
+                    location_name="Saint-Petersburg", location_tz="Europe/Moscow"
                   ),
-                  widgets.Box(
-                    hexpand=True,
-                    spacing=5,
-                    css_classes=["time-section"],
-                    child=[
-                      widgets.Label(
-                        vexpand=True,
-                        hexpand=True,
-                        css_classes=["title-small"],
-                        label="Saint-Petersburg",
-                        halign="start",
-                        max_width_chars=15,
-                        ellipsize="end",
-                      ),
-                      widgets.Label(
-                        css_classes=["clock-label", "headline-medium", "monospace"],
-                        vexpand=True,
-                        hexpand=True,
-                        halign="end",
-                        label=utils.Poll(
-                          1_000,
-                          lambda self: datetime.datetime.now(
-                            tz=pytz.timezone("Europe/Moscow")
-                          ).strftime("%H:%M"),
-                        ).bind("output"),
-                      ),
-                    ],
+                  TimeZoneClock(
+                    location_name="Yekaterinburg", location_tz="Asia/Yekaterinburg"
                   ),
-                  widgets.Box(
-                    hexpand=True,
-                    spacing=5,
-                    css_classes=["time-section"],
-                    child=[
-                      widgets.Label(
-                        vexpand=True,
-                        hexpand=True,
-                        css_classes=["title-small"],
-                        label="Yekaterinburg",
-                        halign="start",
-                        max_width_chars=15,
-                        ellipsize="end",
-                      ),
-                      widgets.Label(
-                        css_classes=["clock-label", "headline-medium", "monospace"],
-                        vexpand=True,
-                        hexpand=True,
-                        halign="end",
-                        label=utils.Poll(
-                          1_000,
-                          lambda self: datetime.datetime.now(
-                            tz=pytz.timezone("Asia/Yekaterinburg")
-                          ).strftime("%H:%M"),
-                        ).bind("output"),
-                      ),
-                    ],
-                  ),
-                  widgets.Box(
-                    hexpand=True,
-                    spacing=5,
-                    css_classes=["time-section"],
-                    child=[
-                      widgets.Label(
-                        vexpand=True,
-                        hexpand=True,
-                        css_classes=["title-small"],
-                        label="Belo Horizonte",
-                        halign="start",
-                        max_width_chars=15,
-                        ellipsize="end",
-                      ),
-                      widgets.Label(
-                        css_classes=["clock-label", "headline-medium", "monospace"],
-                        vexpand=True,
-                        hexpand=True,
-                        halign="end",
-                        label=utils.Poll(
-                          1_000,
-                          lambda self: datetime.datetime.now(
-                            tz=pytz.timezone("America/Sao_Paulo")
-                          ).strftime("%H:%M"),
-                        ).bind("output"),
-                      ),
-                    ],
+                  TimeZoneClock(
+                    location_name="Belo Horizonte", location_tz="America/Sao_Paulo"
                   ),
                 ],
               ),
               widgets.Box(
-                width_request=300,
+                width_request=350,
                 css_classes=["section"],
                 child=[
                   widgets.Calendar(
+                    hexpand=True,
                     css_classes=["colorful-calendar"],
                     # no_month_change=False,
                     show_day_names=True,
@@ -171,6 +101,35 @@ class InfoCenter(widgets.RevealerWindow):
                     show_heading=True,
                     show_week_numbers=False,
                   )
+                ],
+              ),
+              widgets.Box(
+                width_request=300,
+                css_classes=["section"],
+                vertical=True,
+                child=[
+                  widgets.Box(
+                    hexpand=True,
+                    child=[
+                      widgets.Label(
+                        halign="start",
+                        hexpand=True,
+                        label="+1",
+                        css_classes=["title-large"],
+                      ),
+                      widgets.Label(
+                        halign="end",
+                        hexpand=True,
+                        label="+3",
+                        css_classes=["title-large"],
+                      ),
+                    ],
+                  ),
+                  widgets.Icon(vexpand=True, image="weather-clear-symbolic", pixel_size=128),
+                  widgets.Label(halign="center", label=utils.Poll(
+                      1_000,
+                      lambda self: datetime.datetime.now().strftime("%H:%M:%S"),
+                    ).bind("output"),),
                 ],
               ),
             ],

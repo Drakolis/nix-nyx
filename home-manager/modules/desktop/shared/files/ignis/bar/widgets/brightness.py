@@ -95,7 +95,7 @@ class MonitorStatusWidget(widgets.Box):
       self.recorder.start_recording(
         RecorderConfig(
           source="portal",
-          path="Videos/Screen Recordings/Screen Recording from %Y-%m-%d_%H-%M-%S.mp4",
+          path="Videos/Screencasts/Screencast from %Y-%m-%d_%H-%M-%S.mp4",
         )
       )
     )
