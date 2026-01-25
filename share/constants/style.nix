@@ -147,7 +147,7 @@ in
     filetypeVideo = catppuccinMocha.yellow;
     filetypeArchive = catppuccinMocha.pink;
     filetypeDocument = catppuccinMocha.green;
-    filetypeFolder = catppuccinMocha.blue;
+    filetypeFolder = catppuccinMocha.mauve;
 
     gauge1 = catppuccinMocha.teal;
     gauge2 = catppuccinMocha.sky;
