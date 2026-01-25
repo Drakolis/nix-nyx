@@ -1,5 +1,100 @@
+let
+  style = import ../../../share/constants/style.nix;
+in
 {
   programs.yazi.theme.icon = {
+    dirs = [
+      {
+        name = ".config";
+        text = "";
+        fg = "#${style.colors.warning}";
+      }
+      {
+        name = ".git";
+        text = "";
+        fg = "#${style.colors.info}";
+      }
+      {
+        name = ".github";
+        text = "";
+        fg = "#${style.colors.info}";
+      }
+      {
+        name = ".npm";
+        text = "";
+        fg = "#${style.colors.info}";
+      }
+      {
+        name = "Desktop";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Development";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Documents";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Downloads";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Library";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Movies";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Music";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Pictures";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Public";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Videos";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Templates";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Projects";
+        text = "󰅴";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "Shared";
+        text = "󰓦";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        name = "ProtonDrive";
+        text = "󰅣";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+    ];
     files = [
       {
         name = "kritadisplayrc";
@@ -3147,6 +3242,66 @@
         name = "zip";
         text = "";
         fg = "#fab386";
+      }
+    ];
+    conds = [
+
+      # Special files
+      {
+        "if" = "orphan";
+        text = "";
+        fg = "#ffffff";
+      }
+      {
+        "if" = "link";
+        text = "";
+        fg = "#${style.colors.highlight}";
+      }
+      {
+        "if" = "block";
+        text = "";
+        fg = "#cddc39";
+      }
+      {
+        "if" = "char";
+        text = "";
+        fg = "#cddc39";
+      }
+      {
+        "if" = "fifo";
+        text = "";
+        fg = "#cddc39";
+      }
+      {
+        "if" = "sock";
+        text = "";
+        fg = "#cddc39";
+      }
+      {
+        "if" = "sticky";
+        text = "";
+        fg = "#cddc39";
+      }
+      {
+        "if" = "dummy";
+        text = "";
+        fg = "#f44336";
+      }
+
+      {
+        "if" = "dir";
+        text = "";
+        fg = "#${style.colors.filetypeFolder}";
+      }
+      {
+        "if" = "exec";
+        text = "";
+        fg = "#${style.colors.permissionExec}";
+      }
+      {
+        "if" = "!dir";
+        text = "";
+        fg = "#${style.colors.filetypeAny}";
       }
     ];
   };
