@@ -17,6 +17,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y') -- copy
 vim.keymap.set({ 'n', 'x' }, '<leader>Y', '"+Y') -- copy line
 vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p') -- paste
+vim.keymap.set({ 'n', 'x' }, '<leader>P', '"+P') -- paste
 
 -- Delete text without yanking
 vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
@@ -37,14 +38,4 @@ vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
 -- Select all text in current buffer
 vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<CR>')
 
--- Navigate splits
-vim.keymap.set('n', '<c-up>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-down>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-left>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-right>', ':wincmd l<CR>')
-
-vim.keymap.set('n', '<c-k>', ':wincmd k<CR>')
-vim.keymap.set('n', '<c-j>', ':wincmd j<CR>')
-vim.keymap.set('n', '<c-h>', ':wincmd h<CR>')
-vim.keymap.set('n', '<c-l>', ':wincmd l<CR>')
 
