@@ -9,8 +9,8 @@ let
   grep = pkgs.gnugrep;
 
   flatpaks = [
-    "org.kde.kamoso"
-    "app.organicmaps.desktop"
+    # "org.kde.kamoso"
+    # "app.organicmaps.desktop"
   ];
 
   communicationFlatpaks = [
