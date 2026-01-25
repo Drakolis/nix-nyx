@@ -57,7 +57,7 @@ with lib;
         "vim_mode" = true;
         "use_system_prompts" = false;
         "use_system_path_prompts" = false;
-
+        "colorize_brackets" = true;
         "disable_ai" = false;
         "base_keymap" = "VSCode";
         "terminal" = {

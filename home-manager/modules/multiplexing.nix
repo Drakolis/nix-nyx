@@ -3,8 +3,6 @@ let
   style = import ../../share/constants/style.nix;
   commands = import ../../share/constants/commands.nix;
   paths = import ../../share/constants/paths.nix;
-
-  zjstatusPath = "${pkgs.zjstatus}/bin/zjstatus.wasm";
 in
 {
   xdg.configFile = {
@@ -79,39 +77,39 @@ in
               default_tab_template = {
                 _children = [
                   {
-                    pane = {
-                      size = 1;
-                      borderless = true;
-                      plugin = {
-                        location = "file://${zjstatusPath}";
-                        format_left = "{mode} #[fg=#89B4FA,bold]{session}";
-                        format_center = "{tabs}";
-                        format_right = "{command_git_branch} {datetime}";
-                        format_space = "";
+                    # pane = {
+                    #   size = 1;
+                    #   borderless = true;
+                    #   plugin = {
+                    #     location = "file://${zjstatusPath}";
+                    #     format_left = "{mode} #[fg=#89B4FA,bold]{session}";
+                    #     format_center = "{tabs}";
+                    #     format_right = "{command_git_branch} {datetime}";
+                    #     format_space = "";
 
-                        border_enabled = "false";
-                        border_char = "─";
-                        border_format = "#[fg=#6C7086]{char}";
-                        border_position = "top";
+                    #     border_enabled = "false";
+                    #     border_char = "─";
+                    #     border_format = "#[fg=#6C7086]{char}";
+                    #     border_position = "top";
 
-                        hide_frame_for_single_pane = "true";
+                    #     hide_frame_for_single_pane = "true";
 
-                        mode_normal = "#[bg=blue] ";
-                        mode_tmux = "#[bg=#ffc387] ";
+                    #     mode_normal = "#[bg=blue] ";
+                    #     mode_tmux = "#[bg=#ffc387] ";
 
-                        tab_normal = "#[fg=#6C7086] {name} ";
-                        tab_active = "#[fg=#9399B2,bold,italic] {name} ";
+                    #     tab_normal = "#[fg=#6C7086] {name} ";
+                    #     tab_active = "#[fg=#9399B2,bold,italic] {name} ";
 
-                        command_git_branch_command = "git rev-parse --abbrev-ref HEAD";
-                        command_git_branch_format = "#[fg=blue] {stdout} ";
-                        command_git_branch_interval = "10";
-                        command_git_branch_rendermode = "static";
+                    #     command_git_branch_command = "git rev-parse --abbrev-ref HEAD";
+                    #     command_git_branch_format = "#[fg=blue] {stdout} ";
+                    #     command_git_branch_interval = "10";
+                    #     command_git_branch_rendermode = "static";
 
-                        datetime = "#[fg=#6C7086,bold] {format} ";
-                        datetime_format = "%H:%M:%S, %d %b %Y";
-                        datetime_timezone = "Europe/Berlin";
-                      };
-                    };
+                    #     datetime = "#[fg=#6C7086,bold] {format} ";
+                    #     datetime_format = "%H:%M:%S, %d %b %Y";
+                    #     datetime_timezone = "Europe/Berlin";
+                    #   };
+                    # };
                   }
                   { "children" = { }; }
                   {
