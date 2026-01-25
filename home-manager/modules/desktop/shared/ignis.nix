@@ -49,13 +49,10 @@
     extraPackages = with pkgs; [
       gpu-screen-recorder
 
-      python3Packages.jinja2
-      python3Packages.materialyoucolor
-      python3Packages.pillow
-
       python3Packages.simpleaudio
       python3Packages.pytz
       python3Packages.requests
+      python3Packages.aiohttp
     ];
   };
 }

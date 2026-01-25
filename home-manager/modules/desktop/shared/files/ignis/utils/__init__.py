@@ -4,6 +4,7 @@ from .icons import (
   get_audio_output_status_icon,
   get_brightness_status_icon,
   get_audio_device_icon,
+  get_weather_status_icon,
 )
 from .commands import send_notification
 
@@ -21,5 +22,6 @@ all = [
   "get_audio_output_status_icon",
   "get_audio_input_status_icon",
   "get_brightness_status_icon",
+  "get_weather_status_icon",
   "send_notification",
 ]

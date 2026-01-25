@@ -1,10 +1,12 @@
 import asyncio
 import datetime
 import pytz
+import aiohttp
 
 from ignis import widgets
 from ignis import utils
 from user_options import user_options
+from utils import get_weather_status_icon
 
 
 class TimeZoneClock(widgets.Box):
@@ -17,14 +19,13 @@ class TimeZoneClock(widgets.Box):
         widgets.Label(
           vexpand=True,
           hexpand=True,
-          css_classes=["title-small"],
           label=location_name,
           halign="start",
           max_width_chars=15,
           ellipsize="end",
         ),
         widgets.Label(
-          css_classes=["clock-label", "headline-medium"],
+          css_classes=["timezone-time"],
           vexpand=True,
           hexpand=True,
           halign="end",
@@ -37,6 +38,156 @@ class TimeZoneClock(widgets.Box):
         ),
       ],
     )
+
+
+class TimeOverview(widgets.Box):
+  def __init__(self):
+    super().__init__(
+      width_request=300,
+      vertical=True,
+      css_classes=["section"],
+      child=[
+        widgets.Label(
+          css_classes=[
+            "display-small",
+            "local-time",
+          ],
+          valign="end",
+          hexpand=True,
+          label=utils.Poll(
+            1_000,
+            lambda self: datetime.datetime.now().strftime("%H:%M:%S"),
+          ).bind("output"),
+        ),
+        TimeZoneClock(location_name="UTC", location_tz="UTC"),
+        TimeZoneClock(location_name="Saint-Petersburg", location_tz="Europe/Moscow"),
+        TimeZoneClock(location_name="Yekaterinburg", location_tz="Asia/Yekaterinburg"),
+        TimeZoneClock(location_name="Belo Horizonte", location_tz="America/Sao_Paulo"),
+      ],
+    )
+
+  def update_clocks(self):
+    current_time = datetime.datetime.now()
+    time_big = current_time.strftime("%H:%M:%S")
+    time_format_short = "%H:%M"
+
+
+class WeatherOverview(widgets.Box):
+  def __init__(self, location):
+    self.data = None
+    self.location = location
+
+    self.location_label = widgets.Label(
+      halign="start",
+      hexpand=True,
+      label=self.location,
+      css_classes=[
+        "title-large",
+        "emphasized",
+        "weather-label-location",
+      ],
+    )
+
+    self.temperature_label = widgets.Label(
+      halign="end",
+      hexpand=True,
+      label="...",
+      css_classes=[
+        "title-large",
+        "emphasized",
+        "weather-label-temperature",
+      ],
+    )
+
+    self.weather_icon = widgets.Icon(
+      vexpand=True,
+      image="process-working-symbolic",
+      pixel_size=128,
+      css_classes=["weather-label-weather", "animation-spin"],
+    )
+
+    self.weather_label = widgets.Label(
+      halign="center",
+      hexpand=True,
+      label="Loading...",
+      css_classes=[
+        "title-large",
+        "emphasized",
+        "weather-label-weather",
+      ],
+    )
+
+    self.humidity_label = widgets.Label(
+      hexpand=True,
+      label="H:...",
+      css_classes=[
+        "weather-label-humidity",
+      ],
+    )
+
+    self.uv_label = widgets.Label(
+      hexpand=True,
+      label="UV:...",
+      css_classes=[
+        "weather-label-uv",
+      ],
+    )
+
+    self.wind_label = widgets.Label(
+      hexpand=True,
+      label="W:...",
+      css_classes=[
+        "title-small",
+        "emphasized",
+        "weather-label-wind",
+      ],
+    )
+
+    utils.Poll(
+      timeout=30_60_000, callback=lambda x: asyncio.create_task(self.update_weather())
+    )
+    super().__init__(
+      width_request=300,
+      css_classes=["section", "weather-overview"],
+      vertical=True,
+      child=[
+        widgets.Box(
+          hexpand=True,
+          child=[self.location_label, self.temperature_label],
+        ),
+        self.weather_icon,
+        self.weather_label,
+        widgets.Box(
+          hexpand=True,
+          homogeneous=True,
+          child=[
+            self.humidity_label,
+            self.uv_label,
+            self.wind_label,
+          ],
+        ),
+      ],
+    )
+
+  async def update_weather(self):
+    async with aiohttp.ClientSession() as session:
+      async with session.get(f"https://wttr.in/{self.location}?format=j1") as response:
+        json = await response.json()
+        current = json["current_condition"][0]
+        temperature = current["temp_C"]
+        humidity = current["humidity"]
+        uv_index = current["uvIndex"]
+        weather_code = current["weatherCode"]
+        weather = current["weatherDesc"][0]["value"]
+        windspeed = current["windspeedKmph"]
+        sign = "" if "-" in temperature else "+"
+        self.temperature_label.label = f"{sign}{temperature}°C"
+        self.weather_label.label = weather
+        self.humidity_label.label = f"H: {humidity}%"
+        self.uv_label.label = f"UV: {uv_index}"
+        self.wind_label.label = f"W: {windspeed}kmh"
+        self.weather_icon.image = get_weather_status_icon(weather_code)
+        self.weather_icon.css_classes = ["weather-label-weather"]
 
 
 class InfoCenter(widgets.RevealerWindow):
@@ -58,36 +209,7 @@ class InfoCenter(widgets.RevealerWindow):
           widgets.Box(
             spacing=12,
             child=[
-              widgets.Box(
-                width_request=300,
-                vertical=True,
-                css_classes=["section"],
-                child=[
-                  widgets.Label(
-                    css_classes=[
-                      "clock-label",
-                      "display-small",
-                      "local-time",
-                    ],
-                    valign="end",
-                    hexpand=True,
-                    label=utils.Poll(
-                      1_000,
-                      lambda self: datetime.datetime.now().strftime("%H:%M:%S"),
-                    ).bind("output"),
-                  ),
-                  TimeZoneClock(location_name="UTC", location_tz="UTC"),
-                  TimeZoneClock(
-                    location_name="Saint-Petersburg", location_tz="Europe/Moscow"
-                  ),
-                  TimeZoneClock(
-                    location_name="Yekaterinburg", location_tz="Asia/Yekaterinburg"
-                  ),
-                  TimeZoneClock(
-                    location_name="Belo Horizonte", location_tz="America/Sao_Paulo"
-                  ),
-                ],
-              ),
+              TimeOverview(),
               widgets.Box(
                 width_request=350,
                 css_classes=["section"],
@@ -103,35 +225,7 @@ class InfoCenter(widgets.RevealerWindow):
                   )
                 ],
               ),
-              widgets.Box(
-                width_request=300,
-                css_classes=["section"],
-                vertical=True,
-                child=[
-                  widgets.Box(
-                    hexpand=True,
-                    child=[
-                      widgets.Label(
-                        halign="start",
-                        hexpand=True,
-                        label="+1",
-                        css_classes=["title-large"],
-                      ),
-                      widgets.Label(
-                        halign="end",
-                        hexpand=True,
-                        label="+3",
-                        css_classes=["title-large"],
-                      ),
-                    ],
-                  ),
-                  widgets.Icon(vexpand=True, image="weather-clear-symbolic", pixel_size=128),
-                  widgets.Label(halign="center", label=utils.Poll(
-                      1_000,
-                      lambda self: datetime.datetime.now().strftime("%H:%M:%S"),
-                    ).bind("output"),),
-                ],
-              ),
+              WeatherOverview(location="Berlin"),
             ],
           ),
         ],

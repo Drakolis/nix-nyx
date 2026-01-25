@@ -5,11 +5,21 @@
 
 .local-time {
   padding-bottom: 1rem;
+  color: variables.$clock;
+  font-weight: 600;
 }
 
 .time-section {
   border-top: 1px solid variables.$fg-disabled;
   padding: 0.5rem 0;
+  font-weight: 400;
+  font-size: 1.2rem;
+
+  .timezone-time {
+    color: variables.$secondary;
+    font-weight: 400;
+    font-size: 2.5rem;
+  }
 }
 
 .colorful-calendar {
@@ -49,7 +59,7 @@
   }
 
   .day-number {
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .other-month {
@@ -62,5 +72,45 @@
     color: variables.$shadow;
     background-color: variables.$primary;
     border-radius: 2rem;
+  }
+}
+
+.weather-overview {
+  .weather-label-location {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: variables.$primary;
+  }
+
+  .weather-label-temperature {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: variables.$primary;
+    margin-left: 1rem;
+  }
+
+  .weather-label-weather {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: variables.$secondary;
+  }
+
+  .weather-label-humidity {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #89dceb;
+  }
+
+  .weather-label-uv {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #fab387;
+  }
+
+  .weather-label-wind {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #f5e0dc;
   }
 }

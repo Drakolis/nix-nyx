@@ -101,3 +101,57 @@ def get_brightness_status_icon(brightness_percent) -> str:
 # def get_network_status_icon(volume, is_muted) -> str:
 
 # def get_bluetooth_status_icon(volume, is_muted) -> str:
+
+
+def get_weather_status_icon(weather_code) -> str:
+  weather_dictionary = {
+    "113": "weather-clear-symbolic",  # Clear/Sunny
+    "116": "weather-few-clouds-symbolic",  # Partly Cloudy
+    "119": "weather-overcast-symbolic",  # Cloudy
+    "122": "weather-overcast-symbolic",  # Overcast
+    "143": "weather-fog-symbolic",  # Mist
+    "176": "weather-showers-scattered-symbolic",  # Patchy Rain Showers
+    "179": "weather-snow-symbolic",  # Patchy Snow Showers
+    "182": "weather-snow-symbolic",  # Patchy Sleet
+    "185": "weather-showers-scattered-symbolic",  # Patchy Freezing Drizzle
+    "200": "weather-storm-symbolic",  # Thundery Showers
+    "227": "weather-windy-symbolic",  # Blowing Snow
+    "230": "weather-windy-symbolic",  # Blizzard
+    "248": "weather-fog-symbolic",  # Fog
+    "260": "weather-fog-symbolic",  # Freezing Fog
+    "263": "weather-showers-scattered-symbolic",  # Light Drizzle
+    "266": "weather-showers-scattered-symbolic",  # Drizzle
+    "281": "weather-showers-scattered-symbolic",  # Freezing Drizzle
+    "284": "weather-showers-scattered-symbolic",  # Heavy Freezing Drizzle
+    "293": "weather-showers-symbolic",  # Light Rain
+    "296": "weather-showers-symbolic",  # Rain
+    "299": "weather-showers-symbolic",  # Moderate Rain
+    "302": "weather-showers-symbolic",  # Heavy Rain
+    "305": "weather-severe-alert-symbolic",  # Torrential Rain
+    "308": "weather-severe-alert-symbolic",  # Extreme Rain
+    "311": "weather-showers-scattered-symbolic",  # Light Freezing Rain
+    "314": "weather-severe-alert-symbolic",  # Freezing Rain
+    "317": "weather-snow-symbolic",  # Light Sleet
+    "320": "weather-snow-symbolic",  # Sleet
+    "323": "weather-snow-symbolic",  # Light Snow
+    "326": "weather-snow-symbolic",  # Patchy Light Snow
+    "329": "weather-snow-symbolic",  # Moderate Snow
+    "332": "weather-snow-symbolic",  # Heavy Snow
+    "335": "weather-severe-alert-symbolic",  # Blizzard
+    "338": "weather-severe-alert-symbolic",  # Heavy Blizzard
+    "350": "weather-severe-alert-symbolic",  # Ice Pellets
+    "353": "weather-showers-symbolic",  # Light Rain Showers
+    "356": "weather-showers-symbolic",  # Rain Showers
+    "359": "weather-showers-symbolic",  # Heavy Rain Showers
+    "362": "weather-snow-symbolic",  # Light Sleet Showers
+    "365": "weather-snow-symbolic",  # Sleet Showers
+    "368": "weather-snow-symbolic",  # Light Snow Showers
+    "371": "weather-snow-symbolic",  # Heavy Snow Showers
+    "374": "weather-severe-alert-symbolic",  # Light Ice Pellet Showers
+    "377": "weather-severe-alert-symbolic",  # Ice Pellet Showers
+    "386": "weather-storm-symbolic",  # Thundery Showers
+    "389": "weather-storm-symbolic",  # Thunderstorms
+    "392": "weather-storm-symbolic",  # Thundery Snow Showers
+    "395": "weather-severe-alert-symbolic",  # Snowstorm
+  }
+  return weather_dictionary[weather_code]
