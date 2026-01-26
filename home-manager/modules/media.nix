@@ -16,6 +16,7 @@ let
 
   photoMediaPackages = with pkgs; [
     krita
+    gimp
     # digikam
     rawtherapee
   ];
