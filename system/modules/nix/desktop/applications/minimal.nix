@@ -33,7 +33,6 @@ with lib;
         bluetui
 
         thunar-volman
-        udiskie
         nautilus
         baobab
 
