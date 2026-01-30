@@ -11,12 +11,6 @@ return {
 
       cmp.setup({
         mapping = cmp.mapping.preset.insert({
-          -- Change this line to your preferred key, e.g., <C-y>, <Tab>, or <C-Space>
-          ['<C-CR>'] = cmp.mapping.confirm({ select = true }),  -- Accepts selected item
-          -- Or disable <CR> entirely for newline fallback:
-          -- ['<CR>'] = cmp.mapping.confirm({ select = true }),
-          ['<C-e>'] = cmp.mapping.abort(),  -- Keep abort
-          ['<C-Space>'] = cmp.mapping.complete(),  -- Trigger menu
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },  -- Powered by cmp-nvim-lsp
