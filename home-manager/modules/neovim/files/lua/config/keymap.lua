@@ -12,6 +12,8 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- replaces current word on the entire file
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("v", "<leader>/", 'y/\\V<C-r>"<CR>')
+vim.keymap.set("n", "<leader>/", '/\\V<C-r>"<CR>')
 
 -- Basic clipboard interaction
 vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y') -- copy
