@@ -96,8 +96,8 @@ class NormalLayout(widgets.Box):
                   halign="start",
                   css_classes=["notification-body"],
                   visible=notification.body != "",
-                  wrap=True,
-                  wrap_mode="word",
+                  max_width_chars=40,
+                  ellipsize="end",
                 ),
               ],
             ),
@@ -152,8 +152,12 @@ class Popup(widgets.Box):
     self._window = window
     widget = NotificationWidget(notification)
     widget.css_classes = ["notification-popup", "elevation4"]
-    self._inner = widgets.Revealer(transition_type="slide_left", child=widget)
-    self._outer = widgets.Revealer(transition_type="slide_down", child=self._inner)
+    self._inner = widgets.Revealer(
+      transition_type="slide_left", child=widget
+    )
+    self._outer = widgets.Revealer(
+      transition_type="slide_down", child=self._inner
+    )
     super().__init__(child=[self._outer], halign="end")
 
     notification.connect("dismissed", lambda x: self.destroy())
