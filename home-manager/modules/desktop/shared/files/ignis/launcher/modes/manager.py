@@ -2,7 +2,7 @@ from .applications import LauncherModeApplications
 from .niri_windows import LauncherModeNiriWindows
 from .kill import LauncherModePKill
 from .currency import LauncherModeCurrency
-
+from .web_search import LauncherModeWebSearch 
 
 class LauncherModesManager:
   def __init__(self):
@@ -16,7 +16,7 @@ class LauncherModesManager:
     self.modes.append(LauncherModeNiriWindows())
     self.modes.append(LauncherModePKill())
     self.modes.append(LauncherModeCurrency())
-    # self.modes.append()
+    self.modes.append(LauncherModeWebSearch())
     # self.modes.append()
     # self.modes.append()
     # self.modes.append()
