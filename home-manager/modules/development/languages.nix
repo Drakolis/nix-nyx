@@ -18,6 +18,7 @@ let
     pnpm
     typescript
     typescript-language-server
+    javascript-typescript-langserver
     vue-language-server
   ];
 
@@ -27,6 +28,7 @@ let
     python3Packages.jupyter
     python3Packages.numpy
     python3Packages.pandas
+    python3Packages.python-lsp-server
   ];
 
   goExtendedPackages = [ ];
