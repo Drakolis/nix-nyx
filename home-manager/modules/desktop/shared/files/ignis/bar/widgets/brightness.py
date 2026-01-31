@@ -64,11 +64,11 @@ class MonitorStatusWidget(widgets.Box):
     )
 
     self.monitor_bar_icon = widgets.Icon(
-        css_classes=["brightness-label"],
-        image="video-display-symbolic",
-        pixel_size=24,
-        hexpand=True,
-      )
+      css_classes=["brightness-label"],
+      image="video-display-symbolic",
+      pixel_size=24,
+      hexpand=True,
+    )
 
     self.monitor_bar_item = widgets.Button(
       css_classes=["pill-button"],
@@ -119,7 +119,9 @@ class MonitorStatusWidget(widgets.Box):
       brightness_percent = max_brightness / 100
       self.monitor_brightness_menu_item.set_value(brightness_percentage)
       self.monitor_brightness_menu_item.set_on_change(
-        lambda x: self.change_brightness_debounced(backlight, x.get_value() * brightness_percent)
+        lambda x: self.change_brightness_debounced(
+          backlight, x.get_value() * brightness_percent
+        )
       )
 
       brightness_icon = get_brightness_status_icon(brightness_percentage)

@@ -1,7 +1,7 @@
 @use "variables";
 
 .bar-container {
-  margin: 5px 2px;
+  margin: 5px 2px 2px;
   color: variables.$fg;
   font-weight: 500;
 }
@@ -68,6 +68,10 @@
 
 .window-label {
   color: variables.$primary;
+}
+
+.mpris-label {
+  color: variables.$secondary;
 }
 
 .clock-label {
