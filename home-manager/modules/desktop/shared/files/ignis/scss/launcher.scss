@@ -1,8 +1,7 @@
 @use "variables";
 
 .launcher-container {
-  margin: 6px;
-  background-color: variables.$bg-transparent;
+  background-color: variables.$bg;
   padding: variables.$shape-corner-xlarge / 4;
   border-radius: variables.$shape-corner-xlarge;
 
@@ -21,7 +20,7 @@
 
 .launcher-scroller {
   padding: 0.25rem 0;
-  border-top: solid 1px variables.$primary;
+  border-top: solid 2px variables.$primary;
   transition: 0.3ms;
 }
 

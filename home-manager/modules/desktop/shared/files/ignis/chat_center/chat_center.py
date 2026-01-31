@@ -33,7 +33,7 @@ class ChatCenter(widgets.RevealerWindow):
     revealer = widgets.Revealer(
       transition_type="slide_right",
       child=widgets.Box(
-        css_classes=["flyout", "elevation3"],
+        css_classes=["flyout", "elevation3", "window"],
         spacing=12,
         width_request=500,
         vexpand=True,

@@ -88,7 +88,7 @@ class LauncherWindow(widgets.RevealerWindow):
       transition_duration=150,
       reveal_child=True,
       child=widgets.Box(
-        css_classes=["launcher-container", "elevation5"],
+        css_classes=["launcher-container", "elevation3", "window"],
         child=[
           widgets.Box(
             hexpand=True,
