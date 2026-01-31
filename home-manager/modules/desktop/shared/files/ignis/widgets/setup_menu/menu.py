@@ -6,7 +6,7 @@ class SetupMenuPopover(Popover):
   def __init__(self, child):
     container = widgets.Box(
       hexpand=True,
-      css_classes=["popup", "elevation2", "setup-menu"],
+      css_classes=["popup", "setup-menu"],
       vertical=True,
       width_request=256,
       child=child,
