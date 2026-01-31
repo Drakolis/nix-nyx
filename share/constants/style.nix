@@ -88,6 +88,8 @@ in
     panel = catppuccinMocha.mantle;
     shadow = catppuccinMocha.crust;
 
+    windowBorder = catppuccinMocha.surface0;
+
     # Waybar Modules
     waybar = catppuccinMocha.mantle;
     keyboard = catppuccinMocha.sky;

@@ -173,18 +173,18 @@ in
       layout = {
         background-color = "#${style.colors.background}";
         border = {
-          enable = false;
+          enable = true;
           width = style.border.outer.width;
           active.color = "#${style.colors.primary}";
-          inactive.color = "#${style.colors.panel}";
+          inactive.color = "#${style.colors.windowBorder}";
           urgent.color = "#${style.colors.warning}";
         };
 
         focus-ring = {
-          enable = true;
+          enable = false;
           width = style.border.outer.width;
           active.color = "#${style.colors.primary}";
-          inactive.color = "#${style.colors.panel}";
+          inactive.color = "#${style.colors.windowBorder}";
           urgent.color = "#${style.colors.warning}";
         };
 
@@ -195,15 +195,15 @@ in
           color = "#${style.colors.shadow}";
           offset = {
             x = 0;
-            y = 0;
+            y = 2;
           };
           softness = 6;
-          spread = 3;
+          spread = 1;
         };
 
         insert-hint = {
           enable = true;
-          display.color = "#${style.colors.highlight}";
+          display.color = "#${style.colors.shadow}";
         };
 
         tab-indicator = {
