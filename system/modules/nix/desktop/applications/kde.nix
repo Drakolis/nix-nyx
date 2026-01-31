@@ -78,7 +78,7 @@ with lib;
       ++ lib.optionals hasRemoteDesktop [
         kdePackages.krfb
       ]
-      ++ lib.optionals [
+      ++ lib.optionals true [ # TODO: Add a variable for Thunderbolt
         kdePackages.plasma-thunderbolt
       ];
 
