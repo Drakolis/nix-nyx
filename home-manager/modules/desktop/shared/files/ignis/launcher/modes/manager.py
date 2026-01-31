@@ -2,7 +2,8 @@ from .applications import LauncherModeApplications
 from .niri_windows import LauncherModeNiriWindows
 from .kill import LauncherModePKill
 from .currency import LauncherModeCurrency
-from .web_search import LauncherModeWebSearch 
+from .web_search import LauncherModeWebSearch
+
 
 class LauncherModesManager:
   def __init__(self):

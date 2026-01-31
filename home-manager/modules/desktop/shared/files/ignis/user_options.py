@@ -22,7 +22,7 @@ class UserOptions(OptionsManager):
     sort_floating_last: bool = True
 
   class User(OptionsGroup):
-      avatar: str = f"/var/lib/AccountsService/icons/{os.getenv('USER')}"
+    avatar: str = f"/var/lib/AccountsService/icons/{os.getenv('USER')}"
 
   chat_center = ChatCenter()
   dock = Dock()
