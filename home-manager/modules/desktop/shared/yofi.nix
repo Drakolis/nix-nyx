@@ -1,6 +1,6 @@
 let
-  style = import ../../../../share/constants/style.nix;
-  commands = import ../../../../share/constants/commands.nix;
+  style = import ../../../../shared/constants/style.nix;
+  commands = import ../../../../shared/constants/commands.nix;
 in
 {
   home.file = {
@@ -40,7 +40,7 @@ in
       [icon]
       size = ${toString style.iconTheme.size}
       theme = "${style.iconTheme.name}"
-      fallback_icon_path = "/usr/share/icons/Adwaita/symbolic/categories/applications-engineering-symbolic.svg"
+      fallback_icon_path = "/usr/shared/icons/Adwaita/symbolic/categories/applications-engineering-symbolic.svg"
     '';
   };
 }

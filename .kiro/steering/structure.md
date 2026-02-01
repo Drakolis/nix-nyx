@@ -12,7 +12,7 @@ inclusion: always
 ├── .sops.yaml             # SOPS encryption config - required for secrets
 ├── system/                # System-level NixOS/Darwin configurations
 ├── home-manager/          # User environment configurations
-└── share/                 # Shared resources across all configurations
+└── shared/                 # Shared resources across all configurations
 ```
 
 ## System Configuration (`system/`)
@@ -41,7 +41,7 @@ inclusion: always
   - `neovim/` - Complete Neovim setup with Lua configs
   - `yazi/` - File manager configuration
 
-## Shared Resources (`share/`)
+## Shared Resources (`shared/`)
 
 - `constants/` - Nix expressions for colors, paths, styling constants
 - `images/wallpapers/` - Desktop wallpapers

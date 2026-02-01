@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
-  style = import ../../../../share/constants/style.nix;
-  commands = import ../../../../share/constants/commands.nix;
-  paths = import ../../../../share/constants/paths.nix;
+  style = import ../../../../shared/constants/style.nix;
+  commands = import ../../../../shared/constants/commands.nix;
+  paths = import ../../../../shared/constants/paths.nix;
 in
 {
   home.packages = with pkgs; [

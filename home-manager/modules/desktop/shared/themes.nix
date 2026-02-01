@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  style = import ../../../../share/constants/style.nix;
+  style = import ../../../../shared/constants/style.nix;
 
   gtkTheme = (
     pkgs.catppuccin-gtk.override {

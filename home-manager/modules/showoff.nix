@@ -5,7 +5,7 @@
   ...
 }:
 let
-  style = import ../../share/constants/style.nix;
+  style = import ../../shared/constants/style.nix;
   cfg = config.drakolis.showoff;
   isDarwin = pkgs.stdenv.hostPlatform.isDarwin;
 in
