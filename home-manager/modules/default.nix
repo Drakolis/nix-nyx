@@ -39,7 +39,7 @@ with lib;
     ./linux-scripts
     ./media.nix
     ./multiplexing.nix
-    ./neovim
+    ./nvim
     ./office.nix
     ./security
     ./shell.nix

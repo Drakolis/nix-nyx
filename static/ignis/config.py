@@ -39,5 +39,5 @@ for monitor in range(utils.get_n_monitors()):
 
 InfoCenter()
 LauncherWindow()
-# SettingsWindow()
+SettingsWindow()
 # LauncherTouch(monitor)

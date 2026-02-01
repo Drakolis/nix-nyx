@@ -9,6 +9,13 @@ from user_options import user_options
 
 class SettingsWindow(widgets.RegularWindow):
   def __init__(self):
+    stack = Gtk.Stack(
+    )
+    stack.add_child(
+        Gtk.StackPage(
+          title="page 3", icon_name="", child=widgets.Label(label="welcome to page 3!")
+        )
+    )
     section_dock = (
       widgets.Box(
         css_classes=["sheet"],
@@ -37,8 +44,16 @@ class SettingsWindow(widgets.RegularWindow):
       title="Eggshell Settings",
       titlebar=widgets.HeaderBar(show_title_buttons=True),
       namespace="eggshell_settings",
-      visible=False,
-      child=section_dock,
+      visible=True,
+      child=widgets.Box(
+        child=[
+          widgets.Box(
+            vertical=True,
+            # you should add both StackSwitcher and Stack.
+            child=[widgets.StackSwitcher(stack=stack), stack],
+          )
+        ]
+      ),
       # setup=lambda self: self.connect(
       #   "notify::visible", self.__on_open
       # ),  # TODO: to improve the way this focuses this may be a separate function

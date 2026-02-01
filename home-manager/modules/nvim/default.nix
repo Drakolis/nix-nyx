@@ -16,7 +16,7 @@ in
 
   home.file = {
     ".config/nvim/" = {
-      source = ./files;
+      source = ../../../static/nvim;
       recursive = true;
     };
     ".config/nvim/lua/colors.lua".text = ''
