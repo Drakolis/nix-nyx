@@ -11,33 +11,33 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
 -- replaces current word on the entire file
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("v", "<leader>/", 'y/\\V<C-r>"<CR>')
-vim.keymap.set("n", "<leader>/", '/\\V<C-r>"<CR>')
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace the word in the file' })
+vim.keymap.set("v", "<leader>/", 'y/\\V<C-r>"<CR>', { desc = 'Yank and search selection' })
+vim.keymap.set("n", "<leader>/", '/\\V<C-r>"<CR>', { desc = 'Search yanked' })
 
 -- Basic clipboard interaction
-vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y') -- copy
-vim.keymap.set({ 'n', 'x' }, '<leader>Y', '"+Y') -- copy line
-vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p') -- paste
-vim.keymap.set({ 'n', 'x' }, '<leader>P', '"+P') -- paste
+vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Copy to clipboard' }) -- copy
+vim.keymap.set({ 'n', 'x' }, '<leader>Y', '"+Y', { desc = 'Copy to clipboard' }) -- copy line
+vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p', { desc = 'Paste clipboard after' }) -- paste
+vim.keymap.set({ 'n', 'x' }, '<leader>P', '"+P', { desc = 'Paste clipboard before' }) -- paste
 
 -- Delete text without yanking
 vim.keymap.set({ 'n', 'x' }, 'x', '"_x')
 vim.keymap.set({ 'n', 'x' }, 'X', '"_d')
 
 -- Move selected text up and down with N and E
-vim.keymap.set("v", "<leader><up>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "<leader><down>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<leader>k", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "<leader>j", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<leader><up>", ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set("v", "<leader><down>", ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set("v", "<leader>k", ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set("v", "<leader>j", ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
 
 -- Move the current line in normal mode
-vim.keymap.set("n", "<leader><up>", ":m .-2<CR>==")
-vim.keymap.set("n", "<leader><down>", ":m .+1<CR>==")
-vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
-vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
+vim.keymap.set("n", "<leader><up>", ":m .-2<CR>==", { desc = 'Move line up' })
+vim.keymap.set("n", "<leader><down>", ":m .+1<CR>==", { desc = 'Move line down' })
+vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { desc = 'Move line up' })
+vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { desc = 'Move line down' })
 
 -- Select all text in current buffer
-vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<CR>')
+vim.keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<CR>', { desc = 'Select all' })
 
 
