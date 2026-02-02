@@ -1,81 +1,115 @@
----
-inclusion: always
----
+# Project Structure
 
-# Project Structure & Organization
-
-## Directory Hierarchy
+## Root Level Organization
 
 ```
-├── flake.nix              # Main flake - defines all system/home configurations
-├── flake.lock             # Dependency lockfile - update with `nix flake update`
-├── .sops.yaml             # SOPS encryption config - required for secrets
-├── system/                # System-level NixOS/Darwin configurations
-├── home-manager/          # User environment configurations
-└── shared/                 # Shared resources across all configurations
+├── flake.nix              # Main flake configuration with inputs/outputs
+├── flake.lock             # Locked flake inputs
+├── .sops.yaml             # SOPS configuration for secrets
+├── NOTES.MD               # Development notes and TODOs
+├── system/                # System-level configurations
+├── home-manager/          # User environment configurations  
+├── shared/                # Shared resources (images, constants, audio)
+├── static/                # Static configuration files
 ```
 
 ## System Configuration (`system/`)
 
-**Entry Points:**
-- `nixos.nix` - NixOS base configuration
-- `darwin.nix` - macOS base configuration
-
-**Structure:**
-- `hosts/<hostname>/` - Per-machine configurations
-  - `configuration.nix` - Main host config (REQUIRED)
-  - `hardware-configuration.nix` - Hardware settings (REQUIRED for NixOS)
-- `modules/nix/` - NixOS-specific modules
-- `modules/darwin/` - macOS-specific modules  
-- `users/` - System user account definitions
+```
+system/
+├── nixos.nix              # Base NixOS configuration
+├── darwin.nix             # Base Darwin configuration
+├── hosts/                 # Per-machine system configurations
+│   ├── Joermungandr/      # Linux desktop
+│   ├── YDdraigGoch/       # Linux media/server mini pc
+│   ├── Quetzalcoatl/      # Linux laptop
+│   ├── WinterDragon/      # Linux laptop
+│   ├── SilverWing/        # macOS laptop
+│   └── WorkerBee/         # macOS work system
+├── modules/               # Reusable system modules
+│   ├── nix/               # NixOS-specific modules
+│   └── darwin/            # Darwin-specific modules
+└── users/                 # System user definitions
+```
 
 ## Home Manager Configuration (`home-manager/`)
 
-**Structure:**
-- `hosts/<hostname>.nix` - Per-machine user environment configs
-- `users/<username>.nix` - Per-user base configurations
-- `modules/` - Modular components:
-  - `desktop/` - DE configs (kde, hyprland, niri) + shared components
-  - `development/` - Dev tools, languages, IDEs
-  - `terminals/` - Terminal emulator configurations
-  - `neovim/` - Complete Neovim setup with Lua configs
-  - `yazi/` - File manager configuration
+```
+home-manager/
+├── hosts/                 # Per-machine user configurations
+├── modules/               # Reusable user modules
+│   ├── default.nix        # Main module imports and options
+│   ├── desktop/           # Desktop environment modules
+│   │   ├── kde/           # KDE Plasma configuration
+│   │   ├── hyprland/      # Hyprland configuration
+│   │   ├── niri/          # Niri configuration
+│   │   └── shared/        # Shared desktop components
+│   ├── development/       # Development tools and languages
+│   ├── terminals/         # Terminal emulator configurations
+│   ├── nvim/              # Neovim configuration
+│   ├── yazi/              # File manager configuration
+│   └── security/          # Security and privacy tools
+└── users/                 # Per-user configurations
+    ├── drakolis.nix       # Primary user
+    ├── neinhorn.nix       # Secondary user
+    └── mikaz.nix          # Work user
+```
+
+## Static Files (`static/`)
+
+```
+static/
+├── config/                # Application configurations
+├── ignis/                 # Custom desktop shell (Python/GTK4)
+│   ├── config.py          # Main Ignis configuration
+│   ├── bar/               # Desktop bar components
+│   ├── launcher/          # Application launcher
+│   ├── notifications/     # Notification system
+│   ├── scss/              # Styling and themes
+│   └── widgets/           # Reusable UI components
+└── nvim/                  # Neovim configuration
+    ├── init.lua           # Main configuration
+    └── lua/               # Lua modules
+```
 
 ## Shared Resources (`shared/`)
 
-- `constants/` - Nix expressions for colors, paths, styling constants
-- `images/wallpapers/` - Desktop wallpapers
-- `config/` - Application configuration files
-- `audio/` - Sound assets
+```
+shared/
+├── constants/             # Nix constants and variables
+│   ├── catppuccinMocha.nix # Color scheme definitions
+│   ├── commands.nix       # Common command definitions
+│   ├── paths.nix          # Path constants
+│   └── style.nix          # Style constants
+├── images/                # Wallpapers and avatars
+└── audio/                 # Sound files
+```
 
-## File Patterns & Conventions
+## Configuration Patterns
 
-### Required Files
-- `default.nix` - Module entry point that imports other files
-- `configuration.nix` - Main configuration for hosts
-- `hardware-configuration.nix` - Auto-generated hardware config (NixOS only)
+### Module Structure
+- Each module typically has a `default.nix` that imports other files
+- Options are defined using `lib.mkOption` with proper types
+- Modules are imported in parent `default.nix` files
 
-### Import Patterns
-- Use relative paths from module root
-- Platform-specific imports: `lib.optionals stdenv.isLinux [ ./linux-module.nix ]`
-- Conditional module loading based on host capabilities
+### Host-Specific Configurations
+- System hosts in `system/hosts/<hostname>/`
+- Home Manager hosts in `home-manager/hosts/<hostname>.nix`
+- Hardware configurations separate from logical configurations
 
-### Naming Rules
-- **Hostnames**: Mythological themes (`Joermungandr`, `YDdraigGoch`) or descriptive (`WorkerBee`)
-- **Modules**: Lowercase with hyphens (`desktop-environment.nix`)
-- **Constants**: camelCase in Nix expressions
+### User Configurations
+- System users defined in `system/users/`
+- Home Manager users in `home-manager/users/`
+- User-specific options controlled via module system
 
-## Configuration Dependencies
+### Secrets Management
+- Encrypted files managed by SOPS
+- Configuration in `.sops.yaml`
+- Age keys for encryption/decryption
 
-1. `flake.nix` → defines all outputs (nixosConfigurations, homeConfigurations)
-2. System configs → import platform base + host-specific + user definitions
-3. Home configs → import user base + host overrides + feature modules
-4. Modules → provide reusable functionality with proper option definitions
+## Naming Conventions
 
-## AI Assistant Guidelines
-
-- **Always check both system and home-manager** when modifying configurations
-- **Maintain platform separation** - use conditional imports for platform-specific code
-- **Follow the module hierarchy** - don't bypass the established structure
-- **Test configurations** before switching using build commands
-- **Use relative imports** from the appropriate module root directory
+- **Hostnames**: Mythological creatures/dragons (Joermungandr, YDdraigGoch, etc.)
+- **Files**: kebab-case for multi-word files (`hardware-configuration.nix`)
+- **Modules**: Descriptive names matching functionality
+- **Options**: Namespaced under `drakolis.*` for custom options

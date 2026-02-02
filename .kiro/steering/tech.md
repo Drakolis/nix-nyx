@@ -1,100 +1,83 @@
----
-inclusion: always
----
+# Technology Stack
 
-# Technology Stack & Development Guidelines
+## Build System
+
+- **Nix Flakes**: Primary build and configuration management system
+- **Home Manager**: User environment and dotfiles management
+- **nix-darwin**: macOS system configuration (for Darwin hosts)
 
 ## Core Technologies
 
-### Build System & Package Management
-- **Nix Flakes**: Primary build system - all configurations must be flake-compatible
-- **nixpkgs**: Use `nixos-unstable` channel for latest packages
-- **Home Manager**: Manages user environments - prefer over system-wide package installation
-- **SOPS**: Required for all secrets - never commit unencrypted sensitive data
-
-### Platform Support
-- **NixOS**: Primary Linux platform with full desktop environment support
-- **nix-darwin**: macOS support via Homebrew integration (nix-homebrew)
-- **Cross-platform**: Maintain compatibility between Linux and macOS where possible
-
-## Architecture Patterns
-
-### Configuration Structure
-- **Modular design**: Split functionality into focused, reusable modules
-- **Platform abstraction**: Use conditional imports for platform-specific code
-- **Host-specific overrides**: Keep host customizations minimal and well-documented
-
-### Code Style Guidelines
-- **Nix expressions**: Use consistent formatting with `nixpkgs-fmt`
-- **Module imports**: Always use relative paths from module root
-- **Option definitions**: Provide clear descriptions and type annotations
-- **Comments**: Document complex logic and platform-specific workarounds
-
-## Development Workflow
-
-### Testing & Validation
-```bash
-# Always test before switching
-nixos-rebuild build --flake .#<hostname>
-home-manager build --flake .#<user>@<hostname>
-
-# Check configuration syntax
-nix flake check
-
-# Preview changes
-nixos-rebuild dry-run --flake .#<hostname>
-```
-
-### Configuration Management
-```bash
-# System configurations
-sudo nixos-rebuild switch --flake .#<hostname>
-darwin-rebuild switch --flake .#<hostname>
-
-# User environments  
-home-manager switch --flake .#<user>@<hostname>
-
-# Maintenance
-nix flake update                # Update dependencies
-nix-collect-garbage -d         # Clean old generations
-```
-
-## Key Components
+### System Configuration
+- **NixOS**: Linux system configuration
+- **nix-darwin**: macOS system configuration  
+- **Home Manager**: User environment management
+- **SOPS**: Secrets management with encryption
 
 ### Desktop Environments
-- **KDE Plasma**: Primary desktop with plasma-manager for declarative config
-- **Hyprland**: Wayland compositor for advanced users
-- **Niri**: Experimental compositor - expect breaking changes
-- **Ignis**: Custom shell components - Python-based widgets
+- **KDE Plasma**: Full desktop environment with plasma-manager
+- **Hyprland**: Wayland compositor
+- **Niri**: Scrollable-tiling Wayland compositor
+- **Ignis**: Custom Python-based desktop shell (GTK4 + Python)
 
 ### Development Tools
-- **VSCode**: Extensions managed via nix-vscode-extensions
-- **Neovim**: Lua-based configuration with plugin management
-- **Yazi**: File manager with extensive plugin ecosystem
+- **Neovim**: Primary text editor with Lua configuration
+- **VSCode/Zed**: Additional editors with Nix extensions
+- **Multiple language support**: Configured for various programming languages
 
-## Host Reference
+### Key Dependencies
+- **nixpkgs**: Package repository (nixos-unstable channel)
+- **plasma-manager**: KDE Plasma configuration management
+- **niri-flake**: Niri compositor integration
+- **ignis**: Custom desktop shell framework
+- **sops-nix**: Secrets management integration
 
-### Active Hosts
-- **Linux**: `Joermungandr`, `YDdraigGoch`, `Quetzalcoatl`, `WinterDragon`
-- **macOS**: `SilverWing`, `WorkerBee`
+## Common Commands
 
-### Naming Convention
-- Use mythological/dragon themes for personal systems
-- Descriptive names for work/specialized systems
+### System Management
+```bash
+# Rebuild NixOS system configuration
+sudo nixos-rebuild switch --flake .#<hostname>
 
-## Best Practices
+# Rebuild Darwin system configuration  
+darwin-rebuild switch --flake .#<hostname>
 
-### Security
-- Use SOPS for all secrets with proper key management
-- Avoid hardcoded credentials in configurations
-- Regular security updates via `nix flake update`
+# Update Home Manager configuration
+home-manager switch --flake .#<user>@<hostname>
 
-### Performance
-- Minimize system-wide packages - prefer user-level installation
-- Use binary caches to reduce build times
-- Regular garbage collection to manage disk usage
+# Update flake inputs
+nix flake update
 
-### Maintenance
-- Test configurations before deployment
-- Document breaking changes in commit messages
-- Keep flake inputs updated but test thoroughly
+# Check flake configuration
+nix flake check
+```
+
+### Development
+```bash
+# Enter development shell
+nix develop
+
+# Build specific output
+nix build .#<output>
+
+# Run application from flake
+nix run .#<app>
+```
+
+### Secrets Management
+```bash
+# Edit encrypted secrets
+sops <secrets-file>
+
+# Update age keys
+sops updatekeys <secrets-file>
+```
+
+## File Extensions and Languages
+
+- **`.nix`**: Nix configuration files
+- **`.py`**: Python (Ignis desktop configuration)
+- **`.lua`**: Lua (Neovim configuration)
+- **`.scss`**: SASS stylesheets (Ignis theming)
+- **`.toml`**: Configuration files (pyproject.toml, etc.)
+- **`.yaml/.yml`**: SOPS secrets and configuration files
