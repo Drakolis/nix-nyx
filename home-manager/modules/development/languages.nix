@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 let
   cfg = config.drakolis.development;
@@ -11,6 +10,7 @@ let
     nodejs
     python3
     go
+    nodePackages.vscode-langservers-extracted # html, css, json, eslint
   ];
 
   nodeExtendedPackages = with pkgs; [
@@ -20,10 +20,12 @@ let
     typescript-language-server
     javascript-typescript-langserver
     vue-language-server
+    prettier
   ];
 
   pythonExtendedPackages = with pkgs; [
     ruff
+    pyright
     python3Packages.pip
     python3Packages.jupyter
     python3Packages.numpy
@@ -36,6 +38,7 @@ let
   luaPackages = with pkgs; [
     lua
     lua-language-server
+    stylua
   ];
 
   rustPackages = with pkgs; [
