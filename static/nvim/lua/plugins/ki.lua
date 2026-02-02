@@ -24,7 +24,7 @@ return {
         openai = function()
           return require("codecompanion.adapters").extend("openai", {
             env = {
-              api_key = "cmd:echo $OPENAI_API_KEY", -- You'll need to set this env var
+              api_key = "cmd:echo $SCALEWAY_API_KEY", -- You'll need to set this env var
             },
             url = "https://api.scaleway.ai/v1",
             chat = {
