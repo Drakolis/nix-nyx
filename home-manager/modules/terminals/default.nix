@@ -192,8 +192,8 @@ in
       background = "#${style.colors.background}";
       selection_foreground = "#${style.colors.textInverted}";
       selection_background = "#${style.colors.secondary}";
-      background_opacity = 0.97;
-      dynamic_background_opacity = true;
+      # background_opacity = 0.97;
+      # dynamic_background_opacity = true;
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
       color2 = "#${style.colors.terminalGreen}";
