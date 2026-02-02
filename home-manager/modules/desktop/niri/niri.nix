@@ -146,6 +146,22 @@ in
           scale = 1;
           transform.rotation = 0;
         };
+        "DP-1" = {
+          name = "DP-1";
+          focus-at-startup = false;
+          enable = true;
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 164.958;
+          };
+          position = {
+            x = 2560;
+            y = 0;
+          };
+          scale = 1;
+          transform.rotation = 0;
+        };
         "DP-2" = {
           name = "DP-2";
           focus-at-startup = true;
@@ -630,31 +646,33 @@ in
         "Mod+Ctrl+Shift+H".action.move-column-to-first = [ ];
         "Mod+Ctrl+Shift+L".action.move-column-to-last = [ ];
 
+        "Mod+Alt+H".action.focus-monitor-left = [ ];
+        "Mod+Alt+L".action.focus-monitor-right = [ ];
+        "Mod+Alt+Shift+H".action.move-column-to-monitor-left = [ ];
+        "Mod+Alt+Shift+L".action.move-column-to-monitor-right = [ ];
+        "Mod+Alt+Ctrl+Shift+H".action.move-workspace-to-monitor-left = [ ];
+        "Mod+Alt+Ctrl+Shift+L".action.move-workspace-to-monitor-right = [ ];
+
         # Monitor actions (needs review)
         # Mod+Shift+Left  { focus-monitor-left; }
         # Mod+Shift+Down  { focus-monitor-down; }
         # Mod+Shift+Up    { focus-monitor-up; }
         # Mod+Shift+Right { focus-monitor-right; }
-        # Mod+Shift+H     { focus-monitor-left; }
         # Mod+Shift+J     { focus-monitor-down; }
         # Mod+Shift+K     { focus-monitor-up; }
-        # Mod+Shift+L     { focus-monitor-right; }
 
         # Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
         # Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
         # Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
         # Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-        # Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
         # Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
         # Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-        # Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
         # // Alternatively, there are commands to move just a single window:
         # // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
         # // ...
 
         # // And you can also move a whole workspace to another monitor:
-        # // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
         # // ...
 
         # Workspaces
