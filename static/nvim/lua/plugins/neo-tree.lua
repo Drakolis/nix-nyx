@@ -7,9 +7,27 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
-    vim.keymap.set("n", "<leader>bf", ":Neotree filesystem toggle right<CR>", {})
-    vim.keymap.set("n", "<leader>bg", ":Neotree git_status toggle right<CR>", {})
-		vim.keymap.set("n", "<leader>bb", ":Neotree buffers toggle right<CR>", {})
-		require("neo-tree").setup({ window = { position = "right", width = 30 } })
+		vim.keymap.set(
+			"n",
+			"<leader>bf",
+			":Neotree filesystem toggle right<CR>",
+			{}
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>bg",
+			":Neotree git_status toggle right<CR>",
+			{}
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>bb",
+			":Neotree buffers toggle right<CR>",
+			{}
+		)
+		vim.keymap.set("n", "<leader>bc", ":Neotree focus<CR>", {})
+		require("neo-tree").setup({
+			window = { position = "right", width = 30 },
+		})
 	end,
 }
