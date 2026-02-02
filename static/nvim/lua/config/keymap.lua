@@ -2,10 +2,10 @@ vim.g.mapleader = " "
 
 -- makes current file executable
 vim.keymap.set(
-	"n",
-	"<leader>x",
-	":silent !chmod +x % >/dev/null 2>&1<CR>:lua print('File is now executable.')<CR>",
-	{ noremap = true, silent = true }
+  "n",
+  "<leader>x",
+  ":silent !chmod +x % >/dev/null 2>&1<CR>:lua print('File is now executable.')<CR>",
+  { noremap = true, silent = true }
 )
 
 -- append line below to current line with J
@@ -17,16 +17,16 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- replaces current word on the entire file
 vim.keymap.set(
-	"n",
-	"<leader>s",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Replace the word in the file" }
+  "n",
+  "<leader>s",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Replace the word in the file" }
 )
 vim.keymap.set(
-	"v",
-	"<leader>/",
-	'y/\\V<C-r>"<CR>',
-	{ desc = "Yank and search selection" }
+  "v",
+  "<leader>/",
+  'y/\\V<C-r>"<CR>',
+  { desc = "Yank and search selection" }
 )
 vim.keymap.set("n", "<leader>/", '/\\V<C-r>"<CR>', { desc = "Search yanked" })
 
@@ -34,16 +34,16 @@ vim.keymap.set("n", "<leader>/", '/\\V<C-r>"<CR>', { desc = "Search yanked" })
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Copy to clipboard" }) -- copy
 vim.keymap.set({ "n", "x" }, "<leader>Y", '"+Y', { desc = "Copy to clipboard" }) -- copy line
 vim.keymap.set(
-	{ "n", "x" },
-	"<leader>p",
-	'"+p',
-	{ desc = "Paste clipboard after" }
+  { "n", "x" },
+  "<leader>p",
+  '"+p',
+  { desc = "Paste clipboard after" }
 ) -- paste
 vim.keymap.set(
-	{ "n", "x" },
-	"<leader>P",
-	'"+P',
-	{ desc = "Paste clipboard before" }
+  { "n", "x" },
+  "<leader>P",
+  '"+P',
+  { desc = "Paste clipboard before" }
 ) -- paste
 
 -- Delete text without yanking
@@ -52,45 +52,45 @@ vim.keymap.set({ "n", "x" }, "X", '"_d')
 
 -- Move selected text up and down with N and E
 vim.keymap.set(
-	"v",
-	"<leader><up>",
-	":m '<-2<CR>gv=gv",
-	{ desc = "Move selection up" }
+  "v",
+  "<leader><up>",
+  ":m '<-2<CR>gv=gv",
+  { desc = "Move selection up" }
 )
 vim.keymap.set(
-	"v",
-	"<leader><down>",
-	":m '>+1<CR>gv=gv",
-	{ desc = "Move selection down" }
+  "v",
+  "<leader><down>",
+  ":m '>+1<CR>gv=gv",
+  { desc = "Move selection down" }
 )
 vim.keymap.set(
-	"v",
-	"<leader>k",
-	":m '<-2<CR>gv=gv",
-	{ desc = "Move selection up" }
+  "v",
+  "<leader>k",
+  ":m '<-2<CR>gv=gv",
+  { desc = "Move selection up" }
 )
 vim.keymap.set(
-	"v",
-	"<leader>j",
-	":m '>+1<CR>gv=gv",
-	{ desc = "Move selection down" }
+  "v",
+  "<leader>j",
+  ":m '>+1<CR>gv=gv",
+  { desc = "Move selection down" }
 )
 
 -- Move the current line in normal mode
 vim.keymap.set("n", "<leader><up>", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set(
-	"n",
-	"<leader><down>",
-	":m .+1<CR>==",
-	{ desc = "Move line down" }
+  "n",
+  "<leader><down>",
+  ":m .+1<CR>==",
+  { desc = "Move line down" }
 )
 vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { desc = "Move line up" })
 vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { desc = "Move line down" })
 
 -- Select all text in current buffer
 vim.keymap.set(
-	"n",
-	"<leader>a",
-	":keepjumps normal! ggVG<CR>",
-	{ desc = "Select all" }
+  "n",
+  "<leader>a",
+  ":keepjumps normal! ggVG<CR>",
+  { desc = "Select all" }
 )

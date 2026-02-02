@@ -3,6 +3,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
-    branch = 'main',
-  }
+    branch = "main",
+  },
 }

@@ -70,9 +70,29 @@ return {
     })
   end,
   keys = {
-    { "<leader>aa", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "CodeCompanion Actions" },
-    { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "CodeCompanion Chat" },
-    { "<leader>av", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "CodeCompanion Add to Chat" },
-    { "<leader>ai", "<cmd>CodeCompanion<cr>", mode = { "n", "v" }, desc = "CodeCompanion Inline" },
+    {
+      "<leader>ka",
+      "<cmd>CodeCompanionActions<cr>",
+      mode = { "n", "v" },
+      desc = "CodeCompanion Actions",
+    },
+    {
+      "<leader>kc",
+      "<cmd>CodeCompanionChat Toggle<cr>",
+      mode = { "n", "v" },
+      desc = "CodeCompanion Chat",
+    },
+    {
+      "<leader>ki",
+      "<cmd>CodeCompanion<cr>",
+      mode = { "n", "v" },
+      desc = "CodeCompanion Inline",
+    },
+    {
+      "<leader>kv",
+      "<cmd>CodeCompanionChat Add<cr>",
+      mode = "v",
+      desc = "CodeCompanion Add to Chat",
+    },
   },
 }

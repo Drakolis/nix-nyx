@@ -11,14 +11,14 @@ vim.opt.splitbelow = true -- horizontal splits go below
 vim.opt.splitright = true -- vertical splits go right
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
 vim.opt.sessionoptions = {
-	"buffers",
-	"curdir",
-	"tabpages",
-	"winsize",
-	"help",
-	"globals",
-	"skiprtp",
-	"folds",
+  "buffers",
+  "curdir",
+  "tabpages",
+  "winsize",
+  "help",
+  "globals",
+  "skiprtp",
+  "folds",
 }
 
 vim.opt.number = true -- line numbers
@@ -37,11 +37,11 @@ vim.opt.expandtab = true -- replace tabs with spaces
 vim.g.python_recommended_style = 0
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "python",
-	callback = function()
-		vim.bo.shiftwidth = 2
-		vim.bo.tabstop = 2
-		vim.bo.softtabstop = 2
-		vim.bo.expandtab = false -- Change for spaces
-	end,
+  pattern = "python",
+  callback = function()
+    vim.bo.shiftwidth = 2
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.expandtab = false -- Change for spaces
+  end,
 })
