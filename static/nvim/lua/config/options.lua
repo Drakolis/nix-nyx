@@ -10,6 +10,16 @@ vim.opt.cursorline = true -- highlight current line
 vim.opt.splitbelow = true -- horizontal splits go below
 vim.opt.splitright = true -- vertical splits go right
 vim.opt.termguicolors = true -- enable 24-bit RGB colors
+vim.opt.sessionoptions = {
+	"buffers",
+	"curdir",
+	"tabpages",
+	"winsize",
+	"help",
+	"globals",
+	"skiprtp",
+	"folds",
+}
 
 vim.opt.number = true -- line numbers
 vim.opt.relativenumber = true -- relative line numbers

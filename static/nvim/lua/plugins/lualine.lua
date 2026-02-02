@@ -97,6 +97,23 @@ return {
 				colored = true,
 			}
 
+			local cwd = {
+				function()
+					return vim.fn.fnamemodify(vim.fn.getcwd(), ":~")
+				end,
+				colored = true,
+				separator = {
+					left = "",
+					right = "",
+				},
+			}
+
+			local neotree = {
+				sections = { lualine_a = { cwd } },
+				colored = true,
+				filetypes = { "neo-tree" },
+			}
+
 			require("lualine").setup({
 				options = {
 					icons_enabled = true,
@@ -139,10 +156,9 @@ return {
 					lualine_y = {},
 					lualine_z = {},
 				},
-				tabline = {},
 				winbar = {},
 				inactive_winbar = {},
-				extensions = {},
+				extensions = { neotree, "fugitive" },
 			})
 		end,
 	},
