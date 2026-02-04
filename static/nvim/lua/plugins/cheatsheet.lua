@@ -37,7 +37,7 @@ return {
       telescope_mappings = {
         ["<CR>"] = require("cheatsheet.telescope.actions").select_or_fill_commandline,
         ["<A-CR>"] = require("cheatsheet.telescope.actions").select_or_execute,
-        ["<C-Y>"] = require("cheatsheet.telescope.actions").copy_cheat_value,
+        ["<C-y>"] = require("cheatsheet.telescope.actions").copy_cheat_value,
       },
     })
   end,
