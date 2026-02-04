@@ -127,7 +127,7 @@ in
   programs.kitty = {
     enable = true;
     font = {
-      name = style.fontMonospace;
+      name = "JetBrains Mono";
       size = style.fontMonospaceSize;
     };
     shellIntegration = {
@@ -142,13 +142,13 @@ in
       "ctrl+shift+a>d" = "set_background_opacity default";
     };
     settings = {
+      font_features = "JetBrainsMono-Regular +cv02 +cv06 +cv07 +cv11 +cv12 +cv14 +cv19 JetBrainsMono-SemiBold +cv02 +cv06 +cv07 +cv11 +cv12 +cv14 +cv19";
       cursor_shape = "block";
       cursor_shape_unfocused = "hollow";
       cursor_trail = 0;
       show_hyperlink_targets = "yes";
       paste_actions = "quote-urls-at-prompt,replace-newline,confirm,confirm-if-large";
       strip_trailing_spaces = "smart";
-      focus_follows_mouse = "yes"; # TODO: Test this out
 
       enable_audio_bell = "no";
       visual_bell_duration = 0.5;
@@ -157,7 +157,7 @@ in
 
       window_border_width = 0;
       window_padding_width = "5 5 0";
-
+      tab_bar_min_tabs = 2;
       tab_bar_edge = "bottom";
       tab_bar_margin_height = "2 2";
       tab_bar_style = "powerline";
