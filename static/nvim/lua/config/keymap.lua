@@ -102,8 +102,8 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- Resize windows
-vim.keymap.set("n", "<C-<>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C->>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<leader><", ":vertical resize -2<CR>", { desc = "Decrease window width" })
+vim.keymap.set("n", "<leader>>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
 -- Buffer navigation
 vim.keymap.set("n", "<C-[>", ":bprevious<CR>", { desc = "Previous buffer" })
