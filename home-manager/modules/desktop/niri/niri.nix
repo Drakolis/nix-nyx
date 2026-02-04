@@ -312,7 +312,7 @@ in
               app-id = "tvp-git-helper";
             }
             {
-              app-id = "(firefox|librewolf|zen-beta)$";
+              app-id = "^(firefox|librewolf|zen-beta)$";
               title = "Picture-in-Picture";
             }
           ];
@@ -321,9 +321,9 @@ in
         {
           # Rules for windows that should not be shared
           matches = [
-            { app-id = "^org\.keepassxc\.KeePassXC$"; }
-            { app-id = "^org\.gnome\.World\.Secrets$"; }
-            { app-id = "^org\.kde\.kwalletmanager$"; }
+            { app-id = ''^org\.keepassxc\.KeePassXC$''; }
+            { app-id = ''^org\.gnome\.World\.Secrets$''; }
+            { app-id = ''^org\.kde\.kwalletmanager$''; }
             { app-id = "Proton Pass"; }
           ];
           block-out-from = "screen-capture";
@@ -356,13 +356,15 @@ in
           matches = [
             {
               app-id = "steam";
-              title = "^notificationtoasts_\d+_desktop$";
+              title = ''^notificationtoasts_\d+_desktop$'';
             }
           ];
+          open-floating = true;
+          open-focused = false;
           default-floating-position = {
-            relative-to = "bottom-right";
-            x = 10;
-            y = 10;
+            relative-to = "top-right";
+            x = 0;
+            y = 0;
           };
         }
         {
