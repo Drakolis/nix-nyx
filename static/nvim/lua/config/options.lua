@@ -52,8 +52,6 @@ vim.opt.swapfile = false
 -- Better display
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.pumheight = 10 -- pop up menu height
-vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
-vim.opt.showtabline = 2 -- always show tabs
 vim.opt.laststatus = 3 -- global statusline
 
 vim.g.python_recommended_style = 0
