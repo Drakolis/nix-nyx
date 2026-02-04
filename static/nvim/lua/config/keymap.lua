@@ -102,8 +102,18 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
 
 -- Resize windows
-vim.keymap.set("n", "<leader><", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<leader>>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set(
+  "n",
+  "<leader><",
+  ":vertical resize -2<CR>",
+  { desc = "Decrease window width" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>>",
+  ":vertical resize +2<CR>",
+  { desc = "Increase window width" }
+)
 
 -- Buffer navigation
 vim.keymap.set("n", "<C-[>", ":bprevious<CR>", { desc = "Previous buffer" })
@@ -113,7 +123,12 @@ vim.keymap.set("n", "<C-]>", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>q", ":qa!<CR>", { desc = "Quit all" })
 
 -- Clear search highlighting
-vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { desc = "Clear search highlighting" })
+vim.keymap.set(
+  "n",
+  "<Esc>",
+  ":nohlsearch<CR>",
+  { desc = "Clear search highlighting" }
+)
 
 -- Better indenting
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
@@ -126,4 +141,3 @@ vim.keymap.set("v", ">", ">gv")
 -- Keep cursor centered when scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-

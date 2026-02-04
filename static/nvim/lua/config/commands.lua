@@ -44,7 +44,12 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+    vim.keymap.set(
+      "n",
+      "q",
+      "<cmd>close<cr>",
+      { buffer = event.buf, silent = true }
+    )
   end,
 })
 
@@ -64,7 +69,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function(event)
     local exclude = { "gitcommit" }
     local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+    if
+      vim.tbl_contains(exclude, vim.bo[buf].filetype)
+      or vim.b[buf].lazyvim_last_loc
+    then
       return
     end
     vim.b[buf].lazyvim_last_loc = true
@@ -86,3 +94,4 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.expandtab = false -- Change for spaces
   end,
 })
+

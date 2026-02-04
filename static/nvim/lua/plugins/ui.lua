@@ -202,15 +202,15 @@ return {
       local hooks = require("ibl.hooks")
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
         -- Muted rainbow colors for regular indent guides
-        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#6c4a4a" })     -- Muted red
-        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#6c6249" })  -- Muted yellow
-        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#4a5c6c" })    -- Muted blue
-        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#6c5a49" })  -- Muted orange
-        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#4a6c4a" })   -- Muted green
-        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#5c4a6c" })  -- Muted violet
-        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#4a6c6c" })    -- Muted cyan
+        vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#6c4a4a" }) -- Muted red
+        vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#6c6249" }) -- Muted yellow
+        vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#4a5c6c" }) -- Muted blue
+        vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#6c5a49" }) -- Muted orange
+        vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#4a6c4a" }) -- Muted green
+        vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#5c4a6c" }) -- Muted violet
+        vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#4a6c6c" }) -- Muted cyan
 
-        vim.api.nvim_set_hl(0, "ScopeHighlight", { fg = "#b4befe" })    -- Muted cyan
+        vim.api.nvim_set_hl(0, "ScopeHighlight", { fg = "#b4befe" }) -- Muted cyan
       end)
 
       require("ibl").setup({
@@ -232,7 +232,11 @@ return {
         },
       })
 
-      hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+      hooks.register(
+        hooks.type.SCOPE_HIGHLIGHT,
+        hooks.builtin.scope_highlight_from_extmark
+      )
     end,
   },
 }
+
