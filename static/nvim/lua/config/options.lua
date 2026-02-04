@@ -26,22 +26,35 @@ vim.opt.relativenumber = true -- relative line numbers
 vim.opt.mouse = "a" -- mouse actions to allow
 vim.opt.ignorecase = true -- search options
 vim.opt.smartcase = true -- search options
--- vim.opt.hlsearch = false
+vim.opt.hlsearch = false -- don't highlight search results
+vim.opt.incsearch = true -- incremental search
 vim.opt.wrap = false -- wrap lines around
 vim.opt.breakindent = true -- how to indent wrapped lines
 vim.opt.tabstop = 2 -- tab character size
 vim.opt.softtabstop = 2 -- tab character size
 vim.opt.shiftwidth = 2 -- indent size with >> and <<
 vim.opt.expandtab = true -- replace tabs with spaces
+vim.opt.smartindent = true -- smart indentation
+vim.opt.autoindent = true -- auto indentation
+
+-- Better completion experience
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
+-- Better search
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m"
+
+-- Better backup/swap/undo
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+
+-- Better display
+vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.pumheight = 10 -- pop up menu height
+vim.opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
+vim.opt.showtabline = 2 -- always show tabs
+vim.opt.laststatus = 3 -- global statusline
 
 vim.g.python_recommended_style = 0
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "python",
-  callback = function()
-    vim.bo.shiftwidth = 2
-    vim.bo.tabstop = 2
-    vim.bo.softtabstop = 2
-    vim.bo.expandtab = false -- Change for spaces
-  end,
-})
