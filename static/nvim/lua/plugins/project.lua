@@ -2,7 +2,7 @@ return {
   "ahmedkhalf/project.nvim",
   config = function()
     require("project_nvim").setup({
-      detection_methods = { "lsp", "pattern" },
+      detection_methods = { "pattern" },
       patterns = {
         ".git",
         "_darcs",
@@ -16,7 +16,7 @@ return {
       ignore_lsp = {},
       exclude_dirs = {},
       show_hidden = false,
-      silent_chdir = true,
+      silent_chdir = false,
       scope_chdir = "global",
       datapath = vim.fn.stdpath("data"),
     })
@@ -32,4 +32,3 @@ return {
     )
   end,
 }
-
