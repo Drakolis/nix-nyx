@@ -1,7 +1,5 @@
 from ignis import widgets
-from ignis import utils
-from ignis.services.mpris import MprisService, MprisPlayer
-
+from ignis.services.mpris import MprisPlayer, MprisService
 
 mpris = MprisService.get_default()
 
@@ -24,9 +22,11 @@ def mpris_title(player: MprisPlayer) -> widgets.Box:
           css_classes=["mpris-label", "label-bar"],
           image=player.bind(
             "playback_status",
-            lambda status: "media-playback-playing-symbolic"
-            if status == "Playing"
-            else "media-playback-paused-symbolic",
+            lambda status: (
+              "media-playback-playing-symbolic"
+              if status == "Playing"
+              else "media-playback-paused-symbolic"
+            ),
           ),
         ),
         widgets.Label(
@@ -44,11 +44,20 @@ def mpris_status_widget() -> widgets.Box:
     css_classes=["bar-pill", "elevation1"],
     spacing=10,
     child=[
-      widgets.Label(
-        css_classes=["pill-button", "mpris-label", "label-bar"],
-        label="No media players",
+      widgets.Box(
+        spacing=5,
+        css_classes=["pill-button"],
+        child=[
+          widgets.Icon(
+            css_classes=["mpris-label", "label-bar"], image="audio-x-generic-symbolic"
+          ),
+          widgets.Label(
+            css_classes=["pill-button", "mpris-label", "label-bar"],
+            label="No media players",
+          ),
+        ],
         visible=mpris.bind("players", lambda value: len(value) == 0),
-      )
+      ),
     ],
     setup=lambda self: mpris.connect(
       "player-added", lambda x, player: self.append(mpris_title(player))

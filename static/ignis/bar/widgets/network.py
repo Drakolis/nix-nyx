@@ -1,15 +1,14 @@
 import asyncio
 
 from ignis import widgets
-
 from ignis.services.network import NetworkService
 
 from widgets.setup_menu import (
-  SetupMenuPopover,
   SetupMenuHeader,
-  SetupMenuItemSeparator,
   SetupMenuItemButton,
   SetupMenuItemIconButton,
+  SetupMenuItemSeparator,
+  SetupMenuPopover,
 )
 
 # TODO: Subscribe OSD for new_device/remove_device events
@@ -109,7 +108,7 @@ class NetworkStatusWidget(widgets.Box):
     )
 
     self.network_bar_item = widgets.Button(
-      css_classes=["pill-button"],
+      css_classes=["pill-icon-button"],
       on_click=lambda x: self.network_setup_menu.popup(),
       on_right_click=self.__toggle_wifi,
       child=self.network_status_icon,

@@ -1,7 +1,6 @@
 import math
 
 from ignis import widgets
-
 from ignis.services.upower import UPowerService
 
 # TODO: Subscribe OSD for power/battery connected/switch events
@@ -28,7 +27,7 @@ class PowerStatusWidget(widgets.Button):
     ]
 
     super().__init__(
-      css_classes=["pill-button"],
+      css_classes=["pill-icon-button"],
       on_right_click=lambda self: True,
       child=widgets.Box(child=power_status_label, spacing=5),
     )

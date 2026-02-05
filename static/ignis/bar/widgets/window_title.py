@@ -1,10 +1,7 @@
 from ignis import widgets
-from ignis import utils
-
-from ignis.menu_model import IgnisMenuModel, IgnisMenuItem, IgnisMenuSeparator
-
-from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
-from ignis.services.niri import NiriService, NiriWorkspace
+from ignis.menu_model import IgnisMenuItem, IgnisMenuModel, IgnisMenuSeparator
+from ignis.services.hyprland import HyprlandService
+from ignis.services.niri import NiriService
 
 from utils import get_extended_app_icon
 

@@ -1,5 +1,4 @@
 from ignis import widgets
-
 from ignis.services.hyprland import HyprlandService
 from ignis.services.niri import NiriService
 
@@ -29,7 +28,7 @@ def keyboard_status() -> widgets.Button:
     layout_label = niri.keyboard_layouts.bind("current_name", map_layout)
 
   return widgets.Button(
-    css_classes=["unset", "pill-button", "workspace"],
+    css_classes=["unset", "pill-icon-button", "workspace"],
     on_click=on_click_handler,
     child=widgets.Box(
       spacing=5,

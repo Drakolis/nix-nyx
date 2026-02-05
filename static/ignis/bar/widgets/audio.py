@@ -1,8 +1,6 @@
 import asyncio
 
-from ignis import widgets
-from ignis import utils
-
+from ignis import utils, widgets
 from ignis.services.audio import AudioService
 
 from utils import (
@@ -11,12 +9,12 @@ from utils import (
   get_audio_output_status_icon,
 )
 from widgets.setup_menu import (
-  SetupMenuPopover,
   SetupMenuHeader,
-  SetupMenuItemScale,
-  SetupMenuItemSeparator,
   SetupMenuItemButton,
   SetupMenuItemIconButton,
+  SetupMenuItemScale,
+  SetupMenuItemSeparator,
+  SetupMenuPopover,
 )
 
 audio_service = AudioService.get_default()
@@ -99,7 +97,7 @@ class AudioStatusWidget(widgets.Button):
     ]
 
     super().__init__(
-      css_classes=["pill-button"],
+      css_classes=["pill-icon-button"],
       on_click=lambda x: audio_setup_menu.popup(),
       child=widgets.Box(
         child=audio_status_contents,

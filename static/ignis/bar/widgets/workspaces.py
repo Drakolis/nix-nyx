@@ -1,6 +1,4 @@
-from ignis import widgets
-from ignis import utils
-
+from ignis import utils, widgets
 from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
 from ignis.services.niri import NiriService, NiriWorkspace
 
@@ -10,7 +8,7 @@ niri = NiriService.get_default()
 
 def hyprland_workspace_button(workspace: HyprlandWorkspace) -> widgets.Button:
   widget = widgets.Button(
-    css_classes=["pill-button", "label-bar"],
+    css_classes=["pill-workspace-button", "label-bar"],
     on_click=lambda x: workspace.switch_to(),
     child=widgets.Label(label=str(workspace.id)),
   )
@@ -22,7 +20,7 @@ def hyprland_workspace_button(workspace: HyprlandWorkspace) -> widgets.Button:
 
 def niri_workspace_button(workspace: NiriWorkspace) -> widgets.Button:
   widget = widgets.Button(
-    css_classes=["pill-button", "workspace", "label-bar"],
+    css_classes=["pill-workspace-button", "workspace", "label-bar"],
     on_click=lambda x: workspace.switch_to(),
     child=widgets.Label(label=str(workspace.idx)),
   )

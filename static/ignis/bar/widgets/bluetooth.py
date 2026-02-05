@@ -1,16 +1,15 @@
 import asyncio
-from ignis import widgets
 
+from ignis import widgets
 from ignis.services.bluetooth import BluetoothService
 
 from widgets.setup_menu import (
-  SetupMenuPopover,
   SetupMenuHeader,
-  SetupMenuItemSeparator,
   SetupMenuItemButton,
   SetupMenuItemIconButton,
+  SetupMenuItemSeparator,
+  SetupMenuPopover,
 )
-
 
 icon_active = "bluetooth-active-symbolic"
 icon_disabled = "bluetooth-disabled-symbolic"
@@ -99,7 +98,7 @@ class BluetoothStatusWidget(widgets.Box):
     )
 
     self.bluetooth_bar_item = widgets.Button(
-      css_classes=["pill-button"],
+      css_classes=["pill-icon-button"],
       on_click=lambda x: self.bluetooth_setup_menu.popup(),
       on_right_click=self.__toggle_bluetooth,
       child=self.bluetooth_icon,

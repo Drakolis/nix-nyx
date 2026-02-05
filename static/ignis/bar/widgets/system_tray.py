@@ -1,6 +1,5 @@
 from ignis import widgets
-
-from ignis.services.system_tray import SystemTrayService, SystemTrayItem
+from ignis.services.system_tray import SystemTrayItem, SystemTrayService
 from ignis.window_manager import WindowManager
 
 system_tray_service = SystemTrayService.get_default()
@@ -22,7 +21,7 @@ def system_tray_item(item: SystemTrayItem) -> widgets.Button:
         tooltip_text=item.bind("tooltip"),
         on_click=lambda x: menu.popup() if menu else None,
         on_right_click=lambda x: menu.popup() if menu else None,
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["tray-label"],

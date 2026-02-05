@@ -1,8 +1,6 @@
 import datetime
 
-from ignis import widgets
-from ignis import utils
-
+from ignis import utils, widgets
 from ignis.window_manager import WindowManager
 
 window_manager = WindowManager.get_default()

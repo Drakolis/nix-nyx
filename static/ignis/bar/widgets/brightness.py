@@ -1,20 +1,18 @@
 import asyncio
-from ignis import widgets
-from ignis import utils
 
+from ignis import utils, widgets
 from ignis.services.backlight import BacklightService
-from ignis.services.recorder import RecorderService, RecorderConfig
-
-from widgets.setup_menu import (
-  SetupMenuPopover,
-  SetupMenuHeader,
-  SetupMenuItemScale,
-  SetupMenuItemSeparator,
-  SetupMenuItemButton,
-)
+from ignis.services.recorder import RecorderConfig, RecorderService
 
 from utils import (
   get_brightness_status_icon,
+)
+from widgets.setup_menu import (
+  SetupMenuHeader,
+  SetupMenuItemButton,
+  SetupMenuItemScale,
+  SetupMenuItemSeparator,
+  SetupMenuPopover,
 )
 
 
@@ -71,7 +69,7 @@ class MonitorStatusWidget(widgets.Box):
     )
 
     self.monitor_bar_item = widgets.Button(
-      css_classes=["pill-button"],
+      css_classes=["pill-icon-button"],
       on_click=lambda x: self.monitor_setup_menu.popup(),
       child=widgets.Box(spacing=5, child=[self.monitor_bar_icon]),
     )

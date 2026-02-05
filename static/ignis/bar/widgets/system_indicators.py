@@ -1,12 +1,4 @@
 from ignis import widgets
-
-from .brightness import MonitorStatusWidget
-from .audio import AudioStatusWidget
-from .keyboard import keyboard_status
-from .network import NetworkStatusWidget
-from .bluetooth import BluetoothStatusWidget
-from .power import PowerStatusWidget
-
 from ignis.services.upower import UPowerService
 
 upower = UPowerService.get_default()
@@ -20,7 +12,7 @@ def system_indicators_widget() -> widgets.Box:
     spacing=TRAY_ITEM_SPACING,
     child=[
       widgets.EventBox(
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["clock-label"],
@@ -31,7 +23,7 @@ def system_indicators_widget() -> widgets.Box:
         ],
       ),
       widgets.EventBox(
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["clock-label"],
@@ -42,7 +34,7 @@ def system_indicators_widget() -> widgets.Box:
         ],
       ),
       widgets.EventBox(
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["clock-label"],
@@ -53,7 +45,7 @@ def system_indicators_widget() -> widgets.Box:
         ],
       ),
       widgets.EventBox(
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["clock-label"],
@@ -64,7 +56,7 @@ def system_indicators_widget() -> widgets.Box:
         ],
       ),
       widgets.EventBox(
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["clock-label"],
@@ -75,7 +67,7 @@ def system_indicators_widget() -> widgets.Box:
         ],
       ),
       widgets.Box(
-        css_classes=["pill-button"],
+        css_classes=["pill-icon-button"],
         child=[
           widgets.Icon(
             css_classes=["clock-label"],
