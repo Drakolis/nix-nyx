@@ -54,4 +54,3 @@ vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.laststatus = 3 -- global statusline
 
-vim.g.python_recommended_style = 0
