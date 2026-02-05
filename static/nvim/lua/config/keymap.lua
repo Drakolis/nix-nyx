@@ -120,7 +120,7 @@ vim.keymap.set("n", "<C-[>", ":bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<C-]>", ":bnext<CR>", { desc = "Next buffer" })
 
 -- Quick save and quit
-vim.keymap.set("n", "<leader>q", ":qa!<CR>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>Q", ":qa!<CR>", { desc = "Quit all" })
 
 -- Clear search highlighting
 vim.keymap.set(
