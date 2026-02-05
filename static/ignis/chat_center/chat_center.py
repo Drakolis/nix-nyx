@@ -2,14 +2,13 @@ import asyncio
 import os
 
 from gi.repository import Gtk  # type: ignore
-from ignis import widgets
-from ignis import utils
+from ignis import utils, widgets
+
 from user_options import user_options
 
 
 class ChatCenter(widgets.RevealerWindow):
-  def __init__(self, monitor_id: int):
-    self.monitor_id = 0
+  def __init__(self):
     self.notepad_file_path = user_options.chat_center.notepad_file
 
     if not os.path.exists(self.notepad_file_path):
@@ -58,7 +57,7 @@ class ChatCenter(widgets.RevealerWindow):
     )
 
     super().__init__(
-      namespace=f"eggshell_chat_center_{monitor_id}",
+      namespace="eggshell_chat_center_0",
       css_classes=["unset-window"],
       visible=False,
       layer="top",

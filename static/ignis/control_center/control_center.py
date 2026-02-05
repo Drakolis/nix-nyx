@@ -1,12 +1,12 @@
-import socket
 import asyncio
 import os
 import pwd
+import socket
 
-from ignis import widgets
-from ignis import utils
-from ignis.window_manager import WindowManager
+from ignis import utils, widgets
 from ignis.services.fetch import FetchService
+from ignis.window_manager import WindowManager
+
 from user_options import user_options
 
 uid = os.geteuid()
@@ -32,9 +32,7 @@ def format_uptime(value: tuple[int, int, int, int]) -> str:
 
 
 class ControlCenter(widgets.RevealerWindow):
-  def __init__(self, monitor_id: int):
-    self.monitor_id = 0
-
+  def __init__(self):
     user_image = widgets.Picture(
       image=user_options.user.bind(
         "avatar",
@@ -143,7 +141,7 @@ class ControlCenter(widgets.RevealerWindow):
     )
 
     super().__init__(
-      namespace=f"eggshell_control_center_{monitor_id}",
+      namespace="eggshell_control_center_0",
       css_classes=["unset-window"],
       visible=False,
       layer="top",
