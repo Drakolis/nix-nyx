@@ -1,7 +1,8 @@
 from .applications import LauncherModeApplications
-from .niri_windows import LauncherModeNiriWindows
-from .kill import LauncherModePKill
+from .clipboard import LauncherModeClipboard
 from .currency import LauncherModeCurrency
+from .kill import LauncherModePKill
+from .niri_windows import LauncherModeNiriWindows
 from .web_search import LauncherModeWebSearch
 
 
@@ -18,7 +19,7 @@ class LauncherModesManager:
     self.modes.append(LauncherModePKill())
     self.modes.append(LauncherModeCurrency())
     self.modes.append(LauncherModeWebSearch())
-    # self.modes.append()
+    self.modes.append(LauncherModeClipboard())
     # self.modes.append()
     # self.modes.append()
     self.default_mode = applications_mode

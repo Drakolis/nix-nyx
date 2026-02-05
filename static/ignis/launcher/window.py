@@ -1,4 +1,5 @@
 from ignis import widgets
+
 from .modes import LauncherModesManager
 
 
@@ -135,6 +136,7 @@ class LauncherWindow(widgets.RevealerWindow):
     if not self.visible:
       return
 
+    self._app_list_scroll.set_vadjustment(None)
     self.entry.text = ""
     self.entry.grab_focus()
 
