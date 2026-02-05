@@ -77,7 +77,6 @@ def hyprland_workspaces() -> widgets.EventBox:
     on_scroll_up=lambda x: scroll_workspaces("up"),
     on_scroll_down=lambda x: scroll_workspaces("down"),
     css_classes=["bar-pill", "elevation1"],
-    spacing=5,
     child=hyprland.bind_many(  # bind also to active_workspace to regenerate workspaces list when active workspace changes
       ["workspaces", "active_workspace"],
       transform=lambda workspaces, active_workspace: [
@@ -92,7 +91,6 @@ def niri_workspaces(monitor_name: str) -> widgets.EventBox:
     on_scroll_up=lambda x: scroll_workspaces("up", monitor_name),
     on_scroll_down=lambda x: scroll_workspaces("down", monitor_name),
     css_classes=["bar-pill", "elevation1"],
-    spacing=5,
     child=niri.bind(
       "workspaces",
       transform=lambda value: [

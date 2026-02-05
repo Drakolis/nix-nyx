@@ -5,8 +5,6 @@ from ignis.window_manager import WindowManager
 system_tray_service = SystemTrayService.get_default()
 window_manager = WindowManager.get_default()
 
-TRAY_ITEM_SPACING = 3
-
 
 def system_tray_item(item: SystemTrayItem) -> widgets.Button:
   if item.menu:
@@ -42,5 +40,4 @@ def system_tray_widget() -> widgets.Box:
     setup=lambda self: system_tray_service.connect(
       "added", lambda x, item: self.append(system_tray_item(item))
     ),
-    spacing=TRAY_ITEM_SPACING,
   )

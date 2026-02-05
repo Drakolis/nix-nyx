@@ -16,46 +16,49 @@
     margin-top: 0.2rem;
   }
 
-  .pill-button {
+  .pill-button,
+  .pill-icon-button,
+  .pill-workspace-button {
     border-radius: 1rem;
-    padding: 0.25rem 0.5rem;
     transition: 0.3s;
+  }
+
+  .pill-button {
+    padding: 0.25rem 0.5rem;
   }
 
   .pill-button label {
-    margin-right: 0.3rem;
-    transition: 0.3ms;
+    padding-right: 0.3rem;
   }
 
   .pill-icon-button {
-    border-radius: 1rem;
-    padding: 0.25rem 0.3rem;
-    transition: 0.3s;
+    padding: 0.25rem 0.4rem;
   }
 
   .pill-icon-button label {
-    margin-right: 0.5rem;
-    transition: 0.3ms;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
   }
 
   .pill-workspace-button {
-    border-radius: 1rem;
     padding-left: 0.7rem;
     padding-right: 0.3rem;
     min-width: 1rem;
   }
 
   .pill-workspace-button label {
-    margin-right: 0.4rem;
+    padding-right: 0.4rem;
   }
 
   .pill-button:hover,
+  .pill-icon-button:hover,
   .pill-workspace-button:hover {
-    background-color: rgba(variables.$bg-control, 0.4);
+    background-color: rgba(variables.$bg-control, 0.6);
   }
 
   .pill-button:focus,
-  .pill-workspace-button:hover {
+  .pill-icon-button:focus,
+  .pill-workspace-button:focus {
   }
 
   .pill-workspace-button.active {

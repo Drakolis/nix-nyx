@@ -3,13 +3,10 @@ from ignis.services.upower import UPowerService
 
 upower = UPowerService.get_default()
 
-TRAY_ITEM_SPACING = 3
-
 
 def system_indicators_widget() -> widgets.Box:
   return widgets.Box(
     css_classes=["bar-pill", "elevation1"],
-    spacing=TRAY_ITEM_SPACING,
     child=[
       widgets.EventBox(
         css_classes=["pill-icon-button"],
