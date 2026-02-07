@@ -54,7 +54,7 @@ def mpris_status_widget() -> widgets.Box:
             css_classes=["mpris-label", "label-bar"], image="audio-x-generic-symbolic"
           ),
           widgets.Label(
-            css_classes=["pill-button", "mpris-label", "label-bar"],
+            css_classes=["mpris-label", "label-bar"],
             label="No media players",
           ),
         ],

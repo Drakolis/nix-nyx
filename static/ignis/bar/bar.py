@@ -1,13 +1,12 @@
 from ignis import widgets
 
 from bar.widgets import (
-  workspaces_widget,
   WindowTitleWidget,
-  system_tray_widget,
-  system_status_widget,
-  system_indicators_widget,
   date_time_widget,
   mpris_status_widget,
+  system_status_widget,
+  system_tray_widget,
+  workspaces_widget,
 )
 
 
@@ -38,7 +37,7 @@ class Bar(widgets.Window):
         ),
         end_widget=widgets.Box(
           child=[
-            system_indicators_widget(),
+            # system_indicators_widget(),
             system_status_widget(monitor_id),
             system_tray_widget(),
           ]
