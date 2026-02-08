@@ -84,11 +84,12 @@ in
         };
         trackball = {
           enable = true;
-          accel-speed = 0.2;
-          accel-profile = "flat";
-          scroll-method = null;
+          accel-speed = 0.1;
+          accel-profile = "adaptive";
+          scroll-method = "on-button-down";
+          scroll-button = 274;
+          scroll-button-lock = true;
           natural-scroll = false;
-
         };
         trackpoint = {
           enable = true;
@@ -97,15 +98,23 @@ in
           natural-scroll = false;
           scroll-method = null;
         };
-        warp-mouse-to-focus.enable = false;
+        warp-mouse-to-focus.enable = true;
       };
 
-      # switch-events = {
-      #   lid-close = ;
-      #   lid-open = ;
-      #   tablet-mode-on.action.spawn = ["gsettings" "set" "org.gnome.desktop.a11y.applications" "screen-keyboard-enabled" "true"];
-      #   tablet-mode-off.action.spawn = ["gsettings" "set" "org.gnome.desktop.a11y.applications" "screen-keyboard-enabled" "false"];
-      # };
+      switch-events = {
+        lid-close.action.spawn = [
+          "niri"
+          "msg"
+          "action power-off-monitors"
+        ];
+        lid-open.action.spawn = [
+          "niri"
+          "msg"
+          "action power-on-monitors"
+        ];
+        #   tablet-mode-on.action.spawn = ["gsettings" "set" "org.gnome.desktop.a11y.applications" "screen-keyboard-enabled" "true"];
+        #   tablet-mode-off.action.spawn = ["gsettings" "set" "org.gnome.desktop.a11y.applications" "screen-keyboard-enabled" "false"];
+      };
 
       cursor = {
         hide-after-inactive-ms = 5000;
@@ -377,10 +386,24 @@ in
               app-id = "kitty";
               title = "Clipboard preview";
             }
+            {
+              app-id = "org.gnome.Characters";
+            }
           ];
           open-floating = true;
           default-window-height.fixed = 600;
           default-column-width.proportion = 0.45;
+        }
+        {
+          # Rules for character and emoji pickers
+          matches = [
+            {
+              app-id = "it.mijorus.smile";
+            }
+          ];
+          open-floating = true;
+          default-window-height.fixed = 300;
+          default-column-width.proportion = 0.25;
         }
         # GLOBAL
         {
@@ -450,6 +473,16 @@ in
         "Mod+Shift+A" = {
           action.spawn = commands.gui.fileManager;
           hotkey-overlay.title = "Launch GUI File Manager";
+        };
+
+        "Mod+Period" = {
+          action.spawn = "smile";
+          hotkey-overlay.title = "Launch Emoji Picker";
+        };
+
+        "Mod+Shift+Period" = {
+          action.spawn = "gnome-characters";
+          hotkey-overlay.title = "Launch Character Picker";
         };
 
         "Mod+Space" = {
@@ -749,8 +782,9 @@ in
         # Consume/Expell
         "Mod+BracketLeft".action.consume-or-expel-window-left = [ ];
         "Mod+BracketRight".action.consume-or-expel-window-right = [ ];
-        "Mod+Comma".action.consume-window-into-column = [ ];
-        "Mod+Period".action.expel-window-from-column = [ ];
+        # TODO: These have to be checked
+        # "Mod+Comma".action.consume-window-into-column = [ ];
+        # "Mod+Period".action.expel-window-from-column = [ ];
 
         # Sizing
         "Mod+R".action.switch-preset-column-width = [ ];

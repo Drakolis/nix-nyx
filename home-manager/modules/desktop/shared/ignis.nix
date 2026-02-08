@@ -1,11 +1,13 @@
 { pkgs, ... }:
 {
-  # These have to move
+  # TODO: These have to move
   home.packages = with pkgs; [
     wvkbd
+    smile
   ];
 
   services.cliphist.enable = true;
+  services.wl-clip-persist.enable = true;
 
   services.gammastep = {
     enable = true;
