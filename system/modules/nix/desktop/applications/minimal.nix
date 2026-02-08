@@ -58,9 +58,10 @@ with lib;
         # qpwgraph
 
         caffeine-ng
+
+        gnome-characters
       ]
       ++ lib.optionals hasAdvanced [
-        gnome-characters
         textpieces
         dconf-editor
       ]
