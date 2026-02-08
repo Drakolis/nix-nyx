@@ -54,14 +54,14 @@ with lib;
         smoothing.noise_reduction = 88;
         color = {
           gradient = 1;
-          gradient_color_1 = ''#${style.colors.gauge1}'';
-          gradient_color_2 = ''#${style.colors.gauge2}'';
-          gradient_color_3 = ''#${style.colors.gauge3}'';
-          gradient_color_4 = ''#${style.colors.gauge4}'';
-          gradient_color_5 = ''#${style.colors.gauge5}'';
-          gradient_color_6 = ''#${style.colors.gauge6}'';
-          gradient_color_7 = ''#${style.colors.gauge7}'';
-          gradient_color_8 = ''#${style.colors.gauge8}'';
+          gradient_color_1 = "#${style.colors.gauge1}";
+          gradient_color_2 = "#${style.colors.gauge2}";
+          gradient_color_3 = "#${style.colors.gauge3}";
+          gradient_color_4 = "#${style.colors.gauge4}";
+          gradient_color_5 = "#${style.colors.gauge5}";
+          gradient_color_6 = "#${style.colors.gauge6}";
+          gradient_color_7 = "#${style.colors.gauge7}";
+          gradient_color_8 = "#${style.colors.gauge8}";
         };
       };
     };
@@ -83,18 +83,18 @@ with lib;
 
           # info underline
 
-          # info "CPU" cpu
-          # info "BIOS" bios
-          # info "GPU" gpu
-          # info "GPU Driver" gpu_driver  # Linux/macOS only
+          info "CPU" cpu
+          info "BIOS" bios
+          info "GPU" gpu
+          info "GPU Driver" gpu_driver  # Linux/macOS only
           info "DE" de
           info "WM" wm
           info "Resolution" resolution
-          # info "Memory" memory
-          # info "Disk" disk
+          info "Memory" memory
+          info "Disk" disk
           # info "Local IP" local_ip
           # info "Public IP" public_ip
-          # info "Bluetooth" bluetooth
+          info "Bluetooth" bluetooth
           # info "Battery" battery
           # info "Power Adapter" power_adapter # macOS only
 
