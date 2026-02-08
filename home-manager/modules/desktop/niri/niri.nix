@@ -85,7 +85,7 @@ in
         trackball = {
           enable = true;
           accel-speed = 0.1;
-          accel-profile = "adaptive";
+          accel-profile = "flat";
           scroll-method = "on-button-down";
           scroll-button = 274;
           scroll-button-lock = true;
