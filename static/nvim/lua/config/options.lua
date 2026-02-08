@@ -26,7 +26,6 @@ vim.opt.relativenumber = true -- relative line numbers
 vim.opt.mouse = "a" -- mouse actions to allow
 vim.opt.ignorecase = true -- search options
 vim.opt.smartcase = true -- search options
-vim.opt.hlsearch = false -- don't highlight search results
 vim.opt.incsearch = true -- incremental search
 vim.opt.wrap = false -- wrap lines around
 vim.opt.breakindent = true -- how to indent wrapped lines
@@ -53,4 +52,3 @@ vim.opt.swapfile = false
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.laststatus = 3 -- global statusline
-
