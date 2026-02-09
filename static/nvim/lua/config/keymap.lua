@@ -53,39 +53,29 @@ vim.keymap.set({ "n", "x" }, "X", '"_d')
 -- Move selected text up and down with N and E
 vim.keymap.set(
   "v",
-  "<leader><up>",
+  "<A-up>",
   ":m '<-2<CR>gv=gv",
   { desc = "Move selection up" }
 )
 vim.keymap.set(
   "v",
-  "<leader><down>",
+  "<A-down>",
   ":m '>+1<CR>gv=gv",
   { desc = "Move selection down" }
 )
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 vim.keymap.set(
   "v",
-  "<leader>k",
-  ":m '<-2<CR>gv=gv",
-  { desc = "Move selection up" }
-)
-vim.keymap.set(
-  "v",
-  "<leader>j",
+  "<A-j>",
   ":m '>+1<CR>gv=gv",
   { desc = "Move selection down" }
 )
 
 -- Move the current line in normal mode
-vim.keymap.set("n", "<leader><up>", ":m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set(
-  "n",
-  "<leader><down>",
-  ":m .+1<CR>==",
-  { desc = "Move line down" }
-)
-vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-up>", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("n", "<A-down>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 
 -- Select all text in current buffer
 vim.keymap.set(
