@@ -82,7 +82,7 @@ in
 
     activeSurface = catppuccinMocha.surface0;
     activeOutline = catppuccinMocha.surface1;
-    tableLine = catppuccinMocha.surface2;
+    tableLine = catppuccinMocha.overlay1;
 
     background = catppuccinMocha.base;
     panel = catppuccinMocha.mantle;
@@ -124,6 +124,7 @@ in
     modeVisual = catppuccinMocha.rosewater;
     modeReplace = catppuccinMocha.maroon;
     modeInactive = catppuccinMocha.surface0;
+    modeSearch = catppuccinMocha.yellow;
 
     gitAdded = catppuccinMocha.green;
     gitRemoved = catppuccinMocha.red;
