@@ -122,6 +122,7 @@ in
 
       prompt = "#${style.colors.success}";
       marker = "#${style.colors.selection}";
+      border = "#${style.colors.tableLine}";
 
       # Selected line
       pointer = "#${style.colors.primary}";

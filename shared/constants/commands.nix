@@ -15,7 +15,7 @@
   };
 
   previewText = "bat --paging=always --color=always";
-  previewTextInFzf = "bat --style=numbers --color=always --line-range 500 {}";
+  previewTextInFzf = "bat --style=numbers --paging=never --color=always {}";
   previewImage = "imv";
   previewScreenshot = "imv -w Screenshot";
 
