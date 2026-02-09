@@ -38,7 +38,7 @@ in
       styles = {
         widgets = {
           widget_title = {
-            color = "#${style.colors.secondary}";
+            color = "#${style.colors.primary}";
             bold = true;
           };
           border_color = "#${style.colors.tableLine}";
@@ -98,6 +98,51 @@ in
   programs.lazygit = {
     enable = true;
     enableZshIntegration = true;
+    settings = {
+      gui = {
+        theme = {
+          activeBorderColor = [
+            "#${style.colors.primary}"
+            "bold"
+          ];
+          inactiveBorderColor = [
+            "#${style.colors.tableLine}"
+          ];
+          optionsTextColor = [
+            "#${style.colors.highlight}"
+          ];
+          selectedLineBgColor = [
+            "#${style.colors.activeOutline}"
+          ];
+          cherryPickedCommitBgColor = [
+            "#${style.colors.activeSurface}"
+          ];
+          cherryPickedCommitFgColor = [
+            "#${style.colors.primary}"
+          ];
+          unstagedChangesColor = [
+            "#${style.colors.error}"
+          ];
+          defaultFgColor = [
+            "#${style.colors.text}"
+          ];
+          searchingActiveBorderColor = [
+            "#${style.colors.modeSearch}"
+          ];
+        };
+        branchColorPatterns = {
+          "main" = "#${style.colors.secondary}";
+          "master" = "#${style.colors.secondary}";
+          "*" = "#${style.colors.gitBranch}";
+        };
+        authorColors = {
+          "Mika Drakolis" = "#${style.colors.gitAuthor}";
+          "Mika Zimina" = "#${style.colors.gitAuthor}";
+        };
+        tabWidth = 2;
+
+      };
+    };
   };
 
   programs.gitui = {
