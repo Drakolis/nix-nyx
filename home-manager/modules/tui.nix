@@ -112,10 +112,10 @@ in
             "#${style.colors.highlight}"
           ];
           selectedLineBgColor = [
-            "#${style.colors.activeOutline}"
+            "#${style.colors.activeSurface}"
           ];
           cherryPickedCommitBgColor = [
-            "#${style.colors.activeSurface}"
+            "#${style.colors.activeOutline}"
           ];
           cherryPickedCommitFgColor = [
             "#${style.colors.primary}"
