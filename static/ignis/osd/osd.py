@@ -1,21 +1,17 @@
-from ignis import widgets
-from ignis import utils
-from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
-from ignis.services.niri import NiriService, NiriWorkspace
-from ignis.services.mpris import MprisService, MprisPlayer
+import simpleaudio as sa
+from ignis import utils, widgets
 from ignis.services.audio import AudioService
 from ignis.services.backlight import BacklightService
-from ignis.services.upower import UPowerService
-from ignis.services.network import NetworkService
 from ignis.services.bluetooth import BluetoothService
+from ignis.services.network import NetworkService
+from ignis.services.niri import NiriService
+from ignis.services.upower import UPowerService
 
 from utils import (
   get_audio_input_status_icon,
   get_audio_output_status_icon,
   get_brightness_status_icon,
 )
-
-import simpleaudio as sa
 
 DEFAULT_OSD_ICON = "distributor-logo-nixos"
 
@@ -180,7 +176,7 @@ class OSD(widgets.RevealerWindow):
     if device.charging and not self.battery_previous_charging:
       self.label = "Power Connected"
       self.icon = "battery-ac-adapter-symbolic"
-      audio_file_path = "assets/sounds/charging.wav"
+      audio_file_path = utils.get_current_dir() + "/../assets/sounds/charging.wav"
       wave_obj = sa.WaveObject.from_wave_file(audio_file_path)
       wave_obj.play()
       self.show_scale = False
