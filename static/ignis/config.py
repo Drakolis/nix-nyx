@@ -12,7 +12,6 @@ from info_center import InfoCenter
 from launcher import LauncherWindow
 from notifications import NotificationPopup
 from osd import OSD
-from settings import SettingsWindow
 
 css_manager = CssManager.get_default()
 window_manager = WindowManager.get_default()
@@ -38,5 +37,5 @@ ChatCenter()
 ControlCenter()
 InfoCenter()
 LauncherWindow()
-SettingsWindow()
+# SettingsWindow()
 # LauncherTouch(monitor)
