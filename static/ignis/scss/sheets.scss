@@ -117,7 +117,7 @@
 }
 
 .window {
-  border: solid 2px variables.$window_border; 
+  border: solid 2px variables.$window_border;
 }
 
 .corner-small {
@@ -137,6 +137,12 @@
 .nerd-font-icon {
   font-family: "Ubuntu Nerd Font";
   font-size: 18px;
+}
+
+.tabler-icon {
+  font-family: "tabler-icons";
+  font-size: 24px;
+  line-height: 0.9rem;
 }
 
 .monospace {

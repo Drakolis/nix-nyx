@@ -26,20 +26,20 @@
   .pill-button {
     padding: 0.25rem 0.5rem;
   }
-
+  /*
   .pill-button label {
     padding-right: 0.3rem;
   }
-
+  */
   .pill-icon-button {
     padding: 0.25rem 0.4rem;
   }
-
+  /*
   .pill-icon-button label {
     padding-left: 0.3rem;
     padding-right: 0.3rem;
   }
-
+  */
   .pill-workspace-button {
     padding-left: 0.7rem;
     padding-right: 0.3rem;
@@ -133,6 +133,18 @@
 
 .bluetooth-label {
   color: variables.$bluetooth;
+}
+
+.inactive-label {
+  color: variables.$fg-disabled;
+}
+
+.caffeine-label {
+  color: #b4befe;
+}
+
+.redshift-label {
+  color: #eba0ac;
 }
 
 .setup-menu {
