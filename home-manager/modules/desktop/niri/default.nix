@@ -1,9 +1,10 @@
-let
-  style = import ../../../../shared/constants/style.nix;
-in
 {
   imports = [
     ./niri.nix
+    ./binds.nix
+    ./hardware.nix
+    ./window-rules.nix
+    ./styling.nix
 
     ../shared/hypridle.nix
     ../shared/hyprlock.nix
@@ -20,16 +21,4 @@ in
   ];
 
   services.swww.enable = true;
-
-  services.hyprpaper = {
-    enable = false;
-    settings = {
-      preload = style.background;
-      wallpaper = [
-        ", ${style.background}"
-        # "DP-2, ${style.background}"
-        # "HDMI-A-2, ${style.background}"
-      ];
-    };
-  };
 }
