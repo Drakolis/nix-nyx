@@ -86,7 +86,7 @@ class LauncherWindow(widgets.RevealerWindow):
 
     revealer = widgets.Revealer(
       transition_type="crossfade",
-      transition_duration=150,
+      transition_duration=300,
       reveal_child=True,
       child=widgets.Box(
         css_classes=["launcher-container", "elevation3", "window"],
