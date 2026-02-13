@@ -91,28 +91,6 @@ in
         };
       };
       window-rules = [
-        {
-          matches = [ { is-window-cast-target = true; } ];
-
-          focus-ring = {
-            active.color = "#${style.colors.error}";
-            inactive.color = "#7d0d2d";
-          };
-
-          border = {
-            inactive.color = "#7d0d2d";
-          };
-
-          shadow = {
-            color = "#7d0d2d70";
-            inactive-color = "#7d0d2d70";
-          };
-
-          tab-indicator = {
-            active.color = "#${style.colors.error}";
-            inactive.color = "#7d0d2d";
-          };
-        }
         # GLOBAL
         {
           clip-to-geometry = true;

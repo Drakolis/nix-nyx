@@ -1,3 +1,6 @@
+let
+  style = import ../../../../shared/constants/style.nix;
+in
 {
   programs.niri = {
     settings = {
@@ -13,6 +16,29 @@
       # default-floating-position.relative-to = "top-left", "top-right", "bottom-left", "bottom-right", "top", "bottom", "left", "right";
 
       window-rules = [
+        {
+          matches = [ { is-window-cast-target = true; } ];
+
+          focus-ring = {
+            active.color = "#${style.colors.error}";
+            inactive.color = "#790d2b";
+          };
+
+          border = {
+            active.color = "#${style.colors.error}";
+            inactive.color = "#790d2b";
+          };
+
+          shadow = {
+            color = "#790d2b70";
+            inactive-color = "#790d2b70";
+          };
+
+          tab-indicator = {
+            active.color = "#${style.colors.error}";
+            inactive.color = "#790d2b";
+          };
+        }
         {
           # Rules for windows that should clearly float, but don't
           matches = [

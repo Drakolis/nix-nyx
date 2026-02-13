@@ -46,7 +46,7 @@ in
 
       animations = {
         enable = true;
-        slowdown = 2;
+        slowdown = 1.5;
       };
 
       screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
