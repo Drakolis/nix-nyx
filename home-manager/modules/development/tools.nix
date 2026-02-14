@@ -14,6 +14,7 @@ let
   aiEditorsPackages = with pkgs; [
     windsurf
     kiro
+    opencode
   ];
 
   sqlClientPackages = with pkgs; [
