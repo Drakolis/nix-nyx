@@ -137,9 +137,22 @@ in
     };
     themeFile = "Catppuccin-Mocha";
     keybindings = {
+      "ctrl+c" = "copy_and_clear_or_interrupt";
+      "ctrl+v" = "paste_from_clipboard";
       "ctrl+shift+a>1" = "set_background_opacity 1";
       "ctrl+shift+a>0" = "set_background_opacity 0";
       "ctrl+shift+a>d" = "set_background_opacity default";
+      "ctrl+shift+[" = "previous_tab";
+      "ctrl+shift+]" = "next_tab";
+      "ctrl+shift+1" = "goto_tab 1";
+      "ctrl+shift+2" = "goto_tab 2";
+      "ctrl+shift+3" = "goto_tab 3";
+      "ctrl+shift+4" = "goto_tab 4";
+      "ctrl+shift+5" = "goto_tab 5";
+      "ctrl+shift+6" = "goto_tab 6";
+      "ctrl+shift+7" = "goto_tab 7";
+      "ctrl+shift+8" = "goto_tab 8";
+      "ctrl+shift+9" = "goto_tab 9";
     };
     settings = {
       font_features = "JetBrainsMono-Regular +cv02 +cv06 +cv07 +cv11 +cv12 +cv14 +cv19 JetBrainsMono-SemiBold +cv02 +cv06 +cv07 +cv11 +cv12 +cv14 +cv19";
@@ -156,14 +169,14 @@ in
       bell_on_tab = "󰂚";
 
       window_border_width = 0;
-      window_padding_width = "5 5 0";
-      tab_bar_min_tabs = 2;
-      tab_bar_edge = "bottom";
-      tab_bar_margin_height = "2 2";
+      window_padding_width = "0";
+      tab_bar_min_tabs = 1;
+      tab_bar_edge = "top";
+      tab_bar_margin_height = "0 2";
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
       tab_activity_symbol = "󰞌";
-      tab_title_template = "{fmt.fg.tab}{index}: {title} {fmt.fg.red}{bell_symbol}{activity_symbol}";
+      tab_title_template = "{fmt.fg.tab}{index}:{title} {activity_symbol}{fmt.fg.red}{bell_symbol}";
 
       notify_on_cmd_finish = "invisible";
 
@@ -176,6 +189,8 @@ in
       cursor = "#${style.colors.primary}";
       cursor_text_color = "#${style.colors.textInverted}";
       url_color = "#${style.colors.path}";
+      url_style = "straight";
+      underline_hyperlink = "always";
       active_border_color = "#${style.colors.primary}";
       inactive_border_color = "#${style.colors.shadow}";
       bell_border_color = "#${style.colors.error}";
@@ -193,6 +208,7 @@ in
       selection_foreground = "#${style.colors.textInverted}";
       selection_background = "#${style.colors.selection}";
       background_opacity = 0.97;
+      transparent_background_colors = "#1e1e2f@0.97";
       dynamic_background_opacity = true;
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
