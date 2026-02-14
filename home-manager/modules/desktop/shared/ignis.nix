@@ -8,6 +8,10 @@
 
   services.cliphist.enable = true;
   services.wl-clip-persist.enable = true;
+  services.udiskie = {
+    enable = true;
+    tray = "always";
+  };
 
   services.gammastep = {
     enable = true;

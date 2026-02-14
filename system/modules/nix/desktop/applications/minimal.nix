@@ -21,6 +21,7 @@ in
 with lib;
 {
   config = mkIf (cfg.enable && (hasNiri || hasHyprland)) {
+    services.udisks2.enable = true;
     environment.systemPackages =
       with pkgs;
       [
@@ -32,7 +33,6 @@ with lib;
 
         bluetui
 
-        thunar-volman
         nautilus
         baobab
 

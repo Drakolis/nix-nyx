@@ -96,10 +96,10 @@ in
           hotkey-overlay.title = "Shutdown menu";
         };
 
-        # "Mod+G" = {
-        #   action.spawn-sh = ''${commands.notifyHyprpicker} & hyprpicker -a'';
-        #   hotkey-overlay.title = "Color picker";
-        # };
+        "Alt+Print" = {
+          action.spawn-sh = "${commands.notifyHyprpicker} & hyprpicker -a";
+          hotkey-overlay.title = "Color picker";
+        };
 
         "Mod+Y" = {
           action.spawn = commands.gui.passwords;

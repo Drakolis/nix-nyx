@@ -170,7 +170,7 @@ in
 
       window_border_width = 0;
       window_padding_width = "0";
-      tab_bar_min_tabs = 1;
+      tab_bar_min_tabs = 2;
       tab_bar_edge = "top";
       tab_bar_margin_height = "0 2";
       tab_bar_style = "powerline";
@@ -208,7 +208,6 @@ in
       selection_foreground = "#${style.colors.textInverted}";
       selection_background = "#${style.colors.selection}";
       background_opacity = 0.97;
-      transparent_background_colors = "#1e1e2f@0.97";
       dynamic_background_opacity = true;
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
