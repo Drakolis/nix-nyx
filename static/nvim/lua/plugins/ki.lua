@@ -1,98 +1,57 @@
 return {
-  "olimorris/codecompanion.nvim",
+  "nickjvandyke/opencode.nvim",
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
-    "hrsh7th/nvim-cmp", -- Optional: For using slash commands and variables in the chat buffer
-    "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
-    { "stevearc/dressing.nvim", opts = {} }, -- Optional: Improves the default Neovim interfaces
+    -- Recommended for `ask()` and `select()`.
+    -- Required for `snacks` provider.
+    ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
+    { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
   },
   config = function()
-    require("codecompanion").setup({
-      strategies = {
-        chat = {
-          adapter = "openai",
-        },
-        inline = {
-          adapter = "openai",
-        },
-        agent = {
-          adapter = "openai",
-        },
-      },
-      adapters = {
-        openai = function()
-          return require("codecompanion.adapters").extend("openai", {
-            env = {
-              api_key = "cmd:echo $SCALEWAY_API_KEY", -- You'll need to set this env var
-            },
-            url = "https://api.scaleway.ai/v1",
-            chat = {
-              model = "qwen3-235b-a22b-instruct-2507",
-              max_tokens = 8192,
-              temperature = 0.1,
-              top_p = 1,
-              stop = nil,
-            },
-          })
-        end,
-      },
-      display = {
-        action_palette = {
-          width = 95,
-          height = 10,
-        },
-        chat = {
-          window = {
-            layout = "vertical", -- float|vertical|horizontal|buffer
-            border = "single",
-            height = 0.8,
-            width = 0.45,
-            relative = "editor",
-            opts = {
-              breakindent = true,
-              cursorcolumn = false,
-              cursorline = false,
-              foldcolumn = "0",
-              linebreak = true,
-              list = false,
-              signcolumn = "no",
-              spell = false,
-              wrap = true,
-            },
-          },
-        },
-      },
-      opts = {
-        log_level = "ERROR",
-        send_code = true, -- Send code context with requests
-      },
-    })
+    ---@type opencode.Opts
+    vim.g.opencode_opts = {
+      -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
+    }
+
+    -- Required for `opts.events.reload`.
+    vim.o.autoread = true
+
+    -- Recommended/example keymaps.
+    vim.keymap.set({ "n", "x" }, "<C-a>", function()
+      require("opencode").ask("@this: ", { submit = true })
+    end, { desc = "Ask opencode…" })
+    vim.keymap.set({ "n", "x" }, "<C-x>", function()
+      require("opencode").select()
+    end, { desc = "Execute opencode action…" })
+    vim.keymap.set({ "n", "t" }, "<C-.>", function()
+      require("opencode").toggle()
+    end, { desc = "Toggle opencode" })
+
+    vim.keymap.set({ "n", "x" }, "go", function()
+      return require("opencode").operator("@this ")
+    end, { desc = "Add range to opencode", expr = true })
+    vim.keymap.set("n", "goo", function()
+      return require("opencode").operator("@this ") .. "_"
+    end, { desc = "Add line to opencode", expr = true })
+
+    vim.keymap.set("n", "<S-C-u>", function()
+      require("opencode").command("session.half.page.up")
+    end, { desc = "Scroll opencode up" })
+    vim.keymap.set("n", "<S-C-d>", function()
+      require("opencode").command("session.half.page.down")
+    end, { desc = "Scroll opencode down" })
+
+    -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap).
+    vim.keymap.set(
+      "n",
+      "+",
+      "<C-a>",
+      { desc = "Increment under cursor", noremap = true }
+    )
+    vim.keymap.set(
+      "n",
+      "-",
+      "<C-x>",
+      { desc = "Decrement under cursor", noremap = true }
+    )
   end,
-  keys = {
-    {
-      "<leader>ka",
-      "<cmd>CodeCompanionActions<cr>",
-      mode = { "n", "v" },
-      desc = "CodeCompanion Actions",
-    },
-    {
-      "<leader>kc",
-      "<cmd>CodeCompanionChat Toggle<cr>",
-      mode = { "n", "v" },
-      desc = "CodeCompanion Chat",
-    },
-    {
-      "<leader>ki",
-      "<cmd>CodeCompanion<cr>",
-      mode = { "n", "v" },
-      desc = "CodeCompanion Inline",
-    },
-    {
-      "<leader>kv",
-      "<cmd>CodeCompanionChat Add<cr>",
-      mode = "v",
-      desc = "CodeCompanion Add to Chat",
-    },
-  },
 }

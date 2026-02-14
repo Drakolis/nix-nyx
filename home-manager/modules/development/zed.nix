@@ -27,6 +27,7 @@ with lib;
         "terraform"
         "cspell"
         "git-firefly"
+        "catppuccin-icons"
       ];
       # Zed settings
       #
@@ -69,7 +70,11 @@ with lib;
         "agent" = {
           "dock" = "left";
         };
-        "icon_theme" = "Symbols Icon Theme";
+        "icon_theme" = {
+          "mode" = "dark";
+          "light" = "Catppuccin Latte";
+          "dark" = "Catppuccin Mocha";
+        };
         "tab_size" = 2;
 
         "indent_guides" = {
