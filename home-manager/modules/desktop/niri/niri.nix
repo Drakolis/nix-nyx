@@ -3,10 +3,6 @@
   pkgs,
   ...
 }:
-let
-  style = import ../../../../shared/constants/style.nix;
-  commands = import ../../../../shared/constants/commands.nix;
-in
 {
   home.packages = [
     inputs.niri-screen-time.packages.${pkgs.stdenv.hostPlatform.system}.default
