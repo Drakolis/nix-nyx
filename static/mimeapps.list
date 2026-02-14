@@ -1,0 +1,34 @@
+[Added Associations]
+x-scheme-handler/http=zen-beta.desktop;
+x-scheme-handler/https=zen-beta.desktop;
+x-scheme-handler/magnet=userapp-transmission-gtk-BF1DI3.desktop;
+image/svg+xml=imv.desktop;org.kde.kolourpaint.desktop;
+image/png=imv.desktop;
+application/pdf=org.gnome.Evince.desktop;
+
+[Default Applications]
+x-scheme-handler/http=zen-beta.desktop;
+x-scheme-handler/https=zen-beta.desktop;
+x-scheme-handler/sgnl=signal.desktop
+x-scheme-handler/signalcaptcha=signal.desktop
+x-scheme-handler/magnet=userapp-transmission-gtk-BF1DI3.desktop
+image/png=imv.desktop
+inode/directory=thunar.desktop
+application/oxps=org.gnome.Evince.desktop
+application/x-gzdvi=org.gnome.Evince.desktop
+application/vnd.comicbook+zip=org.gnome.Evince.desktop
+application/vnd.ms-xpsdocument=org.gnome.Evince.desktop
+application/x-bzpostscript=org.gnome.Evince.desktop
+application/x-bzdvi=org.gnome.Evince.desktop
+application/vnd.comicbook-rar=org.gnome.Evince.desktop
+application/x-xzpdf=org.gnome.Evince.desktop
+application/x-gzpdf=org.gnome.Evince.desktop
+application/x-cbt=org.gnome.Evince.desktop
+application/x-bzpdf=org.gnome.Evince.desktop
+application/pdf=org.gnome.Evince.desktop
+application/postscript=org.gnome.Evince.desktop
+application/x-gzpostscript=org.gnome.Evince.desktop
+application/x-dvi=org.gnome.Evince.desktop
+application/illustrator=org.gnome.Evince.desktop
+application/x-cb7=org.gnome.Evince.desktop
+inode/mount-point=thunar.desktop
