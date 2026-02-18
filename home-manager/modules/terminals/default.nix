@@ -137,8 +137,6 @@ in
     };
     themeFile = "Catppuccin-Mocha";
     keybindings = {
-      "ctrl+c" = "copy_and_clear_or_interrupt";
-      "ctrl+v" = "paste_from_clipboard";
       "ctrl+shift+a>1" = "set_background_opacity 1";
       "ctrl+shift+a>0" = "set_background_opacity 0";
       "ctrl+shift+a>d" = "set_background_opacity default";
