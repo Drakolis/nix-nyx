@@ -10,4 +10,7 @@ return {
       -- vim.cmd('hi guibg='..colors.background)
     end,
   },
+  {
+    "lily-gh/palette-picker.nvim",
+  },
 }
