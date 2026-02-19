@@ -108,10 +108,27 @@ return {
         },
       }
 
+      local dadbot = {
+        function()
+          return "DATABASE"
+        end,
+        colored = true,
+        separator = {
+          left = "",
+          right = "",
+        },
+      }
+
       local neotree = {
         sections = { lualine_a = { cwd } },
         colored = true,
         filetypes = { "neo-tree" },
+      }
+
+      local dadbot = {
+        sections = { lualine_a = { dadbot } },
+        colored = true,
+        filetypes = { "dbui" },
       }
 
       require("lualine").setup({
@@ -158,7 +175,7 @@ return {
         },
         winbar = {},
         inactive_winbar = {},
-        extensions = { neotree, "fugitive" },
+        extensions = { neotree, dadbot, "fugitive" },
       })
     end,
   },
