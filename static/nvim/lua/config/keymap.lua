@@ -49,8 +49,10 @@ vim.keymap.set(
 -- Delete text without yanking
 vim.keymap.set({ "n", "x" }, "x", '"_x')
 vim.keymap.set({ "n", "x" }, "X", '"_d')
+vim.keymap.set("v", "<leader>p", '"_dP', { desc = "Paste without yanking" })
+vim.keymap.set("v", "<leader>P", '"_d+P', { desc = "Paste clipboard" })
 
--- Move selected text up and down with N and E
+-- Move selected text up
 vim.keymap.set(
   "v",
   "<A-up>",
@@ -85,24 +87,30 @@ vim.keymap.set(
   { desc = "Select all" }
 )
 
--- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
-
 -- Resize windows
 vim.keymap.set(
   "n",
-  "<leader><",
+  "<A-,>",
   ":vertical resize -2<CR>",
   { desc = "Decrease window width" }
 )
 vim.keymap.set(
   "n",
-  "<leader>>",
+  "<A-.>",
   ":vertical resize +2<CR>",
   { desc = "Increase window width" }
+)
+vim.keymap.set(
+  "n",
+  "<A-->",
+  ":horizontal resize -2<CR>",
+  { desc = "Decrease window height" }
+)
+vim.keymap.set(
+  "n",
+  "<A-+>",
+  ":horizontal resize +2<CR>",
+  { desc = "Increase window height" }
 )
 
 -- Buffer navigation
