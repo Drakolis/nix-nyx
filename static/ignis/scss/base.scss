@@ -85,12 +85,12 @@
   }
 }
 
-tooltip {
+.unset-window tooltip {
   background-color: variables.$bg;
   padding: 0.55rem 1rem;
   border-radius: variables.$shape-corner-large;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 1.1rem;
 }
 
 .menu-fix {
