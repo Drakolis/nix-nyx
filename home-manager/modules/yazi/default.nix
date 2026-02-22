@@ -8,6 +8,7 @@ in
     enableBashIntegration = true;
     enableZshIntegration = true;
     enableNushellIntegration = true;
+    shellWrapperName = "yy";
     keymap = {
       manager.prepend_keymap = [
         {
