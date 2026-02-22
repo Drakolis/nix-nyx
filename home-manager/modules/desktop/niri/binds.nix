@@ -24,8 +24,8 @@ in
         };
 
         "Mod+B" = {
-          action.spawn = commands.gui.browser;
-          hotkey-overlay.title = "Launch Browser";
+          action.spawn-sh = "niri-focus-or-spawn zen-beta";
+          hotkey-overlay.title = "Launch or Focus Browser";
         };
 
         "Mod+E" = {

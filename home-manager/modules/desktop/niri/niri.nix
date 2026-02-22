@@ -6,6 +6,15 @@
 {
   home.packages = [
     inputs.niri-screen-time.packages.${pkgs.stdenv.hostPlatform.system}.default
+    (pkgs.writeShellScriptBin "niri-focus-or-spawn" ''
+      WIN_ID=$(niri msg windows | grep -B2 "App ID: \"$1\"" | grep 'Window ID ' | grep -oE '[0-9]+')
+
+      if [ -z "$WIN_ID" ]; then
+          "$1"
+      else
+          niri msg action focus-window --id $WIN_ID
+      fi
+    '')
   ];
 
   programs.niri = {
