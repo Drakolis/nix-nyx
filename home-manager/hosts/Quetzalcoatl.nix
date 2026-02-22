@@ -20,6 +20,7 @@
         sqlClient = true;
         apiClient = true;
         scaleway = true;
+        aiCli = true;
       };
       languages = {
         nodeExtended = true;

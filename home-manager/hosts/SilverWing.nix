@@ -7,8 +7,9 @@
     development = {
       enable = true;
       tools = {
-        aiEditors = false;
-        sqlClient = false;
+        aiEditors = true;
+        aiCli = true;
+        sqlClient = true;
         mongoClient = true;
         apiClient = true;
         aws = true;
@@ -19,6 +20,7 @@
       languages = {
         nodeExtended = true;
         pythonExtended = true;
+        lua = true;
         java = false;
         terraform = true;
         extraLanguageServers = true;

@@ -8,6 +8,7 @@
       enable = true;
       tools = {
         aiEditors = true;
+        aiCli = true;
         sqlClient = false;
         apiClient = true;
         aws = true;
@@ -16,6 +17,7 @@
       languages = {
         nodeExtended = true;
         pythonExtended = true;
+        lua = true;
         java = true;
         rust = true;
         noIdea = true;

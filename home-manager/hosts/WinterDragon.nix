@@ -16,7 +16,7 @@
     development = {
       enable = true;
       tools = {
-        aiEditors = true;
+        aiCli = true;
         sqlClient = true;
         apiClient = true;
         scaleway = true;

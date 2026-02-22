@@ -11,10 +11,13 @@ let
     tokei # Language usage analyser
   ];
 
+  aiCliPackages = with pkgs; [
+    opencode
+  ];
+
   aiEditorsPackages = with pkgs; [
     windsurf
     kiro
-    opencode
   ];
 
   sqlClientPackages = with pkgs; [
@@ -51,6 +54,7 @@ let
     ++ lib.optionals cfg.tools.mongoClient mongoClientPackages
 
     ++ lib.optionals cfg.tools.aiEditors aiEditorsPackages
+    ++ lib.optionals cfg.tools.aiCli aiCliPackages
 
     ++ lib.optionals cfg.tools.kubernetes kubernetesPackages
     ++ lib.optionals cfg.tools.aws awsPackages
@@ -95,6 +99,13 @@ with lib;
         type = types.bool;
         description = ''
           Enable AI IDEs for this user.
+        '';
+      };
+      aiCli = mkOption {
+        default = false;
+        type = types.bool;
+        description = ''
+          Enable AI CLI tools for this user.
         '';
       };
 
