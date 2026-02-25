@@ -15,16 +15,16 @@ return {
       "DBUIAddConnection",
       "DBUIFindBuffer",
     },
+    keys = {
+      {
+        "<Leader>bd",
+        ":DBUIToggle<CR>",
+        desc = "Open Database Panel",
+      },
+    },
     init = function()
-      -- Set up keybindings
       vim.g.db_ui_use_nerd_fonts = 1
       vim.g.db_ui_default_query = 'SELECT * FROM "{table}" LIMIT 200'
-      vim.keymap.set(
-        "n",
-        "<leader>bd",
-        ":DBUIToggle<CR>",
-        { desc = "Open Database Panel" }
-      )
     end,
   },
   -- Completion for vim-dadbod

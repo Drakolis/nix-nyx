@@ -108,7 +108,7 @@ return {
         },
       }
 
-      local dadbot = {
+      local dadbot_text = {
         function()
           return "DATABASE"
         end,
@@ -126,7 +126,7 @@ return {
       }
 
       local dadbot = {
-        sections = { lualine_a = { dadbot } },
+        sections = { lualine_a = { dadbot_text } },
         colored = true,
         filetypes = { "dbui" },
       }
