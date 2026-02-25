@@ -21,7 +21,7 @@ return {
       vim.g.db_ui_default_query = 'SELECT * FROM "{table}" LIMIT 200'
       vim.keymap.set(
         "n",
-        "<leader>db",
+        "<leader>bd",
         ":DBUIToggle<CR>",
         { desc = "Open Database Panel" }
       )

@@ -1,21 +1,11 @@
 local group = vim.api.nvim_create_augroup("UserConfig", { clear = true })
 
+-- Highlight when yanking text
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = group,
   desc = "Highlight on yank",
   callback = function()
     vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
-  end,
-})
-
--- Remove trailing whitespace on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = group,
-  desc = "Remove trailing whitespace",
-  callback = function()
-    local save_cursor = vim.fn.getpos(".")
-    vim.cmd([[%s/\s\+$//e]])
-    vim.fn.setpos(".", save_cursor)
   end,
 })
 
@@ -94,4 +84,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo.expandtab = true
   end,
 })
-

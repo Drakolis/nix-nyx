@@ -36,8 +36,14 @@ vim.opt.expandtab = true -- replace tabs with spaces
 vim.opt.smartindent = true -- smart indentation
 vim.opt.autoindent = true -- auto indentation
 
+vim.opt.confirm = true -- ask for confirmation if has unsaved changes
+
+vim.opt.list = true -- Change how some characters (whitespace) will look
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
 -- Better completion experience
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.inccommand = "split"
 
 -- Better search
 vim.opt.grepprg = "rg --vimgrep"
@@ -52,3 +58,19 @@ vim.opt.swapfile = false
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
 vim.opt.pumheight = 10 -- pop up menu height
 vim.opt.laststatus = 3 -- global statusline
+
+-- Diagnostic Config & Keymaps
+-- See :help vim.diagnostic.Opts
+vim.diagnostic.config({
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = "rounded", source = "if_many" },
+  underline = { severity = vim.diagnostic.severity.ERROR },
+
+  -- Can switch between these as you prefer
+  virtual_text = true, -- Text shows up at the end of the line
+  virtual_lines = false, -- Teest shows up underneath the line, with virtual lines
+
+  -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+  jump = { float = true },
+})
