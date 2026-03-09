@@ -54,7 +54,7 @@ with lib;
         mpv
 
         pwvucontrol
-        helvum
+        crosspipe
         # qpwgraph
 
         caffeine-ng

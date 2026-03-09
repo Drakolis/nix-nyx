@@ -132,7 +132,7 @@ class AudioStatusWidget(widgets.Button):
     self.audio_setup_menu.popdown()
 
   def open_patchbay_app(self):
-    asyncio.create_task(utils.exec_sh_async("helvum"))
+    asyncio.create_task(utils.exec_sh_async("crosspipe"))
     self.audio_setup_menu.popdown()
 
   def update_audio_status(self, device):

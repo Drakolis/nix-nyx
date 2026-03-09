@@ -36,10 +36,10 @@
   };
 
   # Has no other image editing tools
-  home.packages = [ pkgs.kdePackages.kolourpaint ];
+  home.packages = [ pkgs.pinta ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.5.5"
+    "beekeeper-studio-5.5.7"
   ];
 
   # Nicely reload system units when changing configs

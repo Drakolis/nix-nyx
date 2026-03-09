@@ -197,7 +197,7 @@ in
             ];
           };
           on-click = "pwvucontrol";
-          on-click-right = "helvum";
+          on-click-right = "crosspipe";
         };
         backlight = {
           scroll-step = 5;
