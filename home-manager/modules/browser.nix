@@ -106,6 +106,11 @@ let
       install_url = "https://addons.mozilla.org/firefox/downloads/file/4593736/user_agent_string_switcher-0.6.6.xpi";
       installation_mode = "force_installed";
     };
+    # Vimium C
+    "vimium-c@gdh1995.cn" = {
+      install_url = "https://addons.mozilla.org/firefox/downloads/file/4474326/vimium_c-2.12.3.xpi";
+      installation_mode = "force_installed";
+    };
   };
 
   firefoxPolicies = {
