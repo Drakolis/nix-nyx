@@ -167,7 +167,7 @@ in
       bell_on_tab = "󰂚";
 
       window_border_width = 0;
-      window_padding_width = "0";
+      window_padding_width = "2 2 2 2";
       tab_bar_min_tabs = 2;
       tab_bar_edge = "top";
       tab_bar_margin_height = "0 2";
@@ -207,6 +207,7 @@ in
       selection_background = "#${style.colors.selection}";
       background_opacity = 0.97;
       dynamic_background_opacity = true;
+      transparent_background_colors = "#1e1e2f@0.97";
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
       color2 = "#${style.colors.terminalGreen}";
