@@ -325,7 +325,6 @@ in
   programs.zen-browser = {
     enable = true;
     nativeMessagingHosts = nativeMessagingHostsForPlatform;
-    suppressXdgMigrationWarning = true;
 
     policies = firefoxPolicies;
 
