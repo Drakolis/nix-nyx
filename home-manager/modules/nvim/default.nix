@@ -4,7 +4,10 @@ let
 in
 {
   # A bit of an overkill. But treesitter doesn't work without gcc
-  home.packages = with pkgs; [ gcc ];
+  home.packages = with pkgs; [
+    gcc
+    tree-sitter
+  ];
 
   programs.neovim = {
     enable = true;

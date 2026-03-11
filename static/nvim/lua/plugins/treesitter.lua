@@ -23,6 +23,10 @@ return {
         "vimdoc",
       }
       require("nvim-treesitter").install(filetypes)
+      require("nvim-treesitter").setup({
+        -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+        install_dir = vim.fn.stdpath("data") .. "/lazy/nvim-treesitter/parser",
+      })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = filetypes,
         callback = function()
