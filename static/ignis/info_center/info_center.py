@@ -1,11 +1,10 @@
 import asyncio
 import datetime
-import pytz
-import aiohttp
 
-from ignis import widgets
-from ignis import utils
-from user_options import user_options
+import aiohttp
+import pytz
+from ignis import utils, widgets
+
 from utils import get_weather_status_icon
 
 
@@ -72,7 +71,7 @@ class TimeOverview(widgets.Box):
     time_format_short = "%H:%M"
 
 
-class WeatherOverview(widgets.Box):
+class WeatherOverview(widgets.EventBox):
   def __init__(self, location):
     self.data = None
     self.location = location
@@ -91,7 +90,6 @@ class WeatherOverview(widgets.Box):
     self.temperature_label = widgets.Label(
       halign="end",
       hexpand=True,
-      label="...",
       css_classes=[
         "title-large",
         "emphasized",
@@ -101,9 +99,7 @@ class WeatherOverview(widgets.Box):
 
     self.weather_icon = widgets.Icon(
       vexpand=True,
-      image="process-working-symbolic",
       pixel_size=128,
-      css_classes=["weather-label-weather", "animation-spin"],
     )
 
     self.weather_label = widgets.Label(
@@ -143,13 +139,15 @@ class WeatherOverview(widgets.Box):
       ],
     )
 
-    utils.Poll(
-      timeout=30_60_000, callback=lambda x: asyncio.create_task(self.update_weather())
-    )
+    load_weather = lambda x: asyncio.create_task(self.update_weather())
+
+    utils.Poll(timeout=30_60_000, callback=load_weather)
+
     super().__init__(
       width_request=300,
       css_classes=["section", "weather-overview"],
       vertical=True,
+      on_click=load_weather,
       child=[
         widgets.Box(
           hexpand=True,
@@ -172,6 +170,13 @@ class WeatherOverview(widgets.Box):
   async def update_weather(self):
     async with aiohttp.ClientSession() as session:
       async with session.get(f"https://wttr.in/{self.location}?format=j1") as response:
+        self.temperature_label.label = "..."
+        self.weather_label.label = "Loading..."
+        self.humidity_label.label = "H: ..."
+        self.uv_label.label = "UV: ..."
+        self.wind_label.label = "W: ..."
+        self.weather_icon.image = "process-working-symbolic"
+        self.weather_icon.css_classes = ["weather-label-weather", "animation-spin"]
         json = await response.json()
         current = json["current_condition"][0]
         temperature = current["temp_C"]
@@ -185,7 +190,7 @@ class WeatherOverview(widgets.Box):
         self.weather_label.label = weather
         self.humidity_label.label = f"H: {humidity}%"
         self.uv_label.label = f"UV: {uv_index}"
-        self.wind_label.label = f"W: {windspeed}kmh"
+        self.wind_label.label = f"W: {windspeed}km/h"
         self.weather_icon.image = get_weather_status_icon(weather_code)
         self.weather_icon.css_classes = ["weather-label-weather"]
 

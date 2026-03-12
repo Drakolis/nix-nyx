@@ -4,6 +4,7 @@ from ignis.services.upower import UPowerService
 from .audio import AudioStatusWidget
 from .bluetooth import BluetoothStatusWidget
 from .brightness import MonitorStatusWidget
+from .control_center_button import control_center_button_widget
 from .keyboard import keyboard_status
 from .network import NetworkStatusWidget
 from .power import PowerStatusWidget
@@ -24,5 +25,6 @@ def system_status_widget(monitor_id: int) -> widgets.Box:
       else None,
       NetworkStatusWidget(),
       BluetoothStatusWidget(),
+      control_center_button_widget(),
     ],
   )

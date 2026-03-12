@@ -64,7 +64,7 @@ in
         };
 
         "Mod+F2" = {
-          action.spawn-sh = "ignis toggle-window eggshell_chat_center_0";
+          action.spawn-sh = "ignis toggle-window eggshell_chat_center";
           hotkey-overlay.title = "Shell: Notepad";
         };
 
@@ -74,7 +74,7 @@ in
         };
 
         "Mod+F4" = {
-          action.spawn-sh = "ignis toggle-window eggshell_control_center_0";
+          action.spawn-sh = "ignis toggle-window eggshell_control_center";
           hotkey-overlay.title = "Shell: Control Center";
         };
 

@@ -26,7 +26,7 @@ class WindowTitleWidget(widgets.Box):
     )
 
     label_widget = widgets.Label(
-      css_classes=["window-label", "label-bar"],
+      css_classes=["primary-label", "label-bar"],
       ellipsize="end",
       max_width_chars=40,
       # visible=niri.bind("active_output", lambda output: output == monitor_name),

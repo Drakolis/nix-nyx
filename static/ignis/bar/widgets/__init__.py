@@ -1,18 +1,18 @@
-from .brightness import MonitorStatusWidget
 from .audio import AudioStatusWidget
-from .keyboard import keyboard_status
-from .power import PowerStatusWidget
-from .network import NetworkStatusWidget
 from .bluetooth import BluetoothStatusWidget
-
-from .workspaces import workspaces_widget
-from .mpris_status import mpris_status_widget
-from .window_title import WindowTitleWidget
+from .brightness import MonitorStatusWidget
+from .chat_center_button import chat_center_button_widget
+from .control_center_button import control_center_button_widget
 from .date_time import date_time_widget
+from .keyboard import keyboard_status
+from .mpris_status import mpris_status_widget
+from .network import NetworkStatusWidget
+from .power import PowerStatusWidget
 from .system_indicators import system_indicators_widget
 from .system_status import system_status_widget
 from .system_tray import system_tray_widget
-
+from .window_title import WindowTitleWidget
+from .workspaces import workspaces_widget
 
 all = [
   "MonitorStatusWidget",
