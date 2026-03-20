@@ -28,6 +28,11 @@ in
           hotkey-overlay.title = "Launch or Focus Browser";
         };
 
+        "Mod+I" = {
+          action.spawn-sh = "niri-focus-or-spawn obsidian";
+          hotkey-overlay.title = "Launch or Focus Obsidian";
+        };
+
         "Mod+E" = {
           action.spawn-sh = "${commands.terminalExec} ${commands.tui.editor}";
           hotkey-overlay.title = "Launch Editor";
@@ -286,12 +291,12 @@ in
         # Workspaces
         "Mod+Page_Down".action.focus-workspace-down = [ ];
         "Mod+Page_Up".action.focus-workspace-up = [ ];
-        "Mod+U".action.focus-workspace-down = [ ];
-        "Mod+I".action.focus-workspace-up = [ ];
+        "Mod+D".action.focus-workspace-down = [ ];
+        "Mod+U".action.focus-workspace-up = [ ];
         "Mod+Shift+Page_Down".action.move-column-to-workspace-down = [ ];
         "Mod+Shift+Page_Up".action.move-column-to-workspace-up = [ ];
-        "Mod+Shift+U".action.move-column-to-workspace-down = [ ];
-        "Mod+Shift+I".action.move-column-to-workspace-up = [ ];
+        "Mod+Shift+D".action.move-column-to-workspace-down = [ ];
+        "Mod+Shift+U".action.move-column-to-workspace-up = [ ];
 
         # // Alternatively, there are commands to move just a single window:
         # // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
@@ -299,8 +304,8 @@ in
 
         "Mod+Ctrl+Page_Down".action.move-workspace-down = [ ];
         "Mod+Ctrl+Page_Up".action.move-workspace-up = [ ];
-        "Mod+Ctrl+U".action.move-workspace-down = [ ];
-        "Mod+Ctrl+I".action.move-workspace-up = [ ];
+        "Mod+Ctrl+D".action.move-workspace-down = [ ];
+        "Mod+Ctrl+U".action.move-workspace-up = [ ];
 
         # // You can bind mouse wheel scroll ticks using the following syntax.
         # // These binds will change direction based on the natural-scroll setting.
