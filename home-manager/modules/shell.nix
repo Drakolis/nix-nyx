@@ -160,17 +160,23 @@ in
       };
       username = {
         show_always = true;
-        style_user = "bold purple";
+        style_user = "bold #${style.colors.gitAuthor}";
         format = "[$user]($style)@"; # Followed by hostname
       };
       hostname = {
         ssh_only = false;
         ssh_symbol = " 🌐";
-        style = "bold green";
+        style = "bold #${style.colors.primary}";
         format = "[$hostname$ssh_symbol]($style) in ";
       };
       shell = {
         disabled = false;
+      };
+      git_branch = {
+        style = "bold #${style.colors.gitBranch}";
+      };
+      directory = {
+        style = "bold #${style.colors.path}";
       };
     };
   };
