@@ -1,6 +1,7 @@
 import os
+
+from ignis import DATA_DIR  # type: ignore
 from ignis.options_manager import OptionsGroup, OptionsManager
-from ignis import DATA_DIR, CACHE_DIR  # type: ignore
 
 USER_OPTIONS_FILE = f"{DATA_DIR}/user_options.json"
 
@@ -18,8 +19,19 @@ class UserOptions(OptionsManager):
     notepad_file: str = DEFAULT_NOTEPAD_FILE
 
   class Dock(OptionsGroup):
-    filter_current_workspace: bool = False
-    sort_floating_last: bool = True
+    enable: bool = True
+    always_shown: bool = False
+    cover_windows: bool = True
+
+    show_bin: bool = True
+    show_launcher: bool = True
+
+    show_folders: bool = True  # Done
+    # Niri Specific
+    filter_current_workspace: bool = False  # Done
+    sort_floating_last: bool = True  # Done
+
+    # Group Windows?
 
   class User(OptionsGroup):
     avatar: str = f"/var/lib/AccountsService/icons/{os.getenv('USER')}"

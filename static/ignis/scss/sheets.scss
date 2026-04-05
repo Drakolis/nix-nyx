@@ -108,16 +108,21 @@
 
 .elevation3 {
   margin: 0 6px 6px;
-  box-shadow: rgba(variables.$shadow, 0.8) 0px 2px 6px 1px;
+  box-shadow: rgba(variables.$shadow, 0.8) 0px 2px 6px 0px;
 }
 
 .elevation4 {
   margin: 0 6px 8px;
-  box-shadow: rgba(variables.$shadow, 0.8) 0px 4px 6px 2px;
+  box-shadow: rgba(variables.$shadow, 0.8) 0px 4px 6px 0px;
+}
+
+.elevation5 {
+  box-shadow: rgba(variables.$shadow, 0.9) 0px 4px 8px 0px;
+  margin: 0 8px 10px;
 }
 
 .window {
-  border: solid 2px variables.$window_border;
+  border: solid 2px variables.$border;
 }
 
 .corner-small {

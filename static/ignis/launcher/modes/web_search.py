@@ -1,5 +1,5 @@
-import asyncio
-from ignis import utils
+from utils import xdg_open
+
 from ._base import LauncherActionDefinition, LauncherModeBase
 
 search_engines = [
@@ -14,7 +14,7 @@ def map_search_engines_to_action(search_engine, query):
     title=search_engine["name"],
     description=query,
     icon="web-browser",
-    action=lambda: utils.exec_sh("xdg-open " + search_engine["url"] + query),
+    action=lambda: xdg_open(search_engine["url"] + query),
   )
 
 

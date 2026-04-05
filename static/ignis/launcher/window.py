@@ -8,6 +8,8 @@ class LauncherActionItem(widgets.Button):
     title = action_definition.title
     description = action_definition.description
     icon = action_definition.icon
+    if "steam_icon" in icon:
+      icon = "joystick"
     action = action_definition.action
 
     super().__init__(
@@ -16,7 +18,7 @@ class LauncherActionItem(widgets.Button):
       child=widgets.Box(
         hexpand=True,
         child=[
-          widgets.Icon(image=icon, pixel_size=52),
+          widgets.Icon(css_classes=["launcher-item-icon"], image=icon, pixel_size=48),
           widgets.Box(
             css_classes=["launcher-item-label"],
             vertical=True,
@@ -89,7 +91,7 @@ class LauncherWindow(widgets.RevealerWindow):
       transition_duration=300,
       reveal_child=True,
       child=widgets.Box(
-        css_classes=["launcher-container", "elevation3", "window"],
+        css_classes=["launcher-container", "elevation5", "window"],
         child=[
           widgets.Box(
             hexpand=True,
@@ -103,7 +105,7 @@ class LauncherWindow(widgets.RevealerWindow):
                   widgets.Icon(
                     css_classes=["launcher-input-icon"],
                     image="search-symbolic",
-                    pixel_size=24,
+                    pixel_size=28,
                   ),
                   self.entry,
                 ],

@@ -8,19 +8,20 @@
 .dock {
   background-color: variables.$bg-transparent;
   border-radius: variables.$shape-corner-xlarge;
+  border: 1px solid variables.$border;
   padding: variables.$shape-corner-xlarge;
   padding: 0 1.25rem;
-  border-radius: variables.$shape-corner-xlarge;
 }
 
-.app-icon-button {
+.dock-button {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
   border-bottom: 0.4rem solid transparent;
-  transition: 0.2s;
+  transition: 300s;
 
   image {
     padding-top: 0.55rem;
+    transition: 300ms;
   }
 
   .running-indicator {
@@ -31,6 +32,21 @@
   }
 }
 
-.app-icon-button:hover {
-  border-bottom: 0.4rem solid rgba(variables.$primary, 1);
+.dock-button:hover {
+  // border-bottom: 0.4rem solid rgba(variables.$primary, 0.8);
+  image {
+    transform: scale(1.2);
+  }
+}
+
+.dock-button:active {
+  image {
+    transform: scale(0.9);
+  }
+}
+
+.separator {
+  border-left: 1px solid variables.$border;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
 }

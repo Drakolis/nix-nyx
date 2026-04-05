@@ -1,16 +1,11 @@
-from ignis import widgets
-from ignis import utils
-
-from ignis.menu_model import IgnisMenuModel, IgnisMenuItem, IgnisMenuSeparator
-
-from ignis.services.hyprland import HyprlandService, HyprlandWorkspace
-from ignis.services.niri import NiriService, NiriWindow, NiriWindowLayout, NiriWorkspace
-
+from ignis import utils, widgets
+from ignis.menu_model import IgnisMenuItem, IgnisMenuModel, IgnisMenuSeparator
+from ignis.services.hyprland import HyprlandService
+from ignis.services.niri import NiriService, NiriWindow, NiriWorkspace
 from ignis.window_manager import WindowManager
 
-from utils import get_extended_app_icon
-
 from user_options import user_options
+from utils import get_extended_app_icon, xdg_open
 
 
 def filtering_function(window: NiriWindow, current_workspace_id: int):
@@ -44,58 +39,89 @@ def find_active_niri_workspace_id(workspaces: [NiriWorkspace]):
 
 
 class DockItem(widgets.Button):
-  def __init__(self, window: NiriWindow):
-    app_id = window.app_id
-
-    menu_widget = widgets.PopoverMenu(
-      css_classes=["menu"],
-      model=IgnisMenuModel(
-        IgnisMenuItem(
-          label="Close",
-          on_activate=lambda x: window.close(),
-        ),
-        IgnisMenuItem(
-          label="Focus",
-          on_activate=lambda x: window.focus(),
-        ),
-        IgnisMenuSeparator(),
-        IgnisMenuItem(
-          label="Toggle Floating",
-          on_activate=lambda x: window.toggle_floating(),
-        ),
-        IgnisMenuItem(
-          label="Toggle Fullscreen",
-          on_activate=lambda x: window.toggle_fullscreen(),
-        ),
-      ),
-    )
-
+  def __init__(
+    self,
+    image,
+    tooltip_text,
+    show_dot=False,
+    on_click=None,
+    on_right_click=None,
+  ):
     super().__init__(
-      css_classes=["app-icon-button"],
+      css_classes=["dock-button"],
       child=widgets.Overlay(
         child=widgets.Icon(
-          image=(get_extended_app_icon(app_id)),
+          image=image,
           pixel_size=64,
         ),
         overlays=[
           widgets.Box(
             valign="start",
             halign="center",
-            css_classes=["running-indicator" if window.is_focused else None],
+            css_classes=["running-indicator" if show_dot else None],
           ),
-          menu_widget,
         ],
       ),
-      tooltip_text=window.title,  # TODO: Tooltip is not the beest
-      on_click=lambda x: window.focus(),
-      on_right_click=lambda x: self._popup_menu_and_block_autohide(),
+      tooltip_text=tooltip_text,  # TODO: Tooltip is not the beest
+      on_click=on_click,
+      on_right_click=on_right_click,
     )
 
-    self.window = window
-    self.menu_widget = menu_widget
 
-  def _popup_menu_and_block_autohide(self, *args):
-    self.menu_widget.popup()
+class DockWindowItem(DockItem):
+  def __init__(self, window: NiriWindow):
+    app_id = window.app_id
+    image = get_extended_app_icon(app_id)
+    tooltip_text = window.title
+    on_click = lambda _: window.focus()
+    # on_right_click = self._popup_menu_and_block_autohide()
+    show_dot = window.is_focused
+    menu_widget = widgets.PopoverMenu(
+      css_classes=["menu"],
+      model=IgnisMenuModel(
+        IgnisMenuItem(
+          label="Close",
+          on_activate=lambda _: window.close(),
+        ),
+        IgnisMenuItem(
+          label="Focus",
+          on_activate=lambda _: window.focus(),
+        ),
+        IgnisMenuSeparator(),
+        IgnisMenuItem(
+          label="Toggle Floating",
+          on_activate=lambda _: window.toggle_floating(),
+        ),
+        IgnisMenuItem(
+          label="Toggle Fullscreen",
+          on_activate=lambda _: window.toggle_fullscreen(),
+        ),
+      ),
+    )
+    super().__init__(
+      image=image, tooltip_text=tooltip_text, show_dot=show_dot, on_click=on_click
+    )
+
+
+# class DockAppButton
+
+
+class DockFolderItem(DockItem):
+  def __init__(self, folder_dict):
+    image = folder_dict["icon"]
+    tooltip_text = folder_dict["name"]
+    on_click = lambda _: xdg_open(folder_dict["path"])
+
+    # on_right_click = self._popup_menu_and_block_autohide()
+    show_dot = False
+    super().__init__(
+      image=image, tooltip_text=tooltip_text, show_dot=show_dot, on_click=on_click
+    )
+
+
+class DockSeparator(widgets.Box):
+  def __init__(self):
+    super().__init__(css_classes=["separator"])
 
 
 class Dock(widgets.RevealerWindow):
@@ -107,22 +133,47 @@ class Dock(widgets.RevealerWindow):
     self.hyprland = HyprlandService.get_default()
     self.niri = NiriService.get_default()
     # self.workspace_id = niri;
-    dock_items = self.niri.bind_many(
+    niri_windows = self.niri.bind_many(
       ["windows", "workspaces"],
       lambda windows, workspaces: [
-        DockItem(x)
+        DockWindowItem(x)
         for x in sort_niri_windows(windows, find_active_niri_workspace_id(workspaces))
       ],
     )
 
-    self.current_applications = []
+    dock_sections = [
+      widgets.Box(spacing=21, child=niri_windows),
+    ]
+
+    if user_options.dock.show_folders:
+      folders = [
+        {
+          "icon": "folder-home",
+          "path": "~",
+          "name": "Home",
+        },
+        {
+          "icon": "folder-downloads",
+          "path": "~/Downloads",
+          "name": "Downloads",
+        },
+        {
+          "icon": "folder-code",
+          "path": "~/Projects",
+          "name": "Projects",
+        },
+      ]
+
+      folder_dock = [DockFolderItem(x) for x in folders]
+      dock_sections.append(DockSeparator())
+      dock_sections.append(widgets.Box(spacing=21, child=folder_dock))
 
     revealer = widgets.Revealer(
       transition_type="slide_up",
       child=widgets.Box(
-        css_classes=["dock", "elevation3"],
-        spacing=21,
-        child=dock_items,
+        css_classes=["dock", "elevation4"],
+        spacing=16,
+        child=dock_sections,
       ),
       transition_duration=300,
       reveal_child=True,
@@ -145,6 +196,7 @@ class Dock(widgets.RevealerWindow):
       revealer=revealer,
       # kb_mode="on_demand",  # TODO: Keyboard navigation
       popup=True,
+      monitor=monitor_id,
     )
     self.container = container
     self.revealer = revealer
@@ -191,6 +243,7 @@ class DockTrigger(widgets.Window):
       layer="top",
       anchor=["left", "bottom", "right"],
       child=event_box,
+      monitor=monitor_id,
     )
 
   def on_hover_handler(self, *args):

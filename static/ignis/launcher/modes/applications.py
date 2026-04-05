@@ -1,8 +1,7 @@
 from ignis.services.applications import (
   ApplicationsService,
-  Application,
-  ApplicationAction,
 )
+
 from ._base import LauncherActionDefinition, LauncherModeBase
 
 applications = ApplicationsService.get_default()

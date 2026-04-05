@@ -1,5 +1,6 @@
 $bg: #181825;
-$bg-transparent: rgba($bg, 0.95);
+$bg-semi-transparent: rgba($bg, 0.9);
+$bg-transparent: rgba($bg, 0.8);
 $bg-input: #1e1e2e;
 $bg-control: #313244;
 $bg-control-hover: #45475a;
@@ -7,7 +8,7 @@ $fg: #cdd6f4;
 $fg-subtext: #a6adc8;
 $fg-disabled: #585b70;
 $shadow: #11111b;
-$window_border: #313244;
+$border: #313244;
 
 $primary: #cba6f7;
 $primary-hover: rgba($primary, 0.3);

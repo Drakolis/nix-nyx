@@ -1,26 +1,29 @@
 @use "variables";
 
 .launcher-container {
-  background-color: variables.$bg;
-  padding: variables.$shape-corner-xlarge / 4;
-  border-radius: variables.$shape-corner-xlarge;
+  background-color: variables.$bg-input;
+  border-radius: variables.$shape-corner-xlarge * 2;
 
   min-width: 45rem;
 }
 
 .launcher-input {
   padding: 0.75rem;
-  font-size: larger;
+  font-size: 1.4rem;
 }
 
-.launcher-input placeholder,
+.launcher-input placeholder {
+  color: variables.$fg-subtext;
+}
+
 .launcher-input-icon {
-  color: variables.$fg-disabled;
+  color: variables.$primary;
+  padding: 0.75rem;
 }
 
 .launcher-scroller {
-  padding: 0.25rem 0;
-  border-top: solid 2px variables.$primary;
+  padding: 0.75rem 0.75rem;
+  border-top: solid 2px variables.$border;
   transition: 0.3ms;
 }
 
@@ -29,29 +32,47 @@
 }
 
 .launcher-item {
-  padding: 0.25rem;
+  padding: 0.5rem 1rem;
   margin: 0.25rem;
-  border-radius: variables.$shape-corner-medium;
-  transition: 0.3ms;
+  border-radius: 2rem;
+  background-color: transparent;
+
+  // .launcher-item-icon {
+  //   background-color: variables.$bg-control;
+  //   padding: 6px;
+  //   border-radius: 24px;
+  // }
+
+  .launcher-item-label {
+    margin-left: 0.5rem;
+
+    .launcher-item-label-title {
+      font-weight: 600;
+    }
+
+    .launcher-item-label-description {
+      color: variables.$fg-subtext;
+      font-weight: 400;
+    }
+  }
 }
 
 .launcher-item:hover {
-  background-color: variables.$primary-hover;
+  background-color: variables.$bg-control;
+  transition: 300ms;
 }
 
 .launcher-item:focus {
-  background-color: variables.$primary-hover;
-}
+  background-color: variables.$primary;
+  transition: 300ms;
 
-.launcher-item-label {
-  margin-left: 0.5rem;
-}
+  .launcher-item-label-title {
+    color: variables.$shadow;
+    transition: 300ms;
+  }
 
-.launcher-item-label-title {
-  font-weight: 600;
-}
-
-.launcher-item-label-description {
-  color: variables.$fg-subtext;
-  font-weight: 400;
+  .launcher-item-label-description {
+    color: variables.$bg;
+    transition: 300ms;
+  }
 }
