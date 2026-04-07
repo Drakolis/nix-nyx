@@ -6,6 +6,7 @@
 }:
 let
   cfg = config.drakolis.development;
+  isLinux = pkgs.stdenv.hostPlatform.isLinux;
 
   developmentPackages = with pkgs; [
     tokei # Language usage analyser
@@ -15,10 +16,14 @@ let
     opencode
   ];
 
-  aiEditorsPackages = with pkgs; [
-    windsurf
-    kiro
-  ];
+  aiEditorsPackages =
+    with pkgs;
+    [
+      windsurf
+    ]
+    ++ lib.optionals isLinux [
+      kiro
+    ];
 
   sqlClientPackages = with pkgs; [
     beekeeper-studio
