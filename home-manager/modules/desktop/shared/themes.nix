@@ -85,8 +85,9 @@ in
     theme = {
       name = "catppuccin-mocha-mauve-standard";
       package = gtkTheme;
-      # name = "Breeze";
     };
+
+    gtk4.theme = config.gtk.theme;
 
     gtk3 = {
       extraConfig = {
