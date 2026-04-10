@@ -1,7 +1,8 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 let
   cfg = config.drakolis.development;
@@ -10,7 +11,7 @@ let
     nodejs
     python3
     go
-    nodePackages.vscode-langservers-extracted # html, css, json, eslint
+    vscode-langservers-extracted # html, css, json, eslint
   ];
 
   nodeExtendedPackages = with pkgs; [
