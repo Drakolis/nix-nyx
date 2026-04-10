@@ -166,4 +166,4 @@ class LauncherWindow(widgets.RevealerWindow):
 
     self._app_list.child = [
       LauncherActionItem(action) for action in self.launcher_mode.search_function(query)
-    ][:10]
+    ]
