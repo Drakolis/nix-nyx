@@ -50,7 +50,6 @@ with lib;
 
         element-desktop
 
-        imv
         mpv
 
         pwvucontrol
@@ -91,6 +90,15 @@ with lib;
 
     security.soteria.enable = true;
     services.tumbler.enable = true;
+
+    programs.imv.settings = {
+      enable = true;
+      settings = {
+        options.background = "1e1e2e";
+        options.overlay_text_color = "cdd6f4";
+        options.overlay_background_color = "11111b";
+      };
+    };
 
     programs.kdeconnect = {
       enable = true;
