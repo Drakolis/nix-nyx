@@ -8,7 +8,7 @@
 
   programs.git = {
     enable = true;
-    signing.format = "openpgpg";
+    signing.format = "openpgp";
     settings = {
       user = {
         email = "mika.zimina@bonial.com";
