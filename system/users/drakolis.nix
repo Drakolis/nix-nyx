@@ -28,7 +28,7 @@ with lib;
     extraGroups = desiredGroups;
     packages = with pkgs; [
       protonmail-bridge-gui
-      protonvpn-gui
+      proton-vpn
       proton-pass
     ];
     shell = pkgs.zsh;

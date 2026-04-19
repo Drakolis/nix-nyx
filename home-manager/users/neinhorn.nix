@@ -8,6 +8,7 @@
 
   programs.git = {
     enable = true;
+    signing.format = "openpgpg";
     settings = {
       init = {
         defaultBranch = "main";
