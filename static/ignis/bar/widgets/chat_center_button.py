@@ -17,7 +17,7 @@ def chat_center_button_widget() -> widgets.Box:
           child=[
             widgets.Icon(
               css_classes=["primary-label"],
-              image="system-user-prompt-symbolic",
+              image="tabler-message-symbolic",
               pixel_size=24,
               hexpand=True,
             ),

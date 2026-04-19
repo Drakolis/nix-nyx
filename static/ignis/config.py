@@ -2,6 +2,7 @@ import os
 
 from ignis import utils
 from ignis.css_manager import CssInfoPath, CssManager
+from ignis.icon_manager import IconManager
 from ignis.window_manager import WindowManager
 
 from bar import Bar
@@ -15,6 +16,9 @@ from osd import OSD
 
 css_manager = CssManager.get_default()
 window_manager = WindowManager.get_default()
+icon_manager = IconManager.get_default()
+
+icon_manager.add_icons(os.path.join(utils.get_current_dir(), "assets/icons"))
 
 css_manager.apply_css(
   CssInfoPath(

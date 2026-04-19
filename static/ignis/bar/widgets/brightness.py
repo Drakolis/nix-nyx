@@ -37,8 +37,8 @@ class MonitorStatusWidget(widgets.Box):
 
     self.monitor_brightness_menu_item = SetupMenuItemScale(
       icon_css_classes=["brightness-label"],
-      icon_max="display-brightness-high-symbolic",
-      icon_min="display-brightness-low-symbolic",
+      icon_max="tabler-brightness-up-symbolic",
+      icon_min="tabler-brightness-down-symbolic",
       scale_css_class="brightness-slider",
     )
 

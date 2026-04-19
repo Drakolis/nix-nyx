@@ -46,26 +46,27 @@ class PowerStatusWidget(widgets.Button):
   def update_battery_status(self, display_device):
     battery_percentage = math.floor(display_device.percent)
 
-    if battery_percentage < 15:
-      icon = f"battery-empty{'-charging' if display_device.charging else ''}-symbolic"
+    if battery_percentage < 20:
+      icon = "tabler-battery-vertical-symbolic"
       css_class = CSS_CLASS_CRITICAL
-    elif battery_percentage < 25:
-      icon = f"battery-low{'-charging' if display_device.charging else ''}-symbolic"
+    elif battery_percentage < 40:
+      icon = "tabler-battery-vertical-1-symbolic"
       css_class = CSS_CLASS_WARNING
-    elif battery_percentage < 50:
-      icon = f"battery-medium{'-charging' if display_device.charging else ''}-symbolic"
+    elif battery_percentage < 60:
+      icon = "tabler-battery-vertical-2-symbolic"
       css_class = CSS_CLASS_NORMAL
-    elif battery_percentage < 75:
-      icon = f"battery-good{'-charging' if display_device.charging else ''}-symbolic"
+    elif battery_percentage < 80:
+      icon = "tabler-battery-vertical-3-symbolic"
       css_class = CSS_CLASS_NORMAL
     elif battery_percentage <= 100:
-      icon = f"battery-full{'-charging' if display_device.charging else ''}-symbolic"
+      icon = "tabler-battery-vertical-4-symbolic"
       css_class = CSS_CLASS_NORMAL
     else:
-      icon = "battery-missing-symbolic"
+      icon = "tabler-battery-vertical-off-symbolic"
       css_class = CSS_CLASS_NORMAL
 
     if display_device.charging:
+      icon = "tabler-battery-vertical-charging-symbolic"
       css_class = CSS_CLASS_NORMAL
 
     self.power_status_label[0].image = icon

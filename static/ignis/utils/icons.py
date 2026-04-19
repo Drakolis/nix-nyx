@@ -1,6 +1,5 @@
 from ignis import utils
-
-from ignis.services.applications import ApplicationsService, Application
+from ignis.services.applications import ApplicationsService
 
 applications = ApplicationsService.get_default()
 
@@ -55,43 +54,29 @@ def get_audio_device_icon(name_id) -> str:
 
 def get_audio_output_status_icon(volume, is_muted) -> str:
   if is_muted:
-    return "audio-volume-muted-symbolic"
-  elif volume > 200:
-    return "audio-volume-high-danger-symbolic"
-  elif volume > 100:
-    return "audio-volume-high-warning-symbolic"
+    return "tabler-volume-off-symbolic"
   elif volume > 65:
-    return "audio-volume-high-symbolic"
+    return "tabler-volume-symbolic"
   elif volume > 32:
-    return "audio-volume-medium-symbolic"
+    return "tabler-volume-2-symbolic"
   elif volume > 0:
-    return "audio-volume-low-symbolic"
+    return "tabler-volume-4-symbolic"
   else:
-    return "audio-volume-muted-symbolic"
+    return "tabler-volume-3-symbolic"
 
 
 def get_audio_input_status_icon(volume, is_muted) -> str:
   if is_muted:
-    return "audio-input-microphone-muted-symbolic"
-  elif volume > 65:
-    return "audio-input-microphone-high-symbolic"
-  elif volume > 32:
-    return "audio-input-microphone-medium-symbolic"
-  elif volume > 0:
-    return "audio-input-microphone-low-symbolic"
+    return "tabler-microphone-off-symbolic"
   else:
-    return "audio-input-microphone-muted-symbolic"
+    return "tabler-microphone-symbolic"
 
 
 def get_brightness_status_icon(brightness_percent) -> str:
-  if brightness_percent > 65:
-    return "display-brightness-high-symbolic"
-  elif brightness_percent > 32:
-    return "display-brightness-medium-symbolic"
-  elif brightness_percent > 0:
-    return "display-brightness-low-symbolic"
+  if brightness_percent > 50:
+    return "tabler-brightness-2-symbolic"
   else:
-    return "display-brightness-off-symbolic"
+    return "tabler-brightness-half-symbolic"
 
 
 # def get_kbd_backlight_status_icon(brightness_percent) -> str:

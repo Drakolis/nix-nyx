@@ -18,6 +18,11 @@
   }
 }
 
+svg {
+  fill: none;
+  stroke: currentColor;
+}
+
 .slider-small trough {
   background-color: variables.$fg-disabled;
   min-height: 6px;
