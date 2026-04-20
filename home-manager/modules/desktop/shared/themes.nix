@@ -98,6 +98,23 @@ in
         .thunar .standard-view.frame .view :selected {
           color: #11111b;
         }
+        toolbar.horizontal {
+          background: #181825;
+          border-bottom: 1px solid #31323e;
+        }
+        .background {
+          background: rgba(30, 30, 46, 0.87)
+        }
+        .background.csd {
+          background: rgba(30, 30, 46, 0)
+        }
+        .view, iconview, treeview, notebook {
+          background: rgba(30, 30, 46, 0)
+        }
+        entry {
+          background: rgba(239,241,245,0.08)
+        }
+
       '';
       bookmarks = [
         "file://${config.xdg.userDirs.documents}"
