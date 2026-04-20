@@ -19,7 +19,7 @@
 
   programs.niri = {
     enable = true;
-    package = pkgs.niri;
+    package = inputs.niri-flake.packages.${pkgs.system}.niri-unstable;
 
     settings = {
       environment = {
