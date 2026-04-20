@@ -100,8 +100,10 @@
       nixosConfigurations = {
         Joermungandr = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             sops-nix.nixosModules.sops
+            niri-flake.nixosModules.niri
             niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/Joermungandr/configuration.nix
@@ -112,8 +114,10 @@
 
         YDdraigGoch = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             sops-nix.nixosModules.sops
+            niri-flake.nixosModules.niri
             niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/YDdraigGoch/configuration.nix
@@ -125,8 +129,10 @@
 
         Quetzalcoatl = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             sops-nix.nixosModules.sops
+            niri-flake.nixosModules.niri
             niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/Quetzalcoatl/configuration.nix
@@ -137,8 +143,10 @@
 
         WinterDragon = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             sops-nix.nixosModules.sops
+            niri-flake.nixosModules.niri
             niri-session-manager.nixosModules.niri-session-manager
             ./system/nixos.nix
             ./system/hosts/WinterDragon/configuration.nix
