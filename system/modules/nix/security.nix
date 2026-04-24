@@ -48,7 +48,7 @@
 
     # [FINT-4350] File integrity monitoring
     apparmor = {
-      enable = true;
+      enable = false;
       packages = [ pkgs.apparmor-profiles ];
     };
   };
