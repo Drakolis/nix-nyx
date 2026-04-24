@@ -74,3 +74,13 @@ vim.diagnostic.config({
   -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
   jump = { float = true },
 })
+
+vim.o.title = true
+
+local function update_title()
+  vim.o.titlestring = "nvim %{fnamemodify(getcwd(), ':~')}"
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged", "BufEnter" }, {
+  callback = update_title,
+})
