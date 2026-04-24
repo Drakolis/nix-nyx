@@ -208,7 +208,7 @@ in
       background_opacity = 0.87;
       dynamic_background_opacity = true;
       background_blur = 1;
-      transparent_background_colors = "#202032@0.87 #1e1e2f@0.87 #313245@0.87 #2a2b3d@0.87";
+      transparent_background_colors = "#202032@0.87 #1e1e2f@0.87 #313245@0.87";
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
       color2 = "#${style.colors.terminalGreen}";
