@@ -18,21 +18,39 @@ let
     "vaporserpent"
     "winterdragon"
     "yddraighgoch"
+    # Work domains
+    "bonial.com"
+    "bonial.org"
+    "bonial.biz"
+    # Messengers
     "element.io"
-    "startpage.com"
-    "proton.me"
+    "telegram.org"
+    "whatsapp.com"
+    # Git
     "github.com"
+    "github.io"
     "gitlab.io"
-    "perplexity.ai"
+    # Big Tech
     "microsoft.com"
     "google.com"
     "youtube.com"
     "apple.com"
+    "netflix.com"
+    # Truly Trusted
+    "startpage.com"
+    "proton.me"
     "web.structured.app"
+    # AI
+    "perplexity.ai"
+    "chatgpt.com"
   ];
 
   timezoneDomains = [
     "calendly.com"
+  ];
+
+  canvasDomains = [
+    "miro.com"
   ];
 
   firefoxExtensions = {
@@ -244,8 +262,15 @@ let
     "overrides" = "-JSDateTimeUTC";
   }) timezoneDomains;
 
+  firefoxFingerprintingOverridesCanvas = map (x: {
+    "firstPartyDomain" = x;
+    "overrides" = "-JSDateTimeUTC,-CanvasRandomization";
+  }) canvasDomains;
+
   firefoxFingerprintingOverrides =
-    firefoxFingerprintingOverridesTrusted ++ firefoxFingerprintingOverridesTimezone;
+    firefoxFingerprintingOverridesTrusted
+    ++ firefoxFingerprintingOverridesTimezone
+    ++ firefoxFingerprintingOverridesCanvas;
 
   firefoxProfileAboutConfig = {
     "widget.use-xdg-desktop-portal.file-picker" = 1;
