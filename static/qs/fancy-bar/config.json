@@ -1,0 +1,10 @@
+{
+  "theme": {
+    "font": {
+      "family": "Ubuntu Sans"
+    },
+    "fontMono": {
+      "family": "JetBrains Mono"
+    }
+  }
+}
