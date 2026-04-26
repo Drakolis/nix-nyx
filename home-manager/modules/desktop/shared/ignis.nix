@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   # TODO: These have to move
   home.packages = with pkgs; [
     wvkbd
     smile
+    inputs.qml-niri.packages.${pkgs.stdenv.hostPlatform.system}.quickshell-niri
   ];
 
   programs.imv.settings = {
