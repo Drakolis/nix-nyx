@@ -46,6 +46,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    qml-niri = {
+      url = "github:imiric/qml-niri/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
+
     # MacOS/Darwin Stuff
 
     nix-darwin = {
@@ -85,6 +96,8 @@
       plasma-manager,
       niri-flake,
       niri-session-manager,
+      quickshell,
+      qml-niri,
       nix-yazi-plugins,
       nix-vscode-extensions,
       sops-nix,
