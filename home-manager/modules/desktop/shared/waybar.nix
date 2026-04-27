@@ -115,7 +115,7 @@ in
           sort-by = "number";
         };
         "hyprland/workspaces" = {
-          active-only = false;
+          active-only = true;
           all-outputs = true;
           format = " {icon} ";
           format-icons = {
