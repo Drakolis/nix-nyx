@@ -1,0 +1,13 @@
+{
+  "theme": {
+    "fontBar": {
+      "family": "Ubuntu Sans"
+    },
+    "font": {
+      "family": "Ubuntu Sans"
+    },
+    "fontMono": {
+      "family": "JetBrains Mono"
+    }
+  }
+}
