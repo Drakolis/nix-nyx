@@ -1,23 +1,10 @@
 { inputs, pkgs, ... }:
 {
-  # TODO: These have to move
   home.packages = with pkgs; [
-    wvkbd
-    smile
     inputs.qml-niri.packages.${pkgs.stdenv.hostPlatform.system}.quickshell-niri
   ];
 
-  programs.imv.settings = {
-    enable = true;
-    settings = {
-      options.background = "1e1e2e";
-      options.overlay_text_color = "cdd6f4";
-      options.overlay_background_color = "11111b";
-    };
-  };
-
   services.cliphist.enable = true;
-  services.wl-clip-persist.enable = true;
   services.udiskie = {
     enable = true;
     tray = "always";

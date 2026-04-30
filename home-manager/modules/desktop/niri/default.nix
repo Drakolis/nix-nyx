@@ -11,7 +11,8 @@
 
     ../shared/themes.nix
 
-    ../shared/ignis.nix
+    ../shared/eggshell.nix
+    ../shared/common.nix
     ../shared/xdg.nix
 
     ../shared/screenshot.nix
