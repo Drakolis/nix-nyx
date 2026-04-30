@@ -91,6 +91,14 @@
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
       # media-session.enable = true;
+
+      # Start here if you still get xruns/crackles:
+      extraConfig.pipewire."10-higher-quantum" = {
+        "context.properties" = {
+          "default.clock.min-quantum" = 256;
+          "default.clock.max-quantum" = 512;
+        };
+      };
     };
   };
 
