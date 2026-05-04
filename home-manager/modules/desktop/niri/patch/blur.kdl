@@ -1,0 +1,76 @@
+window-rule {
+  // Rules for bluring GTK3 apps
+  match app-id="thunar"
+  match app-id="Thunar"
+  match app-id="org.gnome.Rhythmbox3"
+  match app-id="abaddon"
+  match app-id="caffeine"
+  match app-id="qalculate-gtk"
+  match app-id="transmission-gtk"
+  match app-id="nwg-look"
+
+  background-effect {
+    blur true
+  }
+
+  popups {
+    // Matches the border radius in cattpuccin 
+    geometry-corner-radius 12
+
+    background-effect {
+      blur true
+    }
+  }
+}
+
+window-rule {
+  // Rules for bluring floating windows (enable xray)
+  match is-floating=true
+
+  background-effect {
+    xray false
+    blur true
+  }
+}
+
+window-rule {
+  // Rules for apps that need forced opacity
+  match app-id="codium"
+  match app-id="kiro"
+  match title="^Element.*"
+  match app-id="org.telegram.desktop"
+  match app-id="com.slack.Slack"
+  opacity 0.920000
+  background-effect { blur true; }
+}
+window-rule {
+  // Rules for something
+  match app-id="zen-beta"
+  background-effect { blur true; }
+}
+
+layer-rule {
+  // Eggshell dock (large corner)
+  match namespace="eggshell_dock"
+  shadow {
+      on
+  }
+  geometry-corner-radius 18
+  background-effect {
+    xray false
+    blur true
+  }
+}
+
+layer-rule {
+  // Eggshell launcher (xlarge corner)
+  match namespace="eggshell_launcher"
+  shadow {
+      on
+  }
+  geometry-corner-radius 20
+  background-effect {
+    xray false
+    blur true
+  }
+}

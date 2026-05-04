@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }:
 {
@@ -22,6 +23,11 @@
     package = inputs.niri-pkgs.packages.${pkgs.system}.niri-unstable;
 
     settings = {
+
+      includes = lib.mkAfter [
+        (./patch/blur.kdl)
+      ];
+
       environment = {
         QT_QPA_PLATFORMTHEME = "qt6ct";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
