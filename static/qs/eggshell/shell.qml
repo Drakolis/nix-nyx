@@ -7,17 +7,28 @@ import "./modules/bar/"
 import "./modules/common/"
 
 ShellRoot{
-    id: root
+  id: root
 
-    Niri {
-        id: niri
-        Component.onCompleted: connect()
+  Variants {
+    // see Variants for details
+    model: Quickshell.screens
 
-        onConnected: console.info("Connected to niri")
-        onErrorOccurred: function(error) {
-            console.error("Niri error:", error)
-        }
+    LazyLoader {
+      property var modelData
+      active: true
+      component: Bar {
+        screen: modelData
+      }
     }
+  }
+  Niri {
+    id: niri
+    Component.onCompleted: connect()
 
-    LazyLoader{ active: true; component: Bar{} }
+    onConnected: console.info("Connected to niri")
+    onErrorOccurred: function(error) {
+      console.error("Niri error:", error)
+    }
+  }
+
 }
