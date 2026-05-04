@@ -44,7 +44,7 @@ in
           matches = [
             {
               app-id = "engrampa";
-              title = "Compress";
+              title = "(Compress|Extract)";
             }
             {
               app-id = "thunar";
