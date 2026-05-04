@@ -11,6 +11,7 @@ let
     "networkmanager"
     "wheel"
     "dialout"
+    "tty"
   ];
 
   groupsVirtual = [
