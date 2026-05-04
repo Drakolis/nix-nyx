@@ -1,8 +1,12 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
-  desiredInternetPackages = [
+  desiredInternetPackages = with pkgs; [
+    iamb
+    fractal
   ];
 in
 {
   home.packages = desiredInternetPackages;
+  programs.element-desktop.enable = true;
+
 }

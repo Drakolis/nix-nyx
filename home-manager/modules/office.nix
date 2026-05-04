@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 let
   desiredOfficePackages = [
-    pkgs.obsidian
     (pkgs.writeShellScriptBin "wttr" ''
       curl wttr.in/$1
     '')
@@ -15,4 +14,14 @@ let
 in
 {
   home.packages = desiredOfficePackages;
+
+  programs.obsidian = {
+    enable = true;
+    cli.enable = true;
+  };
+
+  programs.qalculate = {
+    enable = pkgs.stdenv.hostPlatform.isLinux;
+    package = pkgs.qalculate-gtk;
+  };
 }

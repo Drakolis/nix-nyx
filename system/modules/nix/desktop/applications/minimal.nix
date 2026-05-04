@@ -33,7 +33,6 @@ with lib;
 
         bluetui
 
-        nautilus
         baobab
 
         file-roller
@@ -48,8 +47,7 @@ with lib;
 
         snapshot
 
-        element-desktop
-
+        imv
         mpv
 
         pwvucontrol

@@ -15,9 +15,4 @@
       options.overlay_background_color = "11111b";
     };
   };
-
-  programs.qalculate = {
-    enable = true;
-    package = pkgs.qalculate-gtk;
-  };
 }

@@ -22,7 +22,6 @@ let
   ];
 
   videoRecordingMediaPackages = with pkgs; [
-    obs-studio
   ];
 
   videoEditingMediaPackages = with pkgs; [
@@ -103,5 +102,7 @@ with lib;
 
   config = mkIf cfg.enable {
     home.packages = desiredMediaPackages;
+
+    programs.obs-studio.enable = cfg.enableVideoRecording;
   };
 }

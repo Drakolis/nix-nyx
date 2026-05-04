@@ -33,7 +33,7 @@ with lib;
     ./development
     ./espanso.nix
     ./flatpak.nix
-    # ./glance.nix
+    ./glance.nix
     ./gaming.nix
     ./internet.nix
     ./linux-scripts

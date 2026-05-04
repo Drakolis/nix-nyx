@@ -6,6 +6,8 @@
 
   programs.home-manager.enable = true;
 
+  programs.mulvad-vpn.enable = true;
+
   programs.git = {
     enable = true;
     signing.format = "openpgp";
