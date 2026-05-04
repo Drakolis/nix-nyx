@@ -264,7 +264,7 @@ let
 
   firefoxFingerprintingOverridesCanvas = map (x: {
     "firstPartyDomain" = x;
-    "overrides" = "-JSDateTimeUTC,-CanvasRandomization";
+    "overrides" = "-JSDateTimeUTC,-CSSPrefersColorScheme,-CanvasRandomization,-ScreenSize";
   }) canvasDomains;
 
   firefoxFingerprintingOverrides =
@@ -343,7 +343,7 @@ in
       containersForce = true;
       containers = firefoxContainers;
 
-      settings = firefoxProfileAboutConfig;
+      settings = firefoxProfileAboutConfigHardcore;
     };
   };
 
