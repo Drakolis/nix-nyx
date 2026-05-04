@@ -168,12 +168,12 @@ return {
           )
         end,
       })
-
-      local lspconfig = require("lspconfig")
-
-      -- Setup LSP servers (installed via Nix)
-      lspconfig.lua_ls.setup({
+      -- shared defaults for all servers, optional but neat
+      vim.lsp.config("*", {
         capabilities = lsp_capabilities,
+      })
+
+      vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
             diagnostics = {
@@ -183,8 +183,7 @@ return {
         },
       })
 
-      lspconfig.nil_ls.setup({
-        capabilities = lsp_capabilities,
+      vim.lsp.config("nil_ls", {
         settings = {
           ["nil"] = {
             formatting = { command = { "nixpkgs-fmt" } },
@@ -192,18 +191,36 @@ return {
         },
       })
 
-      lspconfig.pyright.setup({ capabilities = lsp_capabilities })
-      lspconfig.ts_ls.setup({
-        capabilities = lsp_capabilities,
+      vim.lsp.config("pyright", {})
+
+      vim.lsp.config("ts_ls", {
         settings = {
           completions = {
             completeFunctionCalls = true,
           },
         },
       })
-      lspconfig.html.setup({ capabilities = lsp_capabilities })
-      lspconfig.cssls.setup({ capabilities = lsp_capabilities })
-      lspconfig.eslint.setup({ capabilities = lsp_capabilities })
+
+      vim.lsp.config("html", {})
+      vim.lsp.config("cssls", {})
+      vim.lsp.config("eslint", {})
+
+      vim.lsp.enable({
+        "lua_ls",
+        "nil_ls",
+        "pyright",
+        "ts_ls",
+        "html",
+        "cssls",
+        "eslint",
+      })
+
+      vim.lsp.config.qml = {
+        cmd = { "qml-language-server" },
+        filetypes = { "qml" },
+        root_markers = { "qmldir", ".git" },
+      }
+      vim.lsp.enable("qml")
     end,
   },
 }

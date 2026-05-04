@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -49,6 +50,10 @@ let
     rust-analyzer
   ];
 
+  qmlPackages = [
+    inputs.qml-language-server.packages.${pkgs.stdenv.hostPlatform.system}.default
+  ];
+
   javaPackages = with pkgs; [
     jdk
     maven
@@ -73,6 +78,7 @@ let
 
   languagePackages =
     languagesMinimalPackages
+    ++ qmlPackages
     ++ lib.optionals cfg.languages.nodeExtended nodeExtendedPackages
     ++ lib.optionals cfg.languages.pythonExtended pythonExtendedPackages
     ++ lib.optionals cfg.languages.goExtended goExtendedPackages

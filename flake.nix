@@ -18,6 +18,10 @@
       url = "github:nix-community/nix-vscode-extensions";
     };
 
+    qml-language-server = {
+      url = "github:cushycush/qml-language-server";
+    };
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     nix-yazi-plugins = {
@@ -100,6 +104,7 @@
       qml-niri,
       nix-yazi-plugins,
       nix-vscode-extensions,
+      qml-language-server,
       sops-nix,
       nix-darwin,
       mac-app-util,
