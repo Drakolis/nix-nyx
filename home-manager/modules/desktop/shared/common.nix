@@ -7,10 +7,10 @@
 
   services.wl-clip-persist.enable = true;
 
-  programs.imv.settings = {
+  programs.imv = {
     enable = true;
     settings = {
-      options.background = "1e1e2e";
+      options.background = "181825";
       options.overlay_text_color = "cdd6f4";
       options.overlay_background_color = "11111b";
     };

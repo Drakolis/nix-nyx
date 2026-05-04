@@ -103,18 +103,26 @@ in
           border-bottom: 1px solid #31323e;
         }
         .background {
-          background: rgba(30, 30, 46, 0.87)
+          background: rgba(30, 30, 46, 0.87);
         }
         .background.csd {
-          background: rgba(30, 30, 46, 0)
+          background: rgba(30, 30, 46, 0);
         }
-        .view, iconview, treeview, notebook {
-          background: rgba(30, 30, 46, 0)
+        .view {
+          background: transparent;
+        }
+        iconview, treeview, notebook {
+          background: transparent;
         }
         entry {
-          background: rgba(239,241,245,0.08)
+          background: rgba(239, 241, 245, 0.08);
         }
-
+        window.popup decoration, window.popup {
+          background: transparent;
+        }
+        menu {
+          background: rgba(49, 50, 68, 0.8);
+        }
       '';
       bookmarks = [
         "file://${config.xdg.userDirs.documents}"
