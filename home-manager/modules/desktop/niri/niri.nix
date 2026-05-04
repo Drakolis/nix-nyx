@@ -25,6 +25,7 @@
       environment = {
         QT_QPA_PLATFORMTHEME = "qt6ct";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        SDL_JOYSTICK_HIDAPI = 0; # Seems to fix XBox controller not working with bluetooth on Linux
       };
 
       spawn-at-startup = [
