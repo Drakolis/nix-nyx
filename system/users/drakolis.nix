@@ -10,6 +10,7 @@ let
   groupsRegular = [
     "networkmanager"
     "wheel"
+    "input"
     "dialout"
     "tty"
   ];
