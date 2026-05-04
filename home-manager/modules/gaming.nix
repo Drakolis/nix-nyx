@@ -24,6 +24,8 @@ with lib;
   config = mkIf cfg.enable {
     home.packages = [ pkgs.mangojuice ];
 
+    programs.abaddon.enable = true;
+
     programs.mangohud = {
       settingsPerApplication = {
         mpv = {

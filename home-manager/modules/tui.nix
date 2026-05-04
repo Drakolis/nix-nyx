@@ -146,7 +146,7 @@ in
   };
 
   programs.gitui = {
-    enable = !isDarwin;
+    enable = false;
     keyConfig = ''
       (
         move_left: Some(( code: Char('h'), modifiers: "")),
@@ -185,6 +185,77 @@ in
         branch_fg: Some("#${style.colors.gitBranch}"),
       )
     '';
+  };
+
+  programs.television = {
+    enable = true;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
+    settings = {
+      default_channel = "files";
+
+      ui.theme = "catppuccin";
+      ui.status_bar = {
+        separator_open = "";
+        separator_close = "";
+      };
+      keybindings = {
+        quit = [
+          "ctrl-c"
+          "ctrl-q"
+        ];
+      };
+    };
+    channels = {
+      git-diff = {
+        metadata = {
+          description = "A channel to select files from git diff commands";
+          name = "git-diff";
+          requirements = [
+            "git"
+          ];
+        };
+        preview = {
+          command = "git diff HEAD --color=always -- '{}'";
+        };
+        source = {
+          command = "git diff --name-only HEAD";
+        };
+      };
+      git-log = {
+        metadata = {
+          description = "A channel to select from git log entries";
+          name = "git-log";
+          requirements = [
+            "git"
+          ];
+        };
+        preview = {
+          command = "git show -p --stat --pretty=fuller --color=always '{0}'";
+        };
+        source = {
+          command = "git log --oneline --date=short --pretty=\"format:%h %s %an %cd\" \"$@\"";
+          output = "{split: :0}";
+        };
+      };
+    };
+  };
+
+  programs.nix-search-tv = {
+    enable = true;
+    settings = {
+      indexes = [
+        "nixpkgs"
+        "home-manager"
+      ]
+      ++ (if (isDarwin) then [ "darwin" ] else [ "nixos" ]);
+
+      experimental = {
+        render_docs_indexes = {
+          nvf = "https://notashelf.github.io/nvf/options.html";
+        };
+      };
+    };
   };
 
   programs.zsh = {

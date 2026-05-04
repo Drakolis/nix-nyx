@@ -18,8 +18,8 @@ with lib;
   config = mkIf (cfg.enable && hasNiri) {
     programs.niri = {
       enable = true;
-      package = inputs.niri-flake.packages.${pkgs.system}.niri-unstable;
     };
+
     services.gnome.gnome-keyring.enable = true;
 
     environment.systemPackages = with pkgs; [
@@ -36,6 +36,5 @@ with lib;
       hyprpaper
       hyprpicker
     ];
-
   };
 }
