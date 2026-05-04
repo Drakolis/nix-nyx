@@ -18,8 +18,8 @@ with lib;
   config = mkIf (cfg.enable && hasNiri) {
     programs.niri = {
       enable = true;
+      package = inputs.niri-pkgs.packages.${pkgs.system}.niri-unstable;
     };
-
     services.gnome.gnome-keyring.enable = true;
 
     environment.systemPackages = with pkgs; [

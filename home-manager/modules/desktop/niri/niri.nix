@@ -19,6 +19,7 @@
 
   programs.niri = {
     enable = true;
+    package = inputs.niri-pkgs.packages.${pkgs.system}.niri-unstable;
 
     settings = {
       environment = {

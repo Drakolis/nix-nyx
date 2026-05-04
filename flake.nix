@@ -37,7 +37,15 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    niri-flake.url = "github:sodiboo/niri-flake/very-refactor";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake/very-refactor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri-pkgs = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     niri-screen-time = {
       url = "github:probeldev/niri-screen-time";
