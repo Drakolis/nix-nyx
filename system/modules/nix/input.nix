@@ -68,7 +68,7 @@ with lib;
       ++ lib.optionals hasLogitech [
         solaar
       ]
-      ++ lib.optionals hasLogitech [
+      ++ lib.optionals hasWooting [
         wootility
       ];
 
@@ -83,5 +83,8 @@ with lib;
         via
       ];
     hardware.wooting.enable = hasWooting;
+
+    # Force uinput to work
+    hardware.uinput.enable = true;
   };
 }
