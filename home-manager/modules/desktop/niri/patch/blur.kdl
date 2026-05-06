@@ -24,6 +24,15 @@ window-rule {
 }
 
 window-rule {
+  // Rules for bluring GTK4 apps (not the menus!)
+  match app-id="baobab"
+
+  background-effect {
+    blur true
+  }
+}
+
+window-rule {
   // Rules for bluring floating windows (enable xray)
   match is-floating=true
 

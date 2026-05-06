@@ -87,7 +87,24 @@ in
       package = gtkTheme;
     };
 
-    gtk4.theme = config.gtk.theme;
+    gtk4 = {
+      theme = config.gtk.theme;
+      extraCss = ''
+        .background {
+          background: transparent;
+        }
+        list.boxed-list {
+          background: rgba(49, 50, 68, 0.9);
+          border: none;
+        }
+        .sidebar-pane {
+          background: rgba(30, 30, 46, 0.75);
+        }
+        .content-pane, .view, navigation-view {
+          background: rgba(30, 30, 46, 0.75);
+        }
+      '';
+    };
 
     gtk3 = {
       extraConfig = {
@@ -103,10 +120,10 @@ in
           border-bottom: 1px solid #31323e;
         }
         .background {
-          background: rgba(30, 30, 46, 0.87);
+          background: rgba(30, 30, 46, 0.75);
         }
         .background.csd {
-          background: rgba(30, 30, 46, 0);
+          background: transparent;
         }
         .view {
           background: transparent;
@@ -121,7 +138,7 @@ in
           background: transparent;
         }
         menu {
-          background: rgba(49, 50, 68, 0.8);
+          background: rgba(49, 50, 68, 0.75);
         }
       '';
       bookmarks = [
