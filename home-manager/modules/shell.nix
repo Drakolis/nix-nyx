@@ -182,7 +182,7 @@ in
   };
 
   programs.navi = {
-    enable = true;
+    enable = false;
     enableBashIntegration = true;
     enableZshIntegration = true;
     settings = {

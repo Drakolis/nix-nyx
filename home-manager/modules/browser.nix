@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   ...
@@ -317,7 +316,7 @@ in
   nixpkgs.config.librewolf.enablePlasmaBrowserIntegration = pkgs.stdenv.hostPlatform.isLinux;
 
   programs.qutebrowser = {
-    enable = true;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
     extraConfig = ''
       import catppuccin
       # load your autoconfig, use this, if the rest of your config is empty!
@@ -330,7 +329,7 @@ in
   };
 
   programs.librewolf = {
-    enable = false;
+    enable = true;
     nativeMessagingHosts = nativeMessagingHostsForPlatform;
 
     policies = firefoxPolicies;

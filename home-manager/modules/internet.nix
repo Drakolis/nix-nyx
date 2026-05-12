@@ -1,9 +1,13 @@
 { pkgs, ... }:
 let
-  desiredInternetPackages = with pkgs; [
-    iamb
-    fractal
-  ];
+  desiredInternetPackages =
+    with pkgs;
+    [
+      iamb
+    ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      fractal
+    ];
 in
 {
   home.packages = desiredInternetPackages;

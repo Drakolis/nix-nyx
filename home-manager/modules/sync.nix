@@ -4,7 +4,6 @@ with lib;
   home.packages = with pkgs; [
     vdirsyncer
     rclone
-    syncthingtray
   ];
 
   programs.rclone = {
@@ -33,7 +32,7 @@ with lib;
   services.syncthing = {
     enable = true;
     tray = {
-      # enable = true;
+      enable = pkgs.stdenv.hostPlatform.isLinux;
       package = pkgs.syncthingtray;
     };
     settings = {
