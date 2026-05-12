@@ -342,6 +342,7 @@
             system = "aarch64-darwin";
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             mac-app-util.homeManagerModules.default
             sops-nix.homeManagerModules.sops
@@ -357,6 +358,7 @@
             system = "aarch64-darwin";
             overlays = [ nix-vscode-extensions.overlays.default ];
           };
+          extraSpecialArgs = { inherit inputs; };
           modules = [
             mac-app-util.homeManagerModules.default
             sops-nix.homeManagerModules.sops
