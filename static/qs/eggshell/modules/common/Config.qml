@@ -22,17 +22,50 @@ Singleton {
       // Global theme. Source of default and base values for all components.
       property JsonObject theme: JsonObject {
         property JsonObject colors: JsonObject {
+          property string rosewater: "#f5e0dc"
+          property string flamingo: "#f2cdcd"
+          property string pink: "#f5c2e7"
+          property string mauve: "#cba6f7"
+          property string red: "#f38ba8"
+          property string maroon: "#eba0ac"
+          property string peach: "#fab387"
+          property string yellow: "#f9e2af"
+          property string green: "#a6e3a1"
+          property string teal: "#94e2d5"
+          property string sky: "#89dceb"
+          property string sapphire: "#74c7ec"
+          property string blue: "#89b4fa"
+          property string lavender: "#b4befe"
           property string text: "#cdd6f4"
-          property string textMuted: "#a6adc8"
-          property string window: "#1e1e2e"
-          property string panel: "#181825"
-          property string canvas: "#11111b"
-          property string primary: "#cba6f7"
-          property string ok: "#a6e3a1"
-          property string error: "#f38ba8"
-          property string warning: "#f9e2af"
+          property string subtext1: "#bac2de"
+          property string subtext0: "#a6adc8"
+          property string overlay2: "#9399b2"
+          property string overlay1: "#7f849c"
+          property string overlay0: "#6c7086"
+          property string surface2: "#585b70"
+          property string surface1: "#45475a"
+          property string surface0: "#313244"
+          property string base: "#1e1e2e"
+          property string mantle: "#181825"
+          property string crust: "#11111b"
 
-          property string clock: "#74c7ec"
+          property string border: Config.data.theme.colors.surface0
+          property string window: Config.data.theme.colors.base
+          property string panel: Config.data.theme.colors.mantle
+          property string canvas: Config.data.theme.colors.crust
+          property string primary: Config.data.theme.colors.mauve
+          property string secondary: Config.data.theme.colors.lavender
+          property string success: Config.data.theme.colors.green
+          property string error: Config.data.theme.colors.red
+          property string warning: Config.data.theme.colors.peach
+          property string info: Config.data.theme.colors.teal
+
+          property string textDisabled: Config.data.theme.colors.subtext0
+
+          property string clock: Config.data.theme.colors.sapphire
+          property string audio: Config.data.theme.colors.flamingo
+          property string brightness: Config.data.theme.colors.yellow
+          property string camera: Config.data.theme.colors.rosewater
         }
 
         property JsonObject fontBar: JsonObject {
@@ -64,7 +97,17 @@ Singleton {
         }
         property JsonObject margins: JsonObject {
           property real outer: 5
-          property real inner: 5
+          property real inner: 7
+          property real icon: 2
+        }
+      }
+
+      property JsonObject computed: JsonObject {
+        property JsonObject bar: JsonObject {
+          property real segmentHeight: Config.data.theme.fontBar.pixelSize * 2
+          property real segmentRadius: Config.data.theme.fontBar.pixelSize
+          property real segmentSpacing: Config.data.theme.margins.inner
+          property real iconSize: Config.data.theme.fontBar.pixelSize * 1.95 - Config.data.theme.margins.inner
         }
       }
 
@@ -88,23 +131,50 @@ Singleton {
       }
 
       property JsonObject bar: JsonObject {
-        property string position: Types.positionToString(Types.Position.Top)
-        property int size: 30
       }
 
-      property JsonObject focusedWindow: JsonObject {
+      property JsonObject windowTitle: JsonObject {
         property JsonObject icon: JsonObject {
           property bool enabled: true
-          property real scale: 0.9
         }
         property JsonObject title: JsonObject {
           property bool enabled: true
+          property int maxLength: 30
         }
-        property JsonObject font: JsonObject {
-          property string family
-          property real scale: 1.2
-          property int weight: 600
-        }
+      }
+
+      property JsonObject clock: JsonObject {
+        property string format: "hh:mm:ss, ddd dd MMMM"
+      }
+
+      property JsonObject battery: JsonObject {
+        property bool enabled: true
+        property bool showAlways: false
+        property bool showPercentage: true
+        property int warning: 20
+        property int critical: 10
+        property string orientation: Types.orientationToString(Types.Orientation.Horizontal)
+      }
+
+      property JsonObject audio: JsonObject {
+        property bool enabled: true
+        property bool showPercentage: true
+        property bool showMicrophone: true
+        property bool showMicrophonePercentage: true
+        property string microphonePrivacyColor: Config.data.theme.colors.info
+      }
+
+      property JsonObject camera: JsonObject {
+        property bool enabled: true
+        property string privacyColor: Config.data.theme.colors.info
+        property int pollPrivacyInterval: 1000
+        property int pollDeviceInterval: 5000
+      }
+
+      property JsonObject monitor: JsonObject {
+        property bool enabled: true
+        property string privacyColor: Config.data.theme.colors.info
+        property int pollPrivacyInterval: 1000
       }
 
       property JsonObject cpu: JsonObject {
@@ -114,12 +184,12 @@ Singleton {
         property JsonObject icon: JsonObject {
           property bool enabled: true
           property real scale: 0.85
-          property string color: Config.data.theme.colors.foreground2
+          property string color: Config.data.theme.colors.text
         }
         property JsonObject graph: JsonObject {
           property bool enabled: true
           property real history: 30 // Seconds
-          property string lineColor: Config.data.theme.colors.foreground
+          property string lineColor: Config.data.theme.colors.text
           property string lowUsageColor: "#802D3154"   // Cool blue
           property string highUsageColor: "#80FF4500"  // Bright orange/red
         }
@@ -133,7 +203,7 @@ Singleton {
         property JsonObject icon: JsonObject {
           property bool enabled: true
           property real scale: 1
-          property string color: Config.data.theme.colors.foreground2
+          property string color: Config.data.theme.colors.text
         }
         property JsonObject colors: JsonObject {
           property string used: "#2E86C1"           // Blue
@@ -165,38 +235,11 @@ Singleton {
         property JsonObject icon: JsonObject {
           property bool enabled: true
           property real scale: 1
-          property string color: Config.data.theme.colors.foreground2
+          property string color: Config.data.theme.colors.text
         }
         property JsonObject colors: JsonObject {
           property string rx: "#1F77B4"  // Blue
           property string tx: "#FF7F0E"  // Orange
-        }
-      }
-
-      property JsonObject battery: JsonObject {
-        property real scale: 1.5
-        property int low: 20
-        property int critical: 10
-        property int suspend: 5
-        property bool automaticSuspend: true
-        property bool showPercentage: true
-        property string orientation: Types.orientationToString(Types.Orientation.Horizontal)
-      }
-
-      property JsonObject clock: JsonObject {
-        property real scale: 1
-        property JsonObject time: JsonObject {
-          property bool enabled: true
-          property string format: "hh:mm"
-        }
-        property JsonObject date: JsonObject {
-          property bool enabled: true
-          property string format: "yyyy-MM-dd"
-        }
-        property JsonObject font: JsonObject {
-          property string family
-          property real scale: 1.1
-          property int weight: 400
         }
       }
 

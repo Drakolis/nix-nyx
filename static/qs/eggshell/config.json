@@ -9,5 +9,8 @@
     "fontMono": {
       "family": "JetBrains Mono"
     }
+  },
+  "audio": {
+    "showMicrophonePercentage": false
   }
 }

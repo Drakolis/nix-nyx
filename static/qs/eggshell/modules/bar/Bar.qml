@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Wayland
 import qs.modules.common
 
 PanelWindow {
@@ -10,8 +11,8 @@ PanelWindow {
     left: true
     right: true
   }
-  implicitHeight: Config.data.theme.fontBar.pixelSize * 2
-  + Config.data.theme.margins.outer * 2
+  implicitHeight: Config.data.computed.bar.segmentHeight + Config.data.theme.margins.outer * 2
+
   color: "transparent"
 
   Rectangle {
@@ -24,8 +25,8 @@ PanelWindow {
         left: parent.left
         leftMargin: 5
       }
-      Loader { active: true; sourceComponent: Workspaces {} }
-      Loader { active: true; sourceComponent: WindowTitle {} }
+      Workspaces { id: workspaces }
+      WindowTitle { id: windowTitle }
     }
     // center
     RowLayout {
@@ -34,7 +35,7 @@ PanelWindow {
         verticalCenter: parent.verticalCenter
       }
 
-      Loader { active: true; sourceComponent: Time {} }
+      Time { id: clock }
     }
     // right
     RowLayout {
@@ -43,8 +44,30 @@ PanelWindow {
         right: parent.right
         rightMargin: 5
       }
-      spacing: 10
-      Loader { active: true; sourceComponent: Power {} }
+      Tray { id: systemTray }
+      Status { id: systemStatus }
+    }
+  }
+  BackgroundEffect.blurRegion: Region {
+    Region {
+      item: systemTray
+      radius: systemTray.radius
+    }
+    Region {
+      item: systemStatus
+      radius: systemStatus.radius
+    }
+    Region {
+      item: clock
+      radius: clock.radius
+    }
+    Region {
+      item: windowTitle
+      radius: windowTitle.radius
+    }
+    Region {
+      item: workspaces
+      radius: workspaces.radius
     }
   }
 }

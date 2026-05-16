@@ -1,60 +1,34 @@
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
-import QtQuick.Controls
 import Quickshell
-import Quickshell.Widgets
 import qs.modules.common
-import qs.modules.common.utils
+import qs.modules.common.widgets
 
-Rectangle {
-  visible: niri.focusedWindow !== null
-  color: Config.data.theme.colors.panel
-  height: Config.data.theme.fontBar.pixelSize * 2
-  radius: Config.data.theme.fontBar.pixelSize * 2
-  implicitWidth: childrenRect.width + Config.data.theme.fontBar.pixelSize * 1.5
-
-  Row {
-    anchors {
-      centerIn: parent
-    }
-    spacing: Config.data.theme.fontBar.pixelSize * 0.325
-
-    Image {
-      id: eggshellBarWindowTitleIcon
-      anchors {
-        verticalCenter: parent.verticalCenter
-      }
-      source: niri.focusedWindow.iconPath
-      sourceSize.width: Config.data.theme.fontBar.pixelSize * 1.5
-      sourceSize.height: Config.data.theme.fontBar.pixelSize * 1.5
-    }
-
-    Text {
-      anchors {
-        verticalCenter: parent.verticalCenter
-      }
-      text: {
-        var textRaw = niri.focusedWindow?.title ?? "Desktop"
-        var maxLength = 50
-        if (textRaw.length > maxLength)
-        return textRaw.substring(0, maxLength) + "…"
-        return textRaw
-      }
-
-      color: Config.data.theme.colors.primary
-      font: Config.data.theme.fontBar
-      elide: Text.ElideRight
-      maximumLineCount: 1
-    }
+BarSection {
+  Image {
+    visible: Config.data.windowTitle.icon.enabled
+    id: eggshellBarWindowTitleIcon
+    source: niri.focusedWindow?.iconPath ?? ""
+    sourceSize.width: Config.data.computed.bar.iconSize
+    sourceSize.height: Config.data.computed.bar.iconSize
   }
 
-  layer.enabled: true
-  layer.effect: MultiEffect {
-    shadowEnabled: true
-    autoPaddingEnabled: true
-    // The vertical offset makes the shadow slightly more prominent
-    shadowBlur: 0.5
-    shadowColor: Config.data.theme.colors.canvas
+  Text {
+    visible: Config.data.windowTitle.title.enabled
+
+    Layout.topMargin: 2
+
+    text: {
+      var textRaw = niri.focusedWindow?.title ?? "Desktop"
+      var maxLength = Config.data.windowTitle.title.maxLength
+      if (textRaw.length > maxLength)
+      return textRaw.substring(0, maxLength) + "…"
+      return textRaw
+    }
+
+    color: Config.data.theme.colors.primary
+    font: Config.data.theme.fontBar
+    elide: Text.ElideRight
+    maximumLineCount: 1
   }
 }
