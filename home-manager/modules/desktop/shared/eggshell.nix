@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     inputs.qml-niri.packages.${pkgs.stdenv.hostPlatform.system}.quickshell-niri
+    lsof
   ];
 
   services.cliphist.enable = true;
