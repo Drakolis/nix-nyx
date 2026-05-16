@@ -11,6 +11,8 @@ window-rule {
   match app-id="camset"
   match app-id="org.gnome.seahorse.Application"
   match app-id="solaar"
+  match app-id="org.inkscape.Inkscape"
+  match app-id="gimp"
   match app-id="^libreoffice-.*"
 
   background-effect {
