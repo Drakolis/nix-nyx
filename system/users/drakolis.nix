@@ -11,6 +11,7 @@ let
     "networkmanager"
     "wheel"
     "input"
+    "uinput"
     "dialout"
     "tty"
   ];
