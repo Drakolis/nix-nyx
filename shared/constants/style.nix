@@ -29,11 +29,11 @@ in
   border = {
     outer = {
       width = 2;
-      radius = 10;
+      radius = 16;
     };
     inner = {
       width = 1;
-      radius = 7;
+      radius = 10;
     };
   };
 

@@ -93,18 +93,15 @@ in
         .background {
           background: rgba(30, 30, 46, 0.85);
         }
-        .background.csd {
-          background: transparent;
-        }
-        list.boxed-list {
+        list.boxed-list, stack list {
           background: rgba(49, 50, 68, 0.9);
           border: none;
         }
-        .sidebar-pane {
-          background: rgba(24, 24, 17, 0.85);
+        .sidebar-pane, .monitor-selection-container, gutterrenderer {
+          background: rgba(24, 24, 37, 0.2);
         }
         .content-pane, .view, toolbarview {
-          background: rgba(30, 30, 46, 0.85);
+          background: transparent;
         }
         .sound-view {
           background: transparent;
@@ -128,19 +125,21 @@ in
         .background {
           background: rgba(30, 30, 46, 0.85);
         }
-        .background.csd {
-          background: transparent;
-        }
         .view {
           background: transparent;
         }
-        iconview, treeview, notebook {
+        iconview, filechooser, treeview, notebook, treeview header button {
           background: transparent;
+        }
+        .sidebar, statusbar, .statusbar,
+        toolbar.inline-toolbar, actionbar,
+        viewport.frame list {
+          background: rgba(24, 24, 37, 0.2);
         }
         entry {
           background: rgba(239, 241, 245, 0.08);
         }
-        window.popup decoration, window.popup {
+        window.popup decoration, window.popup, window decoration {
           background: transparent;
         }
         menu {
@@ -153,6 +152,7 @@ in
         "file://${config.xdg.userDirs.videos}"
         "file://${config.xdg.userDirs.download}"
         "file://${config.home.homeDirectory}/Projects"
+        "file://${config.home.homeDirectory}/Share"
       ];
     };
   };

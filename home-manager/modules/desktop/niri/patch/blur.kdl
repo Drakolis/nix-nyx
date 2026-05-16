@@ -9,6 +9,7 @@ window-rule {
   match app-id="transmission-gtk"
   match app-id="nwg-look"
   match app-id="camset"
+  match app-id="org.gnome.seahorse.Application"
 
   background-effect {
     blur true
@@ -28,9 +29,17 @@ window-rule {
   // Rules for bluring GTK4 apps (not the menus!)
   match app-id="baobab"
   match app-id="gnome-characters"
-  match app-id="fractal"
+  match app-id="org.gnome.Fractal"
   match app-id="blanket"
   match app-id="baobab"
+  match app-id="GTK Application"
+  match app-id="protonvpn-app"
+  match app-id=".espanso-wrapped"
+  match app-id="com.saivert.pwvucontrol"
+  match app-id="org.gnome.Evince"
+  match app-id="org.gnome.Fileroller"
+  match app-id="io.gitlab.liferooter.TextPieces"
+  match app-id="textpieces"
 
   background-effect {
     blur true

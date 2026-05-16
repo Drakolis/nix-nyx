@@ -134,6 +134,9 @@ in
             {
               app-id = "org.gnome.Characters";
             }
+            {
+              app-id = "qualculate-gtk";
+            }
           ];
           open-floating = true;
           default-window-height.fixed = 600;
