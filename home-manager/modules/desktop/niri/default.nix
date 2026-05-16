@@ -17,7 +17,6 @@
 
     ../shared/screenshot.nix
 
-    ../shared/walker.nix
     ../shared/anyrun.nix
   ];
 
