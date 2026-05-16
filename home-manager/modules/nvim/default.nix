@@ -7,6 +7,7 @@ in
   home.packages = with pkgs; [
     gcc
     tree-sitter
+    vale # Linting for text files
   ];
 
   programs.neovim = {
