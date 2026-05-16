@@ -205,10 +205,10 @@ in
       background = "#${style.colors.background}";
       selection_foreground = "#${style.colors.textInverted}";
       selection_background = "#${style.colors.selection}";
-      background_opacity = 0.75;
+      background_opacity = 0.85;
       dynamic_background_opacity = true;
       background_blur = 1;
-      transparent_background_colors = "#202032@0.75 #1e1e2f@0.75 #313245@0.75";
+      transparent_background_colors = "#202032@0.85 #1e1e2f@0.85 #313245@0.85";
       color0 = "#${style.colors.terminalBlack}";
       color1 = "#${style.colors.terminalRed}";
       color2 = "#${style.colors.terminalGreen}";
