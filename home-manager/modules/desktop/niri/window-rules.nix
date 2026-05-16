@@ -114,6 +114,14 @@ in
           };
         }
         {
+          matches = [
+            {
+              app-id = ''steam_app_\d+'';
+            }
+          ];
+          open-fullscreen = true;
+        }
+        {
           # Rules for windows that should clearly float and also be limited in size
           matches = [
             {
