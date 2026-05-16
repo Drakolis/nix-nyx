@@ -10,6 +10,8 @@ window-rule {
   match app-id="nwg-look"
   match app-id="camset"
   match app-id="org.gnome.seahorse.Application"
+  match app-id="solaar"
+  match app-id="^libreoffice-.*"
 
   background-effect {
     blur true
@@ -40,6 +42,9 @@ window-rule {
   match app-id="org.gnome.Fileroller"
   match app-id="io.gitlab.liferooter.TextPieces"
   match app-id="textpieces"
+  match app-id="io.github.radiolamp.mangojuice"
+  match app-id="valent"
+  match app-id=".piper-wrapped"
 
   background-effect {
     blur true
@@ -61,7 +66,7 @@ window-rule {
   match app-id="codium"
   match app-id="kiro"
   match title="^Element.*"
-  match app-id="org.telegram.desktop"
+  // match app-id="org.telegram.desktop"
   match app-id="com.slack.Slack"
   opacity 0.920000
   background-effect { blur true; }
