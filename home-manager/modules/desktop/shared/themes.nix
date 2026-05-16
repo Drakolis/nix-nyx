@@ -91,6 +91,9 @@ in
       theme = config.gtk.theme;
       extraCss = ''
         .background {
+          background: rgba(30, 30, 46, 0.85);
+        }
+        .background.csd {
           background: transparent;
         }
         list.boxed-list {
@@ -98,10 +101,13 @@ in
           border: none;
         }
         .sidebar-pane {
-          background: rgba(30, 30, 46, 0.75);
+          background: rgba(24, 24, 17, 0.85);
         }
-        .content-pane, .view, navigation-view {
-          background: rgba(30, 30, 46, 0.75);
+        .content-pane, .view, toolbarview {
+          background: rgba(30, 30, 46, 0.85);
+        }
+        .sound-view {
+          background: transparent;
         }
       '';
     };
@@ -120,7 +126,7 @@ in
           border-bottom: 1px solid #31323e;
         }
         .background {
-          background: rgba(30, 30, 46, 0.75);
+          background: rgba(30, 30, 46, 0.85);
         }
         .background.csd {
           background: transparent;
@@ -138,7 +144,7 @@ in
           background: transparent;
         }
         menu {
-          background: rgba(49, 50, 68, 0.75);
+          background: rgba(49, 50, 68, 0.85);
         }
       '';
       bookmarks = [

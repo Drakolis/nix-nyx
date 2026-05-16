@@ -8,13 +8,14 @@ window-rule {
   match app-id="qalculate-gtk"
   match app-id="transmission-gtk"
   match app-id="nwg-look"
+  match app-id="camset"
 
   background-effect {
     blur true
   }
 
   popups {
-    // Matches the border radius in cattpuccin 
+    // Matches the border radius in cattpuccin
     geometry-corner-radius 12
 
     background-effect {
@@ -25,6 +26,10 @@ window-rule {
 
 window-rule {
   // Rules for bluring GTK4 apps (not the menus!)
+  match app-id="baobab"
+  match app-id="gnome-characters"
+  match app-id="fractal"
+  match app-id="blanket"
   match app-id="baobab"
 
   background-effect {
@@ -52,34 +57,9 @@ window-rule {
   opacity 0.920000
   background-effect { blur true; }
 }
+
 window-rule {
   // Rules for something
   match app-id="zen-beta"
   background-effect { blur true; }
-}
-
-layer-rule {
-  // Eggshell dock (large corner)
-  match namespace="eggshell_dock"
-  shadow {
-      on
-  }
-  geometry-corner-radius 18
-  background-effect {
-    xray false
-    blur true
-  }
-}
-
-layer-rule {
-  // Eggshell launcher (xlarge corner)
-  match namespace="eggshell_launcher"
-  shadow {
-      on
-  }
-  geometry-corner-radius 20
-  background-effect {
-    xray false
-    blur true
-  }
 }
