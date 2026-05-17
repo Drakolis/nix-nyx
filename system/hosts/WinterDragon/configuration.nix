@@ -44,6 +44,16 @@
     powertop
   ];
 
+  hardware.i2c.enable = true;
+
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openconnect
+      networkmanager-fortisslvpn
+    ];
+  };
+
   services = {
     # Enable CUPS to print documents.
     printing = {

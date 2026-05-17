@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   networking.hostName = "Quetzalcoatl";
 
@@ -43,6 +46,8 @@
     acpi
     powertop
   ];
+
+  hardware.i2c.enable = true;
 
   networking.networkmanager = {
     enable = true;

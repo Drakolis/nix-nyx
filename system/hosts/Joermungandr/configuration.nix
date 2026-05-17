@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 {
@@ -58,6 +57,14 @@
   };
 
   hardware.i2c.enable = true;
+
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [
+      networkmanager-openconnect
+      networkmanager-fortisslvpn
+    ];
+  };
 
   services.hardware.openrgb = {
     enable = true;

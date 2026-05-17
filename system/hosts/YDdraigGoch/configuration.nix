@@ -43,6 +43,8 @@
     home-manager
   ];
 
+  hardware.i2c.enable = true;
+
   services = {
     # Enable CUPS to print documents.
     printing = {
