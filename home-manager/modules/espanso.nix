@@ -33,8 +33,8 @@
             replace = "Good morning. ";
           }
           {
-            trigger = ":gmw";
-            replace = "Good morning. I hope you are doing well. ";
+            trigger = ":ihuw";
+            replace = "I hope you are doing well. ";
           }
           {
             trigger = ":omw";
@@ -58,7 +58,7 @@
           }
           {
             regex = ":hi\\((?P<person>.*)\\)";
-            replace = "Hi {{person}}!";
+            replace = "Hi {{person}}! ";
           }
         ];
       };
