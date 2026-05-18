@@ -26,6 +26,9 @@
         apiClient = false;
         scaleway = true;
       };
+      aiTools = {
+        opencode-web = true;
+      };
       languages = {
         nodeExtended = false;
         pythonExtended = false;

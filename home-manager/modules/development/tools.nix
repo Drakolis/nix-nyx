@@ -12,10 +12,6 @@ let
     tokei # Language usage analyser
   ];
 
-  aiCliPackages = with pkgs; [
-    opencode
-  ];
-
   aiEditorsPackages =
     with pkgs;
     [
@@ -104,13 +100,6 @@ with lib;
         type = types.bool;
         description = ''
           Enable AI IDEs for this user.
-        '';
-      };
-      aiCli = mkOption {
-        default = false;
-        type = types.bool;
-        description = ''
-          Enable AI CLI tools for this user.
         '';
       };
 

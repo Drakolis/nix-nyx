@@ -14,6 +14,9 @@
         aws = true;
         kubernetes = true;
       };
+      aiTools = {
+        claudecode = true;
+      };
       languages = {
         nodeExtended = true;
         pythonExtended = true;

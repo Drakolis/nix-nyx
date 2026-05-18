@@ -21,6 +21,7 @@
         apiClient = true;
         scaleway = true;
       };
+      aiTools = { };
       languages = {
         nodeExtended = true;
         goExtended = true;

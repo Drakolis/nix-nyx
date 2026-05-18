@@ -29,6 +29,9 @@
         scaleway = true;
         kubernetes = true;
       };
+      aiTools = {
+        opencode-web = true;
+      };
       languages = {
         nodeExtended = true;
         pythonExtended = true;
