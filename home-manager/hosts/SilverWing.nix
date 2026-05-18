@@ -8,7 +8,6 @@
       enable = true;
       tools = {
         aiEditors = true;
-        aiCli = true;
         sqlClient = true;
         mongoClient = true;
         apiClient = true;

@@ -20,7 +20,6 @@
       enable = true;
       tools = {
         aiEditors = false;
-        aiCli = false;
         sqlClient = false;
         mongoClient = false;
         apiClient = false;

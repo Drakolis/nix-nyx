@@ -55,7 +55,6 @@ let
     ++ lib.optionals cfg.tools.mongoClient mongoClientPackages
 
     ++ lib.optionals cfg.tools.aiEditors aiEditorsPackages
-    ++ lib.optionals cfg.tools.aiCli aiCliPackages
 
     ++ lib.optionals cfg.tools.kubernetes kubernetesPackages
     ++ lib.optionals cfg.tools.aws awsPackages
