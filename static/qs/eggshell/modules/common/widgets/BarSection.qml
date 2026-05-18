@@ -32,7 +32,7 @@ Rectangle {
     autoPaddingEnabled: true
     // The vertical offset makes the shadow slightly more prominent
     shadowBlur: 0.5
-    shadowScale: 1.03
+    shadowScale: 1.01
     shadowOpacity: 1
     shadowColor: Config.data.theme.colors.canvas
   }

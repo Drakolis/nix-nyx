@@ -7,7 +7,7 @@ import qs.modules.common.utils
 import qs.modules.common.widgets
 
 RowLayout {
-  visible: Config.data.audio.enabled && Config.data.audio.showMicrophone
+  visible: Config.data.bluetooth.enabled
   spacing: Config.data.theme.margins.icon
 
   Text {
@@ -19,7 +19,6 @@ RowLayout {
   }
 
   function chooseIcon() {
-    console.log(Bluetooth.defaultAdapter.state)
     if (Bluetooth.defaultAdapter.enabled) {
       if ([BluetoothAdapterState.Enabling, BluetoothAdapterState.Blocked].includes(Bluetooth.defaultAdapter.state)) {
         return IconUtils.getIcon("bluetooth-x")
@@ -34,10 +33,7 @@ RowLayout {
 
   function chooseColor() {
     if (Bluetooth.defaultAdapter.enabled) {
-      return Config.data.theme.colors.blue
-    }
-    if (Bluetooth.defaultAdapter.pairable) {
-
+      return Config.data.theme.colors.bluetooth
     }
     return Config.data.theme.colors.textDisabled
   }

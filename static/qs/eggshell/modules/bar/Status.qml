@@ -12,4 +12,8 @@ BarSection {
   Camera {}
   Battery {}
   Bluetooth {}
+  Network {}
+  // CPU {}
+  // GPU {}
+  // RAM {}
 }
