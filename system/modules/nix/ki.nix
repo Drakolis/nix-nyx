@@ -24,7 +24,6 @@ with lib;
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       tabby-agent
-      kdePackages.alpaka
     ];
 
     services.tabby = {
@@ -37,7 +36,7 @@ with lib;
     services.ollama = {
       enable = true;
       loadModels = [
-        "mistral"
+        "qwen3.5:9b"
       ];
       openFirewall = true;
     };
