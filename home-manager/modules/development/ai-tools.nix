@@ -8,9 +8,13 @@ let
   cfg = config.drakolis.development;
   isLinux = pkgs.stdenv.hostPlatform.isLinux;
 
-  aiToolsPackages = with pkgs; [
-    kdePackages.alpaka
-  ];
+  aiToolsPackages =
+    with pkgs;
+    [
+    ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      kdePackages.alpaka
+    ];
 
   zshExtraPlugins = [ ];
 in
