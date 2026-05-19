@@ -52,19 +52,19 @@ with lib;
   config = mkIf cfg.enable {
     programs.zsh."oh-my-zsh".plugins = zshExtraPlugins;
 
-    home.packages = desiredDevelopmentPackages;
+    home.packages = aiToolsPackages;
 
     programs.mcp.enable = true;
 
     programs.opencode = {
-      enable = cfg.tools.opencode;
+      enable = cfg.ai-tools.opencode;
       enableMcpIntegration = true;
-      web.enable = cfg.tools.opencode-web;
+      web.enable = cfg.ai-tools.opencode-web;
     };
-    programs.claude-code.enable = cfg.tools.claudecode;
+    programs.claude-code.enable = cfg.ai-tools.claudecode;
 
     programs.aichat = {
-      enable = cfg.tools.aichat;
+      enable = cfg.ai-tools.aichat;
       settings = {
         model = "Joermungandr:qwen3.5:9b";
         clients = [

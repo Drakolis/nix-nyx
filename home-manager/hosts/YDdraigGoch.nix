@@ -25,7 +25,7 @@
         apiClient = false;
         scaleway = true;
       };
-      aiTools = {
+      ai-tools = {
         opencode-web = true;
       };
       languages = {

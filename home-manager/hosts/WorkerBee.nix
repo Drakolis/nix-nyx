@@ -13,7 +13,7 @@
         aws = true;
         kubernetes = true;
       };
-      aiTools = {
+      ai-tools = {
         claudecode = true;
       };
       languages = {

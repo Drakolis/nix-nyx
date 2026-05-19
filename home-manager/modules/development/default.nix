@@ -19,6 +19,7 @@ with lib;
   imports = [
     ./languages.nix
     ./tools.nix
+    ./ai-tools.nix
     ./vscode.nix
     ./zed.nix
   ];
