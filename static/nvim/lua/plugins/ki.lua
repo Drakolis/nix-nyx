@@ -11,6 +11,27 @@ return {
     end,
   },
   {
+    "yetone/avante.nvim",
+    build = "make",
+    event = "VeryLazy",
+    opts = {
+      provider = "claude",
+      vendors = {
+        scaleway = {
+          __inherited_from = "openai",
+          api_key_name = "SCW_SECRET_KEY",
+          endpoint = "https://api.scaleway.ai/v1",
+          model = "qwen3-coder-30b-a3b-instruct",
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
     "nickjvandyke/opencode.nvim",
     dependencies = {
       -- Recommended for `ask()` and `select()`.
