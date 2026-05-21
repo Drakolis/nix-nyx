@@ -76,9 +76,10 @@ with lib;
             type = "openai-compatible";
             name = "Scaleway";
             api_base = "https://api.scaleway.ai/v1";
+            api_key = "$SCW_SECRET_KEY";
             models = [
               {
-                name = "qwen3.6-35b-a3b";
+                name = "qwen3.5-397b-a17b";
               }
             ];
           }

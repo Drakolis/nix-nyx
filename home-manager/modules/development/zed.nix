@@ -44,8 +44,8 @@ with lib;
               "api_url" = "https://api.scaleway.ai/v1";
               "available_models" = [
                 {
-                  "name" = "qwen3-coder-30b-a3b-instruct";
-                  "display_name" = "Qwen3 Coder - Scaleway";
+                  "name" = "qwen3.5-397b-a17b";
+                  "display_name" = "Qwen3.5 - Scaleway";
                   "max_tokens" = 128000;
                 }
               ];
