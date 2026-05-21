@@ -12,19 +12,27 @@ return {
   },
   {
     "yetone/avante.nvim",
-    build = "make",
-    event = "VeryLazy",
-    opts = {
-      provider = "claude",
-      vendors = {
-        scaleway = {
-          __inherited_from = "openai",
-          api_key_name = "SCW_SECRET_KEY",
-          endpoint = "https://api.scaleway.ai/v1",
-          model = "qwen3-coder-30b-a3b-instruct",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Load the Rust library FIRST
+      local ok, avante_lib = pcall(require, "avante_lib")
+      if ok then
+        avante_lib.load()
+      end
+
+      require("avante").setup({
+        provider = "claude",
+        providers = {
+          scaleway = {
+            __inherited_from = "openai",
+            api_key_name = "SCW_SECRET_KEY",
+            endpoint = "https://api.scaleway.ai/v1",
+            model = "qwen3.5-397b-a17b",
+          },
         },
-      },
-    },
+      })
+    end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",

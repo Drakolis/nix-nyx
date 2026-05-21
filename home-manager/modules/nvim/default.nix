@@ -18,6 +18,19 @@ in
     vimdiffAlias = true;
     withRuby = false;
     withPython3 = false;
+
+    plugins = [
+      pkgs.vimPlugins.lazy-nvim
+      pkgs.vimPlugins.avante-nvim
+      pkgs.vimPlugins.plenary-nvim
+      pkgs.vimPlugins.nui-nvim
+      pkgs.vimPlugins.nvim-web-devicons
+    ];
+
+    # Ensure avante is on rtp early
+    initLua = ''
+      vim.opt.rtp:prepend("${pkgs.vimPlugins.avante-nvim}")
+    '';
   };
 
   home.file = {
