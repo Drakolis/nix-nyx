@@ -427,6 +427,20 @@ in
           action.toggle-keyboard-shortcuts-inhibit = [ ];
         };
 
+        # Positioning
+        "Mod+N" = {
+          action.set-dynamic-cast-window = [ ];
+          hotkey-overlay.title = "Dynamic cast: Add Window";
+        };
+        "Mod+Shift+N" = {
+          action.set-dynamic-cast-monitor = [ ];
+          hotkey-overlay.title = "Dynamic cast: Add Monitor";
+        };
+        "Mod+Ctrl+N" = {
+          action.clear-dynamic-cast-target = [ ];
+          hotkey-overlay.title = "Dynamic cast: Clear target";
+        };
+
         "Ctrl+Alt+Delete".action.quit = [ ];
         "Mod+Shift+P" = {
           action.power-off-monitors = [ ];
