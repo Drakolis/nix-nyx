@@ -38,7 +38,7 @@ RowLayout {
   }
 
   Text {
-    visible: Config.data.network.showPercentage && bestWifiConnectedDevice
+    visible: Config.data.network.showPercentage && bestWifiConnectedDevice.networkSignal
 
     Layout.topMargin: 2
 
@@ -49,22 +49,23 @@ RowLayout {
   }
 
   function chooseIcon() {
-    if (Networking.wifiEnabled && Networking.wifiHardwareEnabled) {
-      if (wifiDevices.length > 0) {
-        if (bestWifiConnectedDevice) {
-          if (bestWifiConnectedDevice.networkSignal >= 0.8) {
-            return IconUtils.getIcon("wifi")
-          }
-          if (bestWifiConnectedDevice.networkSignal >= 0.6) {
-            return IconUtils.getIcon("wifi-2")
-          }
-          if (bestWifiConnectedDevice.networkSignal >= 0.4) {
-            return IconUtils.getIcon("wifi-1")
-          }
-          if (bestWifiConnectedDevice.networkSignal <= 0.2) {
-            return IconUtils.getIcon("wifi-0")
-          }
+    if (Networking.wifiEnabled && Networking.wifiHardwareEnabled && wifiDevices.length > 0) {
+      if (bestWifiConnectedDevice.networkName) {
+        if (bestWifiConnectedDevice.networkSignal >= 0.8) {
+          return IconUtils.getIcon("wifi")
         }
+        if (bestWifiConnectedDevice.networkSignal >= 0.6) {
+          return IconUtils.getIcon("wifi-2")
+        }
+        if (bestWifiConnectedDevice.networkSignal >= 0.4) {
+          return IconUtils.getIcon("wifi-1")
+        }
+        if (bestWifiConnectedDevice.networkSignal <= 0.2) {
+          return IconUtils.getIcon("wifi-0")
+        }
+      }
+    } else {
+      if (!wiredDevices || wiredDevices.every(d => !d.connected)) {
         return IconUtils.getIcon("wifi-off")
       }
     }
