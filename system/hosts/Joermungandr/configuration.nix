@@ -112,7 +112,7 @@
   # Firewall
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ ]; # Explicitly allow only needed ports
+    allowedTCPPorts = [ 4096 ]; # Explicitly allow only needed ports
     allowedUDPPorts = [ ];
     logRefusedConnections = false; # Reduce log noise (set to true if debugging)
   };
