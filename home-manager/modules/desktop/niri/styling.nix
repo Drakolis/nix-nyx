@@ -35,9 +35,9 @@ in
           color = "#${style.colors.shadow}";
           offset = {
             x = 0;
-            y = 2;
+            y = 0;
           };
-          softness = 6;
+          softness = 5;
           spread = 1;
         };
 

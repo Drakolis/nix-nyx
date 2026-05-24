@@ -51,7 +51,7 @@ in
       }
 
       window {
-        font-size: ${toString style.fontSizeLarger}px;
+        font-size: ${toString style.fontSizeLarger}pt;
         font-family: ${style.fontGuiNerd};
         background: transparent;
       }
