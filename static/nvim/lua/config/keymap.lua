@@ -82,7 +82,7 @@ vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 -- Select all text in current buffer
 vim.keymap.set(
   "n",
-  "<leader>a",
+  "<leader>va",
   ":keepjumps normal! ggVG<CR>",
   { desc = "Select all" }
 )
