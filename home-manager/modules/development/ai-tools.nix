@@ -65,6 +65,12 @@ with lib;
       enableMcpIntegration = true;
       web.enable = cfg.ai-tools.opencode-web;
       skills = ../../../static/ai/skills;
+      web.extraArgs = [
+        "--hostname"
+        "0.0.0.0"
+        "--port"
+        "4096"
+      ];
     };
     programs.claude-code.enable = cfg.ai-tools.claudecode;
 
