@@ -223,7 +223,7 @@ in
   };
 
   programs.pet = {
-    enable = true;
+    enable = false;
     settings = {
       General = {
         editor = commands.tui.editor;
@@ -275,7 +275,13 @@ in
     };
   };
 
-  programs.aichat.enable = true;
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    enableNushellIntegration = true;
+    daemon.enable = true;
+  };
 
   programs.carapace = {
     enable = true;
