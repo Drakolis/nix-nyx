@@ -39,6 +39,9 @@ let
     "startpage.com"
     "proton.me"
     "web.structured.app"
+    "hub.atuin.sh"
+    "quickshell.org"
+    "doc.qt.io"
     # AI
     "perplexity.ai"
     "chatgpt.com"
