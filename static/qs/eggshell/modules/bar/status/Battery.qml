@@ -40,20 +40,20 @@ RowLayout {
     if (UPower.displayDevice.state === UPowerDeviceState.Charging) {
       return IconUtils.getIcon(`battery${iconOrientation()}-charging`)
     }
-    if (UPower.displayDevice.percentage <= 0.2) {
-      return IconUtils.getIcon(`battery${iconOrientation()}`)
-    }
-    if (UPower.displayDevice.percentage >= 0.2) {
-      return IconUtils.getIcon(`battery${iconOrientation()}-1`)
-    }
-    if (UPower.displayDevice.percentage >= 0.4) {
-      return IconUtils.getIcon(`battery${iconOrientation()}-2`)
+    if (UPower.displayDevice.percentage >= 0.8) {
+      return IconUtils.getIcon(`battery${iconOrientation()}-4`)
     }
     if (UPower.displayDevice.percentage >= 0.6) {
       return IconUtils.getIcon(`battery${iconOrientation()}-3`)
     }
-    if (UPower.displayDevice.percentage >= 0.8) {
-      return IconUtils.getIcon(`battery${iconOrientation()}-4`)
+    if (UPower.displayDevice.percentage >= 0.4) {
+      return IconUtils.getIcon(`battery${iconOrientation()}-2`)
+    }
+    if (UPower.displayDevice.percentage >= 0.2) {
+      return IconUtils.getIcon(`battery${iconOrientation()}-1`)
+    }
+    if (UPower.displayDevice.percentage <= 0.2) {
+      return IconUtils.getIcon(`battery${iconOrientation()}`)
     }
     return IconUtils.getIcon(`battery${iconOrientation()}-exclamation`)
   }

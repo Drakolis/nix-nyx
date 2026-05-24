@@ -64,6 +64,7 @@ with lib;
       enable = cfg.ai-tools.opencode;
       enableMcpIntegration = true;
       web.enable = cfg.ai-tools.opencode-web;
+      skills = ../../../static/ai/skills;
     };
     programs.claude-code.enable = cfg.ai-tools.claudecode;
 

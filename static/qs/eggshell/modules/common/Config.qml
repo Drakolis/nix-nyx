@@ -153,8 +153,8 @@ Singleton {
         property bool enabled: true
         property bool showAlways: false
         property bool showPercentage: true
-        property int warning: 20
-        property int critical: 10
+        property real warning: 0.20
+        property real critical: 0.10
         property string orientation: Types.orientationToString(Types.Orientation.Horizontal)
       }
 
