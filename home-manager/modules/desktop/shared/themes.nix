@@ -91,14 +91,14 @@ in
       theme = config.gtk.theme;
       extraCss = ''
         .background {
-          background: rgba(30, 30, 46, 0.85);
+          background: rgba(30, 30, 46, 0.92);
         }
         list.boxed-list, stack list {
           background: rgba(49, 50, 68, 0.9);
           border: none;
         }
         .sidebar-pane, .monitor-selection-container, gutterrenderer {
-          background: rgba(24, 24, 37, 0.2);
+          background: rgba(24, 24, 37, 0.3);
         }
         .content-pane, .view, toolbarview {
           background: transparent;
@@ -123,7 +123,7 @@ in
           border-bottom: 1px solid #31323e;
         }
         .background {
-          background: rgba(30, 30, 46, 0.85);
+          background: rgba(30, 30, 46, 0.92);
         }
         .view {
           background: transparent;
@@ -134,7 +134,7 @@ in
         .sidebar, statusbar, .statusbar,
         toolbar.inline-toolbar, actionbar,
         viewport.frame list {
-          background: rgba(24, 24, 37, 0.2);
+          background: rgba(24, 24, 37, 0.3);
         }
         entry {
           background: rgba(239, 241, 245, 0.08);
@@ -143,7 +143,7 @@ in
           background: transparent;
         }
         menu {
-          background: rgba(49, 50, 68, 0.85);
+          background: rgba(49, 50, 68, 0.92);
         }
       '';
       bookmarks = [
