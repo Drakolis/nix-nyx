@@ -174,7 +174,7 @@ in
       tab_bar_style = "powerline";
       tab_powerline_style = "round";
       tab_activity_symbol = "󰞌";
-      tab_title_template = "{fmt.fg.tab}{index}:{title} {activity_symbol}{fmt.fg.red}{bell_symbol}";
+      tab_title_template = "{fmt.fg.tab} {index}: {title} {activity_symbol}{fmt.fg.red}{bell_symbol}";
 
       notify_on_cmd_finish = "invisible";
 
