@@ -152,7 +152,7 @@ in
         "file://${config.xdg.userDirs.videos}"
         "file://${config.xdg.userDirs.download}"
         "file://${config.home.homeDirectory}/Projects"
-        "file://${config.home.homeDirectory}/Share"
+        "file://${config.home.homeDirectory}/Shared"
       ];
     };
   };
