@@ -7,7 +7,7 @@
 
   drakolis = {
     deviceSettings = {
-      formFactor = "desktop";
+      formFactor = "server";
     };
     flatpak = {
       enable = true;
