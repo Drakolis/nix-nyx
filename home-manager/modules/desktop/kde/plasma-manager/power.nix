@@ -34,8 +34,9 @@ in
 
         autoSuspend = {
           action = if neverSleeps then "nothing" else "sleep";
-          idleTimeout = sleepTimeout; # sec, POWER
+          idleTimeout = if neverSleeps then null else sleepTimeout; # sec, POWER
         };
+
         dimDisplay = {
           enable = true;
           idleTimeout = lightsTimeout; # sec, POWER
