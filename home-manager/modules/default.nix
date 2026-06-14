@@ -4,6 +4,7 @@ let
     "laptop"
     "desktop"
     "tablet"
+    "server"
   ];
 in
 with lib;

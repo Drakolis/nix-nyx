@@ -1,3 +1,14 @@
+{ config, lib, ... }:
+let
+  formFactor = config.drakolis.deviceSettings.formFactor;
+  isSleepy = formFactor == "laptop" || formFactor == "tablet";
+  neverSleeps = formFactor == "server";
+
+  lightsTimeout = if isSleepy then 150 else 150;
+  lockTimeout = if isSleepy then 300 else 600;
+  monitorTimeout = if isSleepy then 330 else 630;
+  sleepTimeout = if isSleepy then 1800 else 3600;
+in
 {
   programs.plasma = {
     kscreenlocker = {
@@ -7,7 +18,7 @@
       };
 
       autoLock = true;
-      timeout = 10; # min, POWER
+      timeout = lockTimeout / 60; # min, POWER
 
       lockOnResume = true;
 
@@ -22,15 +33,15 @@
         powerProfile = "balanced";
 
         autoSuspend = {
-          action = "sleep";
-          idleTimeout = 900; # sec, POWER
+          action = if neverSleeps then "nothing" else "sleep";
+          idleTimeout = sleepTimeout; # sec, POWER
         };
         dimDisplay = {
           enable = true;
-          idleTimeout = 300; # sec, POWER
+          idleTimeout = lightsTimeout; # sec, POWER
         };
         turnOffDisplay = {
-          idleTimeout = 600; # sec, POWER
+          idleTimeout = monitorTimeout; # sec, POWER
           idleTimeoutWhenLocked = 60; # sec, POWER
         };
         powerButtonAction = "showLogoutScreen";
@@ -44,14 +55,14 @@
 
         autoSuspend = {
           action = "sleep";
-          idleTimeout = 600; # sec, POWER
+          idleTimeout = sleepTimeout; # sec, POWER
         };
         dimDisplay = {
           enable = true;
-          idleTimeout = 120; # sec, POWER
+          idleTimeout = lightsTimeout; # sec, POWER
         };
         turnOffDisplay = {
-          idleTimeout = 300; # sec, POWER
+          idleTimeout = monitorTimeout; # sec, POWER
           idleTimeoutWhenLocked = 60; # sec, POWER
         };
         powerButtonAction = "showLogoutScreen";
@@ -67,14 +78,14 @@
 
         autoSuspend = {
           action = "sleep";
-          idleTimeout = 300; # sec, POWER
+          idleTimeout = sleepTimeout; # sec, POWER
         };
         dimDisplay = {
           enable = true;
-          idleTimeout = 60; # sec, POWER
+          idleTimeout = lightsTimeout; # sec, POWER
         };
         turnOffDisplay = {
-          idleTimeout = 120; # sec, POWER
+          idleTimeout = monitorTimeout; # sec, POWER
           idleTimeoutWhenLocked = 60; # sec, POWER
         };
         powerButtonAction = "showLogoutScreen";

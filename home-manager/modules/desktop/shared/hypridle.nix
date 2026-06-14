@@ -1,12 +1,13 @@
-{ config, lib, ...}:
+{ config, lib, ... }:
 let
   formFactor = config.drakolis.deviceSettings.formFactor;
   isSleepy = formFactor == "laptop" || formFactor == "tablet";
-  
+  neverSleeps = formFactor == "server";
+
   lightsTimeout = if isSleepy then 150 else 150;
   lockTimeout = if isSleepy then 300 else 600;
-  monitorTimeout =  if isSleepy then 330 else 630;
-  sleepTimeout =  if isSleepy then 1800 else 3600;
+  monitorTimeout = if isSleepy then 330 else 630;
+  sleepTimeout = if isSleepy then 1800 else 3600;
 in
 {
   services.hypridle = {
@@ -49,7 +50,7 @@ in
 
         {
           timeout = sleepTimeout; # 30min
-          on-timeout = "systemctl suspend"; # suspend pc
+          on-timeout = if neverSleeps then "" else "systemctl suspend";
         }
       ];
     };
