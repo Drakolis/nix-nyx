@@ -10,5 +10,6 @@
       "1password"
       "steam"
       "steam-unwrapped"
+      "open-webui"
     ];
 }

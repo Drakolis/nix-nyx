@@ -89,6 +89,9 @@
     jellyfin = {
       enable = true;
     };
+    open-webui = {
+      enable = true;
+    };
   };
 
   # Firewall
