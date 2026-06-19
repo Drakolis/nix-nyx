@@ -91,6 +91,17 @@
     };
     open-webui = {
       enable = true;
+      port = 8080;
+      host = "0.0.0.0";
+    };
+    n8n = {
+      enable = true;
+      environment.N8N_PORT = "5678";
+      openFirewall = true;
+    };
+    homepage-dashboard = {
+      enable = true;
+      listenPort = 8081;
     };
   };
 
