@@ -258,6 +258,10 @@ in
     };
   };
 
+  programs.visidata.enable = true;
+
+  programs.gh-dash.enable = true;
+
   programs.zsh = {
     shellAliases = {
       fifs = "batgrep";

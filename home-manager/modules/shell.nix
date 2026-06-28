@@ -276,7 +276,7 @@ in
   };
 
   programs.atuin = {
-    enable = true;
+    enable = false;
     enableZshIntegration = true;
     enableBashIntegration = true;
     enableNushellIntegration = true;
@@ -289,4 +289,10 @@ in
     enableBashIntegration = true;
     enableNushellIntegration = true;
   };
+
+  programs.vivid = {
+    enable = true;
+    theme = "catppuccin-mocha";
+  };
+
 }

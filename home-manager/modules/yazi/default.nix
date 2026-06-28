@@ -386,11 +386,11 @@ in
 
           # Fallback
           {
-            name = "*";
+            url = "*";
             fg = "#${style.colors.filetypeAny}";
           }
           {
-            name = "*/";
+            url = "*/";
             fg = "#${style.colors.filetypeFolder}";
           }
         ];
